@@ -1,0 +1,261 @@
+# Product Requirements Document (PRD)
+
+## Product Name
+
+**FreeThings (freethings.com)**
+
+## One‑Liner
+
+A trusted hub that lists **legitimate free rewards, items, and no‑investment earning opportunities** from games and the internet — updated and verified.
+
+---
+
+## 1. Problem Statement
+
+People constantly search for:
+
+* Legit **free in‑game rewards** (chests, emotes, bonuses)
+* **No‑investment ways to earn online**
+
+But the internet is full of:
+
+* Scammy websites
+* Fake generators
+* Outdated or misleading information
+
+Users waste time, risk bans, or lose trust.
+
+---
+
+## 2. Product Goal
+
+Create a **high‑trust, SEO‑focused directory website** that:
+
+* Lists **only legitimate free items and rewards**
+* Explains *how* to get them clearly
+* Updates content regularly
+* Monetizes via ads and later affiliate partnerships
+
+---
+
+## 3. Target Audience
+
+### Primary
+
+* Gamers (mobile & PC)
+* Casual users searching for “free rewards”
+* Young users (16–30)
+
+### Secondary
+
+* People looking for side income
+* Beginners in online earning
+* Users in emerging markets
+
+---
+
+## 4. Core Content Hubs
+
+### 4.1 Games Hub
+
+Path: `/games`
+
+Purpose:
+
+* Central place for **official, legit in‑game freebies**
+
+Examples:
+
+* Clash Royale
+* Brawl Stars
+* Fortnite
+* PUBG Mobile
+
+Sub‑routes:
+
+```
+/games/clash-royale
+/games/brawl-stars
+```
+
+---
+
+### 4.2 Money Hub
+
+Path: `/money`
+
+Purpose:
+
+* List **legitimate ways to earn online with no upfront cost**
+
+Sub‑categories:
+
+```
+/money/apps
+/money/websites
+/money/trading
+```
+
+Important framing:
+❌ No “free money” claims
+✅ “Earn online with time & effort — no investment”
+
+---
+
+## 5. Page Requirements
+
+### 5.1 Game Page (Example: Clash Royale)
+
+URL:
+`/games/clash-royale`
+
+Sections:
+
+1. Current free rewards (updated)
+2. Upcoming events with rewards
+3. How to get free items legitimately
+4. Tips & common mistakes
+5. FAQ (SEO)
+
+Rules:
+
+* Only official Supercell sources
+* No hacks, generators, or exploits
+* Clear disclaimers
+
+---
+
+### 5.2 Money Page (Example: Websites)
+
+URL:
+`/money/websites`
+
+Each listing must include:
+
+* Website name
+* What you do to earn
+* Time required
+* Country availability
+* Payout method
+* Minimum payout
+* Pros / cons
+* Trust rating (1–5)
+
+---
+
+## 6. Trust & Safety Requirements
+
+### Mandatory
+
+* Disclaimer on every page
+* “No affiliation” notice where required
+* No misleading promises
+* Clear update timestamps
+
+### SEO Trust Signals
+
+* Author/about page
+* Contact page
+* Update dates
+* Transparent criteria
+
+---
+
+## 7. Monetization
+
+### Phase 1 (MVP)
+
+* Google AdSense
+* Native display ads
+
+### Phase 2
+
+* Affiliate links (trading platforms, apps)
+* Email newsletter
+* Telegram channel
+
+---
+
+## 8. MVP Scope (7 Days)
+
+### Included
+
+* Homepage
+* Games hub
+* Clash Royale page
+* Money hub
+* 1 money subpage
+* Basic SEO
+
+### Excluded (Later)
+
+* User accounts
+* Comments
+* Notifications
+* Paid memberships
+
+---
+
+## 9. SEO Strategy
+
+* Keyword‑based URLs
+* FAQ schema
+* Freshness updates
+* Year‑based titles (2026)
+* Internal linking between hubs
+
+Example title:
+
+> Free Clash Royale Rewards (Updated 2026)
+
+---
+
+## 10. Tech Stack (Suggested)
+
+* Frontend: Next.js
+* Styling: Tailwind
+* CMS: Markdown / Notion / Headless CMS
+* Hosting: Vercel
+* Analytics: Google Analytics + Search Console
+
+---
+
+## 11. Success Metrics
+
+* Indexed pages
+* Organic impressions
+* Time on page
+* Pages per session
+* Ad RPM
+
+---
+
+## 12. Risks & Mitigation
+
+| Risk             | Mitigation                       |
+| ---------------- | -------------------------------- |
+| Google distrust  | Clean language, legit sources    |
+| Ad rejection     | Avoid scam wording               |
+| Legal issues     | Use disclaimers & official links |
+| Low SEO traction | Focus on single niche first      |
+
+---
+
+## 13. Future Expansion
+
+* More games
+* Country‑specific pages
+* Free trials & SaaS offers
+* Browser extension
+
+---
+
+## 14. Summary
+
+FreeThings is a **trust‑first content platform** that focuses on:
+
+* Legit freebies
+* Clear explanations
+* Scalable SEO structure
+
+If executed cleanly, it can grow into a **high‑traffic ad‑monetized authority site**.

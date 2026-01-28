@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Concert_One, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "@/ui/Header";
+import Footer from "@/ui/Footer";
+
+const concertOne = Concert_One({
+  variable: "--font-concert-one",
+  weight: "400",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,9 +32,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${concertOne.variable} ${geistMono.variable} antialiased`}
       >
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
