@@ -3,6 +3,8 @@ import { Concert_One, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/ui/Header";
 import Footer from "@/ui/Footer";
+import { Analytics } from "@vercel/analytics/next";
+import clientEnv from "@/utils/clientEnv";
 
 const concertOne = Concert_One({
   variable: "--font-concert-one",
@@ -37,6 +39,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        {clientEnv.NEXT_PUBLIC_NODE_ENV === "production" && <Analytics />}
       </body>
     </html>
   );
