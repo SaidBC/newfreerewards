@@ -10,11 +10,11 @@ export default function CurrentActiveRewardsSection() {
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
           {rewards.map((reward) => (
             <RewardItem
-              key={reward.slug}
+              key={reward.id}
               src={reward.previewImage}
               platform={reward.platform}
               title={reward.name}
-              slug={reward.id}
+              slug={reward.slug}
             />
           ))}
         </ul>

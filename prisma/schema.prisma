@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -17,20 +11,65 @@ enum PlatformType {
   SERVICE
 }
 
+enum RewardStatus {
+  active
+  expired
+}
+
+enum RewardContentType {
+  text
+  image
+  link
+}
+
 model Platform {
-  id      Int      @id @default(autoincrement())
-  name    String   @unique
-  slug    String   @unique
+  id      Int          @id @default(autoincrement())
+  name    String       @unique
+  slug    String       @unique
+  image   String?
   type    PlatformType @default(GAME)
   rewards Reward[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Reward {
-  id          Int       @id @default(autoincrement())
-  title       String
-  description String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  platform    Platform  @relation(fields: [platformId], references: [id])
-  platformId  Int
+  id           Int          @id @default(autoincrement())
+  slug         String       @unique
+  title        String
+  description  String
+  previewImage String?
+  status       RewardStatus @default(active)
+
+  platform   Platform @relation(fields: [platformId], references: [id], onDelete: Cascade)
+  platformId Int
+
+  contents RewardContent[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([platformId])
+  @@index([status])
+}
+
+model RewardContent {
+  id   Int               @id @default(autoincrement())
+  type RewardContentType
+
+  value    String? // for text
+  href     String? // for link
+  label    String? // for link label
+  imageSrc String? // for image
+  imageAlt String?
+
+  reward   Reward @relation(fields: [rewardId], references: [id], onDelete: Cascade)
+  rewardId Int
+
+  order Int // controls rendering order
+
+  createdAt DateTime @default(now())
+
+  @@index([rewardId])
 }

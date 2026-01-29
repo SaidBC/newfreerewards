@@ -1,7 +1,31 @@
+import { $Enums, RewardContentType } from "@prisma/client";
+
+interface ContentType {
+  type: RewardContentType;
+  value?: string;
+  href?: string;
+  src?: string;
+  alt?: string;
+  label?: string;
+}
+
+interface RewardType {
+  id: string;
+  slug: string;
+  platform: {
+    name: string;
+    src: string;
+  };
+  previewImage?: string;
+  name: string;
+  description: string;
+  status: "active" | "expired";
+  content: ContentType[];
+}
+
 const siteConfig = {
   navLinks: [
     { href: "/", title: "Home" },
-    { href: "/offers", title: "Offers" },
     { href: "/#list", title: "All Rewards" },
     { href: "/games", title: "Games" },
     { href: "/contact", title: "Contact" },
@@ -13,13 +37,15 @@ const siteConfig = {
         id: "1",
         slug: "hero-ice-golem-emote",
         platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/hero-ice-golem-emote.png",
+        previewImage: "/preview-hero-ice-golem-emote.png",
         name: "Hero Ice Golem Emote",
         description: "Follow the steps below to claim this emote.",
-        rewardType: "emote",
-        status: "active",
+        status: "active" as "active" | "expired",
         content: [
-          { type: "text", value: "Open the Supercell website and log in." },
+          {
+            type: "text",
+            value: "Open the Supercell store website and log in.",
+          },
           {
             type: "text",
             value:
@@ -40,20 +66,22 @@ const siteConfig = {
             value:
               "Click the Free button, then open Clash Royale to receive the emote.",
           },
-        ],
+        ] as ContentType[],
       },
 
       {
         id: "2",
         slug: "2-star-lucky-chest",
         platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/hero-ice-golem-emote.png",
+        previewImage: "/preview-2-star-magic-lucky-chest.png",
         name: "2-Star Lucky Chest",
         description: "Follow the steps below to claim this chest.",
-        rewardType: "chest",
-        status: "active",
+        status: "active" as "active" | "expired",
         content: [
-          { type: "text", value: "Open the Supercell website and log in." },
+          {
+            type: "text",
+            value: "Open the Supercell store website and log in.",
+          },
           {
             type: "link",
             href: "https://store.supercell.com/clashroyale",
@@ -66,22 +94,25 @@ const siteConfig = {
           },
           {
             type: "text",
-            value: "Scroll down and click the Lucky Chest reward.",
+            value:
+              "Scroll down and click on bonuses box which will appears when you scroll down , then click the Lucky Chest reward.",
           },
-        ],
+        ] as ContentType[],
       },
 
       {
         id: "3",
         slug: "hero-wizard-emote",
         platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/hero-ice-golem-emote.png",
+        previewImage: "/preview-hero-wizard-emote.png",
         name: "Hero Wizard Emote",
         description: "Follow the steps below to claim this emote.",
-        rewardType: "emote",
-        status: "active",
+        status: "active" as "active" | "expired",
         content: [
-          { type: "text", value: "Open the Supercell website and log in." },
+          {
+            type: "text",
+            value: "Open the Supercell store website and log in.",
+          },
           {
             type: "link",
             href: "https://store.supercell.com/clashroyale/product/emote/425024a6",
@@ -97,20 +128,22 @@ const siteConfig = {
             value:
               "Click the Free button, then open Clash Royale to receive the emote.",
           },
-        ],
+        ] as ContentType[],
       },
 
       {
         id: "4",
         slug: "hero-musketeer-emote",
         platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/hero-ice-golem-emote.png",
+        previewImage: "/preview-hero-musk-emote.png",
         name: "Hero Musketeer Emote",
         description: "Redeem a promo code to unlock this emote.",
-        rewardType: "emote",
-        status: "active",
+        status: "active" as "active" | "expired",
         content: [
-          { type: "text", value: "Open the Supercell website and log in." },
+          {
+            type: "text",
+            value: "Open the Supercell store website and log in.",
+          },
           {
             type: "text",
             value: "Scroll to the bottom and find the redeem code input.",
@@ -126,20 +159,22 @@ const siteConfig = {
             src: "/hero-musk-emote.png",
             alt: "Hero Musketeer emote",
           },
-        ],
+        ] as ContentType[],
       },
 
       {
         id: "5",
         slug: "flying-royal-hogs-emote",
         platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/hero-ice-golem-emote.png",
+        previewImage: "/preview-fly-hog-emote.png",
         name: "Flying Royal Hogs Emote",
         description: "Unlock the Flying Royal Hogs emote using a code.",
-        rewardType: "emote",
-        status: "active",
+        status: "active" as "active" | "expired",
         content: [
-          { type: "text", value: "Open the Supercell website and log in." },
+          {
+            type: "text",
+            value: "Open the Supercell store website and log in.",
+          },
           { type: "text", value: "Enter the code: WHENHOGSFLY!" },
           {
             type: "link",
@@ -148,72 +183,82 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: "/placeholder-image.png",
+            src: "/screenshot-1769632832321.png",
             alt: "Flying Royal Hogs emote",
           },
-        ],
+        ] as ContentType[],
       },
 
       {
         id: "6",
         slug: "fire-and-ice-banner-set",
         platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/hero-ice-golem-emote.png",
         name: "Fire & Ice Banner Set",
         description:
           "Includes Ember Escape decoration and Firestorm banner frame.",
-        rewardType: "banner",
-        status: "active",
+        status: "active" as "active" | "expired",
         content: [
-          { type: "text", value: "Open the Supercell website and log in." },
+          {
+            type: "text",
+            value: "Open the Supercell store website and log in.",
+          },
           { type: "text", value: "Enter the code: FIREANDICE!!" },
           {
+            type: "link",
+            href: "https://store.supercell.com/clashroyale",
+            label: "Redeem the code here",
+          },
+          {
             type: "image",
-            src: "/placeholder-image.png",
+            src: "/screenshot-1769632944878.png",
             alt: "Fire and Ice banner set",
           },
-        ],
+        ] as ContentType[],
       },
 
       {
         id: "7",
         slug: "snoring-dragon-banner-set",
         platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/hero-ice-golem-emote.png",
         name: "Snoring Dragon Banner Set",
         description: "Unlock the Snoring Dragon banner decoration.",
-        rewardType: "banner",
-        status: "active",
+        status: "active" as "active" | "expired",
         content: [
-          { type: "text", value: "Open the Supercell website and log in." },
+          {
+            type: "text",
+            value: "Open the Supercell store website and log in.",
+          },
           { type: "text", value: "Enter the code: REINABARRIGA" },
           {
+            type: "link",
+            href: "https://store.supercell.com/clashroyale",
+            label: "Redeem the code here",
+          },
+          {
             type: "image",
-            src: "/placeholder-image.png",
+            src: "/screenshot-1769635646682.png",
             alt: "Snoring Dragon banner set",
           },
-        ],
+        ] as ContentType[],
       },
 
       {
         id: "8",
         slug: "1000-gold-reward",
         platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/hero-ice-golem-emote.png",
         name: "1,000 Gold",
         description: "Claim 1,000 Gold instantly.",
-        rewardType: "gold",
-        status: "active",
+        status: "active" as "active" | "expired",
         content: [
-          { type: "text", value: "Open the link or scan the QR code in-game." },
+          { type: "text", value: "Open the link or scan the QR code ." },
           {
             type: "link",
-            href: "https://link.clashroyale.com/en/?action=voucher&code=1000GOLD",
+            href: "https://link.clashroyale.com/en/?action=voucher&code=2c13ee10-68de-4cc6-940e-57cfb9aebb0c",
             label: "Claim 1,000 Gold",
           },
           {
             type: "image",
-            src: "/placeholder-qr.png",
+            src: "/1000-gold-qr.png",
             alt: "1,000 Gold QR code",
           },
         ],
@@ -223,71 +268,66 @@ const siteConfig = {
         id: "9",
         slug: "hot-hog-balloon-banner-frame",
         platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/hero-ice-golem-emote.png",
         name: "Hot Hog Balloon Banner Frame",
         description: "Claim this banner frame via QR or direct link.",
-        rewardType: "banner",
-        status: "active",
+        status: "active" as "active" | "expired",
         content: [
           {
             type: "link",
-            href: "https://link.clashroyale.com/en/?action=voucher&code=HOTHOGFRAME",
+            href: "https://link.clashroyale.com/en/?action=voucher&code=f49b8488-8068-4b1a-8f9f-57e1517f2f5a",
             label: "Claim banner frame",
           },
           {
             type: "image",
-            src: "/placeholder-qr.png",
+            src: "/hot-hog-balloon-banner-banner.png",
             alt: "Hot Hog Balloon banner frame QR",
           },
-        ],
+        ] as ContentType[],
       },
 
       {
         id: "10",
         slug: "hamelia-hogwart-banner-decoration",
         platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/hero-ice-golem-emote.png",
         name: "Hamelia Hogwart Banner Decoration",
         description: "Unlock this banner decoration for free.",
-        rewardType: "banner",
-        status: "active",
+        status: "active" as "active" | "expired",
         content: [
           {
             type: "link",
-            href: "https://link.clashroyale.com/en/?action=voucher&code=HAMELIAHOG",
+            href: "https://link.clashroyale.com/en/?action=voucher&code=80486871-5620-4237-83fb-42174ddc8a83",
             label: "Claim banner decoration",
           },
           {
             type: "image",
-            src: "/placeholder-qr.png",
+            src: "/hamelia-hoghart-banner.png",
             alt: "Hamelia Hogwart banner decoration QR",
           },
-        ],
+        ] as ContentType[],
       },
 
       {
         id: "11",
         slug: "royal-ghost-boo-emote",
         platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/hero-ice-golem-emote.png",
+        previewImage: "/preview-royal-ghost-boo-emote.jpeg",
         name: "Royal Ghost Boo Emote",
         description: "Claim the Royal Ghost Boo emote.",
-        rewardType: "emote",
-        status: "active",
+        status: "active" as "active" | "expired",
         content: [
           {
             type: "link",
-            href: "https://link.clashroyale.com/en/?action=voucher&code=ROYALGHOSTBOO",
+            href: "https://link.clashroyale.com/de/?action=voucher&code=bf578c2b-bc44-4312-8c61-5e513b6fb817",
             label: "Claim emote",
           },
           {
             type: "image",
-            src: "/placeholder-qr.png",
+            src: "/Royal-Ghost-Boo-emote.png",
             alt: "Royal Ghost Boo emote QR",
           },
-        ],
+        ] as ContentType[],
       },
-    ],
+    ] as RewardType[],
   },
 };
 

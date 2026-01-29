@@ -1,65 +1,67 @@
-import 'dotenv/config';
-import prisma from '../lib/prisma';
-import { PlatformType } from '@prisma/client';
+import "dotenv/config";
+import siteConfig from "../lib/siteConfig";
+import prisma from "../lib/prisma";
 
 async function main() {
-  console.log(`Start seeding ...`);
+  if (!process.env.DATABASE_URL) {
+    throw new Error("❌ DATABASE_URL is missing in .env");
+  }
 
-  // Clear existing data
-  await prisma.reward.deleteMany();
-  await prisma.platform.deleteMany();
+  console.log("Deleting proccess started ... ");
+  await prisma.platform.deleteMany({});
+  await prisma.rewardContent.deleteMany({});
+  await prisma.reward.deleteMany({});
 
-  // Create Platforms
+  console.log("DB Deleted successfully");
+
+  // 1️⃣ Create platform (Clash Royale only)
   const clashRoyale = await prisma.platform.create({
     data: {
-      name: 'Clash Royale',
-      slug: 'clash-royale',
-      type: PlatformType.GAME,
+      name: "Clash Royale",
+      slug: "clash-royale",
+      image: "/clash-royale.jpg",
+      type: "GAME",
     },
   });
 
-  const brawlStars = await prisma.platform.create({
-    data: {
-      name: 'Brawl Stars',
-      slug: 'brawl-stars',
-      type: PlatformType.GAME,
-    },
-  });
+  const rewards = siteConfig.clashroyale.rewards;
 
-  const surveyApp = await prisma.platform.create({
-    data: {
-      name: 'Survey App',
-      slug: 'survey-app',
-      type: PlatformType.SERVICE,
-    },
-  });
+  // 3️⃣ Insert rewards + contents
+  for (const reward of rewards) {
+    const createdReward = await prisma.reward.upsert({
+      where: { slug: reward.slug },
+      update: {},
+      create: {
+        slug: reward.slug,
+        title: reward.name,
+        description: reward.description,
+        previewImage: reward.previewImage,
+        status: reward.status,
+        platformId: clashRoyale.id,
+      },
+    });
 
-  // Create Rewards
-  await prisma.reward.create({
-    data: {
-      title: 'Free Tower Skin',
-      description: 'Get a free, limited-edition tower skin for the current season.',
-      platformId: clashRoyale.id,
-    },
-  });
+    // delete old content to avoid duplicates
+    await prisma.rewardContent.deleteMany({
+      where: { rewardId: createdReward.id },
+    });
 
-  await prisma.reward.create({
-    data: {
-      title: '100 Free Gems',
-      description: 'Claim 100 free gems to spend in the Brawl Stars shop.',
-      platformId: brawlStars.id,
-    },
-  });
+    // create content blocks
+    await prisma.rewardContent.createMany({
+      data: reward.content.map((c, index) => ({
+        rewardId: createdReward.id,
+        order: index,
+        type: c.type,
+        value: c.value ?? null,
+        href: c.href ?? null,
+        label: c.label ?? null,
+        imageSrc: c.src ?? null,
+        imageAlt: c.alt ?? null,
+      })),
+    });
+  }
 
-  await prisma.reward.create({
-    data: {
-      title: 'Earn $5 with Survey App',
-      description: 'Complete a short survey and earn a $5 reward.',
-      platformId: surveyApp.id,
-    },
-  });
-
-  console.log(`Seeding finished.`);
+  console.log("✅ Clash Royale platform and rewards seeded successfully");
 }
 
 main()

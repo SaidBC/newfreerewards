@@ -2,6 +2,20 @@ import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Games With Free Rewards & Bonuses",
+  description:
+    "Browse games offering free rewards, bonuses, promo codes, and giveaways. Games, services, and more.",
+  openGraph: {
+    title: "Reward Platforms – NewFreeRewards",
+    description: "Explore all games that offer free rewards and promotions.",
+    url: "/games",
+    type: "website",
+  },
+};
+
 export default async function GamesPage() {
   const games = await prisma.platform.findMany({
     where: { type: "GAME" },
@@ -9,7 +23,7 @@ export default async function GamesPage() {
   });
 
   return (
-    <main className="container py-12 px-4 md:px-6">
+    <main className="container py-12 px-4 md:px-6 min-h-[calc(100dvh-var(--header-height)-var(--footer-height)-1px)]">
       <h1 className="text-3xl md:text-4xl font-concert-one text-center mb-8">
         All Games
       </h1>
@@ -18,7 +32,9 @@ export default async function GamesPage() {
           <Link href={`/games/${game.slug}`} key={game.id}>
             <Card className="hover:border-primary transition-colors">
               <CardHeader>
-                <CardTitle className="font-concert-one text-xl text-center">{game.name}</CardTitle>
+                <CardTitle className="font-concert-one text-xl text-center">
+                  {game.name}
+                </CardTitle>
               </CardHeader>
             </Card>
           </Link>

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface RewardItemProps {
-  src: string;
+  src?: string;
   title: string;
   platform: { name: string };
   slug: string;
@@ -14,7 +14,7 @@ const RewardItem = ({ src, title, platform, slug }: RewardItemProps) => {
     <li>
       <Image
         className="rounded-md object-cover h-32 w-32"
-        src={src}
+        src={src || "/chest-image.png"}
         width={125}
         height={125}
         alt={platform.name}

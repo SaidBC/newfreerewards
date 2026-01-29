@@ -1,7 +1,18 @@
 import CurrentActiveRewardsSection from "@/ui/games/CurrentActiveRewardsSection";
-import RewardItem from "@/ui/games/RewardItem";
 import Image from "next/image";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: `Clash Royale Free Rewards & Bonuses`,
+  description: `Discover active free rewards, bonuses, and promotions available for Clash Royale.`,
+  openGraph: {
+    title: `Clash Royale – Free Rewards`,
+    description: `Claim free rewards and bonuses available on Clash Royale.`,
+    url: `/games/clash-royale`,
+    type: "website",
+  },
+};
 export default function Page() {
   return (
     <main className="min-h-screen bg-background">
