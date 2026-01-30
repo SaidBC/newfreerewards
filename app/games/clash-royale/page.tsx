@@ -2,6 +2,8 @@ import CurrentActiveRewardsSection from "@/ui/games/CurrentActiveRewardsSection"
 import Image from "next/image";
 
 import { Metadata } from "next";
+import AdBanner from "@/components/AdBanner";
+import clientEnv from "@/utils/clientEnv";
 
 export const metadata: Metadata = {
   title: `Clash Royale Free Rewards & Bonuses`,
@@ -37,7 +39,26 @@ export default function Page() {
           so you never miss a reward.
         </p>
       </section>
-
+      <AdBanner
+        className=" md:w-182 md:h-22.5 @[468px]:w-117 @[468px]:h-15 w-[320px] h-12.5 mx-auto my-4"
+        adConfigs={[
+          {
+            width: 728,
+            height: 90,
+            apiKey: clientEnv.NEXT_PUBLIC_ADSTERRA_BANNER_728X90_API_KEY,
+          },
+          {
+            width: 468,
+            height: 60,
+            apiKey: clientEnv.NEXT_PUBLIC_ADSTERRA_BANNER_468X60_API_KEY,
+          },
+          {
+            width: 320,
+            height: 50,
+            apiKey: clientEnv.NEXT_PUBLIC_ADSTERRA_BANNER_320X50_API_KEY,
+          },
+        ]}
+      />
       {/* Current Active Rewards */}
       <CurrentActiveRewardsSection />
     </main>

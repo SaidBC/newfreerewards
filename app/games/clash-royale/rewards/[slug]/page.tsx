@@ -5,6 +5,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import prisma from "@/lib/prisma";
+import clientEnv from "@/utils/clientEnv";
+import AdBanner from "@/components/AdBanner";
 
 type PageProps = {
   params: Promise<{
@@ -136,7 +138,26 @@ export default async function Page({ params }: PageProps) {
           {reward.description}
         </p>
       </section>
-
+      <AdBanner
+        className=" md:w-182 md:h-22.5 @[468px]:w-117 @[468px]:h-15 w-[320px] h-12.5 mx-auto my-4"
+        adConfigs={[
+          {
+            width: 728,
+            height: 90,
+            apiKey: clientEnv.NEXT_PUBLIC_ADSTERRA_BANNER_728X90_API_KEY,
+          },
+          {
+            width: 468,
+            height: 60,
+            apiKey: clientEnv.NEXT_PUBLIC_ADSTERRA_BANNER_468X60_API_KEY,
+          },
+          {
+            width: 320,
+            height: 50,
+            apiKey: clientEnv.NEXT_PUBLIC_ADSTERRA_BANNER_320X50_API_KEY,
+          },
+        ]}
+      />
       {/* Blog-like Content */}
       <section className="mx-auto max-w-5xl px-4 pb-24 flex flex-col gap-6">
         {reward.contents.map(renderBlock)}

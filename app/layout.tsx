@@ -5,6 +5,7 @@ import Header from "@/ui/Header";
 import Footer from "@/ui/Footer";
 import { Analytics } from "@vercel/analytics/next";
 import clientEnv from "@/utils/clientEnv";
+import AdsterraPopunder from "@/components/AdsterraPopunder";
 
 const concertOne = Concert_One({
   variable: "--font-concert-one",
@@ -40,6 +41,7 @@ export default function RootLayout({
         {children}
         <Footer />
         {clientEnv.NEXT_PUBLIC_NODE_ENV === "production" && <Analytics />}
+        <AdsterraPopunder />
       </body>
     </html>
   );
