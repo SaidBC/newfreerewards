@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Metadata } from "next";
 import AdBanner from "@/components/AdBanner";
 import clientEnv from "@/utils/clientEnv";
+import AdsterraNativeBanner from "@/components/AdsterraNativeBanner";
 
 export const metadata: Metadata = {
   title: `Clash Royale Free Rewards & Bonuses`,
@@ -61,6 +62,7 @@ export default function Page() {
       />
       {/* Current Active Rewards */}
       <CurrentActiveRewardsSection />
+      <AdsterraNativeBanner />
     </main>
   );
 }

@@ -7,6 +7,7 @@ import { Metadata } from "next";
 import prisma from "@/lib/prisma";
 import clientEnv from "@/utils/clientEnv";
 import AdBanner from "@/components/AdBanner";
+import AdsterraNativeBanner from "@/components/AdsterraNativeBanner";
 
 type PageProps = {
   params: Promise<{
@@ -162,6 +163,7 @@ export default async function Page({ params }: PageProps) {
       <section className="mx-auto max-w-5xl px-4 pb-24 flex flex-col gap-6">
         {reward.contents.map(renderBlock)}
       </section>
+      <AdsterraNativeBanner />
     </main>
   );
 }
