@@ -44,7 +44,7 @@ export default function RootLayout({
         <Footer />
         {clientEnv.NEXT_PUBLIC_NODE_ENV === "production" && <Analytics />}
         {/* <AdsterraPopunder /> */}
-        <AdsterraSocialBar />
+        {/* <AdsterraSocialBar /> */}
       </body>
     </html>
   );
