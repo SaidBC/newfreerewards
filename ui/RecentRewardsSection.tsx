@@ -3,6 +3,9 @@ import RecentRewardsCarousel from "./RecentRewardsCarousel";
 
 export async function RecentRewardsSection() {
   const rewards = await prisma.reward.findMany({
+    where: {
+      status: "active",
+    },
     take: 5,
     include: {
       platform: true,

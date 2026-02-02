@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import AdBanner from "@/components/AdBanner";
 import clientEnv from "@/utils/clientEnv";
 import AdsterraNativeBanner from "@/components/AdsterraNativeBanner";
+import ExpiredRewardsSection from "@/ui/games/ExpiredRewardsSection";
 
 export const metadata: Metadata = {
   title: `Clash Royale Free Rewards & Bonuses`,
@@ -60,8 +61,13 @@ export default function Page() {
           },
         ]}
       />
-      {/* Current Active Rewards */}
       <CurrentActiveRewardsSection />
+      <ExpiredRewardsSection />
+      <div className="mx-auto max-w-5xl px-4 pb-24">
+        <p className="mt-4 text-sm font-bold text-muted-foreground">
+          Last time updated: 2026 Feb 02
+        </p>
+      </div>
       <AdsterraNativeBanner />
     </main>
   );

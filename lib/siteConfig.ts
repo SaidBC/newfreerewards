@@ -34,13 +34,48 @@ const siteConfig = {
   clashroyale: {
     rewards: [
       {
+        id: "12",
+        slug: "hero-goblin-troll-emote",
+        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
+        previewImage: "/b57ea5d2-2ae4-4886-bd13-47856cdd87b1.png",
+        name: "Hero Goblin Troll Emote",
+        description: "Follow the steps below to claim this emote.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value: "Open the Supercell store website and log in.",
+          },
+          {
+            type: "text",
+            value:
+              "Note: Make sure you are logged in before clicking the emote link.",
+          },
+          {
+            type: "link",
+            href: "https://store.supercell.com/clashroyale/product/emote/9f336c3b",
+            label: "Click here to open the emote offer",
+          },
+          {
+            type: "image",
+            src: "/screenshot-1770053665846.png",
+            alt: "Hero Goblin Troll emote page",
+          },
+          {
+            type: "text",
+            value:
+              "Click the Free button, then open Clash Royale to receive the emote.",
+          },
+        ] as ContentType[],
+      },
+      {
         id: "1",
         slug: "hero-ice-golem-emote",
         platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
         previewImage: "/preview-hero-ice-golem-emote.png",
         name: "Hero Ice Golem Emote",
         description: "Follow the steps below to claim this emote.",
-        status: "active" as "active" | "expired",
+        status: "expired" as "active" | "expired",
         content: [
           {
             type: "text",
@@ -107,7 +142,7 @@ const siteConfig = {
         previewImage: "/preview-hero-wizard-emote.png",
         name: "Hero Wizard Emote",
         description: "Follow the steps below to claim this emote.",
-        status: "active" as "active" | "expired",
+        status: "expired" as "active" | "expired",
         content: [
           {
             type: "text",

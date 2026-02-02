@@ -5,9 +5,6 @@ import Header from "@/ui/Header";
 import Footer from "@/ui/Footer";
 import { Analytics } from "@vercel/analytics/next";
 import clientEnv from "@/utils/clientEnv";
-import AdsterraPopunder from "@/components/AdsterraPopunder";
-import AdsterraNativeBanner from "@/components/AdsterraNativeBanner";
-import AdsterraSocialBar from "@/components/AdsterraSocialBar";
 
 const concertOne = Concert_One({
   variable: "--font-concert-one",
