@@ -34,6 +34,47 @@ const siteConfig = {
   clashroyale: {
     rewards: [
       {
+        id: "13",
+        slug: "3-seasonal-ironheart-lucky-chests",
+        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
+        previewImage: "/ironheart_chest.webp",
+        name: "3 Seasonal Ironheart Lucky Chests",
+        description: "Claim the 3 Seasonal Ironheart Lucky Chests.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.clashroyale.com/en/?action=voucher&code=0feff294-4a00-4a7b-ae21-0b299b90f916&fbclid=IwZXh0bgNhZW0CMTAAYnJpZBExSmpRNlFiSk5xTGJodGxQdHNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR4ch-sIiWAOWIchnfHj3zMCMHJcLBD8PQIEi8g4c8YwKYXF4IVrNsmEho-fag_aem_3Jil0vYRdcg1D39zc-2abQ",
+            label: "Claim 3 Chests",
+          },
+          {
+            type: "image",
+            src: "/3-seasonal-ironheart-lucky-chests.png",
+            alt: "3 Seasonal Ironheart Lucky Chests QR",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "14",
+        slug: "jojo-musketeer-banner-set",
+        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
+        name: "Jojo Musketeer banner set",
+        description: "Claim the Jojo Musketeer banner set.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.clashroyale.com/en/?action=voucher&code=94158c89-9f24-4d8c-8694-76eb087caef2",
+            label: "Claim banner set",
+          },
+          {
+            type: "image",
+            src: "/jojo-musketeer banner-set.png",
+            alt: "Jojo Musketeer banner set QR",
+          },
+        ] as ContentType[],
+      },
+      {
         id: "12",
         slug: "hero-goblin-troll-emote",
         platform: { name: "Clash Royale", src: "/clash-royale.jpg" },

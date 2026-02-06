@@ -176,7 +176,7 @@ export default function AdBanner({
             <p className="font-medium">Ad blocked 🙁</p>
             <p className="text-xs opacity-70 mt-1">
               Please consider disabling your ad blocker — it helps support
-              GGfollows and keeps the platform free ❤️
+              NewFreeRewards and keeps the platform free ❤️
             </p>
           </div>
         </div>

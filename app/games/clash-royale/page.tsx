@@ -65,7 +65,7 @@ export default function Page() {
       <ExpiredRewardsSection />
       <div className="mx-auto max-w-5xl px-4 pb-24">
         <p className="mt-4 text-sm font-bold text-muted-foreground">
-          Last time updated: 2026 Feb 02
+          Last time updated: 2026 Feb 06
         </p>
       </div>
       <AdsterraNativeBanner />
