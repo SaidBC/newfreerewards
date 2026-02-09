@@ -34,6 +34,37 @@ const siteConfig = {
   clashroyale: {
     rewards: [
       {
+        id: "15",
+        slug: "smile-goblin-emote",
+        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
+        previewImage: "/preview-smile-goblin-emote.png",
+        name: "Smile Goblin Emote",
+        description: "Redeem a promo code to unlock this emote.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value: "Open the Supercell store website and log in.",
+          },
+          {
+            type: "text",
+            value: "Scroll to the bottom and find the redeem code input.",
+          },
+          { type: "text", value: "Enter the code: ROYALEAFFAIR" },
+          { type: "code", value: "ROYALEAFFAIR" },
+          {
+            type: "link",
+            href: "https://store.supercell.com/clashroyale",
+            label: "Go to the Supercell Store",
+          },
+          {
+            type: "image",
+            src: "/smile-goblin-emote.png",
+            alt: "Smile Goblin Emote",
+          },
+        ] as ContentType[],
+      },
+      {
         id: "13",
         slug: "3-seasonal-ironheart-lucky-chests",
         platform: { name: "Clash Royale", src: "/clash-royale.jpg" },

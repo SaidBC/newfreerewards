@@ -8,6 +8,7 @@ import prisma from "@/lib/prisma";
 import clientEnv from "@/utils/clientEnv";
 import AdBanner from "@/components/AdBanner";
 import AdsterraNativeBanner from "@/components/AdsterraNativeBanner";
+import CopyCode from "@/components/CopyCode";
 
 type PageProps = {
   params: Promise<{
@@ -84,6 +85,9 @@ function renderBlock(block: any, index: number) {
           height={400}
         />
       );
+
+    case "code":
+      return <CopyCode key={index} text={block.value} />;
 
     case "link":
       return (
