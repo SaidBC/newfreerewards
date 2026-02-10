@@ -3,22 +3,23 @@ import Image from "next/image";
 
 import { Metadata } from "next";
 import ExpiredRewardsSection from "@/ui/games/ExpiredRewardsSection";
-import { defaultLocale } from "@/lib/i18n";
+import { defaultLocale, getDictionary, isLocale, type Locale } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   title: `Clash Royale Free Rewards & Bonuses`,
   description: `Discover active free rewards, bonuses, and promotions available for Clash Royale.`,
-  openGraph: {
-    title: `Clash Royale – Free Rewards`,
-    description: `Claim free rewards and bonuses available on Clash Royale.`,
-    url: `/games/clash-royale`,
-    type: "website",
-  },
 };
-export default function Page() {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale: requestedLocale } = await params;
+  const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
+  const t = getDictionary(locale);
+
   return (
     <main className="min-h-screen bg-background">
-      {/* Hero / Intro */}
       <section className="mx-auto max-w-5xl px-4 py-16">
         <div className="flex gap-4 items-center">
           <Image
@@ -29,18 +30,18 @@ export default function Page() {
             alt={"Clash Royale"}
           />
           <h1 className="mb-4 text-4xl md:text-5xl font-concert-one">
-            Free Clash Royale Rewards
+            {t.games.clashRoyaleTitle}
           </h1>
         </div>
 
         <p className="max-w-3xl text-muted-foreground text-lg">
-          Discover all currently available free Clash Royale rewards in one
-          place. We track free chests, emotes, events, and limited-time bonuses
-          so you never miss a reward.
+          Discover all currently available free Clash Royale rewards in one place.
+          We track free chests, emotes, events, and limited-time bonuses so you
+          never miss a reward.
         </p>
       </section>
-      <CurrentActiveRewardsSection locale={defaultLocale} />
-      <ExpiredRewardsSection locale={defaultLocale} />
+      <CurrentActiveRewardsSection locale={locale} />
+      <ExpiredRewardsSection locale={locale} />
       <div className="mx-auto max-w-5xl px-4 pb-24">
         <p className="mt-4 text-sm font-bold text-muted-foreground">
           Last time updated: 2026 Feb 06

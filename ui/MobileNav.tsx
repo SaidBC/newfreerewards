@@ -10,13 +10,28 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import TextLogo from "@/components/TextLogo";
 import NavLinks from "./NavLinks";
+import { getDictionary, localizePath, type Locale } from "@/lib/i18n";
+
 import MenuToggle from "@/components/MenuToggle";
-import siteConfig from "@/lib/siteConfig";
 
-const { navLinks } = siteConfig;
-
-export default function MobileNav({ className }: { className?: string }) {
+export default function MobileNav({
+  className,
+  locale,
+}: {
+  className?: string;
+  locale: Locale;
+}) {
   const [open, setOpen] = useState(false);
+  const t = getDictionary(locale);
+
+  const navLinks = [
+    { href: localizePath(locale, "/"), title: t.nav.home },
+    { href: localizePath(locale, "/#list"), title: t.nav.allRewards },
+    { href: localizePath(locale, "/games"), title: t.nav.games },
+    { href: localizePath(locale, "/contact"), title: t.nav.contact },
+    { href: localizePath(locale, "/#faq"), title: t.nav.faq },
+  ];
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>

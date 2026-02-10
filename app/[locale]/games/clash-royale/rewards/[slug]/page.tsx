@@ -6,6 +6,13 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import prisma from "@/lib/prisma";
 import CopyCode from "@/components/CopyCode";
+import {
+  defaultLocale,
+  getDictionary,
+  isLocale,
+  localizePath,
+  type Locale,
+} from "@/lib/i18n";
 
 type RewardContentBlock = {
   type: "text" | "image" | "code" | "link";
@@ -18,15 +25,12 @@ type RewardContentBlock = {
 
 type PageProps = {
   params: Promise<{
+    locale: string;
     slug: string;
   }>;
 };
 
-type Props = {
-  params: Promise<{ slug: string }>;
-};
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const reward = await prisma.reward.findUnique({
     where: {
@@ -34,16 +38,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
   });
   const platformName = "Clash Royale";
-  const rewardName = !reward ? "Unkown Reward" : reward.title;
+  const rewardName = !reward ? "Unknown Reward" : reward.title;
   return {
     title: `${rewardName} – Free Reward on ${platformName}`,
     description: `Step-by-step guide to claim the ${rewardName} reward on ${platformName}.`,
-    openGraph: {
-      title: `${rewardName} – ${platformName} Reward`,
-      description: "Claim this free reward safely using the official link.",
-      url: `/games/clash-royale/rewards/${slug}`,
-      type: "article",
-    },
   };
 }
 
@@ -61,12 +59,9 @@ async function getRewardBySlug(slug: string) {
 }
 
 export async function generateStaticParams() {
-  const rewards = await prisma.reward.findMany({
-    include: { platform: true },
-  });
+  const rewards = await prisma.reward.findMany();
 
   return rewards.map((reward) => ({
-    platform: reward.platform.slug,
     slug: reward.slug,
   }));
 }
@@ -114,17 +109,19 @@ function renderBlock(block: RewardContentBlock, index: number) {
 }
 
 export default async function Page({ params }: PageProps) {
-  const { slug } = await params;
+  const { locale: requestedLocale, slug } = await params;
+  const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
+  const t = getDictionary(locale);
+
   const reward = await getRewardBySlug(slug);
   if (!reward) return notFound();
   return (
     <main className="min-h-screen bg-background">
-      {/* Header */}
       <section className="mx-auto max-w-5xl px-4 py-16">
         <Button variant={"link"} asChild>
-          <Link href={"/games/clash-royale"}>
+          <Link href={localizePath(locale, "/games/clash-royale")}>
             <ArrowLeft />
-            <span>Back</span>
+            <span>{t.games.back}</span>
           </Link>
         </Button>
         <div className="flex gap-4 items-center">
@@ -150,7 +147,6 @@ export default async function Page({ params }: PageProps) {
         </p>
       </section>
 
-      {/* Blog-like Content */}
       <section className="mx-auto max-w-5xl px-4 pb-24 flex flex-col gap-6">
         {reward.contents.map(renderBlock)}
       </section>

@@ -10,9 +10,11 @@ import {
 } from "@/components/ui/carousel";
 import { useRef } from "react";
 import { Platform, Reward } from "@prisma/client";
+import type { Locale } from "@/lib/i18n";
 
 interface RecentRewardsCarousel {
   rewards: (Reward & { platform: Platform })[];
+  locale: Locale;
 }
 
 export default function RecentRewardsCarousel({

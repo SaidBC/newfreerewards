@@ -2,13 +2,22 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import prisma from "@/lib/prisma";
-import { Reward, Platform } from "@prisma/client";
+import { Platform } from "@prisma/client";
 import Link from "next/link";
+import { getDictionary, localizePath, type Locale } from "@/lib/i18n";
 
-const PlatformCard = ({ platform }: { platform: Platform }) => (
+const PlatformCard = ({
+  platform,
+  locale,
+  exploreLabel,
+}: {
+  platform: Platform;
+  locale: Locale;
+  exploreLabel: string;
+}) => (
   <li>
     <Link
-      href={`/${platform.type.toLowerCase()}s/${platform.slug}`}
+      href={localizePath(locale, `/${platform.type.toLowerCase()}s/${platform.slug}`)}
       className="flex flex-row items-center gap-2 border py-1 pl-1 pr-4 rounded-lg h-full hover:border-primary transition-colors"
     >
       <Image
@@ -26,14 +35,16 @@ const PlatformCard = ({ platform }: { platform: Platform }) => (
           </p>
         </div>
         <Button size={"sm"} className="text-xs w-fit">
-          Explore
+          {exploreLabel}
         </Button>
       </div>
     </Link>
   </li>
 );
 
-export default async function PlatformsListSection() {
+export default async function PlatformsListSection({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
+
   const gamePlatforms = await prisma.platform.findMany({
     where: {
       type: "GAME",
@@ -49,24 +60,34 @@ export default async function PlatformsListSection() {
   return (
     <section id="list" className="py-12">
       <h1 className="text-2xl font-bold font-concert-one text-green-400 mb-4">
-        All Platforms
+        {t.home.allPlatforms}
       </h1>
       <Tabs defaultValue="games" className="w-full">
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="games">Games</TabsTrigger>
-          <TabsTrigger value="money">Money</TabsTrigger>
+          <TabsTrigger value="games">{t.home.gamesTab}</TabsTrigger>
+          <TabsTrigger value="money">{t.home.moneyTab}</TabsTrigger>
         </TabsList>
         <TabsContent value="games">
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
             {gamePlatforms.map((platform) => (
-              <PlatformCard key={platform.id} platform={platform} />
+              <PlatformCard
+                key={platform.id}
+                platform={platform}
+                locale={locale}
+                exploreLabel={t.home.exploreMore}
+              />
             ))}
           </ul>
         </TabsContent>
         <TabsContent value="money">
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
             {moneyPlatforms.map((platform) => (
-              <PlatformCard key={platform.id} platform={platform} />
+              <PlatformCard
+                key={platform.id}
+                platform={platform}
+                locale={locale}
+                exploreLabel={t.home.exploreMore}
+              />
             ))}
           </ul>
         </TabsContent>
