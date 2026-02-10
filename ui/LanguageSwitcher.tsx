@@ -13,7 +13,7 @@ export default function LanguageSwitcher({
 }) {
   const pathname = usePathname();
 
-  const pathWithoutLocale = pathname.replace(/^\/(en|es)/, "") || "/";
+  const pathWithoutLocale = pathname.replace(/^\/(en|es|ar)/, "") || "/";
 
   return (
     <div className="flex items-center gap-2 text-sm">

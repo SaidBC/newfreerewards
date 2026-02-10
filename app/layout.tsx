@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
 import { Concert_One, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/ui/Header";
-import Footer from "@/ui/Footer";
-import { Analytics } from "@vercel/analytics/next";
-import clientEnv from "@/utils/clientEnv";
-import MonetageVignette from "@/components/MonetageVignette";
-import MonetageInPagePush from "@/components/MonetageInPagePush";
-import { defaultLocale } from "@/lib/i18n";
 
 const concertOne = Concert_One({
   variable: "--font-concert-one",
@@ -40,6 +33,7 @@ export const metadata: Metadata = {
     monetag: "9f8b97552771ece2a7c120c0c4dd932a",
   },
 };
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -50,12 +44,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${concertOne.variable} ${geistMono.variable} antialiased`}
       >
-        <Header locale={defaultLocale} />
         {children}
-        <Footer locale={defaultLocale} />
-        {clientEnv.NEXT_PUBLIC_NODE_ENV === "production" && <Analytics />}
-        <MonetageVignette />
-        <MonetageInPagePush />
       </body>
     </html>
   );

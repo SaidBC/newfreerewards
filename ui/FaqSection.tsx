@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import { getDictionary, type Locale } from "@/lib/i18n";
 
-const faqs = {
+const faqs: Record<Locale, { question: string; answer: string }[]> = {
   en: [
     {
       question: "What is this website about?",
@@ -49,6 +49,27 @@ const faqs = {
       question: "¿Cada cuánto agregan nuevas recompensas?",
       answer:
         "Actualizamos la lista con frecuencia, así que vuelve a revisar seguido.",
+    },
+  ],
+  ar: [
+    {
+      question: "عن ماذا يتحدث هذا الموقع؟",
+      answer:
+        "يساعدك هذا الموقع في العثور على المكافآت والفعاليات والفرص المجانية والمطالبة بها.",
+    },
+    {
+      question: "هل المكافآت مجانية فعلاً؟",
+      answer: "نعم، كل المكافآت المدرجة في الموقع مجانية بالكامل.",
+    },
+    {
+      question: "كيف أطالب بمكافأة؟",
+      answer:
+        "كل مكافأة تحتوي على خطوات واضحة للمطالبة بها. اتبع التعليمات المذكورة.",
+    },
+    {
+      question: "كم مرة تتم إضافة مكافآت جديدة؟",
+      answer:
+        "نحدّث قائمة المكافآت باستمرار، لذا تأكد من زيارة الموقع بشكل متكرر.",
     },
   ],
 };

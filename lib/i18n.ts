@@ -1,4 +1,4 @@
-export const locales = ["en", "es"] as const;
+export const locales = ["en", "es", "ar"] as const;
 
 export type Locale = (typeof locales)[number];
 
@@ -71,6 +71,39 @@ export const dictionary = {
       activeRewards: "Recompensas activas",
       expiredRewards: "Recompensas expiradas",
       back: "Volver",
+    },
+  },
+
+  ar: {
+    nav: {
+      home: "الرئيسية",
+      allRewards: "كل المكافآت",
+      games: "الألعاب",
+      contact: "اتصل بنا",
+      faq: "الأسئلة الشائعة",
+    },
+    home: {
+      heroTitle: "كل المكافآت المجانية الحقيقية في مكان واحد",
+      heroDescription:
+        "نحن نتابع المكافآت والفعاليات والفرص المجانية الحقيقية، ونشرح لك طريقة المطالبة بها بشكل صحيح.",
+      exploreMore: "استكشف المزيد",
+      recentRewards: "أحدث المكافآت",
+      allPlatforms: "كل المنصات",
+      gamesTab: "الألعاب",
+      moneyTab: "الخدمات",
+      faqTitle: "الأسئلة الشائعة",
+    },
+    common: {
+      allRightsReserved: "جميع الحقوق محفوظة.",
+      learnMore: "اعرف المزيد",
+      language: "اللغة",
+    },
+    games: {
+      allGames: "كل الألعاب",
+      clashRoyaleTitle: "مكافآت Clash Royale المجانية",
+      activeRewards: "المكافآت النشطة",
+      expiredRewards: "المكافآت المنتهية",
+      back: "رجوع",
     },
   },
 } as const;
