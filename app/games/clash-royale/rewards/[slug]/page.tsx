@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import prisma from "@/lib/prisma";
 import CopyCode from "@/components/CopyCode";
+import { getLocalizedClashRoyaleRewards } from "@/lib/siteConfig";
 
 type RewardContentBlock = {
   type: "text" | "image" | "code" | "link";
@@ -26,15 +27,47 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+function getFallbackReward(slug: string) {
+  const fallback = getLocalizedClashRoyaleRewards("en").find(
+    (reward) => reward.slug === slug
+  );
+
+  if (!fallback) return null;
+
+  return {
+    slug: fallback.slug,
+    title: fallback.name,
+    description: fallback.description,
+    platform: {
+      name: fallback.platform.name,
+      image: fallback.platform.src,
+    },
+    contents: fallback.content.map((content) => ({
+      type: content.type,
+      value: content.value ?? null,
+      href: content.href ?? null,
+      label: content.label ?? null,
+      imageSrc: content.src ?? null,
+      imageAlt: content.alt ?? null,
+    })),
+  };
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const reward = await prisma.reward.findUnique({
-    where: {
-      slug,
-    },
-  });
+  const fallbackReward = getFallbackReward(slug);
+
+  const reward = await prisma.reward
+    .findUnique({
+      where: {
+        slug,
+      },
+    })
+    .catch(() => null);
+
   const platformName = "Clash Royale";
-  const rewardName = !reward ? "Unkown Reward" : reward.title;
+  const rewardName = fallbackReward?.title || reward?.title || "Unknown Reward";
+
   return {
     title: `${rewardName} – Free Reward on ${platformName}`,
     description: `Step-by-step guide to claim the ${rewardName} reward on ${platformName}.`,
@@ -48,25 +81,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 async function getRewardBySlug(slug: string) {
-  const reward = await prisma.reward.findUnique({
-    where: {
-      slug,
-    },
-    include: {
-      contents: true,
-      platform: true,
-    },
-  });
-  return reward;
+  const reward = await prisma.reward
+    .findUnique({
+      where: {
+        slug,
+      },
+      include: {
+        contents: true,
+        platform: true,
+      },
+    })
+    .catch(() => null);
+
+  return reward || getFallbackReward(slug);
 }
 
 export async function generateStaticParams() {
-  const rewards = await prisma.reward.findMany({
-    include: { platform: true },
-  });
-
-  return rewards.map((reward) => ({
-    platform: reward.platform.slug,
+  return getLocalizedClashRoyaleRewards("en").map((reward) => ({
     slug: reward.slug,
   }));
 }
@@ -117,9 +148,9 @@ export default async function Page({ params }: PageProps) {
   const { slug } = await params;
   const reward = await getRewardBySlug(slug);
   if (!reward) return notFound();
+
   return (
     <main className="min-h-screen bg-background">
-      {/* Header */}
       <section className="mx-auto max-w-5xl px-4 py-16">
         <Button variant={"link"} asChild>
           <Link href={"/games/clash-royale"}>
@@ -130,7 +161,7 @@ export default async function Page({ params }: PageProps) {
         <div className="flex gap-4 items-center">
           <Image
             className="rounded-md object-cover size-12"
-            src={reward.platform.image!}
+            src={reward.platform.image || "/clash-royale.jpg"}
             width={48}
             height={48}
             alt={reward.platform.name}
@@ -150,7 +181,6 @@ export default async function Page({ params }: PageProps) {
         </p>
       </section>
 
-      {/* Blog-like Content */}
       <section className="mx-auto max-w-5xl px-4 pb-24 flex flex-col gap-6">
         {reward.contents.map(renderBlock)}
       </section>

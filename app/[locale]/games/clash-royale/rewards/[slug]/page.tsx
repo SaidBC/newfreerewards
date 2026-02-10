@@ -31,40 +31,73 @@ type PageProps = {
   }>;
 };
 
+function getFallbackReward(slug: string, locale: Locale) {
+  const fallback = getLocalizedClashRoyaleRewards(locale).find(
+    (reward) => reward.slug === slug
+  );
+
+  if (!fallback) return null;
+
+  return {
+    slug: fallback.slug,
+    title: fallback.name,
+    description: fallback.description,
+    platform: {
+      name: fallback.platform.name,
+      image: fallback.platform.src,
+    },
+    contents: fallback.content.map((content) => ({
+      type: content.type,
+      value: content.value ?? null,
+      href: content.href ?? null,
+      label: content.label ?? null,
+      imageSrc: content.src ?? null,
+      imageAlt: content.alt ?? null,
+    })),
+  };
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug, locale: requestedLocale } = await params;
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
-  const reward = await prisma.reward.findUnique({
-    where: {
-      slug,
-    },
-  });
+
+  const fallbackReward = getFallbackReward(slug, locale);
+
+  const reward = await prisma.reward
+    .findUnique({
+      where: {
+        slug,
+      },
+    })
+    .catch(() => null);
+
   const platformName = "Clash Royale";
-  const localizedReward = getLocalizedClashRoyaleRewards(locale).find((item) => item.slug === slug);
-  const rewardName = localizedReward?.name || (!reward ? "Unknown Reward" : reward.title);
+  const rewardName = fallbackReward?.title || reward?.title || "Unknown Reward";
+
   return {
     title: `${rewardName} – Free Reward on ${platformName}`,
     description: `Step-by-step guide to claim the ${rewardName} reward on ${platformName}.`,
   };
 }
 
-async function getRewardBySlug(slug: string) {
-  const reward = await prisma.reward.findUnique({
-    where: {
-      slug,
-    },
-    include: {
-      contents: true,
-      platform: true,
-    },
-  });
-  return reward;
+async function getRewardBySlug(slug: string, locale: Locale) {
+  const reward = await prisma.reward
+    .findUnique({
+      where: {
+        slug,
+      },
+      include: {
+        contents: true,
+        platform: true,
+      },
+    })
+    .catch(() => null);
+
+  return reward || getFallbackReward(slug, locale);
 }
 
 export async function generateStaticParams() {
-  const rewards = await prisma.reward.findMany();
-
-  return rewards.map((reward) => ({
+  return getLocalizedClashRoyaleRewards("en").map((reward) => ({
     slug: reward.slug,
   }));
 }
@@ -116,12 +149,8 @@ export default async function Page({ params }: PageProps) {
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
   const t = getDictionary(locale);
 
-  const reward = await getRewardBySlug(slug);
+  const reward = await getRewardBySlug(slug, locale);
   if (!reward) return notFound();
-
-  const localizedReward = getLocalizedClashRoyaleRewards(locale).find(
-    (item) => item.slug === slug
-  );
 
   return (
     <main className="min-h-screen bg-background">
@@ -135,7 +164,7 @@ export default async function Page({ params }: PageProps) {
         <div className="flex gap-4 items-center">
           <Image
             className="rounded-md object-cover size-12"
-            src={reward.platform.image!}
+            src={reward.platform.image || "/clash-royale.jpg"}
             width={48}
             height={48}
             alt={reward.platform.name}
@@ -145,13 +174,13 @@ export default async function Page({ params }: PageProps) {
               Free {reward.platform.name} Rewards
             </h1>
             <h2 className="text-xl md:text-2xl font-bold text-muted-foreground">
-              {localizedReward?.name || reward.title}
+              {reward.title}
             </h2>
           </div>
         </div>
 
         <p className="mt-4 max-w-3xl text-muted-foreground text-lg">
-          {localizedReward?.description || reward.description}
+          {reward.description}
         </p>
       </section>
 
