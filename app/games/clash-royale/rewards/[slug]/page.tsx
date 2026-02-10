@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import prisma from "@/lib/prisma";
 import CopyCode from "@/components/CopyCode";
 import { getLocalizedClashRoyaleRewards } from "@/lib/siteConfig";
 
@@ -27,22 +26,22 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-function getFallbackReward(slug: string) {
-  const fallback = getLocalizedClashRoyaleRewards("en").find(
-    (reward) => reward.slug === slug
+function getRewardFromConfig(slug: string) {
+  const reward = getLocalizedClashRoyaleRewards("en").find(
+    (item) => item.slug === slug
   );
 
-  if (!fallback) return null;
+  if (!reward) return null;
 
   return {
-    slug: fallback.slug,
-    title: fallback.name,
-    description: fallback.description,
+    slug: reward.slug,
+    title: reward.name,
+    description: reward.description,
     platform: {
-      name: fallback.platform.name,
-      image: fallback.platform.src,
+      name: reward.platform.name,
+      image: reward.platform.src,
     },
-    contents: fallback.content.map((content) => ({
+    contents: reward.content.map((content) => ({
       type: content.type,
       value: content.value ?? null,
       href: content.href ?? null,
@@ -55,18 +54,9 @@ function getFallbackReward(slug: string) {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const fallbackReward = getFallbackReward(slug);
-
-  const reward = await prisma.reward
-    .findUnique({
-      where: {
-        slug,
-      },
-    })
-    .catch(() => null);
-
+  const reward = getRewardFromConfig(slug);
   const platformName = "Clash Royale";
-  const rewardName = fallbackReward?.title || reward?.title || "Unknown Reward";
+  const rewardName = reward?.title || "Unknown Reward";
 
   return {
     title: `${rewardName} – Free Reward on ${platformName}`,
@@ -78,22 +68,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
     },
   };
-}
-
-async function getRewardBySlug(slug: string) {
-  const reward = await prisma.reward
-    .findUnique({
-      where: {
-        slug,
-      },
-      include: {
-        contents: true,
-        platform: true,
-      },
-    })
-    .catch(() => null);
-
-  return reward || getFallbackReward(slug);
 }
 
 export async function generateStaticParams() {
@@ -146,7 +120,7 @@ function renderBlock(block: RewardContentBlock, index: number) {
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
-  const reward = await getRewardBySlug(slug);
+  const reward = getRewardFromConfig(slug);
   if (!reward) return notFound();
 
   return (

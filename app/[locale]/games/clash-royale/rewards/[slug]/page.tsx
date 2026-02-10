@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import prisma from "@/lib/prisma";
 import CopyCode from "@/components/CopyCode";
 import { getLocalizedClashRoyaleRewards } from "@/lib/siteConfig";
 import {
@@ -31,22 +30,22 @@ type PageProps = {
   }>;
 };
 
-function getFallbackReward(slug: string, locale: Locale) {
-  const fallback = getLocalizedClashRoyaleRewards(locale).find(
-    (reward) => reward.slug === slug
+function getRewardFromConfig(slug: string, locale: Locale) {
+  const reward = getLocalizedClashRoyaleRewards(locale).find(
+    (item) => item.slug === slug
   );
 
-  if (!fallback) return null;
+  if (!reward) return null;
 
   return {
-    slug: fallback.slug,
-    title: fallback.name,
-    description: fallback.description,
+    slug: reward.slug,
+    title: reward.name,
+    description: reward.description,
     platform: {
-      name: fallback.platform.name,
-      image: fallback.platform.src,
+      name: reward.platform.name,
+      image: reward.platform.src,
     },
-    contents: fallback.content.map((content) => ({
+    contents: reward.content.map((content) => ({
       type: content.type,
       value: content.value ?? null,
       href: content.href ?? null,
@@ -61,39 +60,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug, locale: requestedLocale } = await params;
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
 
-  const fallbackReward = getFallbackReward(slug, locale);
-
-  const reward = await prisma.reward
-    .findUnique({
-      where: {
-        slug,
-      },
-    })
-    .catch(() => null);
-
+  const reward = getRewardFromConfig(slug, locale);
   const platformName = "Clash Royale";
-  const rewardName = fallbackReward?.title || reward?.title || "Unknown Reward";
+  const rewardName = reward?.title || "Unknown Reward";
 
   return {
     title: `${rewardName} – Free Reward on ${platformName}`,
     description: `Step-by-step guide to claim the ${rewardName} reward on ${platformName}.`,
   };
-}
-
-async function getRewardBySlug(slug: string, locale: Locale) {
-  const reward = await prisma.reward
-    .findUnique({
-      where: {
-        slug,
-      },
-      include: {
-        contents: true,
-        platform: true,
-      },
-    })
-    .catch(() => null);
-
-  return reward || getFallbackReward(slug, locale);
 }
 
 export async function generateStaticParams() {
@@ -149,7 +123,7 @@ export default async function Page({ params }: PageProps) {
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
   const t = getDictionary(locale);
 
-  const reward = await getRewardBySlug(slug, locale);
+  const reward = getRewardFromConfig(slug, locale);
   if (!reward) return notFound();
 
   return (
