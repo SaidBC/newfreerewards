@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import prisma from "@/lib/prisma";
 import CopyCode from "@/components/CopyCode";
+import { getLocalizedClashRoyaleRewards } from "@/lib/siteConfig";
 import {
   defaultLocale,
   getDictionary,
@@ -31,14 +32,16 @@ type PageProps = {
 };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale: requestedLocale } = await params;
+  const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
   const reward = await prisma.reward.findUnique({
     where: {
       slug,
     },
   });
   const platformName = "Clash Royale";
-  const rewardName = !reward ? "Unknown Reward" : reward.title;
+  const localizedReward = getLocalizedClashRoyaleRewards(locale).find((item) => item.slug === slug);
+  const rewardName = localizedReward?.name || (!reward ? "Unknown Reward" : reward.title);
   return {
     title: `${rewardName} – Free Reward on ${platformName}`,
     description: `Step-by-step guide to claim the ${rewardName} reward on ${platformName}.`,
@@ -115,6 +118,11 @@ export default async function Page({ params }: PageProps) {
 
   const reward = await getRewardBySlug(slug);
   if (!reward) return notFound();
+
+  const localizedReward = getLocalizedClashRoyaleRewards(locale).find(
+    (item) => item.slug === slug
+  );
+
   return (
     <main className="min-h-screen bg-background">
       <section className="mx-auto max-w-5xl px-4 py-16">
@@ -137,13 +145,13 @@ export default async function Page({ params }: PageProps) {
               Free {reward.platform.name} Rewards
             </h1>
             <h2 className="text-xl md:text-2xl font-bold text-muted-foreground">
-              {reward.title}
+              {localizedReward?.name || reward.title}
             </h2>
           </div>
         </div>
 
         <p className="mt-4 max-w-3xl text-muted-foreground text-lg">
-          {reward.description}
+          {localizedReward?.description || reward.description}
         </p>
       </section>
 

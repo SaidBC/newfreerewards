@@ -1,9 +1,9 @@
-import siteConfig from "@/lib/siteConfig";
+import { getLocalizedClashRoyaleRewards } from "@/lib/siteConfig";
 import RewardItem from "./RewardItem";
 import { getDictionary, type Locale } from "@/lib/i18n";
 
 export default function CurrentActiveRewardsSection({ locale }: { locale: Locale }) {
-  const rewards = siteConfig.clashroyale.rewards.filter(
+  const rewards = getLocalizedClashRoyaleRewards(locale).filter(
     (reward) => reward.status === "active"
   );
   const t = getDictionary(locale);

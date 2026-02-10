@@ -1,4 +1,5 @@
-import { $Enums, RewardContentType } from "@prisma/client";
+import { RewardContentType } from "@prisma/client";
+import type { Locale } from "@/lib/i18n";
 
 interface ContentType {
   type: RewardContentType;
@@ -437,5 +438,61 @@ const siteConfig = {
     ] as RewardType[],
   },
 };
+
+
+const clashRoyaleTranslations: Partial<
+  Record<Locale, Record<string, { name?: string; description?: string }>>
+> = {
+  es: {
+    "smile-goblin-emote": {
+      name: "Emote Duende Sonriente",
+      description: "Canjea un código promocional para desbloquear este emote.",
+    },
+    "hero-goblin-troll-emote": {
+      description: "Sigue los pasos para reclamar este emote.",
+    },
+    "hero-ice-golem-emote": {
+      description: "Sigue los pasos para reclamar este emote.",
+    },
+    "2-star-lucky-chest": {
+      description: "Sigue los pasos para reclamar este cofre.",
+    },
+    "hero-wizard-emote": {
+      description: "Sigue los pasos para reclamar este emote.",
+    },
+  },
+  ar: {
+    "smile-goblin-emote": {
+      name: "إيموجي العفريت المبتسم",
+      description: "استخدم كودًا ترويجيًا لفتح هذا الإيموجي.",
+    },
+    "hero-goblin-troll-emote": {
+      description: "اتبع الخطوات التالية للحصول على هذا الإيموجي.",
+    },
+    "hero-ice-golem-emote": {
+      description: "اتبع الخطوات التالية للحصول على هذا الإيموجي.",
+    },
+    "2-star-lucky-chest": {
+      description: "اتبع الخطوات التالية للحصول على هذا الصندوق.",
+    },
+    "hero-wizard-emote": {
+      description: "اتبع الخطوات التالية للحصول على هذا الإيموجي.",
+    },
+  },
+};
+
+export function getLocalizedClashRoyaleRewards(locale: Locale): RewardType[] {
+  const localizedEntries = clashRoyaleTranslations[locale] || {};
+
+  return siteConfig.clashroyale.rewards.map((reward) => {
+    const translation = localizedEntries[reward.slug];
+
+    return {
+      ...reward,
+      name: translation?.name || reward.name,
+      description: translation?.description || reward.description,
+    };
+  });
+}
 
 export default siteConfig;

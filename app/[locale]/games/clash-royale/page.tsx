@@ -35,16 +35,14 @@ export default async function Page({
         </div>
 
         <p className="max-w-3xl text-muted-foreground text-lg">
-          Discover all currently available free Clash Royale rewards in one place.
-          We track free chests, emotes, events, and limited-time bonuses so you
-          never miss a reward.
+          {t.games.clashRoyaleDescription}
         </p>
       </section>
       <CurrentActiveRewardsSection locale={locale} />
       <ExpiredRewardsSection locale={locale} />
       <div className="mx-auto max-w-5xl px-4 pb-24">
         <p className="mt-4 text-sm font-bold text-muted-foreground">
-          Last time updated: 2026 Feb 06
+          {t.games.lastUpdatedLabel}: 2026 Feb 06
         </p>
       </div>
     </main>

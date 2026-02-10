@@ -39,6 +39,9 @@ export const dictionary = {
       activeRewards: "Current Active Rewards",
       expiredRewards: "Expired Rewards",
       back: "Back",
+      clashRoyaleDescription:
+        "Discover all currently available free Clash Royale rewards in one place. We track free chests, emotes, events, and limited-time bonuses so you never miss a reward.",
+      lastUpdatedLabel: "Last updated",
     },
   },
   es: {
@@ -71,6 +74,9 @@ export const dictionary = {
       activeRewards: "Recompensas activas",
       expiredRewards: "Recompensas expiradas",
       back: "Volver",
+      clashRoyaleDescription:
+        "Descubre todas las recompensas gratuitas de Clash Royale disponibles actualmente en un solo lugar. Seguimos cofres gratis, emotes, eventos y bonos por tiempo limitado para que no te pierdas ninguna recompensa.",
+      lastUpdatedLabel: "Última actualización",
     },
   },
 
@@ -104,6 +110,9 @@ export const dictionary = {
       activeRewards: "المكافآت النشطة",
       expiredRewards: "المكافآت المنتهية",
       back: "رجوع",
+      clashRoyaleDescription:
+        "اكتشف جميع مكافآت Clash Royale المجانية المتاحة حاليًا في مكان واحد. نحن نتابع الصناديق المجانية والإيموجيات والفعاليات والمكافآت المؤقتة حتى لا تفوّت أي مكافأة.",
+      lastUpdatedLabel: "آخر تحديث",
     },
   },
 } as const;
