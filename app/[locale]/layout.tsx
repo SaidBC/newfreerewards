@@ -22,7 +22,9 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale: requestedLocale } = await params;
-  const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
+  const locale: Locale = isLocale(requestedLocale)
+    ? requestedLocale
+    : defaultLocale;
   const t = getDictionary(locale);
 
   return {
@@ -43,7 +45,9 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }>) {
   const { locale: requestedLocale } = await params;
-  const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
+  const locale: Locale = isLocale(requestedLocale)
+    ? requestedLocale
+    : defaultLocale;
 
   return (
     <div dir={locale === "ar" ? "rtl" : "ltr"}>
@@ -51,8 +55,10 @@ export default async function LocaleLayout({
       {children}
       <Footer locale={locale} />
       {clientEnv.NEXT_PUBLIC_NODE_ENV === "production" && <Analytics />}
-      <MonetageVignette />
-      <MonetageInPagePush />
+      {clientEnv.NEXT_PUBLIC_NODE_ENV === "production" && <MonetageVignette />}
+      {clientEnv.NEXT_PUBLIC_NODE_ENV === "production" && (
+        <MonetageInPagePush />
+      )}
     </div>
   );
 }
