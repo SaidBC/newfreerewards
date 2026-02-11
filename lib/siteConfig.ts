@@ -448,17 +448,61 @@ const clashRoyaleTranslations: Partial<
       name: "Emote Duende Sonriente",
       description: "Canjea un código promocional para desbloquear este emote.",
     },
+    "3-seasonal-ironheart-lucky-chests": {
+      name: "3 Cofres de Suerte Ironheart de temporada",
+      description: "Reclama los 3 cofres de suerte Ironheart de temporada.",
+    },
+    "jojo-musketeer-banner-set": {
+      name: "Set de banner de Jojo Musketeer",
+      description: "Reclama el set de banner de Jojo Musketeer.",
+    },
     "hero-goblin-troll-emote": {
+      name: "Emote de Héroe Duende Troll",
       description: "Sigue los pasos para reclamar este emote.",
     },
     "hero-ice-golem-emote": {
+      name: "Emote de Héroe Gólem de Hielo",
       description: "Sigue los pasos para reclamar este emote.",
     },
     "2-star-lucky-chest": {
+      name: "Cofre de Suerte de 2 estrellas",
       description: "Sigue los pasos para reclamar este cofre.",
     },
     "hero-wizard-emote": {
+      name: "Emote de Héroe Mago",
       description: "Sigue los pasos para reclamar este emote.",
+    },
+    "hero-musketeer-emote": {
+      name: "Emote de Héroe Mosquetera",
+      description: "Sigue los pasos para reclamar este emote.",
+    },
+    "flying-royal-hogs-emote": {
+      name: "Emote de Cerdos Reales Voladores",
+      description: "Desbloquea este emote con un código.",
+    },
+    "fire-ice-banner-set": {
+      name: "Set de banner Fuego y Hielo",
+      description: "Incluye decoración Ember Escape y marco Firestorm.",
+    },
+    "snoring-dragon-banner-set": {
+      name: "Set de banner Dragón Durmiente",
+      description: "Desbloquea esta decoración de banner gratis.",
+    },
+    "1000-gold": {
+      name: "1,000 de oro",
+      description: "Reclama 1,000 de oro al instante.",
+    },
+    "hot-hog-balloon-banner-frame": {
+      name: "Marco de banner Hot Hog Balloon",
+      description: "Reclama este marco con QR o enlace directo.",
+    },
+    "hamelia-hogwart-banner-decoration": {
+      name: "Decoración de banner Hamelia Hogwart",
+      description: "Desbloquea esta decoración de banner gratis.",
+    },
+    "royal-ghost-boo-emote": {
+      name: "Emote Royal Ghost Boo",
+      description: "Reclama el emote Royal Ghost Boo.",
     },
   },
   ar: {
@@ -466,20 +510,118 @@ const clashRoyaleTranslations: Partial<
       name: "إيموجي العفريت المبتسم",
       description: "استخدم كودًا ترويجيًا لفتح هذا الإيموجي.",
     },
+    "3-seasonal-ironheart-lucky-chests": {
+      name: "3 صناديق حظ Ironheart موسمية",
+      description: "احصل على 3 صناديق حظ Ironheart الموسمية.",
+    },
+    "jojo-musketeer-banner-set": {
+      name: "مجموعة بانر Jojo Musketeer",
+      description: "احصل على مجموعة بانر Jojo Musketeer.",
+    },
     "hero-goblin-troll-emote": {
+      name: "إيموجي البطل الغوبلن الترول",
       description: "اتبع الخطوات التالية للحصول على هذا الإيموجي.",
     },
     "hero-ice-golem-emote": {
+      name: "إيموجي البطل آيس غولم",
       description: "اتبع الخطوات التالية للحصول على هذا الإيموجي.",
     },
     "2-star-lucky-chest": {
+      name: "صندوق الحظ نجمتين",
       description: "اتبع الخطوات التالية للحصول على هذا الصندوق.",
     },
     "hero-wizard-emote": {
+      name: "إيموجي البطل الساحر",
       description: "اتبع الخطوات التالية للحصول على هذا الإيموجي.",
+    },
+    "hero-musketeer-emote": {
+      name: "إيموجي البطل ماسكيتير",
+      description: "اتبع الخطوات التالية للحصول على هذا الإيموجي.",
+    },
+    "flying-royal-hogs-emote": {
+      name: "إيموجي الخنازير الملكية الطائرة",
+      description: "افتح هذا الإيموجي باستخدام كود.",
+    },
+    "fire-ice-banner-set": {
+      name: "مجموعة بانر النار والجليد",
+      description: "تتضمن زخرفة Ember Escape وإطار Firestorm.",
+    },
+    "snoring-dragon-banner-set": {
+      name: "مجموعة بانر التنين النائم",
+      description: "افتح زخرفة بانر التنين النائم مجانًا.",
+    },
+    "1000-gold": {
+      name: "1,000 ذهب",
+      description: "احصل على 1,000 ذهب فورًا.",
+    },
+    "hot-hog-balloon-banner-frame": {
+      name: "إطار بانر Hot Hog Balloon",
+      description: "احصل على هذا الإطار عبر QR أو رابط مباشر.",
+    },
+    "hamelia-hogwart-banner-decoration": {
+      name: "زخرفة بانر Hamelia Hogwart",
+      description: "افتح هذه الزخرفة مجانًا.",
+    },
+    "royal-ghost-boo-emote": {
+      name: "إيموجي Royal Ghost Boo",
+      description: "احصل على إيموجي Royal Ghost Boo.",
     },
   },
 };
+
+const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> = {
+  es: {
+    "Open the Supercell store website and log in.": "Abre la tienda de Supercell e inicia sesión.",
+    "Scroll to the bottom and find the redeem code input.": "Desplázate hasta abajo y busca el campo para canjear código.",
+    "Enter the code: ROYALEAFFAIR": "Introduce el código: ROYALEAFFAIR",
+    "Go to the Supercell Store": "Ir a la tienda de Supercell",
+    "Claim 3 Chests": "Reclamar 3 cofres",
+    "Claim banner set": "Reclamar set de banner",
+    "Note: Make sure you are logged in before clicking the emote link.": "Nota: asegúrate de haber iniciado sesión antes de abrir el enlace del emote.",
+    "Click here to open the emote offer": "Haz clic aquí para abrir la oferta del emote",
+    "Click the Free button, then open Clash Royale to receive the emote.": "Pulsa el botón Gratis y luego abre Clash Royale para recibir el emote.",
+    "Open the Supercell Store": "Abrir la tienda de Supercell",
+    "Scroll down and click on bonuses box which will appears when you scroll down , then click the Lucky Chest reward.": "Desplázate hacia abajo y pulsa en la caja de bonificaciones que aparece; luego pulsa la recompensa Lucky Chest.",
+    "Open the link or scan the QR code .": "Abre el enlace o escanea el código QR.",
+    "Enter the code: REINABARRIGA": "Introduce el código: REINABARRIGA",
+    "Redeem the code here": "Canjear el código aquí",
+    "Enter the code: WHENHOGSFLY!": "Introduce el código: WHENHOGSFLY!",
+    "Enter the code: FIREANDICE!!": "Introduce el código: FIREANDICE!!",
+    "Enter the code: TRUSTYTURRET": "Introduce el código: TRUSTYTURRET",
+    "Claim 1,000 Gold": "Reclamar 1,000 de oro",
+    "Claim banner frame": "Reclamar marco de banner",
+    "Claim banner decoration": "Reclamar decoración de banner",
+    "Claim emote": "Reclamar emote",
+  },
+  ar: {
+    "Open the Supercell store website and log in.": "افتح متجر Supercell وسجّل الدخول.",
+    "Scroll to the bottom and find the redeem code input.": "مرّر للأسفل وابحث عن حقل إدخال كود الاسترداد.",
+    "Enter the code: ROYALEAFFAIR": "أدخل الكود: ROYALEAFFAIR",
+    "Go to the Supercell Store": "اذهب إلى متجر Supercell",
+    "Claim 3 Chests": "احصل على 3 صناديق",
+    "Claim banner set": "احصل على مجموعة البانر",
+    "Note: Make sure you are logged in before clicking the emote link.": "ملاحظة: تأكد من تسجيل الدخول قبل الضغط على رابط الإيموجي.",
+    "Click here to open the emote offer": "اضغط هنا لفتح عرض الإيموجي",
+    "Click the Free button, then open Clash Royale to receive the emote.": "اضغط زر Free ثم افتح Clash Royale لاستلام الإيموجي.",
+    "Open the Supercell Store": "افتح متجر Supercell",
+    "Scroll down and click on bonuses box which will appears when you scroll down , then click the Lucky Chest reward.": "مرّر للأسفل ثم اضغط على صندوق المكافآت الذي يظهر، ثم اختر مكافأة Lucky Chest.",
+    "Open the link or scan the QR code .": "افتح الرابط أو امسح رمز QR.",
+    "Enter the code: REINABARRIGA": "أدخل الكود: REINABARRIGA",
+    "Redeem the code here": "استرد الكود من هنا",
+    "Enter the code: WHENHOGSFLY!": "أدخل الكود: WHENHOGSFLY!",
+    "Enter the code: FIREANDICE!!": "أدخل الكود: FIREANDICE!!",
+    "Enter the code: TRUSTYTURRET": "أدخل الكود: TRUSTYTURRET",
+    "Claim 1,000 Gold": "احصل على 1,000 ذهب",
+    "Claim banner frame": "احصل على إطار البانر",
+    "Claim banner decoration": "احصل على زخرفة البانر",
+    "Claim emote": "احصل على الإيموجي",
+  },
+};
+
+function translateContentText(locale: Locale, text?: string) {
+  if (!text) return text;
+  return contentTextTranslations[locale]?.[text] || text;
+}
 
 export function getLocalizedClashRoyaleRewards(locale: Locale): RewardType[] {
   const localizedEntries = clashRoyaleTranslations[locale] || {};
@@ -491,6 +633,12 @@ export function getLocalizedClashRoyaleRewards(locale: Locale): RewardType[] {
       ...reward,
       name: translation?.name || reward.name,
       description: translation?.description || reward.description,
+      content: reward.content.map((content) => ({
+        ...content,
+        value: translateContentText(locale, content.value),
+        label: translateContentText(locale, content.label),
+        alt: translateContentText(locale, content.alt),
+      })),
     };
   });
 }
