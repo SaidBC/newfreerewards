@@ -14,6 +14,8 @@ import {
   type Locale,
 } from "@/lib/i18n";
 
+export const dynamic = "force-static";
+
 type RewardContentBlock = {
   type: "text" | "image" | "code" | "link";
   value?: string | null;
@@ -60,13 +62,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug, locale: requestedLocale } = await params;
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
 
+  const t = getDictionary(locale);
   const reward = getRewardFromConfig(slug, locale);
   const platformName = "Clash Royale";
   const rewardName = reward?.title || "Unknown Reward";
 
   return {
-    title: `${rewardName} – Free Reward on ${platformName}`,
-    description: `Step-by-step guide to claim the ${rewardName} reward on ${platformName}.`,
+    title: `${rewardName} – ${t.seo.rewardMetaPrefix} ${platformName}`,
+    description: `${t.seo.rewardMetaDescriptionPrefix} ${rewardName} ${t.seo.rewardMetaPrefix} ${platformName}.`,
   };
 }
 

@@ -5,13 +5,35 @@ import { Analytics } from "@vercel/analytics/next";
 import clientEnv from "@/utils/clientEnv";
 import MonetageVignette from "@/components/MonetageVignette";
 import MonetageInPagePush from "@/components/MonetageInPagePush";
-import { defaultLocale, isLocale, type Locale } from "@/lib/i18n";
+import {
+  defaultLocale,
+  getDictionary,
+  isLocale,
+  locales,
+  type Locale,
+} from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "NewFreeRewards – Free Rewards, Bonuses & Promotions",
-  description:
-    "Discover free rewards, bonuses, promo codes, and giveaways from games and online platforms. No hacks. Updated daily.",
-};
+export const dynamic = "force-static";
+export const dynamicParams = false;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: requestedLocale } = await params;
+  const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
+  const t = getDictionary(locale);
+
+  return {
+    title: t.seo.siteTitle,
+    description: t.seo.siteDescription,
+  };
+}
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 export default async function LocaleLayout({
   children,

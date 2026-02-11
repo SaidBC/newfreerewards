@@ -5,10 +5,23 @@ import { Metadata } from "next";
 import ExpiredRewardsSection from "@/ui/games/ExpiredRewardsSection";
 import { defaultLocale, getDictionary, isLocale, type Locale } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: `Clash Royale Free Rewards & Bonuses`,
-  description: `Discover active free rewards, bonuses, and promotions available for Clash Royale.`,
-};
+export const dynamic = "force-static";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: requestedLocale } = await params;
+  const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
+  const t = getDictionary(locale);
+
+  return {
+    title: t.seo.clashRoyaleTitle,
+    description: t.seo.clashRoyaleDescription,
+  };
+}
+
 export default async function Page({
   params,
 }: {

@@ -7,6 +7,8 @@ import { Metadata } from "next";
 import CopyCode from "@/components/CopyCode";
 import { getLocalizedClashRoyaleRewards } from "@/lib/siteConfig";
 
+export const dynamic = "force-static";
+
 type RewardContentBlock = {
   type: "text" | "image" | "code" | "link";
   value?: string | null;

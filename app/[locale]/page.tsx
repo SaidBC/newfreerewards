@@ -5,6 +5,8 @@ import FaqSection from "@/ui/FaqSection";
 import PlatformsListSection from "@/ui/PlatformsListSection";
 import { defaultLocale, isLocale, type Locale } from "@/lib/i18n";
 
+export const dynamic = "force-static";
+
 export default async function Page({
   params,
 }: {

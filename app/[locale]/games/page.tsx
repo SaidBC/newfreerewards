@@ -11,11 +11,22 @@ import {
   type Locale,
 } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Games With Free Rewards & Bonuses",
-  description:
-    "Browse games offering free rewards, bonuses, promo codes, and giveaways. Games, services, and more.",
-};
+export const dynamic = "force-static";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: requestedLocale } = await params;
+  const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
+  const t = getDictionary(locale);
+
+  return {
+    title: t.seo.gamesTitle,
+    description: t.seo.gamesDescription,
+  };
+}
 
 export default async function GamesPage({
   params,

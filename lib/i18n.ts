@@ -17,6 +17,19 @@ export const dictionary = {
       contact: "Contact",
       faq: "FAQ",
     },
+    seo: {
+      siteTitle: "NewFreeRewards – Free Rewards, Bonuses & Promotions",
+      siteDescription:
+        "Discover free rewards, bonuses, promo codes, and giveaways from games and online platforms. No hacks. Updated daily.",
+      gamesTitle: "Games With Free Rewards & Bonuses",
+      gamesDescription:
+        "Browse games offering free rewards, bonuses, promo codes, and giveaways. Games, services, and more.",
+      clashRoyaleTitle: "Clash Royale Free Rewards & Bonuses",
+      clashRoyaleDescription:
+        "Discover active free rewards, bonuses, and promotions available for Clash Royale.",
+      rewardMetaPrefix: "Free Reward on",
+      rewardMetaDescriptionPrefix: "Step-by-step guide to claim",
+    },
     home: {
       heroTitle: "All Legit Free Stuff Rewards — In One Place",
       heroDescription:
@@ -52,6 +65,19 @@ export const dictionary = {
       contact: "Contacto",
       faq: "Preguntas",
     },
+    seo: {
+      siteTitle: "NewFreeRewards – Recompensas, Bonos y Promociones Gratis",
+      siteDescription:
+        "Descubre recompensas gratis, bonos, códigos promocionales y sorteos de juegos y plataformas online. Sin hacks. Actualizado diariamente.",
+      gamesTitle: "Juegos con recompensas y bonos gratis",
+      gamesDescription:
+        "Explora juegos con recompensas gratis, bonos, códigos promocionales y sorteos.",
+      clashRoyaleTitle: "Recompensas y bonos gratis de Clash Royale",
+      clashRoyaleDescription:
+        "Descubre recompensas, bonos y promociones activas de Clash Royale.",
+      rewardMetaPrefix: "Recompensa gratis en",
+      rewardMetaDescriptionPrefix: "Guía paso a paso para reclamar",
+    },
     home: {
       heroTitle: "Todas las recompensas gratis legítimas en un solo lugar",
       heroDescription:
@@ -79,7 +105,6 @@ export const dictionary = {
       lastUpdatedLabel: "Última actualización",
     },
   },
-
   ar: {
     nav: {
       home: "الرئيسية",
@@ -87,6 +112,17 @@ export const dictionary = {
       games: "الألعاب",
       contact: "اتصل بنا",
       faq: "الأسئلة الشائعة",
+    },
+    seo: {
+      siteTitle: "NewFreeRewards – مكافآت وبونص وعروض مجانية",
+      siteDescription:
+        "اكتشف المكافآت المجانية والبونص وأكواد العروض والهدايا من الألعاب والمنصات عبر الإنترنت. بدون تهكير. تحديث يومي.",
+      gamesTitle: "ألعاب تقدم مكافآت وبونص مجاني",
+      gamesDescription: "تصفح الألعاب التي تقدم مكافآت مجانية وبونص وأكواد عروض.",
+      clashRoyaleTitle: "مكافآت وبونص مجاني لـ Clash Royale",
+      clashRoyaleDescription: "اكتشف المكافآت والبونص والعروض النشطة في Clash Royale.",
+      rewardMetaPrefix: "مكافأة مجانية على",
+      rewardMetaDescriptionPrefix: "دليل خطوة بخطوة للحصول على",
     },
     home: {
       heroTitle: "كل المكافآت المجانية الحقيقية في مكان واحد",
