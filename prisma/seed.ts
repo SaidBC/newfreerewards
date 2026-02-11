@@ -1,5 +1,5 @@
 import "dotenv/config";
-import siteConfig from "../lib/siteConfig";
+import { getLocalizedClashRoyaleRewards } from "../lib/siteConfig";
 import prisma from "../lib/prisma";
 
 async function main() {
@@ -24,7 +24,7 @@ async function main() {
     },
   });
 
-  const rewards = siteConfig.clashroyale.rewards;
+  const rewards = getLocalizedClashRoyaleRewards("en");
 
   // 3️⃣ Insert rewards + contents
   for (const reward of rewards) {

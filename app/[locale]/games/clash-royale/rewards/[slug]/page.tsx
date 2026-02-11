@@ -6,6 +6,14 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import CopyCode from "@/components/CopyCode";
 import { getLocalizedClashRoyaleRewards } from "@/lib/siteConfig";
+import {
+  defaultLocale,
+  getDictionary,
+  isLocale,
+  locales,
+  localizePath,
+  type Locale,
+} from "@/lib/i18n";
 
 export const dynamic = "force-static";
 
@@ -20,16 +28,13 @@ type RewardContentBlock = {
 
 type PageProps = {
   params: Promise<{
+    locale: string;
     slug: string;
   }>;
 };
 
-type Props = {
-  params: Promise<{ slug: string }>;
-};
-
-function getRewardFromConfig(slug: string) {
-  const reward = getLocalizedClashRoyaleRewards("en").find(
+function getRewardFromConfig(slug: string, locale: Locale) {
+  const reward = getLocalizedClashRoyaleRewards(locale).find(
     (item) => item.slug === slug
   );
 
@@ -54,19 +59,28 @@ function getRewardFromConfig(slug: string) {
   };
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const reward = getRewardFromConfig(slug);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug, locale: requestedLocale } = await params;
+  const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
+
+  const t = getDictionary(locale);
+  const reward = getRewardFromConfig(slug, locale);
   const platformName = "Clash Royale";
   const rewardName = reward?.title || "Unknown Reward";
 
   return {
-    title: `${rewardName} – Free Reward on ${platformName}`,
-    description: `Step-by-step guide to claim the ${rewardName} reward on ${platformName}.`,
+    title: `${rewardName} – ${t.seo.rewardMetaPrefix} ${platformName}`,
+    description: `${t.seo.rewardMetaDescriptionPrefix} ${rewardName} ${t.seo.rewardMetaPrefix} ${platformName}.`,
+    alternates: {
+      canonical: `/${locale}/games/clash-royale/rewards/${slug}`,
+      languages: Object.fromEntries(
+        locales.map((l) => [l, `/${l}/games/clash-royale/rewards/${slug}`])
+      ),
+    },
     openGraph: {
-      title: `${rewardName} – ${platformName} Reward`,
-      description: "Claim this free reward safely using the official link.",
-      url: `/games/clash-royale/rewards/${slug}`,
+      title: `${rewardName} – ${t.seo.rewardMetaPrefix} ${platformName}`,
+      description: `${t.seo.rewardMetaDescriptionPrefix} ${rewardName} ${t.seo.rewardMetaPrefix} ${platformName}.`,
+      url: `/${locale}/games/clash-royale/rewards/${slug}`,
       type: "article",
     },
   };
@@ -121,17 +135,20 @@ function renderBlock(block: RewardContentBlock, index: number) {
 }
 
 export default async function Page({ params }: PageProps) {
-  const { slug } = await params;
-  const reward = getRewardFromConfig(slug);
+  const { locale: requestedLocale, slug } = await params;
+  const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
+  const t = getDictionary(locale);
+
+  const reward = getRewardFromConfig(slug, locale);
   if (!reward) return notFound();
 
   return (
     <main className="min-h-screen bg-background">
       <section className="mx-auto max-w-5xl px-4 py-16">
         <Button variant={"link"} asChild>
-          <Link href={"/games/clash-royale"}>
+          <Link href={localizePath(locale, "/games/clash-royale")}>
             <ArrowLeft />
-            <span>Back</span>
+            <span>{t.games.back}</span>
           </Link>
         </Button>
         <div className="flex gap-4 items-center">

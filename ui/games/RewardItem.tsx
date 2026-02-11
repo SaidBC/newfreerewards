@@ -1,15 +1,19 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import { getDictionary, localizePath, type Locale } from "@/lib/i18n";
 
 interface RewardItemProps {
   src?: string;
   title: string;
   platform: { name: string };
   slug: string;
+  locale: Locale;
 }
 
-const RewardItem = ({ src, title, platform, slug }: RewardItemProps) => {
+const RewardItem = ({ src, title, platform, slug, locale }: RewardItemProps) => {
+  const t = getDictionary(locale);
+
   return (
     <li>
       <Image
@@ -26,7 +30,9 @@ const RewardItem = ({ src, title, platform, slug }: RewardItemProps) => {
         </div>
 
         <Button size={"sm"} className="text-xs w-fit" asChild>
-          <Link href={"/games/clash-royale/rewards/" + slug}>Learn More</Link>
+          <Link href={localizePath(locale, "/games/clash-royale/rewards/" + slug)}>
+            {t.common.learnMore}
+          </Link>
         </Button>
       </div>
     </li>

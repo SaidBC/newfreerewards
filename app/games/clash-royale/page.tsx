@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import { Metadata } from "next";
 import ExpiredRewardsSection from "@/ui/games/ExpiredRewardsSection";
+import { defaultLocale } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   title: `Clash Royale Free Rewards & Bonuses`,
@@ -38,8 +39,8 @@ export default function Page() {
           so you never miss a reward.
         </p>
       </section>
-      <CurrentActiveRewardsSection />
-      <ExpiredRewardsSection />
+      <CurrentActiveRewardsSection locale={defaultLocale} />
+      <ExpiredRewardsSection locale={defaultLocale} />
       <div className="mx-auto max-w-5xl px-4 pb-24">
         <p className="mt-4 text-sm font-bold text-muted-foreground">
           Last time updated: 2026 Feb 06
