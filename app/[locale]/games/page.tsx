@@ -25,6 +25,15 @@ export async function generateMetadata({
   return {
     title: t.seo.gamesTitle,
     description: t.seo.gamesDescription,
+    alternates: {
+      canonical: localizePath(locale, "/games"),
+    },
+    openGraph: {
+      title: t.seo.gamesTitle,
+      description: t.seo.gamesDescription,
+      url: localizePath(locale, "/games"),
+      type: "website",
+    },
   };
 }
 

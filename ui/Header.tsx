@@ -16,7 +16,18 @@ export default function Header({ locale }: { locale: Locale }) {
           <Link href={localizePath(locale, "/")}>
             <TextLogo size="md" />
           </Link>
-          <LanguageSwitcher locale={locale} label={t.common.language} />
+          <div className="flex items-center gap-2">
+            <div className="hidden sm:block">
+              <LanguageSwitcher locale={locale} label={t.common.language} />
+            </div>
+            <div className="sm:hidden">
+              <LanguageSwitcher
+                locale={locale}
+                label={t.common.language}
+                variant="mobile"
+              />
+            </div>
+          </div>
           <MobileNav className="lg:hidden" locale={locale} />
           <MainNav className="hidden lg:flex" locale={locale} />
         </div>

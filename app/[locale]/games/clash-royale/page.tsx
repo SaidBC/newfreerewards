@@ -3,7 +3,13 @@ import Image from "next/image";
 
 import { Metadata } from "next";
 import ExpiredRewardsSection from "@/ui/games/ExpiredRewardsSection";
-import { defaultLocale, getDictionary, isLocale, type Locale } from "@/lib/i18n";
+import {
+  defaultLocale,
+  getDictionary,
+  isLocale,
+  localizePath,
+  type Locale,
+} from "@/lib/i18n";
 
 export const dynamic = "force-static";
 
@@ -19,6 +25,15 @@ export async function generateMetadata({
   return {
     title: t.seo.clashRoyaleTitle,
     description: t.seo.clashRoyaleDescription,
+    alternates: {
+      canonical: localizePath(locale, "/games/clash-royale"),
+    },
+    openGraph: {
+      title: t.seo.clashRoyaleTitle,
+      description: t.seo.clashRoyaleDescription,
+      url: localizePath(locale, "/games/clash-royale"),
+      type: "website",
+    },
   };
 }
 

@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
 import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Metadata } from "next";
 
@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Games With Free Rewards & Bonuses",
   description:
     "Browse games offering free rewards, bonuses, promo codes, and giveaways. Games, services, and more.",
+  alternates: {
+    canonical: "/games",
+  },
   openGraph: {
     title: "Reward Platforms – NewFreeRewards",
     description: "Explore all games that offer free rewards and promotions.",

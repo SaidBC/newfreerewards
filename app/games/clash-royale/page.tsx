@@ -8,6 +8,9 @@ import { defaultLocale } from "@/lib/i18n";
 export const metadata: Metadata = {
   title: `Clash Royale Free Rewards & Bonuses`,
   description: `Discover active free rewards, bonuses, and promotions available for Clash Royale.`,
+  alternates: {
+    canonical: "/games/clash-royale",
+  },
   openGraph: {
     title: `Clash Royale – Free Rewards`,
     description: `Claim free rewards and bonuses available on Clash Royale.`,
