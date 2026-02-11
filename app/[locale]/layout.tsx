@@ -51,8 +51,8 @@ export default async function LocaleLayout({
       {children}
       <Footer locale={locale} />
       {clientEnv.NEXT_PUBLIC_NODE_ENV === "production" && <Analytics />}
-      <MonetageVignette />
-      <MonetageInPagePush />
+      {clientEnv.NEXT_PUBLIC_NODE_ENV === "production" && <MonetageVignette />}
+      {clientEnv.NEXT_PUBLIC_NODE_ENV === "production" && <MonetageInPagePush />}
     </div>
   );
 }
