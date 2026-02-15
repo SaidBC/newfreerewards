@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import CopyCode from "@/components/CopyCode";
 import { getLocalizedClashRoyaleRewards } from "@/lib/siteConfig";
+import { locales, localizePath } from "@/lib/i18n";
 
 export const dynamic = "force-static";
 
@@ -60,13 +61,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const platformName = "Clash Royale";
   const rewardName = reward?.title || "Unknown Reward";
 
+  const rewardPath = `/games/clash-royale/rewards/${slug}`;
+
   return {
     title: `${rewardName} – Free Reward on ${platformName}`,
     description: `Step-by-step guide to claim the ${rewardName} reward on ${platformName}.`,
+    alternates: {
+      canonical: rewardPath,
+      languages: Object.fromEntries(
+        locales.map((locale) => [locale, localizePath(locale, rewardPath)])
+      ),
+    },
     openGraph: {
       title: `${rewardName} – ${platformName} Reward`,
-      description: "Claim this free reward safely using the official link.",
-      url: `/games/clash-royale/rewards/${slug}`,
+      description: `Step-by-step guide to claim the ${rewardName} reward on ${platformName}.`,
+      url: rewardPath,
       type: "article",
     },
   };

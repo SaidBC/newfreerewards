@@ -11,6 +11,7 @@ import {
   getDictionary,
   isLocale,
   localizePath,
+  locales,
   type Locale,
 } from "@/lib/i18n";
 
@@ -67,9 +68,26 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const platformName = "Clash Royale";
   const rewardName = reward?.title || "Unknown Reward";
 
+  const rewardPath = `/games/clash-royale/rewards/${slug}`;
+
   return {
     title: `${rewardName} – ${t.seo.rewardMetaPrefix} ${platformName}`,
     description: `${t.seo.rewardMetaDescriptionPrefix} ${rewardName} ${t.seo.rewardMetaPrefix} ${platformName}.`,
+    alternates: {
+      canonical: localizePath(locale, rewardPath),
+      languages: Object.fromEntries(
+        locales.map((supportedLocale) => [
+          supportedLocale,
+          localizePath(supportedLocale, rewardPath),
+        ])
+      ),
+    },
+    openGraph: {
+      title: `${rewardName} – ${t.seo.rewardMetaPrefix} ${platformName}`,
+      description: `${t.seo.rewardMetaDescriptionPrefix} ${rewardName} ${t.seo.rewardMetaPrefix} ${platformName}.`,
+      url: localizePath(locale, rewardPath),
+      type: "article",
+    },
   };
 }
 

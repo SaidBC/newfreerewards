@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Metadata } from "next";
+import { locales, localizePath } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   title: "Games With Free Rewards & Bonuses",
@@ -10,6 +11,9 @@ export const metadata: Metadata = {
     "Browse games offering free rewards, bonuses, promo codes, and giveaways. Games, services, and more.",
   alternates: {
     canonical: "/games",
+    languages: Object.fromEntries(
+      locales.map((locale) => [locale, localizePath(locale, "/games")])
+    ),
   },
   openGraph: {
     title: "Reward Platforms – NewFreeRewards",
