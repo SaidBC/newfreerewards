@@ -72,7 +72,7 @@ const siteConfig = {
         previewImage: "/ironheart_chest.webp",
         name: "3 Seasonal Ironheart Lucky Chests",
         description: "Claim the 3 Seasonal Ironheart Lucky Chests.",
-        status: "active" as "active" | "expired",
+        status: "expired" as "active" | "expired",
         content: [
           {
             type: "link",

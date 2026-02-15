@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   other: {
-    "application-name": "GGfollows",
+    "application-name": "NewFreeRewards",
     monetag: "9f8b97552771ece2a7c120c0c4dd932a",
   },
 };
