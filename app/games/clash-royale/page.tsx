@@ -3,13 +3,25 @@ import Image from "next/image";
 
 import { Metadata } from "next";
 import ExpiredRewardsSection from "@/ui/games/ExpiredRewardsSection";
-import { defaultLocale } from "@/lib/i18n";
+import { defaultLocale, locales, localizePath } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   title: `Clash Royale Free Rewards & Bonuses`,
   description: `Discover active free rewards, bonuses, and promotions available for Clash Royale.`,
+  keywords: [
+    "codes for clash royale",
+    "clash royale code",
+    "supercell code clash royale",
+    "supercell clash royale code",
+    "codes in clash royale",
+    "clash royale gems code",
+    "clash royale codes for gems",
+  ],
   alternates: {
     canonical: "/games/clash-royale",
+    languages: Object.fromEntries(
+      locales.map((locale) => [locale, localizePath(locale, "/games/clash-royale")])
+    ),
   },
   openGraph: {
     title: `Clash Royale – Free Rewards`,
@@ -45,6 +57,23 @@ export default function Page() {
       <CurrentActiveRewardsSection locale={defaultLocale} />
       <ExpiredRewardsSection locale={defaultLocale} />
       <div className="mx-auto max-w-5xl px-4 pb-24">
+        <section className="mt-10 rounded-xl border bg-card p-5">
+          <h2 className="text-2xl font-semibold">Clash Royale Codes & Search Terms</h2>
+          <p className="mt-2 text-muted-foreground">
+            Players often search for terms related to Clash Royale rewards and
+            creator support options. This page tracks verified active rewards,
+            events, and official links from trusted sources.
+          </p>
+          <ul className="mt-4 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
+            <li>codes for clash royale</li>
+            <li>clash royale code</li>
+            <li>supercell code clash royale</li>
+            <li>supercell clash royale code</li>
+            <li>codes in clash royale</li>
+            <li>clash royale gems code</li>
+            <li>clash royale codes for gems</li>
+          </ul>
+        </section>
         <p className="mt-4 text-sm font-bold text-muted-foreground">
           Last time updated: 2026 Feb 06
         </p>

@@ -8,6 +8,7 @@ import {
   getDictionary,
   isLocale,
   localizePath,
+  locales,
   type Locale,
 } from "@/lib/i18n";
 
@@ -27,6 +28,12 @@ export async function generateMetadata({
     description: t.seo.gamesDescription,
     alternates: {
       canonical: localizePath(locale, "/games"),
+      languages: Object.fromEntries(
+        locales.map((supportedLocale) => [
+          supportedLocale,
+          localizePath(supportedLocale, "/games"),
+        ])
+      ),
     },
     openGraph: {
       title: t.seo.gamesTitle,

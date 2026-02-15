@@ -11,6 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
     { url: `${base}/`, lastModified: now },
     { url: `${base}/games`, lastModified: now },
+    { url: `${base}/games/clash-royale`, lastModified: now },
     { url: `${base}/contact`, lastModified: now },
     ...locales.flatMap((locale) => [
       { url: `${base}${localizePath(locale, "/")}`, lastModified: now },
