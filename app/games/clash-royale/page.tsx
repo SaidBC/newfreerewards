@@ -75,7 +75,7 @@ export default function Page() {
           </ul>
         </section>
         <p className="mt-4 text-sm font-bold text-muted-foreground">
-          Last time updated: 2026 Feb 06
+          Last time updated: 2026 Feb 24
         </p>
       </div>
     </main>
