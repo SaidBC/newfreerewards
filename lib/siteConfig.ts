@@ -38,7 +38,7 @@ const siteConfig = {
         id: "16",
         slug: "skeleton-shield-bang-emote",
         platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/preview-skeleton-shield-bang-emote.svg",
+        previewImage: "/preview-skeleton-shield-bang-emote.jpeg",
         name: "Skeleton Shield Bang Emote",
         description: "Claim the Skeleton Shield Bang emote.",
         status: "active" as "active" | "expired",
@@ -50,7 +50,7 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: "/skeleton-shield-bang-emote-qr.svg",
+            src: "/skeleton-shield-bang-emote-qr.png",
             alt: "Skeleton Shield Bang emote QR",
           },
         ] as ContentType[],
