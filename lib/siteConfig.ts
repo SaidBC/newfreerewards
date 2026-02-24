@@ -35,6 +35,27 @@ const siteConfig = {
   clashroyale: {
     rewards: [
       {
+        id: "16",
+        slug: "skeleton-shield-bang-emote",
+        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
+        previewImage: "/preview-skeleton-shield-bang-emote.svg",
+        name: "Skeleton Shield Bang Emote",
+        description: "Claim the Skeleton Shield Bang emote.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "clashroyale://action=voucher&code=6884f0e3-367c-4449-93ef-fb4e17ac55a1",
+            label: "Claim emote",
+          },
+          {
+            type: "image",
+            src: "/skeleton-shield-bang-emote-qr.svg",
+            alt: "Skeleton Shield Bang emote QR",
+          },
+        ] as ContentType[],
+      },
+      {
         id: "15",
         slug: "smile-goblin-emote",
         platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
@@ -444,6 +465,10 @@ const clashRoyaleTranslations: Partial<
   Record<Locale, Record<string, { name?: string; description?: string }>>
 > = {
   es: {
+    "skeleton-shield-bang-emote": {
+      name: "Emote Skeleton Shield Bang",
+      description: "Reclama el emote Skeleton Shield Bang.",
+    },
     "smile-goblin-emote": {
       name: "Emote Duende Sonriente",
       description: "Canjea un código promocional para desbloquear este emote.",
@@ -506,6 +531,10 @@ const clashRoyaleTranslations: Partial<
     },
   },
   ar: {
+    "skeleton-shield-bang-emote": {
+      name: "إيموجي Skeleton Shield Bang",
+      description: "احصل على إيموجي Skeleton Shield Bang.",
+    },
     "smile-goblin-emote": {
       name: "إيموجي العفريت المبتسم",
       description: "استخدم كودًا ترويجيًا لفتح هذا الإيموجي.",
@@ -592,6 +621,7 @@ const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
     "Claim banner frame": "Reclamar marco de banner",
     "Claim banner decoration": "Reclamar decoración de banner",
     "Claim emote": "Reclamar emote",
+    "Skeleton Shield Bang emote QR": "QR del emote Skeleton Shield Bang",
   },
   ar: {
     "Open the Supercell store website and log in.": "افتح متجر Supercell وسجّل الدخول.",
@@ -615,6 +645,7 @@ const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
     "Claim banner frame": "احصل على إطار البانر",
     "Claim banner decoration": "احصل على زخرفة البانر",
     "Claim emote": "احصل على الإيموجي",
+    "Skeleton Shield Bang emote QR": "رمز QR لإيموجي Skeleton Shield Bang",
   },
 };
 
