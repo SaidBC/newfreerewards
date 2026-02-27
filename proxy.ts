@@ -2,8 +2,18 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { defaultLocale, locales } from "@/lib/i18n";
 
+const passthroughPaths = ["/onboarding", "/dashboard", "/auth"];
+
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  const isPassthroughPath = passthroughPaths.some(
+    (path) => pathname === path || pathname.startsWith(`${path}/`)
+  );
+
+  if (isPassthroughPath) {
+    return NextResponse.next();
+  }
 
   const hasLocale = locales.some(
     (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`)
