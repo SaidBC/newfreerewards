@@ -11,8 +11,8 @@ export default function ExpiredRewardsSection({ locale }: { locale: Locale }) {
   return (
     <section className="mx-auto max-w-5xl px-4 pb-24">
       <h2 className="mb-6 text-2xl font-concert-one">{t.games.expiredRewards}</h2>
-      <div className="rounded-2xl border border-dashed p-10 ">
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+      <div className="rounded-2xl border border-dashed p-4 sm:p-10 ">
+        <ul className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-8">
           {rewards.map((reward) => (
             <RewardItem
               key={reward.id}
