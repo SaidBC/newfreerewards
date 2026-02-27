@@ -15,7 +15,7 @@ export default function CurrentActiveRewardsSection({ locale }: { locale: Locale
   
   const t = getDictionary(locale);
   
-  const INITIAL_LIMIT = 12;
+  const INITIAL_LIMIT = 10;
   const rewards = showAll ? allRewards : allRewards.slice(0, INITIAL_LIMIT);
 
   return (
