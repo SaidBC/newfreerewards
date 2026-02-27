@@ -151,7 +151,7 @@ export default async function Page({ params }: PageProps) {
     <main className="min-h-screen bg-background">
       <section className="mx-auto max-w-5xl px-4 py-16">
         <Button variant={"link"} asChild>
-          <Link href={localizePath(locale, "/games/clash-royale")}>
+          <Link href={localizePath(locale, "/games/clash-royale")} data-trigger-popunder="true">
             <ArrowLeft />
             <span>{t.games.back}</span>
           </Link>

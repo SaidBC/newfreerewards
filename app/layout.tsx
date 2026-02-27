@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Concert_One, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import SmartlinkPopunder from "@/components/SmartlinkPopunder";
+import AdsterraPopunder from "@/components/AdsterraPopunder";
 
 const concertOne = Concert_One({
   variable: "--font-concert-one",
@@ -44,6 +46,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${concertOne.variable} ${geistMono.variable} antialiased`}
       >
+        <SmartlinkPopunder />
+        <AdsterraPopunder />
         {children}
       </body>
     </html>

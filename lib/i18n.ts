@@ -45,6 +45,7 @@ export const dictionary = {
       allRightsReserved: "All rights reserved.",
       learnMore: "Learn More",
       language: "Language",
+      seeMore: "See More",
     },
     games: {
       allGames: "All Games",
@@ -93,6 +94,7 @@ export const dictionary = {
       allRightsReserved: "Todos los derechos reservados.",
       learnMore: "Más información",
       language: "Idioma",
+      seeMore: "Ver más",
     },
     games: {
       allGames: "Todos los juegos",
@@ -139,6 +141,7 @@ export const dictionary = {
       allRightsReserved: "جميع الحقوق محفوظة.",
       learnMore: "اعرف المزيد",
       language: "اللغة",
+      seeMore: "شاهد المزيد",
     },
     games: {
       allGames: "كل الألعاب",
