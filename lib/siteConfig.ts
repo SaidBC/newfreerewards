@@ -68,6 +68,37 @@ const siteConfig = {
           },
         ] as ContentType[],
       },
+            {
+        id: "2",
+        slug: "2-star-lucky-chest",
+        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        previewImage: "/images/clash-royale/preview-2-star-magic-lucky-chest.png",
+        name: "2-Star Lucky Chest",
+        description: "Follow the steps below to claim this chest.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value: "Open the Supercell store website and log in.",
+          },
+          {
+            type: "link",
+            href: "https://store.supercell.com/clashroyale",
+            label: "Open the Supercell Store",
+          },
+          {
+            type: "image",
+            src: "/images/clash-royale/supercell-page-image.png",
+            alt: "Supercell Store page",
+          },
+          {
+            type: "text",
+            value:
+              "Scroll down and click on bonuses box which will appears when you scroll down , then click the Lucky Chest reward.",
+          },
+        ] as ContentType[],
+      },
+
       {
         id: "16",
         slug: "skeleton-shield-bang-emote",
@@ -228,36 +259,6 @@ const siteConfig = {
             type: "text",
             value:
               "Click the Free button, then open Clash Royale to receive the emote.",
-          },
-        ] as ContentType[],
-      },
-      {
-        id: "2",
-        slug: "2-star-lucky-chest",
-        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
-        previewImage: "/images/clash-royale/preview-2-star-magic-lucky-chest.png",
-        name: "2-Star Lucky Chest",
-        description: "Follow the steps below to claim this chest.",
-        status: "active" as "active" | "expired",
-        content: [
-          {
-            type: "text",
-            value: "Open the Supercell store website and log in.",
-          },
-          {
-            type: "link",
-            href: "https://store.supercell.com/clashroyale",
-            label: "Open the Supercell Store",
-          },
-          {
-            type: "image",
-            src: "/images/clash-royale/supercell-page-image.png",
-            alt: "Supercell Store page",
-          },
-          {
-            type: "text",
-            value:
-              "Scroll down and click on bonuses box which will appears when you scroll down , then click the Lucky Chest reward.",
           },
         ] as ContentType[],
       },
