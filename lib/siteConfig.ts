@@ -34,6 +34,40 @@ const siteConfig = {
   ],
   clashroyale: {
     rewards: [
+            {
+        id: "17",
+        slug: "clash-royale-daily-rewards",
+        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        previewImage: "/images/clash-royale/e29d94da-4e20-4110-b556-66441307bb7a.webp",
+        name: "Daily Rewards",
+        description: "Claim your daily rewards from the Supercell Store.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value: "Log in to the Supercell Store every day to earn free rewards.",
+          },
+          {
+            type: "link",
+            href: "https://store.supercell.com/clashroyale",
+            label: "Go to the Supercell Store",
+          },
+          {
+            type: "image",
+            src: "/images/clash-royale/screenshot-1772575732455.png",
+            alt: "Clash royale daily reward offer",
+          },
+          {
+            type: "text",
+            value: "This is what it looks like after being claimed:",
+          },
+          {
+            type: "image",
+            src: "/images/clash-royale/Screenshot_2026.03.03_22.03.17.621.png",
+            alt: "Clash royale daily reward claimed",
+          },
+        ] as ContentType[],
+      },
       {
         id: "16",
         slug: "skeleton-shield-bang-emote",
@@ -519,6 +553,10 @@ const clashRoyaleTranslations: Partial<
       name: "Emote Royal Ghost Boo",
       description: "Reclama el emote Royal Ghost Boo.",
     },
+    "clash-royale-daily-rewards": {
+      name: "Recompensas Diarias",
+      description: "Reclama tus recompensas diarias en la tienda de Supercell.",
+    },
   },
   ar: {
     "skeleton-shield-bang-emote": {
@@ -585,6 +623,10 @@ const clashRoyaleTranslations: Partial<
       name: "إيموجي Royal Ghost Boo",
       description: "احصل على إيموجي Royal Ghost Boo.",
     },
+    "clash-royale-daily-rewards": {
+      name: "مكافآت يومية",
+      description: "احصل على مكافآتك اليومية من متجر Supercell.",
+    },
   },
 };
 
@@ -612,6 +654,8 @@ const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
     "Claim banner decoration": "Reclamar decoración de banner",
     "Claim emote": "Reclamar emote",
     "Skeleton Shield Bang emote QR": "QR del emote Skeleton Shield Bang",
+    "Log in to the Supercell Store every day to earn free rewards.": "Inicia sesión en la tienda de Supercell todos los días para ganar recompensas gratuitas.",
+    "This is what it looks like after being claimed:": "Así es como se ve después de ser reclamado:",
   },
   ar: {
     "Open the Supercell store website and log in.": "افتح متجر Supercell وسجّل الدخول.",
@@ -636,6 +680,8 @@ const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
     "Claim banner decoration": "احصل على زخرفة البانر",
     "Claim emote": "احصل على الإيموجي",
     "Skeleton Shield Bang emote QR": "رمز QR لإيموجي Skeleton Shield Bang",
+    "Log in to the Supercell Store every day to earn free rewards.": "سجّل الدخول إلى متجر Supercell يوميًا للحصول على مكافآت مجانية.",
+    "This is what it looks like after being claimed:": "هذا هو الشكل الذي يبدو عليه بعد استلامه:",
   },
 };
 
