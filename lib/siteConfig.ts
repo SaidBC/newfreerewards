@@ -37,8 +37,8 @@ const siteConfig = {
       {
         id: "16",
         slug: "skeleton-shield-bang-emote",
-        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/preview-skeleton-shield-bang-emote.jpeg",
+        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        previewImage: "/images/clash-royale/preview-skeleton-shield-bang-emote.jpeg",
         name: "Skeleton Shield Bang Emote",
         description: "Claim the Skeleton Shield Bang emote.",
         status: "active" as "active" | "expired",
@@ -50,7 +50,7 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: "/skeleton-shield-bang-emote-qr.png",
+            src: "/images/clash-royale/skeleton-shield-bang-emote-qr.png",
             alt: "Skeleton Shield Bang emote QR",
           },
         ] as ContentType[],
@@ -58,8 +58,8 @@ const siteConfig = {
       {
         id: "15",
         slug: "smile-goblin-emote",
-        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/preview-smile-goblin-emote.png",
+        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        previewImage: "/images/clash-royale/preview-smile-goblin-emote.png",
         name: "Smile Goblin Emote",
         description: "Redeem a promo code to unlock this emote.",
         status: "active" as "active" | "expired",
@@ -81,7 +81,7 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: "/smile-goblin-emote.png",
+            src: "/images/clash-royale/smile-goblin-emote.png",
             alt: "Smile Goblin Emote",
           },
         ] as ContentType[],
@@ -89,8 +89,8 @@ const siteConfig = {
       {
         id: "13",
         slug: "3-seasonal-ironheart-lucky-chests",
-        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/ironheart_chest.webp",
+        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        previewImage: "/images/clash-royale/ironheart_chest.webp",
         name: "3 Seasonal Ironheart Lucky Chests",
         description: "Claim the 3 Seasonal Ironheart Lucky Chests.",
         status: "expired" as "active" | "expired",
@@ -102,7 +102,7 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: "/3-seasonal-ironheart-lucky-chests.png",
+            src: "/images/clash-royale/3-seasonal-ironheart-lucky-chests.png",
             alt: "3 Seasonal Ironheart Lucky Chests QR",
           },
         ] as ContentType[],
@@ -110,7 +110,7 @@ const siteConfig = {
       {
         id: "14",
         slug: "jojo-musketeer-banner-set",
-        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
+        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
         name: "Jojo Musketeer banner set",
         description: "Claim the Jojo Musketeer banner set.",
         status: "active" as "active" | "expired",
@@ -122,7 +122,7 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: "/jojo-musketeer banner-set.png",
+            src: "/images/clash-royale/jojo-musketeer banner-set.png",
             alt: "Jojo Musketeer banner set QR",
           },
         ] as ContentType[],
@@ -130,8 +130,8 @@ const siteConfig = {
       {
         id: "12",
         slug: "hero-goblin-troll-emote",
-        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/b57ea5d2-2ae4-4886-bd13-47856cdd87b1.png",
+        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        previewImage: "/images/clash-royale/b57ea5d2-2ae4-4886-bd13-47856cdd87b1.png",
         name: "Hero Goblin Troll Emote",
         description: "Follow the steps below to claim this emote.",
         status: "active" as "active" | "expired",
@@ -152,7 +152,7 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: "/screenshot-1770053665846.png",
+            src: "/images/clash-royale/screenshot-1770053665846.png",
             alt: "Hero Goblin Troll emote page",
           },
           {
@@ -165,8 +165,8 @@ const siteConfig = {
       {
         id: "1",
         slug: "hero-ice-golem-emote",
-        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/preview-hero-ice-golem-emote.png",
+        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        previewImage: "/images/clash-royale/preview-hero-ice-golem-emote.png",
         name: "Hero Ice Golem Emote",
         description: "Follow the steps below to claim this emote.",
         status: "expired" as "active" | "expired",
@@ -187,7 +187,7 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: "/hero-ice-golem-emote.png",
+            src: "/images/clash-royale/hero-ice-golem-emote.png",
             alt: "Hero Ice Golem emote page",
           },
           {
@@ -197,12 +197,11 @@ const siteConfig = {
           },
         ] as ContentType[],
       },
-
       {
         id: "2",
         slug: "2-star-lucky-chest",
-        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/preview-2-star-magic-lucky-chest.png",
+        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        previewImage: "/images/clash-royale/preview-2-star-magic-lucky-chest.png",
         name: "2-Star Lucky Chest",
         description: "Follow the steps below to claim this chest.",
         status: "active" as "active" | "expired",
@@ -218,7 +217,7 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: "/supercell-page-image.png",
+            src: "/images/clash-royale/supercell-page-image.png",
             alt: "Supercell Store page",
           },
           {
@@ -228,12 +227,11 @@ const siteConfig = {
           },
         ] as ContentType[],
       },
-
       {
         id: "3",
         slug: "hero-wizard-emote",
-        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/preview-hero-wizard-emote.png",
+        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        previewImage: "/images/clash-royale/preview-hero-wizard-emote.png",
         name: "Hero Wizard Emote",
         description: "Follow the steps below to claim this emote.",
         status: "expired" as "active" | "expired",
@@ -249,7 +247,7 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: "/hero-wizard-emote.png",
+            src: "/images/clash-royale/hero-wizard-emote.png",
             alt: "Hero Wizard emote page",
           },
           {
@@ -259,12 +257,11 @@ const siteConfig = {
           },
         ] as ContentType[],
       },
-
       {
         id: "4",
         slug: "hero-musketeer-emote",
-        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/preview-hero-musk-emote.png",
+        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        previewImage: "/images/clash-royale/preview-hero-musk-emote.png",
         name: "Hero Musketeer Emote",
         description: "Redeem a promo code to unlock this emote.",
         status: "active" as "active" | "expired",
@@ -285,17 +282,16 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: "/hero-musk-emote.png",
+            src: "/images/clash-royale/hero-musk-emote.png",
             alt: "Hero Musketeer emote",
           },
         ] as ContentType[],
       },
-
       {
         id: "5",
         slug: "flying-royal-hogs-emote",
-        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/preview-fly-hog-emote.png",
+        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        previewImage: "/images/clash-royale/preview-fly-hog-emote.png",
         name: "Flying Royal Hogs Emote",
         description: "Unlock the Flying Royal Hogs emote using a code.",
         status: "active" as "active" | "expired",
@@ -312,16 +308,15 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: "/screenshot-1769632832321.png",
+            src: "/images/clash-royale/screenshot-1769632832321.png",
             alt: "Flying Royal Hogs emote",
           },
         ] as ContentType[],
       },
-
       {
         id: "6",
         slug: "fire-and-ice-banner-set",
-        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
+        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
         name: "Fire & Ice Banner Set",
         description:
           "Includes Ember Escape decoration and Firestorm banner frame.",
@@ -339,16 +334,15 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: "/screenshot-1769632944878.png",
+            src: "/images/clash-royale/screenshot-1769632944878.png",
             alt: "Fire and Ice banner set",
           },
         ] as ContentType[],
       },
-
       {
         id: "7",
         slug: "snoring-dragon-banner-set",
-        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
+        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
         name: "Snoring Dragon Banner Set",
         description: "Unlock the Snoring Dragon banner decoration.",
         status: "active" as "active" | "expired",
@@ -365,16 +359,15 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: "/screenshot-1769635646682.png",
+            src: "/images/clash-royale/screenshot-1769635646682.png",
             alt: "Snoring Dragon banner set",
           },
         ] as ContentType[],
       },
-
       {
         id: "8",
         slug: "1000-gold-reward",
-        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
+        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
         name: "1,000 Gold",
         description: "Claim 1,000 Gold instantly.",
         status: "active" as "active" | "expired",
@@ -387,16 +380,15 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: "/1000-gold-qr.png",
+            src: "/images/clash-royale/1000-gold-qr.png",
             alt: "1,000 Gold QR code",
           },
         ],
       },
-
       {
         id: "9",
         slug: "hot-hog-balloon-banner-frame",
-        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
+        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
         name: "Hot Hog Balloon Banner Frame",
         description: "Claim this banner frame via QR or direct link.",
         status: "active" as "active" | "expired",
@@ -408,16 +400,15 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: "/hot-hog-balloon-banner-banner.png",
+            src: "/images/clash-royale/hot-hog-balloon-banner-banner.png",
             alt: "Hot Hog Balloon banner frame QR",
           },
         ] as ContentType[],
       },
-
       {
         id: "10",
         slug: "hamelia-hogwart-banner-decoration",
-        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
+        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
         name: "Hamelia Hogwart Banner Decoration",
         description: "Unlock this banner decoration for free.",
         status: "active" as "active" | "expired",
@@ -429,17 +420,16 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: "/hamelia-hoghart-banner.png",
+            src: "/images/clash-royale/hamelia-hoghart-banner.png",
             alt: "Hamelia Hogwart banner decoration QR",
           },
         ] as ContentType[],
       },
-
       {
         id: "11",
         slug: "royal-ghost-boo-emote",
-        platform: { name: "Clash Royale", src: "/clash-royale.jpg" },
-        previewImage: "/preview-royal-ghost-boo-emote.jpeg",
+        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        previewImage: "/images/clash-royale/preview-royal-ghost-boo-emote.jpeg",
         name: "Royal Ghost Boo Emote",
         description: "Claim the Royal Ghost Boo emote.",
         status: "active" as "active" | "expired",
@@ -451,7 +441,7 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: "/Royal-Ghost-Boo-emote.png",
+            src: "/images/clash-royale/Royal-Ghost-Boo-emote.png",
             alt: "Royal Ghost Boo emote QR",
           },
         ] as ContentType[],

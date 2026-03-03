@@ -19,7 +19,7 @@ async function main() {
     data: {
       name: "Clash Royale",
       slug: "clash-royale",
-      image: "/clash-royale.jpg",
+      image: "/images/clash-royale/clash-royale.jpg",
       type: "GAME",
     },
   });

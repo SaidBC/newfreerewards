@@ -38,7 +38,7 @@ export default function Page() {
         <div className="flex gap-4 items-center">
           <Image
             className="rounded-md object-cover size-12"
-            src={"/clash-royale.jpg"}
+            src={"/images/clash-royale/clash-royale.jpg"}
             width={125}
             height={125}
             alt={"Clash Royale"}

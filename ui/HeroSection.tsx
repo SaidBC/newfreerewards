@@ -20,7 +20,7 @@ export default function HeroSection({ locale }: { locale: Locale }) {
         </div>
         <div className="relative mt-8 md:mt-0">
           <Image
-            src="/hero.png"
+            src="/images/clash-royale/hero.png"
             className="w-full max-w-lg"
             width={700}
             height={300}

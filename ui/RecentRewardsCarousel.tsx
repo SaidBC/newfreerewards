@@ -39,7 +39,7 @@ export default function RecentRewardsCarousel({
               <Card>
                 <CardContent className="flex flex-col items-center justify-center p-6 aspect-square">
                   <img
-                    src={reward.previewImage || "/chest-image.png"}
+                    src={reward.previewImage || "/images/clash-royale/chest-image.png"}
                     alt={reward.title}
                     className="w-20 h-20 sm:w-24 sm:h-24 mb-4"
                   />

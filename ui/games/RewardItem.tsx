@@ -18,7 +18,7 @@ const RewardItem = ({ src, title, platform, slug, locale }: RewardItemProps) => 
     <li>
       <Image
         className="rounded-md object-cover h-32 w-32"
-        src={src || "/chest-image.png"}
+        src={src || "/images/clash-royale/chest-image.png"}
         width={125}
         height={125}
         alt={platform.name}
