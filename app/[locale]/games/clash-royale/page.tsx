@@ -82,8 +82,8 @@ export default async function Page({
           {t.games.clashRoyaleDescription}
         </p>
       </section>
-      <CurrentActiveRewardsSection locale={locale} />
-      <ExpiredRewardsSection locale={locale} />
+      <CurrentActiveRewardsSection locale={locale} game="clash-royale" />
+      <ExpiredRewardsSection locale={locale} game="clash-royale" />
       <div className="mx-auto max-w-5xl px-4 pb-24">
         <section className="mt-10 rounded-xl border bg-card p-5">
           <h2 className="text-2xl font-semibold">Clash Royale Codes & Search Terms</h2>

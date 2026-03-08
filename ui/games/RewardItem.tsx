@@ -8,10 +8,11 @@ interface RewardItemProps {
   title: string;
   platform: { name: string };
   slug: string;
+  game: "clash-royale" | "clash-of-clans";
   locale: Locale;
 }
 
-const RewardItem = ({ src, title, platform, slug, locale }: RewardItemProps) => {
+const RewardItem = ({ src, title, platform, slug, game, locale }: RewardItemProps) => {
   const t = getDictionary(locale);
 
   return (
@@ -30,7 +31,7 @@ const RewardItem = ({ src, title, platform, slug, locale }: RewardItemProps) => 
         </div>
 
         <Button size={"sm"} className="text-xs w-fit" asChild>
-          <Link href={localizePath(locale, "/games/clash-royale/rewards/" + slug)}>
+          <Link href={localizePath(locale, `/games/${game}/rewards/${slug}`)}>
             {t.common.learnMore}
           </Link>
         </Button>

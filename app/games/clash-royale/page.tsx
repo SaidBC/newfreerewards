@@ -54,8 +54,8 @@ export default function Page() {
           so you never miss a reward.
         </p>
       </section>
-      <CurrentActiveRewardsSection locale={defaultLocale} />
-      <ExpiredRewardsSection locale={defaultLocale} />
+      <CurrentActiveRewardsSection locale={defaultLocale} game="clash-royale" />
+      <ExpiredRewardsSection locale={defaultLocale} game="clash-royale" />
       <div className="mx-auto max-w-5xl px-4 pb-24">
         <section className="mt-10 rounded-xl border bg-card p-5">
           <h2 className="text-2xl font-semibold">Clash Royale Codes & Search Terms</h2>

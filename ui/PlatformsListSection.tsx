@@ -22,7 +22,7 @@ const PlatformCard = ({
     >
       <Image
         className="rounded-md object-cover h-32 w-32"
-        src={`/${platform.slug}.jpg`}
+        src={platform.image || "/images/clash-royale/clash-royale.jpg"}
         width={125}
         height={125}
         alt={platform.name}

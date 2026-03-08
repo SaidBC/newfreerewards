@@ -1,5 +1,8 @@
 import "dotenv/config";
-import { getLocalizedClashRoyaleRewards } from "../lib/siteConfig";
+import { 
+  getLocalizedClashRoyaleRewards, 
+  getLocalizedClashOfClansRewards 
+} from "../lib/siteConfig";
 import prisma from "../lib/prisma";
 
 async function main() {
@@ -14,7 +17,7 @@ async function main() {
 
   console.log("DB Deleted successfully");
 
-  // 1️⃣ Create platform (Clash Royale only)
+  // 1️⃣ Create platforms
   const clashRoyale = await prisma.platform.create({
     data: {
       name: "Clash Royale",
@@ -24,44 +27,57 @@ async function main() {
     },
   });
 
-  const rewards = getLocalizedClashRoyaleRewards("en");
+  const clashOfClans = await prisma.platform.create({
+    data: {
+      name: "Clash of Clans",
+      slug: "clash-of-clans",
+      image: "/images/clash-of-clans/Clash_of_Clans.webp",
+      type: "GAME",
+    },
+  });
 
-  // 3️⃣ Insert rewards + contents
-  for (const reward of rewards) {
-    const createdReward = await prisma.reward.upsert({
-      where: { slug: reward.slug },
-      update: {},
-      create: {
-        slug: reward.slug,
-        title: reward.name,
-        description: reward.description,
-        previewImage: reward.previewImage,
-        status: reward.status,
-        platformId: clashRoyale.id,
-      },
-    });
+  // 2️⃣ Helper function to seed rewards
+  async function seedRewards(rewards: any[], platformId: number) {
+    for (const reward of rewards) {
+      const createdReward = await prisma.reward.upsert({
+        where: { slug: reward.slug },
+        update: {},
+        create: {
+          slug: reward.slug,
+          title: reward.name,
+          description: reward.description,
+          previewImage: reward.previewImage,
+          status: reward.status,
+          platformId: platformId,
+        },
+      });
 
-    // delete old content to avoid duplicates
-    await prisma.rewardContent.deleteMany({
-      where: { rewardId: createdReward.id },
-    });
+      // delete old content to avoid duplicates
+      await prisma.rewardContent.deleteMany({
+        where: { rewardId: createdReward.id },
+      });
 
-    // create content blocks
-    await prisma.rewardContent.createMany({
-      data: reward.content.map((c, index) => ({
-        rewardId: createdReward.id,
-        order: index,
-        type: c.type,
-        value: c.value ?? null,
-        href: c.href ?? null,
-        label: c.label ?? null,
-        imageSrc: c.src ?? null,
-        imageAlt: c.alt ?? null,
-      })),
-    });
+      // create content blocks
+      await prisma.rewardContent.createMany({
+        data: reward.content.map((c: any, index: number) => ({
+          rewardId: createdReward.id,
+          order: index,
+          type: c.type,
+          value: c.value ?? null,
+          href: c.href ?? null,
+          label: c.label ?? null,
+          imageSrc: c.src ?? null,
+          imageAlt: c.alt ?? null,
+        })),
+      });
+    }
   }
 
-  console.log("✅ Clash Royale platform and rewards seeded successfully");
+  // 3️⃣ Seed both games
+  await seedRewards(getLocalizedClashRoyaleRewards("en"), clashRoyale.id);
+  await seedRewards(getLocalizedClashOfClansRewards("en"), clashOfClans.id);
+
+  console.log("✅ Clash Royale and Clash of Clans platforms and rewards seeded successfully");
 }
 
 main()

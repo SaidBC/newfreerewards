@@ -1,11 +1,19 @@
-import { getLocalizedClashRoyaleRewards } from "@/lib/siteConfig";
+import { getLocalizedClashRoyaleRewards, getLocalizedClashOfClansRewards } from "@/lib/siteConfig";
 import RewardItem from "./RewardItem";
 import { getDictionary, type Locale } from "@/lib/i18n";
 
-export default function ExpiredRewardsSection({ locale }: { locale: Locale }) {
-  const rewards = getLocalizedClashRoyaleRewards(locale).filter(
-    (reward) => reward.status === "expired"
-  );
+export default function ExpiredRewardsSection({
+  locale,
+  game,
+}: {
+  locale: Locale;
+  game: "clash-royale" | "clash-of-clans";
+}) {
+  const rewards = (
+    game === "clash-royale"
+      ? getLocalizedClashRoyaleRewards(locale)
+      : getLocalizedClashOfClansRewards(locale)
+  ).filter((reward) => reward.status === "expired");
   const t = getDictionary(locale);
 
   return (
@@ -20,6 +28,7 @@ export default function ExpiredRewardsSection({ locale }: { locale: Locale }) {
               platform={reward.platform}
               title={reward.name}
               slug={reward.slug}
+              game={game}
               locale={locale}
             />
           ))}

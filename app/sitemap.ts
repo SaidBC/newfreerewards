@@ -12,12 +12,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/`, lastModified: now },
     { url: `${base}/games`, lastModified: now },
     { url: `${base}/games/clash-royale`, lastModified: now },
+    { url: `${base}/games/clash-of-clans`, lastModified: now },
     { url: `${base}/contact`, lastModified: now },
     ...locales.flatMap((locale) => [
       { url: `${base}${localizePath(locale, "/")}`, lastModified: now },
       { url: `${base}${localizePath(locale, "/games")}`, lastModified: now },
       {
         url: `${base}${localizePath(locale, "/games/clash-royale")}`,
+        lastModified: now,
+      },
+      {
+        url: `${base}${localizePath(locale, "/games/clash-of-clans")}`,
         lastModified: now,
       },
       { url: `${base}${localizePath(locale, "/contact")}`, lastModified: now },

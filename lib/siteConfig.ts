@@ -483,8 +483,162 @@ const siteConfig = {
       },
     ] as RewardType[],
   },
+  clashofclans: {
+    rewards: [
+      {
+        id: "coc-1",
+        slug: "50k-gold",
+        platform: { name: "Clash of Clans", src: "/images/clash-of-clans/Clash_of_Clans.webp" },
+        previewImage: "/images/clash-of-clans/50k-gold-qr-code.png",
+        name: "50k Gold",
+        description: "Claim 50,000 Gold for free in Clash of Clans.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value: "Scan the QR code or click the link below to claim your 50k gold.",
+          },
+          {
+            type: "link",
+            href: "https://link.clashofclans.com/en/?action=voucher&code=c1929e8e-e495-4096-a859-84008ba2209a",
+            label: "Claim 50k Gold",
+          },
+          {
+            type: "image",
+            src: "/images/clash-of-clans/50k-gold-qr-code.png",
+            alt: "50k Gold QR Code",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "coc-2",
+        slug: "baby-dragon-statue",
+        platform: { name: "Clash of Clans", src: "/images/clash-of-clans/Clash_of_Clans.webp" },
+        previewImage: "/images/clash-of-clans/preview-baby-dragon-statue.avif",
+        name: "Baby Dragon Statue",
+        description: "Get the exclusive Baby Dragon Statue for your village.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value: "Follow the steps in the official store to claim your Baby Dragon Statue.",
+          },
+          {
+            type: "link",
+            href: "https://store.supercell.com/clashofclans",
+            label: "Open Supercell Store",
+          },
+          {
+            type: "image",
+            src: "/images/clash-of-clans/baby-dragon-statue.png",
+            alt: "Baby Dragon Statue",
+          },
+          {
+            type: "text",
+            value: "This is what it looks like after being claimed:",
+          },
+          {
+            type: "image",
+            src: "/images/clash-of-clans/baby-dragon-statue-claimed.png",
+            alt: "Baby Dragon Statue Claimed",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "coc-3",
+        slug: "bundle-maker",
+        platform: { name: "Clash of Clans", src: "/images/clash-of-clans/Clash_of_Clans.webp" },
+        previewImage: "/images/clash-of-clans/bundle-maker.jpeg",
+        name: "Bundle Maker Reward",
+        description: "Special bundle maker reward available in the store.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value: "Check out the bundle maker in the Supercell Store.",
+          },
+          {
+            type: "link",
+            href: "https://store.supercell.com/clashofclans",
+            label: "Go to Supercell Store",
+          },
+          {
+            type: "image",
+            src: "/images/clash-of-clans/bundle-maker.jpeg",
+            alt: "Bundle Maker Reward",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "coc-4",
+        slug: "monthly-reward",
+        platform: { name: "Clash of Clans", src: "/images/clash-of-clans/Clash_of_Clans.webp" },
+        previewImage: "/images/clash-of-clans/potion_of_resources.avif",
+        name: "Monthly Reward - Resource Potion",
+        description: "Claim your monthly resource potion from the Supercell Store.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value: "Log in to the Supercell Store to claim your monthly reward.",
+          },
+          {
+            type: "link",
+            href: "https://store.supercell.com/clashofclans",
+            label: "Go to Supercell Store",
+          },
+          {
+            type: "image",
+            src: "/images/clash-of-clans/monthly-resource-potion.png",
+            alt: "Monthly Resource Potion",
+          },
+        ] as ContentType[],
+      },
+    ] as RewardType[],
+  },
 };
 
+
+const clashOfClansTranslations: Partial<
+  Record<Locale, Record<string, { name?: string; description?: string }>>
+> = {
+  es: {
+    "50k-gold": {
+      name: "50k de Oro",
+      description: "Reclama 50,000 de oro gratis en Clash of Clans.",
+    },
+    "baby-dragon-statue": {
+      name: "Estatua de Bebé Dragón",
+      description: "Consigue la estatua exclusiva de Bebé Dragón para tu aldea.",
+    },
+    "bundle-maker": {
+      name: "Recompensa Bundle Maker",
+      description: "Recompensa especial del creador de paquetes disponible en la tienda.",
+    },
+    "monthly-reward": {
+      name: "Recompensa Mensual - Poción de Recursos",
+      description: "Reclama tu poción de recursos mensual en la tienda de Supercell.",
+    },
+  },
+  ar: {
+    "50k-gold": {
+      name: "50 ألف ذهب",
+      description: "احصل على 50,000 ذهب مجانًا في Clash of Clans.",
+    },
+    "baby-dragon-statue": {
+      name: "تمثال التنين الصغير",
+      description: "احصل على تمثال التنين الصغير الحصري لقريتك.",
+    },
+    "bundle-maker": {
+      name: "مكافأة Bundle Maker",
+      description: "مكافأة خاصة من صانع الحزم متاحة في المتجر.",
+    },
+    "monthly-reward": {
+      name: "مكافأة شهرية - جرعة موارد",
+      description: "احصل على جرعة الموارد الشهرية من متجر Supercell.",
+    },
+  },
+};
 
 const clashRoyaleTranslations: Partial<
   Record<Locale, Record<string, { name?: string; description?: string }>>
@@ -528,7 +682,7 @@ const clashRoyaleTranslations: Partial<
     },
     "flying-royal-hogs-emote": {
       name: "Emote de Cerdos Reales Voladores",
-      description: "Desbloquea este emote con un código.",
+      description: "Desbloqueا هذا الإيموجي باستخدام كود.",
     },
     "fire-ice-banner-set": {
       name: "Set de banner Fuego y Hielo",
@@ -626,7 +780,7 @@ const clashRoyaleTranslations: Partial<
     },
     "clash-royale-daily-rewards": {
       name: "مكافآت يومية",
-      description: "احصل على مكافآتك اليومية من متجر Supercell.",
+      description: "احصل على مكافآتك يومية من متجر Supercell.",
     },
   },
 };
@@ -657,6 +811,17 @@ const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
     "Skeleton Shield Bang emote QR": "QR del emote Skeleton Shield Bang",
     "Log in to the Supercell Store every day to earn free rewards.": "Inicia sesión en la tienda de Supercell todos los días para ganar recompensas gratuitas.",
     "This is what it looks like after being claimed:": "Así es como se ve después de ser reclamado:",
+    "Scan the QR code or click the link below to claim your 50k gold.": "Escanea el código QR o haz clic en el enlace de abajo para reclamar tus 50k de oro.",
+    "Claim 50k Gold": "Reclamar 50k de Oro",
+    "50k Gold QR Code": "Código QR de 50k de Oro",
+    "Follow the steps in the official store to claim your Baby Dragon Statue.": "Sigue los pasos en la tienda oficial para reclamar tu estatua de Bebé Dragón.",
+    "Baby Dragon Statue": "Estatua de Bebé Dragón",
+    "Baby Dragon Statue Claimed": "Estatua de Bebé Dragón Reclamada",
+    "Check out the bundle maker in the Supercell Store.": "Echa un vistazo al creador de paquetes en la tienda de Supercell.",
+    "Bundle Maker Reward": "Recompensa Bundle Maker",
+    "Log in to the Supercell Store to claim your monthly reward.": "Inicia sesión en la tienda de Supercell para reclamar tu recompensa mensual.",
+    "Go to Supercell Store": "Ir a la tienda de Supercell",
+    "Monthly Resource Potion": "Poción de Recursos Mensual",
   },
   ar: {
     "Open the Supercell store website and log in.": "افتح متجر Supercell وسجّل الدخول.",
@@ -683,6 +848,17 @@ const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
     "Skeleton Shield Bang emote QR": "رمز QR لإيموجي Skeleton Shield Bang",
     "Log in to the Supercell Store every day to earn free rewards.": "سجّل الدخول إلى متجر Supercell يوميًا للحصول على مكافآت مجانية.",
     "This is what it looks like after being claimed:": "هذا هو الشكل الذي يبدو عليه بعد استلامه:",
+    "Scan the QR code or click the link below to claim your 50k gold.": "امسح رمز QR أو اضغط على الرابط أدناه للحصول على 50 ألف ذهب.",
+    "Claim 50k Gold": "احصل على 50 ألف ذهب",
+    "50k Gold QR Code": "رمز QR لـ 50 ألف ذهب",
+    "Follow the steps in the official store to claim your Baby Dragon Statue.": "اتبع الخطوات في المتجر الرسمي للحصول على تمثال التنين الصغير.",
+    "Baby Dragon Statue": "تمثال التنين الصغير",
+    "Baby Dragon Statue Claimed": "تم استلام تمثال التنين الصغير",
+    "Check out the bundle maker in the Supercell Store.": "تحقق من صانع الحزم في متجر Supercell.",
+    "Bundle Maker Reward": "مكافأة صانع الحزم",
+    "Log in to the Supercell Store to claim your monthly reward.": "سجّل الدخول إلى متجر Supercell للحصول على مكافأتك الشهرية.",
+    "Go to Supercell Store": "اذهب إلى متجر Supercell",
+    "Monthly Resource Potion": "جرعة الموارد الشهرية",
   },
 };
 
@@ -695,6 +871,26 @@ export function getLocalizedClashRoyaleRewards(locale: Locale): RewardType[] {
   const localizedEntries = clashRoyaleTranslations[locale] || {};
 
   return siteConfig.clashroyale.rewards.map((reward) => {
+    const translation = localizedEntries[reward.slug];
+
+    return {
+      ...reward,
+      name: translation?.name || reward.name,
+      description: translation?.description || reward.description,
+      content: reward.content.map((content) => ({
+        ...content,
+        value: translateContentText(locale, content.value),
+        label: translateContentText(locale, content.label),
+        alt: translateContentText(locale, content.alt),
+      })),
+    };
+  });
+}
+
+export function getLocalizedClashOfClansRewards(locale: Locale): RewardType[] {
+  const localizedEntries = clashOfClansTranslations[locale] || {};
+
+  return siteConfig.clashofclans.rewards.map((reward) => {
     const translation = localizedEntries[reward.slug];
 
     return {

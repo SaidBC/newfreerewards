@@ -1,17 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import { getLocalizedClashRoyaleRewards } from "@/lib/siteConfig";
+import { getLocalizedClashRoyaleRewards, getLocalizedClashOfClansRewards } from "@/lib/siteConfig";
 import RewardItem from "./RewardItem";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 
-export default function CurrentActiveRewardsSection({ locale }: { locale: Locale }) {
+export default function CurrentActiveRewardsSection({
+  locale,
+  game,
+}: {
+  locale: Locale;
+  game: "clash-royale" | "clash-of-clans";
+}) {
   const [showAll, setShowAll] = useState(false);
   
-  const allRewards = getLocalizedClashRoyaleRewards(locale).filter(
-    (reward) => reward.status === "active"
-  );
+  const allRewards = (
+    game === "clash-royale"
+      ? getLocalizedClashRoyaleRewards(locale)
+      : getLocalizedClashOfClansRewards(locale)
+  ).filter((reward) => reward.status === "active");
   
   const t = getDictionary(locale);
   
@@ -30,6 +38,7 @@ export default function CurrentActiveRewardsSection({ locale }: { locale: Locale
               platform={reward.platform}
               title={reward.name}
               slug={reward.slug}
+              game={game}
               locale={locale}
             />
           ))}

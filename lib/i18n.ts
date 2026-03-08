@@ -27,6 +27,9 @@ export const dictionary = {
       clashRoyaleTitle: "Clash Royale Free Rewards & Bonuses",
       clashRoyaleDescription:
         "Discover active free rewards, bonuses, and promotions available for Clash Royale.",
+      clashOfClansTitle: "Clash of Clans Free Rewards & Bonuses",
+      clashOfClansDescription:
+        "Discover active free rewards, bonuses, and promotions available for Clash of Clans.",
       rewardMetaPrefix: "Free Reward on",
       rewardMetaDescriptionPrefix: "Step-by-step guide to claim",
     },
@@ -55,7 +58,11 @@ export const dictionary = {
       back: "Back",
       clashRoyaleDescription:
         "Discover all currently available free Clash Royale rewards in one place. We track free chests, emotes, events, and limited-time bonuses so you never miss a reward.",
+      clashOfClansTitle: "Free Clash of Clans Rewards",
+      clashOfClansDescription:
+        "Discover all currently available free Clash of Clans rewards in one place. We track free gold, items, events, and limited-time bonuses so you never miss a reward.",
       lastUpdatedLabel: "Last updated",
+      stepByStepGuide: "Step-By-Step Guide",
     },
   },
   es: {
@@ -76,6 +83,9 @@ export const dictionary = {
       clashRoyaleTitle: "Recompensas y bonos gratis de Clash Royale",
       clashRoyaleDescription:
         "Descubre recompensas, bonos y promociones activas de Clash Royale.",
+      clashOfClansTitle: "Recompensas y bonos gratis de Clash of Clans",
+      clashOfClansDescription:
+        "Descubre recompensas, bonos y promociones activas de Clash of Clans.",
       rewardMetaPrefix: "Recompensa gratis en",
       rewardMetaDescriptionPrefix: "Guía paso a paso para reclamar",
     },
@@ -104,7 +114,11 @@ export const dictionary = {
       back: "Volver",
       clashRoyaleDescription:
         "Descubre todas las recompensas gratuitas de Clash Royale disponibles actualmente en un solo lugar. Seguimos cofres gratis, emotes, eventos y bonos por tiempo limitado para que no te pierdas ninguna recompensa.",
+      clashOfClansTitle: "Recompensas gratis de Clash of Clans",
+      clashOfClansDescription:
+        "Descubre todas las recompensas gratuitas de Clash of Clans disponibles actualmente en un solo lugar. Seguimos oro gratis, objetos, eventos y bonos por tiempo limitado para que no te pierdas ninguna recompensa.",
       lastUpdatedLabel: "Última actualización",
+      stepByStepGuide: "Guía paso a paso",
     },
   },
   ar: {
@@ -123,6 +137,8 @@ export const dictionary = {
       gamesDescription: "تصفح الألعاب التي تقدم مكافآت مجانية وبونص وأكواد عروض.",
       clashRoyaleTitle: "مكافآت وبونص مجاني لـ Clash Royale",
       clashRoyaleDescription: "اكتشف المكافآت والبونص والعروض النشطة في Clash Royale.",
+      clashOfClansTitle: "مكافآت وبونص مجاني لـ Clash of Clans",
+      clashOfClansDescription: "اكتشف المكافآت والبونص والعروض النشطة في Clash of Clans.",
       rewardMetaPrefix: "مكافأة مجانية على",
       rewardMetaDescriptionPrefix: "دليل خطوة بخطوة للحصول على",
     },
@@ -151,7 +167,11 @@ export const dictionary = {
       back: "رجوع",
       clashRoyaleDescription:
         "اكتشف جميع مكافآت Clash Royale المجانية المتاحة حاليًا في مكان واحد. نحن نتابع الصناديق المجانية والإيموجيات والفعاليات والمكافآت المؤقتة حتى لا تفوّت أي مكافأة.",
+      clashOfClansTitle: "مكافآت Clash of Clans المجانية",
+      clashOfClansDescription:
+        "اكتشف جميع مكافآت Clash of Clans المجانية المتاحة حاليًا في مكان واحد. نحن نتابع الذهب المجاني، والعناصر، والفعاليات، والمكافآت المؤقتة حتى لا تفوّت أي مكافأة.",
       lastUpdatedLabel: "آخر تحديث",
+      stepByStepGuide: "دليل خطوة بخطوة",
     },
   },
 } as const;
