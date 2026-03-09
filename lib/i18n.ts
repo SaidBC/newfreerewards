@@ -149,6 +149,7 @@ export const dictionary = {
       gamesDescription: "تصفح الألعاب التي تقدم مكافآت مجانية وبونص وأكواد عروض.",
       clashRoyaleTitle: "مكافآت وبونص مجاني لـ Clash Royale",
       clashRoyaleDescription: "اكتشف المكافآت والبونص والعروض النشطة في Clash Royale.",
+      clashOfClansTitle: "مكافآت وبونص مجاني لـ Clash of Clans",
       clashOfClansDescription: "اكتشف المكافآت والبونص والعروض النشطة في Clash of Clans.",
       brawlStarsTitle: "مكافآت وبونص مجاني لـ Brawl Stars",
       brawlStarsDescription: "اكتشف المكافآت والستيكرات والبخاخات والعروض النشطة في Brawl Stars.",
