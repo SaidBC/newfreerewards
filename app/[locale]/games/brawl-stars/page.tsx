@@ -9,6 +9,7 @@ import {
 } from "@/lib/i18n";
 import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const dynamic = "force-static";
@@ -73,9 +74,18 @@ export default async function BrawlStarsPage({
           {t.games.back}
         </Link>
 
-        <h1 className="mb-4 font-concert-one text-4xl sm:text-6xl uppercase">
-          {t.games.brawlStarsTitle}
-        </h1>
+        <div className="flex items-center gap-4">
+          <Image
+            className="size-12 rounded-md object-cover"
+            src="/images/brawl-stars/logo.jpeg"
+            width={125}
+            height={125}
+            alt="Brawl Stars"
+          />
+          <h1 className="mb-4 font-concert-one text-4xl sm:text-6xl uppercase">
+            {t.games.brawlStarsTitle}
+          </h1>
+        </div>
         <p className="max-w-2xl text-lg text-muted-foreground">
           {t.games.brawlStarsDescription}
         </p>
