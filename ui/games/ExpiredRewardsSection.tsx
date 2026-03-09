@@ -1,4 +1,4 @@
-import { getLocalizedClashRoyaleRewards, getLocalizedClashOfClansRewards } from "@/lib/siteConfig";
+import { getLocalizedClashRoyaleRewards, getLocalizedClashOfClansRewards, getLocalizedBrawlStarsRewards } from "@/lib/siteConfig";
 import RewardItem from "./RewardItem";
 import { getDictionary, type Locale } from "@/lib/i18n";
 
@@ -7,12 +7,14 @@ export default function ExpiredRewardsSection({
   game,
 }: {
   locale: Locale;
-  game: "clash-royale" | "clash-of-clans";
+  game: "clash-royale" | "clash-of-clans" | "brawl-stars";
 }) {
   const rewards = (
     game === "clash-royale"
       ? getLocalizedClashRoyaleRewards(locale)
-      : getLocalizedClashOfClansRewards(locale)
+      : game === "clash-of-clans"
+      ? getLocalizedClashOfClansRewards(locale)
+      : getLocalizedBrawlStarsRewards(locale)
   ).filter((reward) => reward.status === "expired");
   const t = getDictionary(locale);
 

@@ -30,6 +30,9 @@ export const dictionary = {
       clashOfClansTitle: "Clash of Clans Free Rewards & Bonuses",
       clashOfClansDescription:
         "Discover active free rewards, bonuses, and promotions available for Clash of Clans.",
+      brawlStarsTitle: "Brawl Stars Free Rewards & Bonus Items",
+      brawlStarsDescription:
+        "Discover active free rewards, pins, sprays, and promotions available for Brawl Stars.",
       rewardMetaPrefix: "Free Reward on",
       rewardMetaDescriptionPrefix: "Step-by-step guide to claim",
     },
@@ -61,6 +64,9 @@ export const dictionary = {
       clashOfClansTitle: "Free Clash of Clans Rewards",
       clashOfClansDescription:
         "Discover all currently available free Clash of Clans rewards in one place. We track free gold, items, events, and limited-time bonuses so you never miss a reward.",
+      brawlStarsTitle: "Free Brawl Stars Rewards",
+      brawlStarsDescription:
+        "Discover all currently available free Brawl Stars rewards in one place. We track free pins, sprays, items, and limited-time bonuses so you never miss a reward.",
       lastUpdatedLabel: "Last updated",
       stepByStepGuide: "Step-By-Step Guide",
     },
@@ -86,6 +92,9 @@ export const dictionary = {
       clashOfClansTitle: "Recompensas y bonos gratis de Clash of Clans",
       clashOfClansDescription:
         "Descubre recompensas, bonos y promociones activas de Clash of Clans.",
+      brawlStarsTitle: "Recompensas y bonos gratis de Brawl Stars",
+      brawlStarsDescription:
+        "Descubre recompensas, pines, sprays y promociones activas de Brawl Stars.",
       rewardMetaPrefix: "Recompensa gratis en",
       rewardMetaDescriptionPrefix: "Guía paso a paso para reclamar",
     },
@@ -117,6 +126,9 @@ export const dictionary = {
       clashOfClansTitle: "Recompensas gratis de Clash of Clans",
       clashOfClansDescription:
         "Descubre todas las recompensas gratuitas de Clash of Clans disponibles actualmente en un solo lugar. Seguimos oro gratis, objetos, eventos y bonos por tiempo limitado para que no te pierdas ninguna recompensa.",
+      brawlStarsTitle: "Recompensas gratis de Brawl Stars",
+      brawlStarsDescription:
+        "Descubre todas las recompensas gratuitas de Brawl Stars disponibles actualmente en un solo lugar. Seguimos pines gratis, sprays, objetos, eventos y bonos por tiempo limitado para que no te pierdas ninguna recompensa.",
       lastUpdatedLabel: "Última actualización",
       stepByStepGuide: "Guía paso a paso",
     },
@@ -137,8 +149,9 @@ export const dictionary = {
       gamesDescription: "تصفح الألعاب التي تقدم مكافآت مجانية وبونص وأكواد عروض.",
       clashRoyaleTitle: "مكافآت وبونص مجاني لـ Clash Royale",
       clashRoyaleDescription: "اكتشف المكافآت والبونص والعروض النشطة في Clash Royale.",
-      clashOfClansTitle: "مكافآت وبونص مجاني لـ Clash of Clans",
       clashOfClansDescription: "اكتشف المكافآت والبونص والعروض النشطة في Clash of Clans.",
+      brawlStarsTitle: "مكافآت وبونص مجاني لـ Brawl Stars",
+      brawlStarsDescription: "اكتشف المكافآت والستيكرات والبخاخات والعروض النشطة في Brawl Stars.",
       rewardMetaPrefix: "مكافأة مجانية على",
       rewardMetaDescriptionPrefix: "دليل خطوة بخطوة للحصول على",
     },
@@ -170,6 +183,9 @@ export const dictionary = {
       clashOfClansTitle: "مكافآت Clash of Clans المجانية",
       clashOfClansDescription:
         "اكتشف جميع مكافآت Clash of Clans المجانية المتاحة حاليًا في مكان واحد. نحن نتابع الذهب المجاني، والعناصر، والفعاليات، والمكافآت المؤقتة حتى لا تفوّت أي مكافأة.",
+      brawlStarsTitle: "مكافآت Brawl Stars المجانية",
+      brawlStarsDescription:
+        "اكتشف جميع مكافآت Brawl Stars المجانية المتاحة حاليًا في مكان واحد. نحن نتابع الستيكرات والبخاخات والعناصر والفعاليات والمكافآت المؤقتة حتى لا تفوّت أي مكافأة.",
       lastUpdatedLabel: "آخر تحديث",
       stepByStepGuide: "دليل خطوة بخطوة",
     },

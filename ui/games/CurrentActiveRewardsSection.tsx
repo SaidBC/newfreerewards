@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { getLocalizedClashRoyaleRewards, getLocalizedClashOfClansRewards } from "@/lib/siteConfig";
+import { getLocalizedClashRoyaleRewards, getLocalizedClashOfClansRewards, getLocalizedBrawlStarsRewards } from "@/lib/siteConfig";
 import RewardItem from "./RewardItem";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
@@ -11,14 +11,16 @@ export default function CurrentActiveRewardsSection({
   game,
 }: {
   locale: Locale;
-  game: "clash-royale" | "clash-of-clans";
+  game: "clash-royale" | "clash-of-clans" | "brawl-stars";
 }) {
   const [showAll, setShowAll] = useState(false);
   
   const allRewards = (
     game === "clash-royale"
       ? getLocalizedClashRoyaleRewards(locale)
-      : getLocalizedClashOfClansRewards(locale)
+      : game === "clash-of-clans"
+      ? getLocalizedClashOfClansRewards(locale)
+      : getLocalizedBrawlStarsRewards(locale)
   ).filter((reward) => reward.status === "active");
   
   const t = getDictionary(locale);

@@ -8,7 +8,7 @@ interface RewardItemProps {
   title: string;
   platform: { name: string };
   slug: string;
-  game: "clash-royale" | "clash-of-clans";
+  game: "clash-royale" | "clash-of-clans" | "brawl-stars";
   locale: Locale;
 }
 

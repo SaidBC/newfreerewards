@@ -1,7 +1,8 @@
 import "dotenv/config";
 import { 
   getLocalizedClashRoyaleRewards, 
-  getLocalizedClashOfClansRewards 
+  getLocalizedClashOfClansRewards,
+  getLocalizedBrawlStarsRewards
 } from "../lib/siteConfig";
 import prisma from "../lib/prisma";
 
@@ -32,6 +33,15 @@ async function main() {
       name: "Clash of Clans",
       slug: "clash-of-clans",
       image: "/images/clash-of-clans/Clash_of_Clans.webp",
+      type: "GAME",
+    },
+  });
+
+  const brawlStars = await prisma.platform.create({
+    data: {
+      name: "Brawl Stars",
+      slug: "brawl-stars",
+      image: "/images/brawl-stars/logo.jpeg",
       type: "GAME",
     },
   });
@@ -73,11 +83,12 @@ async function main() {
     }
   }
 
-  // 3️⃣ Seed both games
+  // 3️⃣ Seed all games
   await seedRewards(getLocalizedClashRoyaleRewards("en"), clashRoyale.id);
   await seedRewards(getLocalizedClashOfClansRewards("en"), clashOfClans.id);
+  await seedRewards(getLocalizedBrawlStarsRewards("en"), brawlStars.id);
 
-  console.log("✅ Clash Royale and Clash of Clans platforms and rewards seeded successfully");
+  console.log("✅ Clash Royale, Clash of Clans, and Brawl Stars platforms and rewards seeded successfully");
 }
 
 main()

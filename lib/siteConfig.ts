@@ -596,6 +596,472 @@ const siteConfig = {
       },
     ] as RewardType[],
   },
+  brawlstars: {
+    rewards: [
+      {
+        id: "bs-daily",
+        slug: "daily-brawl-stars-rewards",
+        platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
+        previewImage: "/images/brawl-stars/af985a4f-194c-4a2d-b2d1-79ae58a7bd0b.png",
+        name: "Daily Rewards",
+        description: "Claim your daily rewards from the Supercell Store.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value: "Log in to the Supercell Store every day to earn free rewards. Checkout Supercell store and claim the reward.",
+          },
+          {
+            type: "link",
+            href: "https://store.supercell.com/brawlstars",
+            label: "Go to the Supercell Store",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/screenshot-1773019379567.png",
+            alt: "Brawl Stars daily reward offer",
+          },
+          {
+            type: "text",
+            value: "Note: Rewards may differ from day to day (not strictly gems).",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "bs-1",
+        slug: "spray-reward",
+        platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
+        previewImage: "/images/brawl-stars/preview-spray.png",
+        name: "Spray Reward",
+        description: "Claim this exclusive spray in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/voucher/681862df-f94d-4c34-8d52-deb634009490/",
+            label: "Claim Spray",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/spray-qr-code.png",
+            alt: "Spray Reward QR Code",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "bs-2",
+        slug: "skull-head-exploid-pin",
+        platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
+        previewImage: "/images/brawl-stars/preview-skull-head-exploid-pin.png",
+        name: "Skull Head Exploid Pin",
+        description: "Claim this exclusive pin in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/voucher/e4a3bb44-95fd-48d1-9fe6-378619bf2eb9",
+            label: "Claim Pin",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/skull-head-exploid-pin-qr-code.png",
+            alt: "Skull Head Exploid Pin QR Code",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "bs-3",
+        slug: "reward-cbd9bc12",
+        platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
+        previewImage: "/images/brawl-stars/Screenshot_2026.03.08_23.22.52.003_preview.png",
+        name: "Player Icon Reward",
+        description: "Claim this exclusive player icon in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/voucher/cbd9bc12-423e-4a32-be45-590b0ebc52ad/",
+            label: "Claim Icon",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/playericon129312.png",
+            alt: "Player Icon QR Code",
+          },
+          {
+            type: "text",
+            value: "This is what it looks like after being claimed:",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/Screenshot_2026.03.08_23.22.52.003.png",
+            alt: "Player Icon Claimed",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "bs-4",
+        slug: "reward-8142f715",
+        platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
+        previewImage: "/images/brawl-stars/Screenshot_2026.03.08_23.24.20.973_preview.png",
+        name: "Brawl Stars Reward",
+        description: "Claim this reward in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/en/?action=voucher&code=8142f715-a879-4d19-9af3-fa49e72ef59a",
+            label: "Claim Reward",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/rewards1293192398.png",
+            alt: "Reward QR Code",
+          },
+          {
+            type: "text",
+            value: "This is what it looks like after being claimed:",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/Screenshot_2026.03.08_23.24.20.973.png",
+            alt: "Reward Claimed",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "bs-5",
+        slug: "reward-04f69983",
+        platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
+        previewImage: "/images/brawl-stars/Screenshot_2026.03.08_23.34.33.409_preview.png",
+        name: "Brawl Stars Reward",
+        description: "Claim this reward in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/en/voucher/04f69983-0712-49b3-af7a-3718398c4517/",
+            label: "Claim Reward",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/reward2192813.png",
+            alt: "Reward QR Code",
+          },
+          {
+            type: "text",
+            value: "This is what it looks like after being claimed:",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/Screenshot_2026.03.08_23.34.33.409.png",
+            alt: "Reward Claimed",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "bs-6",
+        slug: "reward-6bb96c6a",
+        platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
+        previewImage: "/images/brawl-stars/Screenshot_2026.03.08_23.39.52.284.png",
+        name: "Brawl Stars Reward",
+        description: "Claim this reward in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/en/?action=voucher&code=6bb96c6a-bb06-4b06-aae8-4de28c39474d",
+            label: "Claim Reward",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/reward3910238.png",
+            alt: "Reward QR Code",
+          },
+          {
+            type: "text",
+            value: "This is what it looks like after being claimed:",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/Screenshot_2026.03.08_23.39.52.284.png",
+            alt: "Reward Claimed",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "bs-7",
+        slug: "reward-935251d2",
+        platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
+        previewImage: "/images/brawl-stars/Screenshot_2026.03.08_23.41.41.374_preview.png",
+        name: "Brawl Stars Reward",
+        description: "Claim this reward in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/en/?action=voucher&code=935251d2-1647-433e-a6e6-771a6ade9293",
+            label: "Claim Reward",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/rewards928298.png",
+            alt: "Reward QR Code",
+          },
+          {
+            type: "text",
+            value: "This is what it looks like after being claimed:",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/Screenshot_2026.03.08_23.41.41.374.png",
+            alt: "Reward Claimed",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "bs-8",
+        slug: "reward-ab9cf7c2",
+        platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
+        previewImage: "/images/brawl-stars/Screenshot_2026.03.08_23.43.39.051_preview.png",
+        name: "Brawl Stars Reward",
+        description: "Claim this reward in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/en/?action=voucher&code=ab9cf7c2-45f8-4012-ad38-dfe8b1747c3b",
+            label: "Claim Reward",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/rewards882819.png",
+            alt: "Reward QR Code",
+          },
+          {
+            type: "text",
+            value: "This is what it looks like after being claimed:",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/Screenshot_2026.03.08_23.43.39.051.png",
+            alt: "Reward Claimed",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "bs-9",
+        slug: "reward-3484c6d2",
+        platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
+        previewImage: "/images/brawl-stars/Screenshot_2026.03.09_00.45.14.032_preview.png",
+        name: "Brawl Stars Reward",
+        description: "Claim this reward in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/en/?action=voucher&code=3484c6d2-9ab5-4eae-878a-4a186fc4e24a",
+            label: "Claim Reward",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/rewards3829.png",
+            alt: "Reward QR Code",
+          },
+          {
+            type: "text",
+            value: "This is what it looks like after being claimed:",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/Screenshot_2026.03.09_00.45.14.032.png",
+            alt: "Reward Claimed",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "bs-10",
+        slug: "reward-4c9ea6d6",
+        platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
+        previewImage: "/images/brawl-stars/Screenshot_2026.03.09_00.46.40.312_preview.png",
+        name: "Brawl Stars Reward",
+        description: "Claim this reward in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/en/?action=voucher&code=4c9ea6d6-10f7-430d-a506-201903512c50",
+            label: "Claim Reward",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/reward391200.png",
+            alt: "Reward QR Code",
+          },
+          {
+            type: "text",
+            value: "This is what it looks like after being claimed:",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/Screenshot_2026.03.09_00.46.40.312.png",
+            alt: "Reward Claimed",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "bs-11",
+        slug: "reward-91eead0b",
+        platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
+        previewImage: "/images/brawl-stars/Screenshot_2026.03.09_00.47.59.155_preview.png",
+        name: "Brawl Stars Reward",
+        description: "Claim this reward in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/en/?action=voucher&code=91eead0b-0917-4077-8efe-6b852c7e49a3",
+            label: "Claim Reward",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/reward299218.png",
+            alt: "Reward QR Code",
+          },
+          {
+            type: "text",
+            value: "This is what it looks like after being claimed:",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/Screenshot_2026.03.09_00.47.59.155.png",
+            alt: "Reward Claimed",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "bs-12",
+        slug: "reward-2593e957",
+        platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
+        previewImage: "/images/brawl-stars/Screenshot_2026.03.09_00.56.34.971_preview.png",
+        name: "Brawl Stars Reward",
+        description: "Claim this reward in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/fr/?action=voucher&code=2593e957-9cef-4ce7-b15f-b1dec74ec7df",
+            label: "Claim Reward",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/reward39219.png",
+            alt: "Reward QR Code",
+          },
+          {
+            type: "text",
+            value: "This is what it looks like after being claimed:",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/Screenshot_2026.03.09_00.56.34.971.png",
+            alt: "Reward Claimed",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "bs-13",
+        slug: "reward-315b3e4f",
+        platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
+        previewImage: "/images/brawl-stars/Screenshot_2026.03.09_01.01.14.646_preview.png",
+        name: "Brawl Stars Reward",
+        description: "Claim this reward in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/en/?action=voucher&code=315b3e4f-0fd5-4a31-a5b0-86806f7638fc",
+            label: "Claim Reward",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/reward29188.png",
+            alt: "Reward QR Code",
+          },
+          {
+            type: "text",
+            value: "This is what it looks like after being claimed:",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/Screenshot_2026.03.09_01.01.14.646.png",
+            alt: "Reward Claimed",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "bs-14",
+        slug: "reward-b647c71d",
+        platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
+        previewImage: "/images/brawl-stars/Screenshot_2026.03.09_01.03.07.173_preview.png",
+        name: "Brawl Stars Reward",
+        description: "Claim this reward in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/en/?action=voucher&code=b647c71d-41a5-42c4-a10f-8d47952d82f3",
+            label: "Claim Reward",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/reward122391.png",
+            alt: "Reward QR Code",
+          },
+          {
+            type: "text",
+            value: "This is what it looks like after being claimed:",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/Screenshot_2026.03.09_01.03.07.173.png",
+            alt: "Reward Claimed",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "bs-15",
+        slug: "reward-cc017c48",
+        platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
+        previewImage: "/images/brawl-stars/Screenshot_2026.03.09_01.04.19.591_preview.png",
+        name: "Brawl Stars Reward",
+        description: "Claim this reward in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/fr/?action=voucher&code=cc017c48-b904-448d-9fe1-dd494e28bfd2",
+            label: "Claim Reward",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/reward21883.png",
+            alt: "Reward QR Code",
+          },
+          {
+            type: "text",
+            value: "This is what it looks like after being claimed:",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/Screenshot_2026.03.09_01.04.19.591.png",
+            alt: "Reward Claimed",
+          },
+        ] as ContentType[],
+      },
+    ] as RewardType[],
+  },
+
 };
 
 
@@ -785,6 +1251,39 @@ const clashRoyaleTranslations: Partial<
   },
 };
 
+const brawlStarsTranslations: Partial<
+  Record<Locale, Record<string, { name?: string; description?: string }>>
+> = {
+  es: {
+    "daily-brawl-stars-rewards": {
+      name: "Recompensas Diarias",
+      description: "Reclama tus recompensas diarias en la tienda de Supercell.",
+    },
+    "spray-reward": {
+      name: "Recompensa de Spray",
+      description: "Reclama este spray exclusivo en Brawl Stars.",
+    },
+    "skull-head-exploid-pin": {
+      name: "Pin de Calavera Explosiva",
+      description: "Reclama este pin exclusivo en Brawl Stars.",
+    },
+  },
+  ar: {
+    "daily-brawl-stars-rewards": {
+      name: "مكافآت يومية",
+      description: "احصل على مكافأتك اليومية من متجر Supercell.",
+    },
+    "spray-reward": {
+      name: "مكافأة بخاخ",
+      description: "احصل على هذا البخاخ الحصري في Brawl Stars.",
+    },
+    "skull-head-exploid-pin": {
+      name: "دبوس رأس الجمجمة المتفجر",
+      description: "احصل على هذا الدبوس الحصري في Brawl Stars.",
+    },
+  },
+};
+
 const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> = {
   es: {
     "Open the Supercell store website and log in.": "Abre la tienda de Supercell e inicia sesión.",
@@ -891,6 +1390,26 @@ export function getLocalizedClashOfClansRewards(locale: Locale): RewardType[] {
   const localizedEntries = clashOfClansTranslations[locale] || {};
 
   return siteConfig.clashofclans.rewards.map((reward) => {
+    const translation = localizedEntries[reward.slug];
+
+    return {
+      ...reward,
+      name: translation?.name || reward.name,
+      description: translation?.description || reward.description,
+      content: reward.content.map((content) => ({
+        ...content,
+        value: translateContentText(locale, content.value),
+        label: translateContentText(locale, content.label),
+        alt: translateContentText(locale, content.alt),
+      })),
+    };
+  });
+}
+
+export function getLocalizedBrawlStarsRewards(locale: Locale): RewardType[] {
+  const localizedEntries = brawlStarsTranslations[locale] || {};
+
+  return siteConfig.brawlstars.rewards.map((reward) => {
     const translation = localizedEntries[reward.slug];
 
     return {
