@@ -177,7 +177,7 @@ function renderBlock(block: any, index: number, locale: Locale) {
       );
     case "link":
       return (
-        <Button key={index} asChild className="mt-2 w-full sm:w-fit font-concert-one" data-trigger-popunder="true">
+        <Button key={index} asChild className="mt-2 w-full sm:w-fit font-concert-one">
           <a href={block.href} target="_blank" rel="noopener noreferrer">
             {block.label || "Claim Reward"}
           </a>
