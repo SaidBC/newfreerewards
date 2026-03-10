@@ -4,7 +4,6 @@ import Footer from "@/ui/Footer";
 import { Analytics } from "@vercel/analytics/next";
 import clientEnv from "@/utils/clientEnv";
 import MonetageVignette from "@/components/MonetageVignette";
-import MonetageInPagePush from "@/components/MonetageInPagePush";
 import {
   defaultLocale,
   getDictionary,
@@ -56,9 +55,6 @@ export default async function LocaleLayout({
       <Footer locale={locale} />
       {clientEnv.NEXT_PUBLIC_NODE_ENV === "production" && <Analytics />}
       {clientEnv.NEXT_PUBLIC_NODE_ENV === "production" && <MonetageVignette />}
-      {clientEnv.NEXT_PUBLIC_NODE_ENV === "production" && (
-        <MonetageInPagePush />
-      )}
     </div>
   );
 }
