@@ -97,15 +97,24 @@ function renderBlock(block: RewardContentBlock, index: number) {
       );
 
     case "image":
+      const isQrCode =
+        (block.imageAlt || "").toLowerCase().includes("qr") ||
+        (block.imageSrc || "").toLowerCase().includes("qr");
       return (
-        <Image
+        <div
           key={index}
-          className="rounded-lg"
-          src={block.imageSrc || "/images/clash-royale/chest-image.png"}
-          alt={block.imageAlt || "reward image"}
-          width={400}
-          height={400}
-        />
+          className={`relative mt-2 overflow-hidden rounded-lg border ${
+            isQrCode ? "max-w-[200px]" : ""
+          }`}
+        >
+          <Image
+            src={block.imageSrc || "/images/clash-royale/chest-image.png"}
+            alt={block.imageAlt || "reward image"}
+            width={isQrCode ? 200 : 400}
+            height={isQrCode ? 200 : 400}
+            className="h-auto w-full object-contain"
+          />
+        </div>
       );
 
     case "code":
@@ -113,15 +122,11 @@ function renderBlock(block: RewardContentBlock, index: number) {
 
     case "link":
       return (
-        <p key={index} className="font-bold">
-          <a
-            href={block.href || "#"}
-            target="_blank"
-            className="text-blue-500 hover:underline"
-          >
-            {block.label || block.href}
+        <Button key={index} asChild className="mt-2 w-full sm:w-fit font-concert-one">
+          <a href={block.href || "#"} target="_blank" rel="noopener noreferrer">
+            {block.label || "Claim Reward"}
           </a>
-        </p>
+        </Button>
       );
 
     default:
@@ -139,7 +144,7 @@ export default async function Page({ params }: PageProps) {
       <section className="mx-auto max-w-5xl px-4 py-16">
         <Button variant={"link"} asChild>
           <Link href={"/games/clash-royale"} data-trigger-popunder="true">
-            <ArrowLeft />
+            <ArrowLeft className="mr-2 h-4 w-4" />
             <span>Back</span>
           </Link>
         </Button>
@@ -152,7 +157,7 @@ export default async function Page({ params }: PageProps) {
             alt={reward.platform.name}
           />
           <div>
-            <h1 className="text-4xl md:text-5xl font-concert-one">
+            <h1 className="text-4xl md:text-5xl font-concert-one uppercase">
               Free {reward.platform.name} Rewards
             </h1>
             <h2 className="text-xl md:text-2xl font-bold text-muted-foreground">
@@ -161,13 +166,20 @@ export default async function Page({ params }: PageProps) {
           </div>
         </div>
 
-        <p className="mt-4 max-w-3xl text-muted-foreground text-lg">
+        <p className="mt-4 max-w-3xl text-muted-foreground text-lg italic">
           {reward.description}
         </p>
       </section>
 
-      <section className="mx-auto max-w-5xl px-4 pb-24 flex flex-col gap-6">
-        {reward.contents.map(renderBlock)}
+      <section className="mx-auto max-w-5xl px-4 pb-24 flex flex-col gap-8">
+        <div className="space-y-8 rounded-2xl border bg-card p-6 sm:p-8">
+          <div className="flex items-center gap-2 border-b pb-4">
+            <div className="h-2 w-2 rounded-full bg-primary" />
+            <h2 className="font-concert-one text-xl uppercase italic">Step-by-step guide</h2>
+          </div>
+
+          <div className="space-y-6">{reward.contents.map(renderBlock)}</div>
+        </div>
       </section>
     </main>
   );
