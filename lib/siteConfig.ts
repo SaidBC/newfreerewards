@@ -602,7 +602,7 @@ const siteConfig = {
         id: "bs-daily",
         slug: "daily-brawl-stars-rewards",
         platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
-        previewImage: "/images/brawl-stars/af985a4f-194c-4a2d-b2d1-79ae58a7bd0b.png",
+        previewImage: "/images/brawl-stars/daily-reward-preview.png",
         name: "Daily Rewards",
         description: "Claim your daily rewards from the Supercell Store.",
         status: "active" as "active" | "expired",
@@ -618,12 +618,37 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: "/images/brawl-stars/screenshot-1773019379567.png",
+            src: "/images/brawl-stars/daily-reward-content.jpeg",
             alt: "Brawl Stars daily reward offer",
           },
           {
             type: "text",
-            value: "Note: Rewards may differ from day to day (not strictly gems).",
+            value: "Note: Rewards may differ from day to day.",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "bs-supercell-store",
+        slug: "supercell-store-gems-reward",
+        platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
+        previewImage: "/images/brawl-stars/af985a4f-194c-4a2d-b2d1-79ae58a7bd0b.png",
+        name: "Supercell Store Gems",
+        description: "Special gems reward available in the Supercell Store.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value: "Warning: Please login to the Supercell Store first, otherwise the page will return a 'Not Found' error.",
+          },
+          {
+            type: "link",
+            href: "https://store.supercell.com/en/brawlstars/product/gems/f1b5fcf4",
+            label: "Go to the Supercell Store Offer",
+          },
+          {
+            type: "image",
+            src: "/images/brawl-stars/supercell-store-offer.jpeg",
+            alt: "Supercell Store gems offer",
           },
         ] as ContentType[],
       },
@@ -1267,6 +1292,10 @@ const brawlStarsTranslations: Partial<
       name: "Pin de Calavera Explosiva",
       description: "Reclama este pin exclusivo en Brawl Stars.",
     },
+    "supercell-store-gems-reward": {
+      name: "Gemas de la Tienda Supercell",
+      description: "Recompensa especial de gemas disponible en la tienda Supercell.",
+    },
   },
   ar: {
     "daily-brawl-stars-rewards": {
@@ -1280,6 +1309,10 @@ const brawlStarsTranslations: Partial<
     "skull-head-exploid-pin": {
       name: "دبوس رأس الجمجمة المتفجر",
       description: "احصل على هذا الدبوس الحصري في Brawl Stars.",
+    },
+    "supercell-store-gems-reward": {
+      name: "جواهر متجر Supercell",
+      description: "مكافأة جواهر خاصة متاحة في متجر Supercell.",
     },
   },
 };
