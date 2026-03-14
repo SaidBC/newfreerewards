@@ -12,7 +12,7 @@ export const dictionary = {
   en: {
     nav: {
       home: "Home",
-      allRewards: "All Rewards",
+      allRewards: "Rewards",
       games: "Games",
       contact: "Contact",
       faq: "FAQ",
@@ -52,6 +52,11 @@ export const dictionary = {
       learnMore: "Learn More",
       language: "Language",
       seeMore: "See More",
+      privacyPolicy: "Privacy Policy",
+      termsOfService: "Terms of Service",
+      contactEmail: "Contact Email",
+      contactDescription: "For feedback, corrections, or partnership requests, please reach out to us via email or follow us on social media.",
+      followUs: "Follow Us",
     },
     games: {
       allGames: "All Games",
@@ -114,6 +119,11 @@ export const dictionary = {
       learnMore: "Más información",
       language: "Idioma",
       seeMore: "Ver más",
+      privacyPolicy: "Política de Privacidad",
+      termsOfService: "Términos de Servicio",
+      contactEmail: "Correo de Contacto",
+      contactDescription: "Para comentarios, correcciones o solicitudes de asociación, contáctenos por correo electrónico o síganos en las redes sociales.",
+      followUs: "Síguenos",
     },
     games: {
       allGames: "Todos los juegos",
@@ -136,7 +146,7 @@ export const dictionary = {
   ar: {
     nav: {
       home: "الرئيسية",
-      allRewards: "كل المكافآت",
+      allRewards: "المكافآت",
       games: "الألعاب",
       contact: "اتصل بنا",
       faq: "الأسئلة الشائعة",
@@ -172,6 +182,11 @@ export const dictionary = {
       learnMore: "اعرف المزيد",
       language: "اللغة",
       seeMore: "شاهد المزيد",
+      privacyPolicy: "سياسة الخصوصية",
+      termsOfService: "شروط الخدمة",
+      contactEmail: "البريد الإلكتروني للتواصل",
+      contactDescription: "للملاحظات أو التصحيحات أو طلبات الشراكة، يرجى التواصل معنا عبر البريد الإلكتروني أو متابعتنا على وسائل التواصل الاجتماعي.",
+      followUs: "تواصل معنا",
     },
     games: {
       allGames: "كل الألعاب",
