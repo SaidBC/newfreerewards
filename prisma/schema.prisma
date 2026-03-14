@@ -40,7 +40,10 @@ model Reward {
   slug         String       @unique
   title        String
   description  String
-  previewImage String?
+  previewImage String?      // Image shown in listings
+  image        String?      // Reward detail image (from admin)
+  claimUrl     String?
+  expiresAt    DateTime?
   status       RewardStatus @default(active)
 
   platform   Platform @relation(fields: [platformId], references: [id], onDelete: Cascade)

@@ -59,6 +59,8 @@ async function main() {
           previewImage: reward.previewImage,
           status: reward.status,
           platformId: platformId,
+          claimUrl: reward.content.find((c: any) => c.type === "link")?.href ?? null,
+          image: reward.content.find((c: any) => c.type === "image")?.src ?? null,
         },
       });
 
