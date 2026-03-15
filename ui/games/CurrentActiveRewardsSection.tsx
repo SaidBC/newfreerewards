@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { getLocalizedClashRoyaleRewards, getLocalizedClashOfClansRewards, getLocalizedBrawlStarsRewards } from "@/lib/siteConfig";
+import { getLocalizedClashRoyaleRewards, getLocalizedClashOfClansRewards, getLocalizedBrawlStarsRewards, getLocalizedGenshinImpactRewards, getLocalizedHonkaiStarRailRewards } from "@/lib/siteConfig";
 import RewardItem from "./RewardItem";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
@@ -11,7 +11,7 @@ export default function CurrentActiveRewardsSection({
   game,
 }: {
   locale: Locale;
-  game: "clash-royale" | "clash-of-clans" | "brawl-stars";
+  game: "clash-royale" | "clash-of-clans" | "brawl-stars" | "genshin-impact" | "honkai-star-rail";
 }) {
   const [showAll, setShowAll] = useState(false);
   
@@ -20,6 +20,10 @@ export default function CurrentActiveRewardsSection({
       ? getLocalizedClashRoyaleRewards(locale)
       : game === "clash-of-clans"
       ? getLocalizedClashOfClansRewards(locale)
+      : game === "genshin-impact"
+      ? getLocalizedGenshinImpactRewards(locale)
+      : game === "honkai-star-rail"
+      ? getLocalizedHonkaiStarRailRewards(locale)
       : getLocalizedBrawlStarsRewards(locale)
   ).filter((reward) => reward.status === "active");
   

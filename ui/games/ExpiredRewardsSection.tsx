@@ -1,4 +1,4 @@
-import { getLocalizedClashRoyaleRewards, getLocalizedClashOfClansRewards, getLocalizedBrawlStarsRewards } from "@/lib/siteConfig";
+import { getLocalizedClashRoyaleRewards, getLocalizedClashOfClansRewards, getLocalizedBrawlStarsRewards, getLocalizedGenshinImpactRewards, getLocalizedHonkaiStarRailRewards } from "@/lib/siteConfig";
 import RewardItem from "./RewardItem";
 import { getDictionary, type Locale } from "@/lib/i18n";
 
@@ -7,13 +7,17 @@ export default function ExpiredRewardsSection({
   game,
 }: {
   locale: Locale;
-  game: "clash-royale" | "clash-of-clans" | "brawl-stars";
+  game: "clash-royale" | "clash-of-clans" | "brawl-stars" | "genshin-impact" | "honkai-star-rail";
 }) {
   const rewards = (
     game === "clash-royale"
       ? getLocalizedClashRoyaleRewards(locale)
       : game === "clash-of-clans"
       ? getLocalizedClashOfClansRewards(locale)
+      : game === "genshin-impact"
+      ? getLocalizedGenshinImpactRewards(locale)
+      : game === "honkai-star-rail"
+      ? getLocalizedHonkaiStarRailRewards(locale)
       : getLocalizedBrawlStarsRewards(locale)
   ).filter((reward) => reward.status === "expired");
   const t = getDictionary(locale);

@@ -8,7 +8,7 @@ interface RewardItemProps {
   title: string;
   platform: { name: string };
   slug: string;
-  game: "clash-royale" | "clash-of-clans" | "brawl-stars";
+  game: "clash-royale" | "clash-of-clans" | "brawl-stars" | "genshin-impact" | "honkai-star-rail";
   locale: Locale;
 }
 
@@ -19,7 +19,7 @@ const RewardItem = ({ src, title, platform, slug, game, locale }: RewardItemProp
     <li>
       <Image
         className="rounded-md object-cover h-32 w-32"
-        src={src || "/images/clash-royale/chest-image.png"}
+        src={src || (game === "genshin-impact" ? "/images/genshin-impact/logo.png" : "/images/clash-royale/chest-image.png")}
         width={125}
         height={125}
         alt={platform.name}

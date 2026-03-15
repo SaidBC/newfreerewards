@@ -1086,7 +1086,54 @@ const siteConfig = {
       },
     ] as RewardType[],
   },
-
+  genshinimpact: {
+    rewards: [
+      {
+        id: "genshin-codes",
+        slug: "redemption-codes",
+        platform: { name: "Genshin Impact", src: "/images/genshin-impact/logo.png" },
+        previewImage: "/images/genshin-impact/logo.png",
+        name: "Redemption Codes",
+        description: "Check out the latest redemption codes for Genshin Impact.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value: "Find all the latest active redemption codes for Genshin Impact and learn how to claim them.",
+          },
+          {
+            type: "link",
+            href: "/games/genshin-impact/rewards/redemption-codes",
+            label: "View All Codes",
+          },
+        ] as ContentType[],
+      },
+    ] as RewardType[],
+  },
+  honkaistarrail: {
+    rewards: [
+      {
+        id: "hsr-codes",
+        slug: "redemption-codes",
+        platform: { name: "Honkai: Star Rail", src: "/images/honkai-star-rail/logo.png" },
+        previewImage: "/images/honkai-star-rail/logo.png",
+        name: "Redemption Codes",
+        description: "Check out the latest redemption codes for Honkai: Star Rail.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value: "Find all the latest active redemption codes for Honkai: Star Rail and learn how to claim them.",
+          },
+          {
+            type: "link",
+            href: "/games/honkai-star-rail/rewards/redemption-codes",
+            label: "View All Codes",
+          },
+        ] as ContentType[],
+      },
+    ] as RewardType[],
+  },
 };
 
 
@@ -1457,6 +1504,30 @@ export function getLocalizedBrawlStarsRewards(locale: Locale): RewardType[] {
       })),
     };
   });
+}
+
+export function getLocalizedGenshinImpactRewards(locale: Locale): RewardType[] {
+  return siteConfig.genshinimpact.rewards.map((reward) => ({
+    ...reward,
+    content: reward.content.map((content) => ({
+      ...content,
+      value: translateContentText(locale, content.value),
+      label: translateContentText(locale, content.label),
+      alt: translateContentText(locale, content.alt),
+    })),
+  }));
+}
+
+export function getLocalizedHonkaiStarRailRewards(locale: Locale): RewardType[] {
+  return siteConfig.honkaistarrail.rewards.map((reward) => ({
+    ...reward,
+    content: reward.content.map((content) => ({
+      ...content,
+      value: translateContentText(locale, content.value),
+      label: translateContentText(locale, content.label),
+      alt: translateContentText(locale, content.alt),
+    })),
+  }));
 }
 
 export default siteConfig;

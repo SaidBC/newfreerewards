@@ -2,7 +2,9 @@ import "dotenv/config";
 import { 
   getLocalizedClashRoyaleRewards, 
   getLocalizedClashOfClansRewards,
-  getLocalizedBrawlStarsRewards
+  getLocalizedBrawlStarsRewards,
+  getLocalizedGenshinImpactRewards,
+  getLocalizedHonkaiStarRailRewards
 } from "../lib/siteConfig";
 import prisma from "../lib/prisma";
 
@@ -42,6 +44,24 @@ async function main() {
       name: "Brawl Stars",
       slug: "brawl-stars",
       image: "/images/brawl-stars/logo.jpeg",
+      type: "GAME",
+    },
+  });
+
+  const genshinImpact = await prisma.platform.create({
+    data: {
+      name: "Genshin Impact",
+      slug: "genshin-impact",
+      image: "/images/genshin-impact/logo.png",
+      type: "GAME",
+    },
+  });
+
+  const honkaiStarRail = await prisma.platform.create({
+    data: {
+      name: "Honkai: Star Rail",
+      slug: "honkai-star-rail",
+      image: "/images/honkai-star-rail/logo.png",
       type: "GAME",
     },
   });
@@ -89,8 +109,10 @@ async function main() {
   await seedRewards(getLocalizedClashRoyaleRewards("en"), clashRoyale.id);
   await seedRewards(getLocalizedClashOfClansRewards("en"), clashOfClans.id);
   await seedRewards(getLocalizedBrawlStarsRewards("en"), brawlStars.id);
+  await seedRewards(getLocalizedGenshinImpactRewards("en"), genshinImpact.id);
+  await seedRewards(getLocalizedHonkaiStarRailRewards("en"), honkaiStarRail.id);
 
-  console.log("✅ Clash Royale, Clash of Clans, and Brawl Stars platforms and rewards seeded successfully");
+  console.log("✅ Clash Royale, Clash of Clans, Brawl Stars, and Genshin Impact platforms and rewards seeded successfully");
 }
 
 main()
