@@ -6,20 +6,24 @@ export async function RecentRewardsSection({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
 
   const rewards = await prisma.reward.findMany({
-    where: {
-      status: "active",
-    },
-    take: 5,
-    include: {
-      platform: true,
-    },
+    where: { status: "active" },
+    take: 8,
+    include: { platform: true },
+    orderBy: { createdAt: 'desc' },
   });
+
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32">
-      <div className="container px-4 md:px-6">
-        <h2 className="text-3xl font-bold font-concert-one text-amber-400 tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">
-          {t.home.recentRewards}
-        </h2>
+    <section className="w-full py-24 bg-gradient-to-b from-background to-muted/20">
+      <div className="container-wrapper">
+        <div className="flex flex-col items-center mb-12 text-center">
+          <h2 className="text-3xl md:text-5xl font-concert-one mb-4 uppercase tracking-tight">
+            {t.home.recentRewards.split(' ').map((word, i) => (
+               <span key={i} className={i % 2 === 1 ? 'text-primary' : ''}>{word} </span>
+            ))}
+          </h2>
+          <div className="h-1.5 w-24 bg-primary rounded-full" />
+        </div>
+        
         <RecentRewardsCarousel rewards={rewards} locale={locale} />
       </div>
     </section>

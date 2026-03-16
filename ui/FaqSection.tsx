@@ -78,19 +78,31 @@ export default function FaqSection({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
 
   return (
-    <section id="faq" className="w-full py-12 md:py-24 lg:py-32">
-      <div className="container px-4 md:px-6">
-        <h2 className="text-3xl font-bold font-concert-one text-amber-400 tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">
-          {t.home.faqTitle}
-        </h2>
-        <Accordion type="single" collapsible className="w-full max-w-2xl mx-auto">
-          {faqs[locale].map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger>{faq.question}</AccordionTrigger>
-              <AccordionContent>{faq.answer}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+    <section id="faq" className="w-full py-24 md:py-32 bg-muted/30">
+      <div className="container-wrapper px-4 md:px-6">
+        <div className="flex flex-col items-center mb-12 text-center">
+          <h2 className="text-3xl md:text-5xl font-concert-one mb-4 uppercase tracking-tight">
+            {t.home.faqTitle.split(' ').map((word, i) => (
+               <span key={i} className={i % 2 === 1 ? 'text-primary' : ''}>{word} </span>
+            ))}
+          </h2>
+          <div className="h-1.5 w-24 bg-primary rounded-full" />
+        </div>
+        
+        <div className="max-w-3xl mx-auto">
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs[locale].map((faq, index) => (
+              <AccordionItem key={index} value={`item-${index}`} className="border rounded-2xl px-6 bg-background/50 backdrop-blur-sm overflow-hidden transition-all hover:border-primary/30">
+                <AccordionTrigger className="text-lg font-concert-one uppercase tracking-tight hover:no-underline py-6">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground leading-relaxed text-base pb-6">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
       </div>
     </section>
   );
