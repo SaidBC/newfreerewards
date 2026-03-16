@@ -1,4 +1,5 @@
 import CopyCode from "@/components/CopyCode";
+import { Button } from "@/components/ui/button";
 import {
   defaultLocale,
   getDictionary,
@@ -65,16 +66,19 @@ export default async function HonkaiStarRailRedemptionPage({
   const t = getDictionary(locale);
 
   return (
-    <main className="min-h-screen bg-background pt-24 pb-16">
+    <main className="min-h-screen bg-background pt-8 pb-16">
       <div className="mx-auto max-w-4xl px-4">
         {/* Navigation */}
-        <Link
-          href={localizePath(locale, "/games/honkai-star-rail")}
-          className="mb-8 flex w-fit items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          {t.games.back}
-        </Link>
+        {/* Navigation */}
+        <Button variant={"link"} asChild className="mb-4 -ml-4">
+          <Link
+            href={localizePath(locale, "/games/honkai-star-rail")}
+            data-trigger-popunder="true"
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            <span>{t.games.back}</span>
+          </Link>
+        </Button>
 
         {/* Header Section */}
         <div className="mb-12 flex flex-col items-center gap-6 text-center md:flex-row md:text-left">

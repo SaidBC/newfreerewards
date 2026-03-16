@@ -68,13 +68,7 @@ export default async function HonkaiStarRailGamePage({
   return (
     <main className="min-h-screen bg-background pt-24">
       <div className="mx-auto max-w-5xl px-4 py-8">
-        <Link
-          href={localizePath(locale, "/games")}
-          className="mb-8 flex w-fit items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          {t.games.back}
-        </Link>
+
 
         <div className="flex items-center gap-4">
           <Image
