@@ -34,18 +34,22 @@ const siteConfig = {
   ],
   clashroyale: {
     rewards: [
-            {
+      {
         id: "17",
         slug: "clash-royale-daily-rewards",
-        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
-        previewImage: "/images/clash-royale/e29d94da-4e20-4110-b556-66441307bb7a.webp",
+        platform: {
+          name: "Clash Royale",
+          src: "/images/clash-royale/clash-royale.jpg",
+        },
+        previewImage: "/images/clash-royale/Snippet_random.png",
         name: "Daily Rewards",
         description: "Claim your daily rewards from the Supercell Store.",
         status: "active" as "active" | "expired",
         content: [
           {
             type: "text",
-            value: "Log in to the Supercell Store every day to earn free rewards.",
+            value:
+              "Log in to the Supercell Store every day to earn free rewards.",
           },
           {
             type: "link",
@@ -54,25 +58,25 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: "/images/clash-royale/screenshot-1772575732455.png",
+            src: "/images/clash-royale/screenshot-1774385702330.png",
             alt: "Clash royale daily reward offer",
           },
           {
             type: "text",
-            value: "This is what it looks like after being claimed:",
-          },
-          {
-            type: "image",
-            src: "/images/clash-royale/Screenshot_2026.03.03_22.03.17.621.png",
-            alt: "Clash royale daily reward claimed",
+            value:
+              "the rewards may differ from day to day, so make sure to check the store regularly for new offers.",
           },
         ] as ContentType[],
       },
-            {
+      {
         id: "2",
         slug: "2-star-lucky-chest",
-        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
-        previewImage: "/images/clash-royale/preview-2-star-magic-lucky-chest.png",
+        platform: {
+          name: "Clash Royale",
+          src: "/images/clash-royale/clash-royale.jpg",
+        },
+        previewImage:
+          "/images/clash-royale/preview-2-star-magic-lucky-chest.png",
         name: "2-Star Lucky Chest",
         description: "Follow the steps below to claim this chest.",
         status: "active" as "active" | "expired",
@@ -102,8 +106,12 @@ const siteConfig = {
       {
         id: "16",
         slug: "skeleton-shield-bang-emote",
-        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
-        previewImage: "/images/clash-royale/preview-skeleton-shield-bang-emote.jpeg",
+        platform: {
+          name: "Clash Royale",
+          src: "/images/clash-royale/clash-royale.jpg",
+        },
+        previewImage:
+          "/images/clash-royale/preview-skeleton-shield-bang-emote.jpeg",
         name: "Skeleton Shield Bang Emote",
         description: "Claim the Skeleton Shield Bang emote.",
         status: "active" as "active" | "expired",
@@ -123,7 +131,10 @@ const siteConfig = {
       {
         id: "15",
         slug: "smile-goblin-emote",
-        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        platform: {
+          name: "Clash Royale",
+          src: "/images/clash-royale/clash-royale.jpg",
+        },
         previewImage: "/images/clash-royale/preview-smile-goblin-emote.png",
         name: "Smile Goblin Emote",
         description: "Redeem a promo code to unlock this emote.",
@@ -154,7 +165,10 @@ const siteConfig = {
       {
         id: "13",
         slug: "3-seasonal-ironheart-lucky-chests",
-        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        platform: {
+          name: "Clash Royale",
+          src: "/images/clash-royale/clash-royale.jpg",
+        },
         previewImage: "/images/clash-royale/ironheart_chest.webp",
         name: "3 Seasonal Ironheart Lucky Chests",
         description: "Claim the 3 Seasonal Ironheart Lucky Chests.",
@@ -175,7 +189,10 @@ const siteConfig = {
       {
         id: "14",
         slug: "jojo-musketeer-banner-set",
-        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        platform: {
+          name: "Clash Royale",
+          src: "/images/clash-royale/clash-royale.jpg",
+        },
         name: "Jojo Musketeer banner set",
         description: "Claim the Jojo Musketeer banner set.",
         status: "active" as "active" | "expired",
@@ -195,8 +212,12 @@ const siteConfig = {
       {
         id: "12",
         slug: "hero-goblin-troll-emote",
-        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
-        previewImage: "/images/clash-royale/b57ea5d2-2ae4-4886-bd13-47856cdd87b1.png",
+        platform: {
+          name: "Clash Royale",
+          src: "/images/clash-royale/clash-royale.jpg",
+        },
+        previewImage:
+          "/images/clash-royale/b57ea5d2-2ae4-4886-bd13-47856cdd87b1.png",
         name: "Hero Goblin Troll Emote",
         description: "Follow the steps below to claim this emote.",
         status: "active" as "active" | "expired",
@@ -230,7 +251,10 @@ const siteConfig = {
       {
         id: "1",
         slug: "hero-ice-golem-emote",
-        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        platform: {
+          name: "Clash Royale",
+          src: "/images/clash-royale/clash-royale.jpg",
+        },
         previewImage: "/images/clash-royale/preview-hero-ice-golem-emote.png",
         name: "Hero Ice Golem Emote",
         description: "Follow the steps below to claim this emote.",
@@ -265,7 +289,10 @@ const siteConfig = {
       {
         id: "3",
         slug: "hero-wizard-emote",
-        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        platform: {
+          name: "Clash Royale",
+          src: "/images/clash-royale/clash-royale.jpg",
+        },
         previewImage: "/images/clash-royale/preview-hero-wizard-emote.png",
         name: "Hero Wizard Emote",
         description: "Follow the steps below to claim this emote.",
@@ -295,7 +322,10 @@ const siteConfig = {
       {
         id: "4",
         slug: "hero-musketeer-emote",
-        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        platform: {
+          name: "Clash Royale",
+          src: "/images/clash-royale/clash-royale.jpg",
+        },
         previewImage: "/images/clash-royale/preview-hero-musk-emote.png",
         name: "Hero Musketeer Emote",
         description: "Redeem a promo code to unlock this emote.",
@@ -325,7 +355,10 @@ const siteConfig = {
       {
         id: "5",
         slug: "flying-royal-hogs-emote",
-        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        platform: {
+          name: "Clash Royale",
+          src: "/images/clash-royale/clash-royale.jpg",
+        },
         previewImage: "/images/clash-royale/preview-fly-hog-emote.png",
         name: "Flying Royal Hogs Emote",
         description: "Unlock the Flying Royal Hogs emote using a code.",
@@ -351,7 +384,10 @@ const siteConfig = {
       {
         id: "6",
         slug: "fire-and-ice-banner-set",
-        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        platform: {
+          name: "Clash Royale",
+          src: "/images/clash-royale/clash-royale.jpg",
+        },
         name: "Fire & Ice Banner Set",
         description:
           "Includes Ember Escape decoration and Firestorm banner frame.",
@@ -377,7 +413,10 @@ const siteConfig = {
       {
         id: "7",
         slug: "snoring-dragon-banner-set",
-        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        platform: {
+          name: "Clash Royale",
+          src: "/images/clash-royale/clash-royale.jpg",
+        },
         name: "Snoring Dragon Banner Set",
         description: "Unlock the Snoring Dragon banner decoration.",
         status: "active" as "active" | "expired",
@@ -402,7 +441,10 @@ const siteConfig = {
       {
         id: "8",
         slug: "1000-gold-reward",
-        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        platform: {
+          name: "Clash Royale",
+          src: "/images/clash-royale/clash-royale.jpg",
+        },
         name: "1,000 Gold",
         description: "Claim 1,000 Gold instantly.",
         status: "active" as "active" | "expired",
@@ -423,7 +465,10 @@ const siteConfig = {
       {
         id: "9",
         slug: "hot-hog-balloon-banner-frame",
-        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        platform: {
+          name: "Clash Royale",
+          src: "/images/clash-royale/clash-royale.jpg",
+        },
         name: "Hot Hog Balloon Banner Frame",
         description: "Claim this banner frame via QR or direct link.",
         status: "active" as "active" | "expired",
@@ -443,7 +488,10 @@ const siteConfig = {
       {
         id: "10",
         slug: "hamelia-hogwart-banner-decoration",
-        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        platform: {
+          name: "Clash Royale",
+          src: "/images/clash-royale/clash-royale.jpg",
+        },
         name: "Hamelia Hogwart Banner Decoration",
         description: "Unlock this banner decoration for free.",
         status: "active" as "active" | "expired",
@@ -463,7 +511,10 @@ const siteConfig = {
       {
         id: "11",
         slug: "royal-ghost-boo-emote",
-        platform: { name: "Clash Royale", src: "/images/clash-royale/clash-royale.jpg" },
+        platform: {
+          name: "Clash Royale",
+          src: "/images/clash-royale/clash-royale.jpg",
+        },
         previewImage: "/images/clash-royale/preview-royal-ghost-boo-emote.jpeg",
         name: "Royal Ghost Boo Emote",
         description: "Claim the Royal Ghost Boo emote.",
@@ -488,7 +539,10 @@ const siteConfig = {
       {
         id: "coc-1",
         slug: "50k-gold",
-        platform: { name: "Clash of Clans", src: "/images/clash-of-clans/Clash_of_Clans.webp" },
+        platform: {
+          name: "Clash of Clans",
+          src: "/images/clash-of-clans/Clash_of_Clans.webp",
+        },
         previewImage: "/images/clash-of-clans/50k-gold-qr-code.png",
         name: "50k Gold",
         description: "Claim 50,000 Gold for free in Clash of Clans.",
@@ -496,7 +550,8 @@ const siteConfig = {
         content: [
           {
             type: "text",
-            value: "Scan the QR code or click the link below to claim your 50k gold.",
+            value:
+              "Scan the QR code or click the link below to claim your 50k gold.",
           },
           {
             type: "link",
@@ -513,7 +568,10 @@ const siteConfig = {
       {
         id: "coc-2",
         slug: "baby-dragon-statue",
-        platform: { name: "Clash of Clans", src: "/images/clash-of-clans/Clash_of_Clans.webp" },
+        platform: {
+          name: "Clash of Clans",
+          src: "/images/clash-of-clans/Clash_of_Clans.webp",
+        },
         previewImage: "/images/clash-of-clans/preview-baby-dragon-statue.avif",
         name: "Baby Dragon Statue",
         description: "Get the exclusive Baby Dragon Statue for your village.",
@@ -521,7 +579,8 @@ const siteConfig = {
         content: [
           {
             type: "text",
-            value: "Follow the steps in the official store to claim your Baby Dragon Statue.",
+            value:
+              "Follow the steps in the official store to claim your Baby Dragon Statue.",
           },
           {
             type: "link",
@@ -547,7 +606,10 @@ const siteConfig = {
       {
         id: "coc-3",
         slug: "bundle-maker",
-        platform: { name: "Clash of Clans", src: "/images/clash-of-clans/Clash_of_Clans.webp" },
+        platform: {
+          name: "Clash of Clans",
+          src: "/images/clash-of-clans/Clash_of_Clans.webp",
+        },
         previewImage: "/images/clash-of-clans/bundle-maker.jpeg",
         name: "Bundle Maker Reward",
         description: "Special bundle maker reward available in the store.",
@@ -572,15 +634,20 @@ const siteConfig = {
       {
         id: "coc-4",
         slug: "monthly-reward",
-        platform: { name: "Clash of Clans", src: "/images/clash-of-clans/Clash_of_Clans.webp" },
+        platform: {
+          name: "Clash of Clans",
+          src: "/images/clash-of-clans/Clash_of_Clans.webp",
+        },
         previewImage: "/images/clash-of-clans/potion_of_resources.avif",
         name: "Monthly Reward - Resource Potion",
-        description: "Claim your monthly resource potion from the Supercell Store.",
+        description:
+          "Claim your monthly resource potion from the Supercell Store.",
         status: "active" as "active" | "expired",
         content: [
           {
             type: "text",
-            value: "Log in to the Supercell Store to claim your monthly reward.",
+            value:
+              "Log in to the Supercell Store to claim your monthly reward.",
           },
           {
             type: "link",
@@ -609,7 +676,8 @@ const siteConfig = {
         content: [
           {
             type: "text",
-            value: "Log in to the Supercell Store every day to earn free rewards. Checkout Supercell store and claim the reward.",
+            value:
+              "Log in to the Supercell Store every day to earn free rewards. Checkout Supercell store and claim the reward.",
           },
           {
             type: "link",
@@ -631,14 +699,16 @@ const siteConfig = {
         id: "bs-supercell-store",
         slug: "supercell-store-gems-reward",
         platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
-        previewImage: "/images/brawl-stars/af985a4f-194c-4a2d-b2d1-79ae58a7bd0b.png",
+        previewImage:
+          "/images/brawl-stars/af985a4f-194c-4a2d-b2d1-79ae58a7bd0b.png",
         name: "Supercell Store Gems",
         description: "Special gems reward available in the Supercell Store.",
         status: "active" as "active" | "expired",
         content: [
           {
             type: "text",
-            value: "Warning: Please login to the Supercell Store first, otherwise the page will return a 'Not Found' error.",
+            value:
+              "Warning: Please login to the Supercell Store first, otherwise the page will return a 'Not Found' error.",
           },
           {
             type: "link",
@@ -698,7 +768,8 @@ const siteConfig = {
         id: "bs-3",
         slug: "reward-cbd9bc12",
         platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
-        previewImage: "/images/brawl-stars/Screenshot_2026.03.08_23.22.52.003_preview.png",
+        previewImage:
+          "/images/brawl-stars/Screenshot_2026.03.08_23.22.52.003_preview.png",
         name: "Player Icon Reward",
         description: "Claim this exclusive player icon in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -728,7 +799,8 @@ const siteConfig = {
         id: "bs-4",
         slug: "reward-8142f715",
         platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
-        previewImage: "/images/brawl-stars/Screenshot_2026.03.08_23.24.20.973_preview.png",
+        previewImage:
+          "/images/brawl-stars/Screenshot_2026.03.08_23.24.20.973_preview.png",
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -758,7 +830,8 @@ const siteConfig = {
         id: "bs-5",
         slug: "reward-04f69983",
         platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
-        previewImage: "/images/brawl-stars/Screenshot_2026.03.08_23.34.33.409_preview.png",
+        previewImage:
+          "/images/brawl-stars/Screenshot_2026.03.08_23.34.33.409_preview.png",
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -788,7 +861,8 @@ const siteConfig = {
         id: "bs-6",
         slug: "reward-6bb96c6a",
         platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
-        previewImage: "/images/brawl-stars/Screenshot_2026.03.08_23.39.52.284.png",
+        previewImage:
+          "/images/brawl-stars/Screenshot_2026.03.08_23.39.52.284.png",
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -818,7 +892,8 @@ const siteConfig = {
         id: "bs-7",
         slug: "reward-935251d2",
         platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
-        previewImage: "/images/brawl-stars/Screenshot_2026.03.08_23.41.41.374_preview.png",
+        previewImage:
+          "/images/brawl-stars/Screenshot_2026.03.08_23.41.41.374_preview.png",
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -848,7 +923,8 @@ const siteConfig = {
         id: "bs-8",
         slug: "reward-ab9cf7c2",
         platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
-        previewImage: "/images/brawl-stars/Screenshot_2026.03.08_23.43.39.051_preview.png",
+        previewImage:
+          "/images/brawl-stars/Screenshot_2026.03.08_23.43.39.051_preview.png",
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -878,7 +954,8 @@ const siteConfig = {
         id: "bs-9",
         slug: "reward-3484c6d2",
         platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
-        previewImage: "/images/brawl-stars/Screenshot_2026.03.09_00.45.14.032_preview.png",
+        previewImage:
+          "/images/brawl-stars/Screenshot_2026.03.09_00.45.14.032_preview.png",
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -908,7 +985,8 @@ const siteConfig = {
         id: "bs-10",
         slug: "reward-4c9ea6d6",
         platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
-        previewImage: "/images/brawl-stars/Screenshot_2026.03.09_00.46.40.312_preview.png",
+        previewImage:
+          "/images/brawl-stars/Screenshot_2026.03.09_00.46.40.312_preview.png",
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -938,7 +1016,8 @@ const siteConfig = {
         id: "bs-11",
         slug: "reward-91eead0b",
         platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
-        previewImage: "/images/brawl-stars/Screenshot_2026.03.09_00.47.59.155_preview.png",
+        previewImage:
+          "/images/brawl-stars/Screenshot_2026.03.09_00.47.59.155_preview.png",
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -968,7 +1047,8 @@ const siteConfig = {
         id: "bs-12",
         slug: "reward-2593e957",
         platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
-        previewImage: "/images/brawl-stars/Screenshot_2026.03.09_00.56.34.971_preview.png",
+        previewImage:
+          "/images/brawl-stars/Screenshot_2026.03.09_00.56.34.971_preview.png",
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -998,7 +1078,8 @@ const siteConfig = {
         id: "bs-13",
         slug: "reward-315b3e4f",
         platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
-        previewImage: "/images/brawl-stars/Screenshot_2026.03.09_01.01.14.646_preview.png",
+        previewImage:
+          "/images/brawl-stars/Screenshot_2026.03.09_01.01.14.646_preview.png",
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -1028,7 +1109,8 @@ const siteConfig = {
         id: "bs-14",
         slug: "reward-b647c71d",
         platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
-        previewImage: "/images/brawl-stars/Screenshot_2026.03.09_01.03.07.173_preview.png",
+        previewImage:
+          "/images/brawl-stars/Screenshot_2026.03.09_01.03.07.173_preview.png",
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -1058,7 +1140,8 @@ const siteConfig = {
         id: "bs-15",
         slug: "reward-cc017c48",
         platform: { name: "Brawl Stars", src: "/images/brawl-stars/logo.jpeg" },
-        previewImage: "/images/brawl-stars/Screenshot_2026.03.09_01.04.19.591_preview.png",
+        previewImage:
+          "/images/brawl-stars/Screenshot_2026.03.09_01.04.19.591_preview.png",
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -1091,15 +1174,20 @@ const siteConfig = {
       {
         id: "genshin-codes",
         slug: "redemption-codes",
-        platform: { name: "Genshin Impact", src: "/images/genshin-impact/logo.png" },
+        platform: {
+          name: "Genshin Impact",
+          src: "/images/genshin-impact/logo.png",
+        },
         previewImage: "/images/genshin-impact/logo.png",
         name: "Redemption Codes",
-        description: "Check out the latest redemption codes for Genshin Impact.",
+        description:
+          "Check out the latest redemption codes for Genshin Impact.",
         status: "active" as "active" | "expired",
         content: [
           {
             type: "text",
-            value: "Find all the latest active redemption codes for Genshin Impact and learn how to claim them.",
+            value:
+              "Find all the latest active redemption codes for Genshin Impact and learn how to claim them.",
           },
           {
             type: "link",
@@ -1115,15 +1203,20 @@ const siteConfig = {
       {
         id: "hsr-codes",
         slug: "redemption-codes",
-        platform: { name: "Honkai: Star Rail", src: "/images/honkai-star-rail/logo.png" },
+        platform: {
+          name: "Honkai: Star Rail",
+          src: "/images/honkai-star-rail/logo.png",
+        },
         previewImage: "/images/honkai-star-rail/logo.png",
         name: "Redemption Codes",
-        description: "Check out the latest redemption codes for Honkai: Star Rail.",
+        description:
+          "Check out the latest redemption codes for Honkai: Star Rail.",
         status: "active" as "active" | "expired",
         content: [
           {
             type: "text",
-            value: "Find all the latest active redemption codes for Honkai: Star Rail and learn how to claim them.",
+            value:
+              "Find all the latest active redemption codes for Honkai: Star Rail and learn how to claim them.",
           },
           {
             type: "link",
@@ -1136,7 +1229,6 @@ const siteConfig = {
   },
 };
 
-
 const clashOfClansTranslations: Partial<
   Record<Locale, Record<string, { name?: string; description?: string }>>
 > = {
@@ -1147,15 +1239,18 @@ const clashOfClansTranslations: Partial<
     },
     "baby-dragon-statue": {
       name: "Estatua de Bebé Dragón",
-      description: "Consigue la estatua exclusiva de Bebé Dragón para tu aldea.",
+      description:
+        "Consigue la estatua exclusiva de Bebé Dragón para tu aldea.",
     },
     "bundle-maker": {
       name: "Recompensa Bundle Maker",
-      description: "Recompensa especial del creador de paquetes disponible en la tienda.",
+      description:
+        "Recompensa especial del creador de paquetes disponible en la tienda.",
     },
     "monthly-reward": {
       name: "Recompensa Mensual - Poción de Recursos",
-      description: "Reclama tu poción de recursos mensual en la tienda de Supercell.",
+      description:
+        "Reclama tu poción de recursos mensual en la tienda de Supercell.",
     },
   },
   ar: {
@@ -1341,7 +1436,8 @@ const brawlStarsTranslations: Partial<
     },
     "supercell-store-gems-reward": {
       name: "Gemas de la Tienda Supercell",
-      description: "Recompensa especial de gemas disponible en la tienda Supercell.",
+      description:
+        "Recompensa especial de gemas disponible en la tienda Supercell.",
     },
   },
   ar: {
@@ -1364,82 +1460,107 @@ const brawlStarsTranslations: Partial<
   },
 };
 
-const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> = {
-  es: {
-    "Open the Supercell store website and log in.": "Abre la tienda de Supercell e inicia sesión.",
-    "Scroll to the bottom and find the redeem code input.": "Desplázate hasta abajo y busca el campo para canjear código.",
-    "Enter the code: ROYALEAFFAIR": "Introduce el código: ROYALEAFFAIR",
-    "Go to the Supercell Store": "Ir a la tienda de Supercell",
-    "Claim 3 Chests": "Reclamar 3 cofres",
-    "Claim banner set": "Reclamar set de banner",
-    "Note: Make sure you are logged in before clicking the emote link.": "Nota: asegúrate de haber iniciado sesión antes de abrir el enlace del emote.",
-    "Click here to open the emote offer": "Haz clic aquí para abrir la oferta del emote",
-    "Click the Free button, then open Clash Royale to receive the emote.": "Pulsa el botón Gratis y luego abre Clash Royale para recibir el emote.",
-    "Open the Supercell Store": "Abrir la tienda de Supercell",
-    "Scroll down and click on bonuses box which will appears when you scroll down , then click the Lucky Chest reward.": "Desplázate hacia abajo y pulsa en la caja de bonificaciones que aparece; luego pulsa la recompensa Lucky Chest.",
-    "Open the link or scan the QR code .": "Abre el enlace o escanea el código QR.",
-    "Enter the code: REINABARRIGA": "Introduce el código: REINABARRIGA",
-    "Redeem the code here": "Canjear el código aquí",
-    "Enter the code: WHENHOGSFLY!": "Introduce el código: WHENHOGSFLY!",
-    "Enter the code: FIREANDICE!!": "Introduce el código: FIREANDICE!!",
-    "Enter the code: TRUSTYTURRET": "Introduce el código: TRUSTYTURRET",
-    "Claim 1,000 Gold": "Reclamar 1,000 de oro",
-    "Claim banner frame": "Reclamar marco de banner",
-    "Claim banner decoration": "Reclamar decoración de banner",
-    "Claim emote": "Reclamar emote",
-    "Skeleton Shield Bang emote QR": "QR del emote Skeleton Shield Bang",
-    "Log in to the Supercell Store every day to earn free rewards.": "Inicia sesión en la tienda de Supercell todos los días para ganar recompensas gratuitas.",
-    "This is what it looks like after being claimed:": "Así es como se ve después de ser reclamado:",
-    "Scan the QR code or click the link below to claim your 50k gold.": "Escanea el código QR o haz clic en el enlace de abajo para reclamar tus 50k de oro.",
-    "Claim 50k Gold": "Reclamar 50k de Oro",
-    "50k Gold QR Code": "Código QR de 50k de Oro",
-    "Follow the steps in the official store to claim your Baby Dragon Statue.": "Sigue los pasos en la tienda oficial para reclamar tu estatua de Bebé Dragón.",
-    "Baby Dragon Statue": "Estatua de Bebé Dragón",
-    "Baby Dragon Statue Claimed": "Estatua de Bebé Dragón Reclamada",
-    "Check out the bundle maker in the Supercell Store.": "Echa un vistazo al creador de paquetes en la tienda de Supercell.",
-    "Bundle Maker Reward": "Recompensa Bundle Maker",
-    "Log in to the Supercell Store to claim your monthly reward.": "Inicia sesión en la tienda de Supercell para reclamar tu recompensa mensual.",
-    "Go to Supercell Store": "Ir a la tienda de Supercell",
-    "Monthly Resource Potion": "Poción de Recursos Mensual",
-  },
-  ar: {
-    "Open the Supercell store website and log in.": "افتح متجر Supercell وسجّل الدخول.",
-    "Scroll to the bottom and find the redeem code input.": "مرّر للأسفل وابحث عن حقل إدخال كود الاسترداد.",
-    "Enter the code: ROYALEAFFAIR": "أدخل الكود: ROYALEAFFAIR",
-    "Go to the Supercell Store": "اذهب إلى متجر Supercell",
-    "Claim 3 Chests": "احصل على 3 صناديق",
-    "Claim banner set": "احصل على مجموعة البانر",
-    "Note: Make sure you are logged in before clicking the emote link.": "ملاحظة: تأكد من تسجيل الدخول قبل الضغط على رابط الإيموجي.",
-    "Click here to open the emote offer": "اضغط هنا لفتح عرض الإيموجي",
-    "Click the Free button, then open Clash Royale to receive the emote.": "اضغط زر Free ثم افتح Clash Royale لاستلام الإيموجي.",
-    "Open the Supercell Store": "افتح متجر Supercell",
-    "Scroll down and click on bonuses box which will appears when you scroll down , then click the Lucky Chest reward.": "مرّر للأسفل ثم اضغط على صندوق المكافآت الذي يظهر، ثم اختر مكافأة Lucky Chest.",
-    "Open the link or scan the QR code .": "افتح الرابط أو امسح رمز QR.",
-    "Enter the code: REINABARRIGA": "أدخل الكود: REINABARRIGA",
-    "Redeem the code here": "استرد الكود من هنا",
-    "Enter the code: WHENHOGSFLY!": "أدخل الكود: WHENHOGSFLY!",
-    "Enter the code: FIREANDICE!!": "أدخل الكود: FIREANDICE!!",
-    "Enter the code: TRUSTYTURRET": "أدخل الكود: TRUSTYTURRET",
-    "Claim 1,000 Gold": "احصل على 1,000 ذهب",
-    "Claim banner frame": "احصل على إطار البانر",
-    "Claim banner decoration": "احصل على زخرفة البانر",
-    "Claim emote": "احصل على الإيموجي",
-    "Skeleton Shield Bang emote QR": "رمز QR لإيموجي Skeleton Shield Bang",
-    "Log in to the Supercell Store every day to earn free rewards.": "سجّل الدخول إلى متجر Supercell يوميًا للحصول على مكافآت مجانية.",
-    "This is what it looks like after being claimed:": "هذا هو الشكل الذي يبدو عليه بعد استلامه:",
-    "Scan the QR code or click the link below to claim your 50k gold.": "امسح رمز QR أو اضغط على الرابط أدناه للحصول على 50 ألف ذهب.",
-    "Claim 50k Gold": "احصل على 50 ألف ذهب",
-    "50k Gold QR Code": "رمز QR لـ 50 ألف ذهب",
-    "Follow the steps in the official store to claim your Baby Dragon Statue.": "اتبع الخطوات في المتجر الرسمي للحصول على تمثال التنين الصغير.",
-    "Baby Dragon Statue": "تمثال التنين الصغير",
-    "Baby Dragon Statue Claimed": "تم استلام تمثال التنين الصغير",
-    "Check out the bundle maker in the Supercell Store.": "تحقق من صانع الحزم في متجر Supercell.",
-    "Bundle Maker Reward": "مكافأة صانع الحزم",
-    "Log in to the Supercell Store to claim your monthly reward.": "سجّل الدخول إلى متجر Supercell للحصول على مكافأتك الشهرية.",
-    "Go to Supercell Store": "اذهب إلى متجر Supercell",
-    "Monthly Resource Potion": "جرعة الموارد الشهرية",
-  },
-};
+const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
+  {
+    es: {
+      "Open the Supercell store website and log in.":
+        "Abre la tienda de Supercell e inicia sesión.",
+      "Scroll to the bottom and find the redeem code input.":
+        "Desplázate hasta abajo y busca el campo para canjear código.",
+      "Enter the code: ROYALEAFFAIR": "Introduce el código: ROYALEAFFAIR",
+      "Go to the Supercell Store": "Ir a la tienda de Supercell",
+      "Claim 3 Chests": "Reclamar 3 cofres",
+      "Claim banner set": "Reclamar set de banner",
+      "Note: Make sure you are logged in before clicking the emote link.":
+        "Nota: asegúrate de haber iniciado sesión antes de abrir el enlace del emote.",
+      "Click here to open the emote offer":
+        "Haz clic aquí para abrir la oferta del emote",
+      "Click the Free button, then open Clash Royale to receive the emote.":
+        "Pulsa el botón Gratis y luego abre Clash Royale para recibir el emote.",
+      "Open the Supercell Store": "Abrir la tienda de Supercell",
+      "Scroll down and click on bonuses box which will appears when you scroll down , then click the Lucky Chest reward.":
+        "Desplázate hacia abajo y pulsa en la caja de bonificaciones que aparece; luego pulsa la recompensa Lucky Chest.",
+      "Open the link or scan the QR code .":
+        "Abre el enlace o escanea el código QR.",
+      "Enter the code: REINABARRIGA": "Introduce el código: REINABARRIGA",
+      "Redeem the code here": "Canjear el código aquí",
+      "Enter the code: WHENHOGSFLY!": "Introduce el código: WHENHOGSFLY!",
+      "Enter the code: FIREANDICE!!": "Introduce el código: FIREANDICE!!",
+      "Enter the code: TRUSTYTURRET": "Introduce el código: TRUSTYTURRET",
+      "Claim 1,000 Gold": "Reclamar 1,000 de oro",
+      "Claim banner frame": "Reclamar marco de banner",
+      "Claim banner decoration": "Reclamar decoración de banner",
+      "Claim emote": "Reclamar emote",
+      "Skeleton Shield Bang emote QR": "QR del emote Skeleton Shield Bang",
+      "Log in to the Supercell Store every day to earn free rewards.":
+        "Inicia sesión en la tienda de Supercell todos los días para ganar recompensas gratuitas.",
+      "This is what it looks like after being claimed:":
+        "Así es como se ve después de ser reclamado:",
+      "Scan the QR code or click the link below to claim your 50k gold.":
+        "Escanea el código QR o haz clic en el enlace de abajo para reclamar tus 50k de oro.",
+      "Claim 50k Gold": "Reclamar 50k de Oro",
+      "50k Gold QR Code": "Código QR de 50k de Oro",
+      "Follow the steps in the official store to claim your Baby Dragon Statue.":
+        "Sigue los pasos en la tienda oficial para reclamar tu estatua de Bebé Dragón.",
+      "Baby Dragon Statue": "Estatua de Bebé Dragón",
+      "Baby Dragon Statue Claimed": "Estatua de Bebé Dragón Reclamada",
+      "Check out the bundle maker in the Supercell Store.":
+        "Echa un vistazo al creador de paquetes en la tienda de Supercell.",
+      "Bundle Maker Reward": "Recompensa Bundle Maker",
+      "Log in to the Supercell Store to claim your monthly reward.":
+        "Inicia sesión en la tienda de Supercell para reclamar tu recompensa mensual.",
+      "Go to Supercell Store": "Ir a la tienda de Supercell",
+      "Monthly Resource Potion": "Poción de Recursos Mensual",
+    },
+    ar: {
+      "Open the Supercell store website and log in.":
+        "افتح متجر Supercell وسجّل الدخول.",
+      "Scroll to the bottom and find the redeem code input.":
+        "مرّر للأسفل وابحث عن حقل إدخال كود الاسترداد.",
+      "Enter the code: ROYALEAFFAIR": "أدخل الكود: ROYALEAFFAIR",
+      "Go to the Supercell Store": "اذهب إلى متجر Supercell",
+      "Claim 3 Chests": "احصل على 3 صناديق",
+      "Claim banner set": "احصل على مجموعة البانر",
+      "Note: Make sure you are logged in before clicking the emote link.":
+        "ملاحظة: تأكد من تسجيل الدخول قبل الضغط على رابط الإيموجي.",
+      "Click here to open the emote offer": "اضغط هنا لفتح عرض الإيموجي",
+      "Click the Free button, then open Clash Royale to receive the emote.":
+        "اضغط زر Free ثم افتح Clash Royale لاستلام الإيموجي.",
+      "Open the Supercell Store": "افتح متجر Supercell",
+      "Scroll down and click on bonuses box which will appears when you scroll down , then click the Lucky Chest reward.":
+        "مرّر للأسفل ثم اضغط على صندوق المكافآت الذي يظهر، ثم اختر مكافأة Lucky Chest.",
+      "Open the link or scan the QR code .": "افتح الرابط أو امسح رمز QR.",
+      "Enter the code: REINABARRIGA": "أدخل الكود: REINABARRIGA",
+      "Redeem the code here": "استرد الكود من هنا",
+      "Enter the code: WHENHOGSFLY!": "أدخل الكود: WHENHOGSFLY!",
+      "Enter the code: FIREANDICE!!": "أدخل الكود: FIREANDICE!!",
+      "Enter the code: TRUSTYTURRET": "أدخل الكود: TRUSTYTURRET",
+      "Claim 1,000 Gold": "احصل على 1,000 ذهب",
+      "Claim banner frame": "احصل على إطار البانر",
+      "Claim banner decoration": "احصل على زخرفة البانر",
+      "Claim emote": "احصل على الإيموجي",
+      "Skeleton Shield Bang emote QR": "رمز QR لإيموجي Skeleton Shield Bang",
+      "Log in to the Supercell Store every day to earn free rewards.":
+        "سجّل الدخول إلى متجر Supercell يوميًا للحصول على مكافآت مجانية.",
+      "This is what it looks like after being claimed:":
+        "هذا هو الشكل الذي يبدو عليه بعد استلامه:",
+      "Scan the QR code or click the link below to claim your 50k gold.":
+        "امسح رمز QR أو اضغط على الرابط أدناه للحصول على 50 ألف ذهب.",
+      "Claim 50k Gold": "احصل على 50 ألف ذهب",
+      "50k Gold QR Code": "رمز QR لـ 50 ألف ذهب",
+      "Follow the steps in the official store to claim your Baby Dragon Statue.":
+        "اتبع الخطوات في المتجر الرسمي للحصول على تمثال التنين الصغير.",
+      "Baby Dragon Statue": "تمثال التنين الصغير",
+      "Baby Dragon Statue Claimed": "تم استلام تمثال التنين الصغير",
+      "Check out the bundle maker in the Supercell Store.":
+        "تحقق من صانع الحزم في متجر Supercell.",
+      "Bundle Maker Reward": "مكافأة صانع الحزم",
+      "Log in to the Supercell Store to claim your monthly reward.":
+        "سجّل الدخول إلى متجر Supercell للحصول على مكافأتك الشهرية.",
+      "Go to Supercell Store": "اذهب إلى متجر Supercell",
+      "Monthly Resource Potion": "جرعة الموارد الشهرية",
+    },
+  };
 
 function translateContentText(locale: Locale, text?: string) {
   if (!text) return text;
@@ -1518,7 +1639,9 @@ export function getLocalizedGenshinImpactRewards(locale: Locale): RewardType[] {
   }));
 }
 
-export function getLocalizedHonkaiStarRailRewards(locale: Locale): RewardType[] {
+export function getLocalizedHonkaiStarRailRewards(
+  locale: Locale,
+): RewardType[] {
   return siteConfig.honkaistarrail.rewards.map((reward) => ({
     ...reward,
     content: reward.content.map((content) => ({
