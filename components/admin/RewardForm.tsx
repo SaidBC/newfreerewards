@@ -54,12 +54,12 @@ export function RewardForm({ platforms, reward }: { platforms: Platform[]; rewar
 
           <div className="space-y-2">
             <Label htmlFor="image">Main Content Image URL</Label>
-            <Input id="image" type="text" name="image" defaultValue={reward?.image || ""} placeholder="/images/..." />
+            <Input id="image" type="text" name="image" defaultValue={reward?.image || ""} placeholder="https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/..." />
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="previewImage">Preview Image URL</Label>
-            <Input id="previewImage" type="text" name="previewImage" defaultValue={reward?.previewImage || ""} placeholder="/images/..." />
+            <Input id="previewImage" type="text" name="previewImage" defaultValue={reward?.previewImage || ""} placeholder="https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/..." />
           </div>
 
           <div className="space-y-2">

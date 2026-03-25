@@ -19,7 +19,7 @@ const RewardItem = ({ src, title, platform, slug, game, locale }: RewardItemProp
     <li>
       <Image
         className="rounded-md object-cover h-32 w-32"
-        src={src || (game === "genshin-impact" ? "/images/genshin-impact/logo.png" : "/images/clash-royale/chest-image.png")}
+        src={src || (game === "genshin-impact" ? "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/genshin-impact/logo.png" : "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-royale/chest-image.png")}
         width={125}
         height={125}
         alt={platform.name}

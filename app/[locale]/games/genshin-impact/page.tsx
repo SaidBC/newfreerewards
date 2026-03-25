@@ -44,14 +44,14 @@ export async function generateMetadata({
       title: t.seo.genshinImpactTitle,
       description: t.seo.genshinImpactDescription,
       url: `${baseUrl}/${locale}${path}`,
-      images: ["/images/genshin-impact/logo.png"],
+      images: ["https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/genshin-impact/logo.png"],
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
       title: t.seo.genshinImpactTitle,
       description: t.seo.genshinImpactDescription,
-      images: ["/images/genshin-impact/logo.png"],
+      images: ["https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/genshin-impact/logo.png"],
     },
   };
 }
@@ -73,7 +73,7 @@ export default async function GenshinImpactGamePage({
         <div className="flex items-center gap-4">
           <Image
             className="size-12 rounded-md object-cover"
-            src="/images/genshin-impact/logo.png"
+            src="https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/genshin-impact/logo.png"
             width={125}
             height={125}
             alt="Genshin Impact"

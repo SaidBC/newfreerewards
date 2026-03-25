@@ -25,7 +25,7 @@ async function main() {
     data: {
       name: "Clash Royale",
       slug: "clash-royale",
-      image: "/images/clash-royale/clash-royale.jpg",
+      image: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-royale/clash-royale.jpg",
       type: "GAME",
     },
   });
@@ -34,7 +34,7 @@ async function main() {
     data: {
       name: "Clash of Clans",
       slug: "clash-of-clans",
-      image: "/images/clash-of-clans/Clash_of_Clans.webp",
+      image: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-of-clans/Clash_of_Clans.webp",
       type: "GAME",
     },
   });
@@ -43,7 +43,7 @@ async function main() {
     data: {
       name: "Brawl Stars",
       slug: "brawl-stars",
-      image: "/images/brawl-stars/logo.jpeg",
+      image: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/logo.jpeg",
       type: "GAME",
     },
   });
@@ -52,7 +52,7 @@ async function main() {
     data: {
       name: "Genshin Impact",
       slug: "genshin-impact",
-      image: "/images/genshin-impact/logo.png",
+      image: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/genshin-impact/logo.png",
       type: "GAME",
     },
   });
@@ -61,7 +61,7 @@ async function main() {
     data: {
       name: "Honkai: Star Rail",
       slug: "honkai-star-rail",
-      image: "/images/honkai-star-rail/logo.png",
+      image: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/honkai-star-rail/logo.png",
       type: "GAME",
     },
   });

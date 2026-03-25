@@ -44,7 +44,7 @@ export default function RecentRewardsCarousel({
                 <CardContent className="p-0">
                   <div className="relative aspect-square w-full overflow-hidden bg-muted">
                     <img
-                      src={reward.previewImage || "/images/clash-royale/chest-image.png"}
+                      src={reward.previewImage || "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-royale/chest-image.png"}
                       alt={reward.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />

@@ -44,14 +44,14 @@ export async function generateMetadata({
       title: t.seo.honkaiStarRailTitle,
       description: t.seo.honkaiStarRailDescription,
       url: `${baseUrl}/${locale}${path}`,
-      images: ["/images/honkai-star-rail/logo.png"],
+      images: ["https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/honkai-star-rail/logo.png"],
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
       title: t.seo.honkaiStarRailTitle,
       description: t.seo.honkaiStarRailDescription,
-      images: ["/images/honkai-star-rail/logo.png"],
+      images: ["https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/honkai-star-rail/logo.png"],
     },
   };
 }
@@ -73,7 +73,7 @@ export default async function HonkaiStarRailGamePage({
         <div className="flex items-center gap-4">
           <Image
             className="size-12 rounded-md object-cover"
-            src="/images/honkai-star-rail/logo.png"
+            src="https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/honkai-star-rail/logo.png"
             width={125}
             height={125}
             alt="Honkai: Star Rail"
