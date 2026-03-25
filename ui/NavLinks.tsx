@@ -20,6 +20,7 @@ export default function NavLinks({ links }: { links: NavLink[] }) {
               "font-concert-one hover:text-green-300",
               pathname === link.href && "text-green-400"
             )}
+            prefetch={false}
             href={link.href}
           >
             {link.title}

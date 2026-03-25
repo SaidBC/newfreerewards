@@ -13,7 +13,7 @@ export default function Header({ locale }: { locale: Locale }) {
     <header className="sticky top-0 z-50 w-full border-b bg-background/60 backdrop-blur-xl supports-[backdrop-filter]:bg-background/40">
       <div className="container-wrapper 3xl:fixed:px-0 px-6">
         <div className="3xl:fixed:container flex w-full h-16 items-center justify-between gap-4">
-          <Link href={localizePath(locale, "/")} className="transition-opacity hover:opacity-80">
+          <Link prefetch={false} href={localizePath(locale, "/")} className="transition-opacity hover:opacity-80">
             <TextLogo size="md" shortOnMobile />
           </Link>
           

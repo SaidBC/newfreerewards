@@ -65,7 +65,7 @@ export default async function GamesPage({
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {games.map((game) => (
-          <Link href={localizePath(locale, `/games/${game.slug}`)} key={game.id}>
+          <Link prefetch={false} href={localizePath(locale, `/games/${game.slug}`)} key={game.id}>
             <Card className="hover:border-primary transition-colors">
               <CardHeader>
                 <CardTitle className="font-concert-one text-xl text-center">

@@ -61,6 +61,7 @@ export default function LanguageSwitcher({
             {localizedLinks.map(({ locale: targetLocale, href }) => (
               <Link
                 key={targetLocale}
+                prefetch={false}
                 href={href}
                 className={
                   targetLocale === locale
@@ -86,6 +87,7 @@ export default function LanguageSwitcher({
           return (
             <Link
               key={targetLocale}
+              prefetch={false}
               href={href}
               className={
                 targetLocale === locale

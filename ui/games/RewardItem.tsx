@@ -31,7 +31,7 @@ const RewardItem = ({ src, title, platform, slug, game, locale }: RewardItemProp
         </div>
 
         <Button size={"sm"} className="text-xs w-fit" asChild>
-          <Link href={localizePath(locale, `/games/${game}/rewards/${slug}`)}>
+          <Link prefetch={false} href={localizePath(locale, `/games/${game}/rewards/${slug}`)}>
             {t.common.learnMore}
           </Link>
         </Button>

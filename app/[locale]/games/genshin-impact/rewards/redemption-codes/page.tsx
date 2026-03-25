@@ -72,6 +72,7 @@ export default async function GenshinImpactPage({
         {/* Navigation */}
         <Button variant={"link"} asChild className="mb-4 -ml-4">
           <Link
+            prefetch={false}
             href={localizePath(locale, "/games/genshin-impact")}
             data-trigger-popunder="true"
           >
@@ -208,6 +209,7 @@ export default async function GenshinImpactPage({
                   <li>Enter the code and submit.</li>
                 </ol>
                 <Link 
+                  prefetch={false}
                   href="https://genshin.hoyoverse.com/en/gift" 
                   target="_blank"
                   className="mt-4 inline-flex items-center gap-2 text-xs font-medium text-primary hover:underline"

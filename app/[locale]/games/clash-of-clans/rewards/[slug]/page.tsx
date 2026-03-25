@@ -15,6 +15,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export const dynamic = "force-static";
+export const dynamicParams = false;
 
 interface PageProps {
   params: Promise<{
@@ -106,7 +107,7 @@ export default async function RewardPage({ params }: PageProps) {
     <main className="min-h-screen bg-background">
       <section className="mx-auto max-w-5xl px-4 py-16">
         <Button variant={"link"} asChild>
-          <Link href={localizePath(locale, "/games/clash-of-clans")} data-trigger-popunder="true">
+          <Link prefetch={false} href={localizePath(locale, "/games/clash-of-clans")} data-trigger-popunder="true">
             <ArrowLeft className="mr-2 h-4 w-4" />
             <span>{t.games.back}</span>
           </Link>

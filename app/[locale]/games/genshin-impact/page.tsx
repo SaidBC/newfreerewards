@@ -100,6 +100,7 @@ export default async function GenshinImpactGamePage({
                 We track all active promotional codes. You can find the full list and redemption instructions here:
               </p>
               <Link 
+                prefetch={false}
                 href={localizePath(locale, "/games/genshin-impact/rewards/redemption-codes")}
                 className="inline-flex items-center rounded-lg bg-primary/10 px-4 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary/20"
               >

@@ -34,10 +34,10 @@ export default function HeroSection({ locale }: { locale: Locale }) {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <Button asChild size="lg" className="h-14 px-8 text-base font-concert-one uppercase">
-              <Link href={localizePath(locale, "/#list")}>{t.home.exploreMore}</Link>
+              <Link prefetch={false} href={localizePath(locale, "/#list")}>{t.home.exploreMore}</Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="h-14 px-8 text-base font-concert-one uppercase">
-              <Link href={localizePath(locale, "/#faq")}>{t.home.faqTitle}</Link>
+              <Link prefetch={false} href={localizePath(locale, "/#faq")}>{t.home.faqTitle}</Link>
             </Button>
           </div>
         </div>

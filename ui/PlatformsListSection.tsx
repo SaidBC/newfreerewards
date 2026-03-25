@@ -17,6 +17,7 @@ const PlatformCard = ({
 }) => (
   <li className="group h-full">
     <Link
+      prefetch={false}
       href={localizePath(locale, `/${platform.type.toLowerCase()}s/${platform.slug}`)}
       className="flex flex-col gap-4 border p-4 rounded-2xl h-full bg-card/40 backdrop-blur-sm hover:border-primary/50 hover:bg-card transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1"
     >

@@ -45,13 +45,13 @@ export default function Footer({ locale }: { locale: Locale }) {
                 {t.nav.games}
               </h4>
               <ul className="flex flex-col gap-3 text-sm text-muted-foreground">
-                <Link href={localizePath(locale, "/")} className="hover:text-primary transition-colors">
+                <Link prefetch={false} href={localizePath(locale, "/")} className="hover:text-primary transition-colors">
                   {t.nav.home}
                 </Link>
-                <Link href={localizePath(locale, "/#list")} className="hover:text-primary transition-colors">
+                <Link prefetch={false} href={localizePath(locale, "/#list")} className="hover:text-primary transition-colors">
                   {t.nav.allRewards}
                 </Link>
-                <Link href={localizePath(locale, "/games")} className="hover:text-primary transition-colors">
+                <Link prefetch={false} href={localizePath(locale, "/games")} className="hover:text-primary transition-colors">
                   {t.nav.games}
                 </Link>
               </ul>
@@ -62,13 +62,13 @@ export default function Footer({ locale }: { locale: Locale }) {
                 Support
               </h4>
               <ul className="flex flex-col gap-3 text-sm text-muted-foreground">
-                <Link href={localizePath(locale, "/contact")} className="hover:text-primary transition-colors">
+                <Link prefetch={false} href={localizePath(locale, "/contact")} className="hover:text-primary transition-colors">
                   {t.nav.contact}
                 </Link>
-                <Link href={localizePath(locale, "/privacy")} className="hover:text-primary transition-colors">
+                <Link prefetch={false} href={localizePath(locale, "/privacy")} className="hover:text-primary transition-colors">
                   {t.common.privacyPolicy}
                 </Link>
-                <Link href={localizePath(locale, "/terms")} className="hover:text-primary transition-colors">
+                <Link prefetch={false} href={localizePath(locale, "/terms")} className="hover:text-primary transition-colors">
                   {t.common.termsOfService}
                 </Link>
               </ul>

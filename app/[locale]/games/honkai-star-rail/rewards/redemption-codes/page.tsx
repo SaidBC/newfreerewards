@@ -72,6 +72,7 @@ export default async function HonkaiStarRailRedemptionPage({
         {/* Navigation */}
         <Button variant={"link"} asChild className="mb-4 -ml-4">
           <Link
+            prefetch={false}
             href={localizePath(locale, "/games/honkai-star-rail")}
             data-trigger-popunder="true"
           >
@@ -245,6 +246,7 @@ export default async function HonkaiStarRailRedemptionPage({
                   <li>Enter the code and click Redeem.</li>
                 </ol>
                 <Link 
+                  prefetch={false}
                   href="https://hsr.hoyoverse.com/gift" 
                   target="_blank"
                   className="mt-4 inline-flex items-center gap-2 text-xs font-medium text-primary hover:underline"

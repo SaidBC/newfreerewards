@@ -67,6 +67,7 @@ export default async function ClashOfClansPage({
     <main className="min-h-screen bg-background pt-24">
       <div className="mx-auto max-w-5xl px-4 py-8">
         <Link
+          prefetch={false}
           href={localizePath(locale, "/games")}
           className="mb-8 flex w-fit items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
         >
