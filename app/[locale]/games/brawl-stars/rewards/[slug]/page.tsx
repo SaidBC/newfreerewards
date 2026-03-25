@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const platformName = "Brawl Stars";
   const rewardName = reward.name;
-  const baseUrl = "https://newfreerewards.com";
+  const baseUrl = process.env.NEXT_PUBLIC_URL;
   const rewardPath = `/games/brawl-stars/rewards/${slug}`;
 
   const languages = {

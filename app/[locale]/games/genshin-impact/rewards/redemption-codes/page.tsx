@@ -23,7 +23,7 @@ export async function generateMetadata({
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
   const t = getDictionary(locale);
 
-  const baseUrl = "https://newfreerewards.com";
+  const baseUrl = process.env.NEXT_PUBLIC_URL;
   const path = `/games/genshin-impact/rewards/redemption-codes`;
 
   const languages = {

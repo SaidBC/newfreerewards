@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const platformName = "Clash of Clans";
   const rewardName = reward.name;
-  const baseUrl = "https://newfreerewards.com";
+  const baseUrl = process.env.NEXT_PUBLIC_URL;
   const rewardPath = `/games/clash-of-clans/rewards/${slug}`;
 
   const languages = {

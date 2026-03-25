@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Concert_One, Geist, Geist_Mono } from "next/font/google";
+import { Concert_One} from "next/font/google";
 import "./globals.css";
 import SmartlinkPopunder from "@/components/SmartlinkPopunder";
 
@@ -8,15 +8,6 @@ const concertOne = Concert_One({
   weight: "400",
 });
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "NewFreeRewards – Free Rewards, Bonuses & Promotions",
@@ -43,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${concertOne.variable} ${geistMono.variable} antialiased`}
+        className={`${concertOne.variable} antialiased`}
       >
         <SmartlinkPopunder />
         {children}
