@@ -4,7 +4,10 @@ import {
   getLocalizedClashOfClansRewards,
   getLocalizedBrawlStarsRewards,
   getLocalizedGenshinImpactRewards,
-  getLocalizedHonkaiStarRailRewards
+  getLocalizedHonkaiStarRailRewards,
+  getLocalizedRobloxRewards,
+  getLocalizedRiseOfKingdomsRewards,
+  getLocalizedGrowAGardenRewards
 } from "../lib/siteConfig";
 import prisma from "../lib/prisma";
 
@@ -65,6 +68,33 @@ async function main() {
       type: "GAME",
     },
   });
+  
+  const roblox = await prisma.platform.create({
+    data: {
+      name: "Roblox",
+      slug: "roblox",
+      image: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/roblox/logo.png",
+      type: "GAME",
+    },
+  });
+
+  const riseOfKingdoms = await prisma.platform.create({
+    data: {
+      name: "Rise of Kingdoms",
+      slug: "rise-of-kingdoms",
+      image: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/rise-of-kingdoms/logo.png",
+      type: "GAME",
+    },
+  });
+
+  const growAGarden = await prisma.platform.create({
+    data: {
+      name: "Grow a Garden",
+      slug: "grow-a-garden",
+      image: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/grow-a-garden/logo.webp",
+      type: "GAME",
+    },
+  });
 
   // 2️⃣ Helper function to seed rewards
   async function seedRewards(rewards: any[], platformId: number) {
@@ -111,6 +141,9 @@ async function main() {
   await seedRewards(getLocalizedBrawlStarsRewards("en"), brawlStars.id);
   await seedRewards(getLocalizedGenshinImpactRewards("en"), genshinImpact.id);
   await seedRewards(getLocalizedHonkaiStarRailRewards("en"), honkaiStarRail.id);
+  await seedRewards(getLocalizedRobloxRewards("en"), roblox.id);
+  await seedRewards(getLocalizedRiseOfKingdomsRewards("en"), riseOfKingdoms.id);
+  await seedRewards(getLocalizedGrowAGardenRewards("en"), growAGarden.id);
 
   console.log("✅ Clash Royale, Clash of Clans, Brawl Stars, and Genshin Impact platforms and rewards seeded successfully");
 }

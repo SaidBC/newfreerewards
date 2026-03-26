@@ -1,4 +1,4 @@
-import { getLocalizedClashRoyaleRewards, getLocalizedClashOfClansRewards, getLocalizedBrawlStarsRewards, getLocalizedGenshinImpactRewards, getLocalizedHonkaiStarRailRewards } from "@/lib/siteConfig";
+import { getLocalizedClashRoyaleRewards, getLocalizedClashOfClansRewards, getLocalizedBrawlStarsRewards, getLocalizedGenshinImpactRewards, getLocalizedHonkaiStarRailRewards, getLocalizedRobloxRewards, getLocalizedRiseOfKingdomsRewards, getLocalizedGrowAGardenRewards } from "@/lib/siteConfig";
 import RewardItem from "./RewardItem";
 import { getDictionary, type Locale } from "@/lib/i18n";
 
@@ -7,7 +7,7 @@ export default function ExpiredRewardsSection({
   game,
 }: {
   locale: Locale;
-  game: "clash-royale" | "clash-of-clans" | "brawl-stars" | "genshin-impact" | "honkai-star-rail";
+  game: "clash-royale" | "clash-of-clans" | "brawl-stars" | "genshin-impact" | "honkai-star-rail" | "roblox" | "rise-of-kingdoms" | "grow-a-garden";
 }) {
   const rewards = (
     game === "clash-royale"
@@ -18,6 +18,12 @@ export default function ExpiredRewardsSection({
       ? getLocalizedGenshinImpactRewards(locale)
       : game === "honkai-star-rail"
       ? getLocalizedHonkaiStarRailRewards(locale)
+      : game === "roblox"
+      ? getLocalizedRobloxRewards(locale)
+      : game === "rise-of-kingdoms"
+      ? getLocalizedRiseOfKingdomsRewards(locale)
+      : game === "grow-a-garden"
+      ? getLocalizedGrowAGardenRewards(locale)
       : getLocalizedBrawlStarsRewards(locale)
   ).filter((reward) => reward.status === "expired");
   const t = getDictionary(locale);

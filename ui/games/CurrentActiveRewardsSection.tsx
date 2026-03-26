@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { getLocalizedClashRoyaleRewards, getLocalizedClashOfClansRewards, getLocalizedBrawlStarsRewards, getLocalizedGenshinImpactRewards, getLocalizedHonkaiStarRailRewards } from "@/lib/siteConfig";
+import { getLocalizedClashRoyaleRewards, getLocalizedClashOfClansRewards, getLocalizedBrawlStarsRewards, getLocalizedGenshinImpactRewards, getLocalizedHonkaiStarRailRewards, getLocalizedRobloxRewards, getLocalizedRiseOfKingdomsRewards, getLocalizedGrowAGardenRewards } from "@/lib/siteConfig";
 import RewardItem from "./RewardItem";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
@@ -11,7 +11,7 @@ export default function CurrentActiveRewardsSection({
   game,
 }: {
   locale: Locale;
-  game: "clash-royale" | "clash-of-clans" | "brawl-stars" | "genshin-impact" | "honkai-star-rail";
+  game: "clash-royale" | "clash-of-clans" | "brawl-stars" | "genshin-impact" | "honkai-star-rail" | "roblox" | "rise-of-kingdoms" | "grow-a-garden";
 }) {
   const [showAll, setShowAll] = useState(false);
   
@@ -24,6 +24,12 @@ export default function CurrentActiveRewardsSection({
       ? getLocalizedGenshinImpactRewards(locale)
       : game === "honkai-star-rail"
       ? getLocalizedHonkaiStarRailRewards(locale)
+      : game === "roblox"
+      ? getLocalizedRobloxRewards(locale)
+      : game === "rise-of-kingdoms"
+      ? getLocalizedRiseOfKingdomsRewards(locale)
+      : game === "grow-a-garden"
+      ? getLocalizedGrowAGardenRewards(locale)
       : getLocalizedBrawlStarsRewards(locale)
   ).filter((reward) => reward.status === "active");
   

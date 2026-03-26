@@ -8,7 +8,7 @@ interface RewardItemProps {
   title: string;
   platform: { name: string };
   slug: string;
-  game: "clash-royale" | "clash-of-clans" | "brawl-stars" | "genshin-impact" | "honkai-star-rail";
+  game: "clash-royale" | "clash-of-clans" | "brawl-stars" | "genshin-impact" | "honkai-star-rail" | "roblox" | "rise-of-kingdoms" | "grow-a-garden";
   locale: Locale;
 }
 

@@ -1252,6 +1252,87 @@ const siteConfig = {
       },
     ] as RewardType[],
   },
+  roblox: {
+    rewards: [
+      {
+        id: "roblox-codes",
+        slug: "redemption-codes",
+        platform: {
+          name: "Roblox",
+          src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/roblox/logo.png",
+        },
+        previewImage: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/roblox/logo.png",
+        name: "Redemption Codes",
+        description: "Check out the latest redemption codes for Roblox.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value: "Find all the latest active redemption codes for Roblox and learn how to claim them.",
+          },
+          {
+            type: "link",
+            href: "/games/roblox/rewards/redemption-codes",
+            label: "View All Codes",
+          },
+        ] as ContentType[],
+      },
+    ] as RewardType[],
+  },
+  riseofkingdoms: {
+    rewards: [
+      {
+        id: "rok-codes",
+        slug: "redemption-codes",
+        platform: {
+          name: "Rise of Kingdoms",
+          src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/rise-of-kingdoms/logo.png",
+        },
+        previewImage: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/rise-of-kingdoms/logo.png",
+        name: "Redemption Codes",
+        description: "Check out the latest redemption codes for Rise of Kingdoms.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value: "Find all the latest active redemption codes for Rise of Kingdoms and learn how to claim them.",
+          },
+          {
+            type: "link",
+            href: "/games/rise-of-kingdoms/rewards/redemption-codes",
+            label: "View All Codes",
+          },
+        ] as ContentType[],
+      },
+    ] as RewardType[],
+  },
+  growagarden: {
+    rewards: [
+      {
+        id: "grow-a-garden-codes",
+        slug: "redemption-codes",
+        platform: {
+          name: "Grow a Garden",
+          src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/grow-a-garden/logo.webp",
+        },
+        previewImage: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/grow-a-garden/logo.webp",
+        name: "Redemption Codes",
+        description: "Check out the latest redemption codes for Grow a Garden.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value: "Find all the latest active redemption codes for Grow a Garden and learn how to claim them.",
+          },
+          {
+            type: "link",
+            href: "/games/grow-a-garden/rewards/redemption-codes",
+            label: "View All Codes",
+          },
+        ] as ContentType[],
+      },
+    ] as RewardType[],
+  },
 };
 
 const clashOfClansTranslations: Partial<
@@ -1678,6 +1759,42 @@ export function getLocalizedHonkaiStarRailRewards(
   locale: Locale,
 ): RewardType[] {
   return siteConfig.honkaistarrail.rewards.map((reward) => ({
+    ...reward,
+    content: reward.content.map((content) => ({
+      ...content,
+      value: translateContentText(locale, content.value),
+      label: translateContentText(locale, content.label),
+      alt: translateContentText(locale, content.alt),
+    })),
+  }));
+}
+
+export function getLocalizedRobloxRewards(locale: Locale): RewardType[] {
+  return siteConfig.roblox.rewards.map((reward) => ({
+    ...reward,
+    content: reward.content.map((content) => ({
+      ...content,
+      value: translateContentText(locale, content.value),
+      label: translateContentText(locale, content.label),
+      alt: translateContentText(locale, content.alt),
+    })),
+  }));
+}
+
+export function getLocalizedRiseOfKingdomsRewards(locale: Locale): RewardType[] {
+  return siteConfig.riseofkingdoms.rewards.map((reward) => ({
+    ...reward,
+    content: reward.content.map((content) => ({
+      ...content,
+      value: translateContentText(locale, content.value),
+      label: translateContentText(locale, content.label),
+      alt: translateContentText(locale, content.alt),
+    })),
+  }));
+}
+
+export function getLocalizedGrowAGardenRewards(locale: Locale): RewardType[] {
+  return siteConfig.growagarden.rewards.map((reward) => ({
     ...reward,
     content: reward.content.map((content) => ({
       ...content,
