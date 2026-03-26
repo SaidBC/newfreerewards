@@ -24,6 +24,7 @@ async function main() {
   console.log("DB Deleted successfully");
 
   // 1️⃣ Create platforms
+  console.log("Creating platforms...");
   const clashRoyale = await prisma.platform.create({
     data: {
       name: "Clash Royale",
@@ -136,8 +137,11 @@ async function main() {
   }
 
   // 3️⃣ Seed all games
+  console.log("Seeding Clash Royale...");
   await seedRewards(getLocalizedClashRoyaleRewards("en"), clashRoyale.id);
+  console.log("Seeding Clash of Clans...");
   await seedRewards(getLocalizedClashOfClansRewards("en"), clashOfClans.id);
+  console.log("Seeding Brawl Stars...");
   await seedRewards(getLocalizedBrawlStarsRewards("en"), brawlStars.id);
   await seedRewards(getLocalizedGenshinImpactRewards("en"), genshinImpact.id);
   await seedRewards(getLocalizedHonkaiStarRailRewards("en"), honkaiStarRail.id);

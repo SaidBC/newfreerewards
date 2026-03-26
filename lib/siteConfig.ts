@@ -691,6 +691,37 @@ const siteConfig = {
   brawlstars: {
     rewards: [
       {
+        id: "bs-16",
+        slug: "reward-da19cd17",
+        platform: { name: "Brawl Stars", src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/logo.jpeg" },
+        previewImage:
+          "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/Screenshot_2026.03.26_23.01.29.490-preview.png",
+        name: "Player Icon Reward",
+        description: "Claim this exclusive player icon in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/voucher/da19cd17-68af-4ed9-8671-b974a3a73356/",
+            label: "Claim Icon",
+          },
+          {
+            type: "image",
+            src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/Screenshot_2026.03.26_23.01.29.490-qr.png",
+            alt: "Player Icon QR Code",
+          },
+          {
+            type: "text",
+            value: "This is what it looks like after being claimed:",
+          },
+          {
+            type: "image",
+            src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/Screenshot_2026.03.26_23.01.29.490.png",
+            alt: "Player Icon Claimed",
+          },
+        ] as ContentType[],
+      },
+      {
         id: "bs-daily",
         slug: "daily-brawl-stars-rewards",
         platform: { name: "Brawl Stars", src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/logo.jpeg" },
@@ -1555,6 +1586,10 @@ const brawlStarsTranslations: Partial<
       description:
         "Recompensa especial de gemas disponible en la tienda Supercell.",
     },
+    "reward-da19cd17": {
+      name: "Recompensa de Icono de Jugador",
+      description: "Reclama este icono de jugador exclusivo en Brawl Stars.",
+    },
   },
   ar: {
     "daily-brawl-stars-rewards": {
@@ -1572,6 +1607,10 @@ const brawlStarsTranslations: Partial<
     "supercell-store-gems-reward": {
       name: "جواهر متجر Supercell",
       description: "مكافأة جواهر خاصة متاحة في متجر Supercell.",
+    },
+    "reward-da19cd17": {
+      name: "مكافأة أيقونة اللاعب",
+      description: "احصل على أيقونة اللاعب الحصرية هذه في Brawl Stars.",
     },
   },
 };
