@@ -35,6 +35,31 @@ const siteConfig = {
   clashroyale: {
     rewards: [
       {
+        id: "18",
+        slug: "anniversary-lucky-chest",
+        platform: {
+          name: "Clash Royale",
+          src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-royale/clash-royale.jpg",
+        },
+        previewImage: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-royale/eyJwYXRoIjoic3VwZXJjZWxsXC9maWxlXC9CdGNveEs0WkM0ckRXeVozR3RQWi5wbmcifQ_supercell_zVyxpJ2NrDSCVDGXSC12sl7Hgv0erpL4-BypwkP6dVo.avif",
+        name: "Anniversary Lucky Chest",
+        description: "Claim the Anniversary Lucky Chest reward.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "clashroyale://action=voucher&code=60181558-34ad-4ea0-8b7f-154c001e6d4c",
+            label: "Claim reward",
+          },
+          {
+            type: "image",
+            src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-royale/anniversary-lucky-chest-qr.png",
+            alt: "Anniversary Lucky Chest QR",
+          },
+        ] as ContentType[],
+      },
+
+      {
         id: "17",
         slug: "clash-royale-daily-rewards",
         platform: {
@@ -1277,6 +1302,11 @@ const clashRoyaleTranslations: Partial<
   Record<Locale, Record<string, { name?: string; description?: string }>>
 > = {
   es: {
+    "anniversary-lucky-chest": {
+      name: "Cofre de Suerte de Aniversario",
+      description: "Reclama la recompensa del Cofre de Suerte de Aniversario.",
+    },
+
     "skeleton-shield-bang-emote": {
       name: "Emote Skeleton Shield Bang",
       description: "Reclama el emote Skeleton Shield Bang.",
@@ -1347,6 +1377,11 @@ const clashRoyaleTranslations: Partial<
     },
   },
   ar: {
+    "anniversary-lucky-chest": {
+      name: "صندوق الحظ للذكرى السنوية",
+      description: "احصل على مكافأة صندوق الحظ للذكرى السنوية.",
+    },
+
     "skeleton-shield-bang-emote": {
       name: "إيموجي Skeleton Shield Bang",
       description: "احصل على إيموجي Skeleton Shield Bang.",
