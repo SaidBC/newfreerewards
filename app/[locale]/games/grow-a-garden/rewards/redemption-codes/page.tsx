@@ -120,6 +120,11 @@ export default async function GrowAGardenRedemptionPage({
                 <CopyCode text="BEANORLEAVE10" />
                 <p className="text-xs text-muted-foreground">1x Green Bean Chamber cosmetic</p>
               </div>
+              <div className="space-y-2">
+                <span className="text-sm font-medium text-muted-foreground">TORIGATE</span>
+                <CopyCode text="TORIGATE" />
+                <p className="text-xs text-muted-foreground">Special Reward</p>
+              </div>
             </div>
           </section>
 

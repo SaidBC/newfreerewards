@@ -118,7 +118,7 @@ export default async function BrawlStarsPage({
           </div>
         </section>
         <p className="mt-4 text-sm font-bold text-muted-foreground">
-          {t.games.lastUpdatedLabel}: 2026 Mar 26
+          {t.games.lastUpdatedLabel}: 2026 Mar 28
         </p>
       </div>
     </main>

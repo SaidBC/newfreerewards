@@ -691,6 +691,42 @@ const siteConfig = {
   brawlstars: {
     rewards: [
       {
+        id: "bs-17",
+        slug: "reward-5e8d2c1a",
+        platform: { name: "Brawl Stars", src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/logo.jpeg" },
+        previewImage:
+          "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/Screenshot_2026.03.28_03.27.37.132-preview.png",
+        name: "Special Event Box",
+        description: "Claim this special event box in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/voucher/5e8d2c1a-b620-4a81-9b4e-7d1a2b3c4d5e/",
+            label: "Claim Box",
+          },
+          {
+            type: "image",
+            src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/Screenshot_2026.03.28_03.27.37.132-qr.png",
+            alt: "Special Event Box QR Code",
+          },
+          {
+            type: "text",
+            value: "This is what it looks like after being claimed:",
+          },
+          {
+            type: "image",
+            src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/Screenshot_2026.03.28_03.27.37.132.png",
+            alt: "Special Event Box Claimed",
+          },
+          {
+            type: "image",
+            src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/Screenshot_2026.03.28_03.28.04.258.png",
+            alt: "Special Event Box Contents",
+          },
+        ] as ContentType[],
+      },
+      {
         id: "bs-16",
         slug: "reward-da19cd17",
         platform: { name: "Brawl Stars", src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/logo.jpeg" },
@@ -1590,6 +1626,10 @@ const brawlStarsTranslations: Partial<
       name: "Recompensa de Icono de Jugador",
       description: "Reclama este icono de jugador exclusivo en Brawl Stars.",
     },
+    "reward-5e8d2c1a": {
+      name: "Cofre de Evento Especial",
+      description: "Reclama este cofre de evento especial en Brawl Stars.",
+    },
   },
   ar: {
     "daily-brawl-stars-rewards": {
@@ -1611,6 +1651,10 @@ const brawlStarsTranslations: Partial<
     "reward-da19cd17": {
       name: "مكافأة أيقونة اللاعب",
       description: "احصل على أيقونة اللاعب الحصرية هذه في Brawl Stars.",
+    },
+    "reward-5e8d2c1a": {
+      name: "صندوق حدث خاص",
+      description: "احصل على صندوق الحدث الخاص هذا في Brawl Stars.",
     },
   },
 };
