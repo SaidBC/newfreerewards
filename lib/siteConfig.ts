@@ -692,7 +692,7 @@ const siteConfig = {
     rewards: [
       {
         id: "bs-17",
-        slug: "reward-5e8d2c1a",
+        slug: "reward-d99ca645",
         platform: { name: "Brawl Stars", src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/logo.jpeg" },
         previewImage:
           "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/Screenshot_2026.03.28_03.27.37.132-preview.png",
@@ -702,7 +702,7 @@ const siteConfig = {
         content: [
           {
             type: "link",
-            href: "https://link.brawlstars.com/voucher/5e8d2c1a-b620-4a81-9b4e-7d1a2b3c4d5e/",
+            href: "brawlstars://voucher/d99ca645-588a-41a2-9cbd-4f7ded8baf62/",
             label: "Claim Box",
           },
           {
@@ -1626,7 +1626,7 @@ const brawlStarsTranslations: Partial<
       name: "Recompensa de Icono de Jugador",
       description: "Reclama este icono de jugador exclusivo en Brawl Stars.",
     },
-    "reward-5e8d2c1a": {
+    "reward-d99ca645": {
       name: "Cofre de Evento Especial",
       description: "Reclama este cofre de evento especial en Brawl Stars.",
     },
@@ -1652,7 +1652,7 @@ const brawlStarsTranslations: Partial<
       name: "مكافأة أيقونة اللاعب",
       description: "احصل على أيقونة اللاعب الحصرية هذه في Brawl Stars.",
     },
-    "reward-5e8d2c1a": {
+    "reward-d99ca645": {
       name: "صندوق حدث خاص",
       description: "احصل على صندوق الحدث الخاص هذا في Brawl Stars.",
     },
