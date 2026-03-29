@@ -691,6 +691,37 @@ const siteConfig = {
   brawlstars: {
     rewards: [
       {
+        id: "bs-18",
+        slug: "reward-24321637",
+        platform: { name: "Brawl Stars", src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/logo.jpeg" },
+        previewImage:
+          "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/Screenshot_2026.03.29_22.25.35.899-preview.png",
+        name: "500 Coins",
+        description: "Claim 500 Coins in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "brawlstars://voucher/24321637-3978-4f14-a258-a1a713d17213/",
+            label: "Claim Coins",
+          },
+          {
+            type: "image",
+            src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/Screenshot_2026.03.29_22.25.35.899-qr.png",
+            alt: "500 Coins QR Code",
+          },
+          {
+            type: "text",
+            value: "This is what it looks like after being claimed:",
+          },
+          {
+            type: "image",
+            src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/Screenshot_2026.03.29_22.25.35.899.png",
+            alt: "500 Coins Claimed",
+          },
+        ] as ContentType[],
+      },
+      {
         id: "bs-17",
         slug: "reward-d99ca645",
         platform: { name: "Brawl Stars", src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/logo.jpeg" },
@@ -1630,6 +1661,10 @@ const brawlStarsTranslations: Partial<
       name: "Cofre de Evento Especial",
       description: "Reclama este cofre de evento especial en Brawl Stars.",
     },
+    "reward-24321637": {
+      name: "Recompensa de 500 Monedas",
+      description: "Reclama 500 monedas en Brawl Stars.",
+    },
   },
   ar: {
     "daily-brawl-stars-rewards": {
@@ -1655,6 +1690,10 @@ const brawlStarsTranslations: Partial<
     "reward-d99ca645": {
       name: "صندوق حدث خاص",
       description: "احصل على صندوق الحدث الخاص هذا في Brawl Stars.",
+    },
+    "reward-24321637": {
+      name: "مكافأة 500 عملة",
+      description: "احصل على 500 عملة في Brawl Stars.",
     },
   },
 };
@@ -1710,6 +1749,9 @@ const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
         "Inicia sesión en la tienda de Supercell para reclamar tu recompensa mensual.",
       "Go to Supercell Store": "Ir a la tienda de Supercell",
       "Monthly Resource Potion": "Poción de Recursos Mensual",
+      "Claim Coins": "Reclamar monedas",
+      "500 Coins QR Code": "Código QR de 500 Monedas",
+      "500 Coins Claimed": "500 Monedas Reclamadas",
     },
     ar: {
       "Open the Supercell store website and log in.":
@@ -1758,6 +1800,9 @@ const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
         "سجّل الدخول إلى متجر Supercell للحصول على مكافأتك الشهرية.",
       "Go to Supercell Store": "اذهب إلى متجر Supercell",
       "Monthly Resource Potion": "جرعة الموارد الشهرية",
+      "Claim Coins": "احصل على العملات",
+      "500 Coins QR Code": "رمز QR لـ 500 عملة",
+      "500 Coins Claimed": "تم استلام 500 عملة",
     },
   };
 
