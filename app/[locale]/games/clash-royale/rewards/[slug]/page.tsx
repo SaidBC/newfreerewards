@@ -158,7 +158,7 @@ export default async function Page({ params }: PageProps) {
         <div className="flex gap-4 items-center">
           <Image
             className="rounded-md object-cover size-12"
-            src={reward.platform.image || reward.platform.src || "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-royale/clash-royale.jpg"}
+            src={reward.platform.image  || "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-royale/clash-royale.jpg"}
             width={48}
             height={48}
             alt={reward.platform.name}

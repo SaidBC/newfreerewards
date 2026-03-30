@@ -3,6 +3,8 @@ import RewardItem from "./RewardItem";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 
+const INITIAL_LIMIT = 12;
+
 export default async function CurrentActiveRewardsSection({
   locale,
   game,

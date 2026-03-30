@@ -1,6 +1,6 @@
 "use client";
 
-import { Platform, Reward } from "@prisma/client";
+import { Platform, Reward, RewardContent } from "@prisma/client";
 import { deleteReward } from "@/app/admin/actions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -14,13 +14,13 @@ import {
 } from "@/components/ui/dialog";
 import { RewardForm } from "./RewardForm";
 
-type RewardWithPlatform = Reward & { platform: Platform };
+type RewardWithPlatformAndContents = Reward & { platform: Platform ,contents:RewardContent[]};
 
 export function RewardList({
   rewards,
   platforms,
 }: {
-  rewards: RewardWithPlatform[];
+  rewards: RewardWithPlatformAndContents[];
   platforms: Platform[];
 }) {
   return (

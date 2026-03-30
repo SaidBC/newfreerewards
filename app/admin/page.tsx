@@ -26,7 +26,7 @@ export default async function AdminPage() {
   });
 
   const rewards = await prisma.reward.findMany({
-    include: { platform: true },
+    include: { platform: true,contents:true },
     orderBy: { createdAt: "desc" },
   });
 
