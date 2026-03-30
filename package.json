@@ -9,7 +9,7 @@
     "lint": "eslint",
     "seed": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/seed.ts",
     "postinstall": "prisma generate",
-    "vercel-build": "npm run seed && next build"
+    "vercel-build": "prisma migrate deploy && npm run seed && next build"
   },
   "dependencies": {
     "@editorjs/editorjs": "^2.31.1",
