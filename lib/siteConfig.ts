@@ -35,6 +35,31 @@ const siteConfig = {
   clashroyale: {
     rewards: [
       {
+        id: "19",
+        slug: "10-years-anniversary-banner",
+        platform: {
+          name: "Clash Royale",
+          src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-royale/clash-royale.jpg",
+        },
+        previewImage:
+          "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-royale/10-anivarsary-banner-qr.png",
+        name: "10 Years Anniversary Banner",
+        description: "Claim the 10 Years Anniversary Banner reward.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "clashroyale://action=voucher&code=f9a8c8fa-8844-4e3d-99df-8c01de1d8862",
+            label: "Claim banner",
+          },
+          {
+            type: "image",
+            src: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-royale/10-anivarsary-banner-qr.png",
+            alt: "10 Years Anniversary Banner QR",
+          },
+        ] as ContentType[],
+      },
+      {
         id: "18",
         slug: "anniversary-lucky-chest",
         platform: {
@@ -1481,6 +1506,10 @@ const clashRoyaleTranslations: Partial<
   Record<Locale, Record<string, { name?: string; description?: string }>>
 > = {
   es: {
+    "10-years-banner": {
+      name: "Banner de 10 Años",
+      description: "Reclama la recompensa del Banner de 10 Años.",
+    },
     "anniversary-lucky-chest": {
       name: "Cofre de Suerte de Aniversario",
       description: "Reclama la recompensa del Cofre de Suerte de Aniversario.",
@@ -1556,6 +1585,10 @@ const clashRoyaleTranslations: Partial<
     },
   },
   ar: {
+    "10-years-banner": {
+      name: "بانر 10 سنوات",
+      description: "احصل على مكافأة بانر 10 سنوات.",
+    },
     "anniversary-lucky-chest": {
       name: "صندوق الحظ للذكرى السنوية",
       description: "احصل على مكافأة صندوق الحظ للذكرى السنوية.",
@@ -1701,6 +1734,8 @@ const brawlStarsTranslations: Partial<
 const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
   {
     es: {
+      "Claim banner": "Reclamar banner",
+      "10 Years Banner QR": "QR del Banner de 10 Años",
       "Open the Supercell store website and log in.":
         "Abre la tienda de Supercell e inicia sesión.",
       "Scroll to the bottom and find the redeem code input.":
@@ -1754,6 +1789,8 @@ const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
       "500 Coins Claimed": "500 Monedas Reclamadas",
     },
     ar: {
+      "Claim banner": "احصل على البانر",
+      "10 Years Banner QR": "رمز QR لبانر 10 سنوات",
       "Open the Supercell store website and log in.":
         "افتح متجر Supercell وسجّل الدخول.",
       "Scroll to the bottom and find the redeem code input.":
