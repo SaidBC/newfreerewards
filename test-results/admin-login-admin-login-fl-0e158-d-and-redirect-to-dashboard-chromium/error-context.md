@@ -1,0 +1,97 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]:
+        - link "NEW FREE REWARDS" [ref=e6] [cursor=pointer]:
+          - /url: /en
+          - heading "NEW FREE REWARDS" [level=1] [ref=e8]:
+            - generic [ref=e9]: NEW FREE REWARDS
+        - generic [ref=e10]:
+          - navigation [ref=e11]:
+            - list [ref=e12]:
+              - listitem [ref=e13]:
+                - link "Home" [ref=e14] [cursor=pointer]:
+                  - /url: /en
+              - listitem [ref=e15]:
+                - link "Rewards" [ref=e16] [cursor=pointer]:
+                  - /url: /en#list
+              - listitem [ref=e17]:
+                - link "Games" [ref=e18] [cursor=pointer]:
+                  - /url: /en/games
+              - listitem [ref=e19]:
+                - link "Contact" [ref=e20] [cursor=pointer]:
+                  - /url: /en/contact
+              - listitem [ref=e21]:
+                - link "FAQ" [ref=e22] [cursor=pointer]:
+                  - /url: /en#faq
+          - generic "Language" [ref=e26]:
+            - generic [ref=e27]: "Language:"
+            - generic [ref=e28]:
+              - link "English" [ref=e29] [cursor=pointer]:
+                - /url: /en/admin
+              - link "Español" [ref=e30] [cursor=pointer]:
+                - /url: /es/admin
+              - link "العربية" [ref=e31] [cursor=pointer]:
+                - /url: /ar/admin
+    - generic [ref=e32]:
+      - banner [ref=e33]:
+        - generic [ref=e34]:
+          - heading "Admin Dashboard" [level=1] [ref=e35]
+          - link "View Site" [ref=e36] [cursor=pointer]:
+            - /url: /en
+      - main [ref=e37]:
+        - generic [ref=e39]:
+          - generic [ref=e40]:
+            - heading "Admin Secure Login" [level=3] [ref=e41]
+            - paragraph [ref=e42]: Enter your passphrase to access the dashboard.
+          - generic [ref=e44]:
+            - generic [ref=e45]:
+              - generic [ref=e46]: Password
+              - textbox "Password" [active] [ref=e47]:
+                - /placeholder: ••••••••
+                - text: ADMIN
+            - button "Login" [ref=e48]
+    - contentinfo [ref=e49]:
+      - generic [ref=e50]:
+        - generic [ref=e51]:
+          - generic [ref=e52]:
+            - heading "NEW FREE REWARDS" [level=1] [ref=e54]:
+              - generic [ref=e55]: NEW FREE REWARDS
+            - paragraph [ref=e56]: Discover free rewards, bonuses, promo codes, and giveaways from games and online platforms. No hacks. Updated daily.
+          - generic [ref=e57]:
+            - generic [ref=e58]:
+              - heading "Games" [level=4] [ref=e59]
+              - list [ref=e60]:
+                - link "Home" [ref=e61] [cursor=pointer]:
+                  - /url: /en
+                - link "Rewards" [ref=e62] [cursor=pointer]:
+                  - /url: /en#list
+                - link "Games" [ref=e63] [cursor=pointer]:
+                  - /url: /en/games
+            - generic [ref=e64]:
+              - heading "Support" [level=4] [ref=e65]
+              - list [ref=e66]:
+                - link "Contact" [ref=e67] [cursor=pointer]:
+                  - /url: /en/contact
+                - link "Privacy Policy" [ref=e68] [cursor=pointer]:
+                  - /url: /en/privacy
+                - link "Terms of Service" [ref=e69] [cursor=pointer]:
+                  - /url: /en/terms
+        - generic [ref=e70]:
+          - generic [ref=e72]: © 2026 NewFreeRewards. All rights reserved.
+          - generic [ref=e73]:
+            - generic [ref=e74]: Follow Us
+            - generic [ref=e75]:
+              - link "X (Twitter)" [ref=e76] [cursor=pointer]:
+                - /url: https://x.com/newfreeerewards
+                - img [ref=e77]
+              - link "TikTok" [ref=e79] [cursor=pointer]:
+                - /url: https://www.tiktok.com/@newfreerewards
+                - img [ref=e80]
+  - button "Open Next.js Dev Tools" [ref=e87] [cursor=pointer]:
+    - img [ref=e88]
+  - alert [ref=e91]
+```

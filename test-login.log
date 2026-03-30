@@ -1,0 +1,4 @@
+Fetching API...
+Status: 200
+Set-Cookie: admin_auth=ADMIN; Path=/; Expires=Mon, 06 Apr 2026 00:30:03 GMT; Max-Age=604800; HttpOnly; SameSite=lax
+Data: { success: true }

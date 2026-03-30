@@ -1,4 +1,6 @@
 import CopyCode from "@/components/CopyCode";
+import { getRewardBySlug } from "@/lib/rewardService";
+import { prisma } from "@/lib/prisma";
 import { Button } from "@/components/ui/button";
 import {
   defaultLocale,
@@ -13,6 +15,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const dynamic = "force-static";
+export const revalidate = 3600;
 
 export async function generateMetadata({
   params,
@@ -65,6 +68,8 @@ export default async function GenshinImpactPage({
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
   const t = getDictionary(locale);
 
+  const reward = await getRewardBySlug("genshin-impact", "redemption-codes", locale);
+
   return (
     <main className="min-h-screen bg-background pt-8 pb-16">
       <div className="mx-auto max-w-4xl px-4">
@@ -111,26 +116,13 @@ export default async function GenshinImpactPage({
               <h2 className="text-2xl font-bold">Active Genshin Impact Codes (March 2026)</h2>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">ZECVVP1DT7Z2</span>
-                <CopyCode text="ZECVVP1DT7Z2" />
-                <p className="text-xs text-muted-foreground">x10,000 Mora, x10 Adventurer's Experience, x5 Fine Enhancement Ore, x5 Jueyun Chili Chicken, x5 Stir-Fried Fish Noodles</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">8BHA0KFRG94K</span>
-                <CopyCode text="8BHA0KFRG94K" />
-                <p className="text-xs text-muted-foreground">60 Primogem and 5 Adventurer's Experience</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">8X73KH58KDHN</span>
-                <CopyCode text="8X73KH58KDHN" />
-                <p className="text-xs text-muted-foreground">x60 Primogems, x5 Adventurer's Experience</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">GENSHINGIFT</span>
-                <CopyCode text="GENSHINGIFT" />
-                <p className="text-xs text-muted-foreground">x50 Primogems and x3 Hero's Wit</p>
-              </div>
+              {reward?.content?.filter((b: any) => b.type === "code").map((block: any, idx: number) => (
+                <div key={idx} className="space-y-2">
+                  <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{block.value}</span>
+                  <CopyCode text={block.value || ""} />
+                  {block.label && <p className="text-xs text-muted-foreground">{block.label}</p>}
+                </div>
+              ))}
             </div>
           </section>
 

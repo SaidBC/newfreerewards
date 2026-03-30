@@ -5,7 +5,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import CopyCode from "@/components/CopyCode";
-import { getLocalizedClashRoyaleRewards } from "@/lib/siteConfig";
+import { getRewardBySlug } from "@/lib/rewardService";
+import { prisma } from "@/lib/prisma";
 import {
   defaultLocale,
   getDictionary,
@@ -16,7 +17,8 @@ import {
 } from "@/lib/i18n";
 
 export const dynamic = "force-static";
-export const dynamicParams = false;
+export const revalidate = 3600;
+export const dynamicParams = true;
 
 type RewardContentBlock = {
   type: "text" | "image" | "code" | "link";
@@ -34,30 +36,8 @@ type PageProps = {
   }>;
 };
 
-function getRewardFromConfig(slug: string, locale: Locale) {
-  const reward = getLocalizedClashRoyaleRewards(locale).find(
-    (item) => item.slug === slug
-  );
-
-  if (!reward) return null;
-
-  return {
-    slug: reward.slug,
-    title: reward.name,
-    description: reward.description,
-    platform: {
-      name: reward.platform.name,
-      image: reward.platform.src,
-    },
-    contents: reward.content.map((content) => ({
-      type: content.type,
-      value: content.value ?? null,
-      href: content.href ?? null,
-      label: content.label ?? null,
-      imageSrc: content.src ?? null,
-      imageAlt: content.alt ?? null,
-    })),
-  };
+async function getRewardFromDB(platform: string, slug: string, locale: Locale) {
+  return await getRewardBySlug(platform, slug, locale);
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -65,7 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
 
   const t = getDictionary(locale);
-  const reward = getRewardFromConfig(slug, locale);
+  const reward = await getRewardFromDB("clash-royale", slug, locale);
   const platformName = "Clash Royale";
   const rewardName = reward?.title || "Unknown Reward";
 
@@ -93,9 +73,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export async function generateStaticParams() {
-  return getLocalizedClashRoyaleRewards("en").map((reward) => ({
-    slug: reward.slug,
-  }));
+  const params: { locale: string; slug: string }[] = [];
+  const rewards = await prisma.reward.findMany({
+    where: { platform: { slug: "clash-royale" } },
+    select: { slug: true },
+  });
+
+  for (const locale of locales) {
+    for (const reward of rewards) {
+      params.push({
+        locale,
+        slug: reward.slug,
+      });
+    }
+  }
+
+  return params;
 }
 
 function renderBlock(block: RewardContentBlock, index: number) {
@@ -150,7 +143,7 @@ export default async function Page({ params }: PageProps) {
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
   const t = getDictionary(locale);
 
-  const reward = getRewardFromConfig(slug, locale);
+  const reward = await getRewardFromDB("clash-royale", slug, locale);
   if (!reward) return notFound();
 
   return (
@@ -165,7 +158,7 @@ export default async function Page({ params }: PageProps) {
         <div className="flex gap-4 items-center">
           <Image
             className="rounded-md object-cover size-12"
-            src={reward.platform.image || "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-royale/clash-royale.jpg"}
+            src={reward.platform.image || reward.platform.src || "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-royale/clash-royale.jpg"}
             width={48}
             height={48}
             alt={reward.platform.name}
@@ -192,7 +185,7 @@ export default async function Page({ params }: PageProps) {
             <h2 className="font-concert-one text-xl uppercase italic">{t.games.stepByStepGuide}</h2>
           </div>
 
-          <div className="space-y-6">{reward.contents.map(renderBlock)}</div>
+          <div className="space-y-6">{reward.content.map(renderBlock)}</div>
         </div>
       </section>
     </main>

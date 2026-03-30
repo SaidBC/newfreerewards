@@ -1,42 +1,20 @@
-"use client";
-
-import { useState } from "react";
-import { getLocalizedClashRoyaleRewards, getLocalizedClashOfClansRewards, getLocalizedBrawlStarsRewards, getLocalizedGenshinImpactRewards, getLocalizedHonkaiStarRailRewards, getLocalizedRobloxRewards, getLocalizedRiseOfKingdomsRewards, getLocalizedGrowAGardenRewards } from "@/lib/siteConfig";
+import { getRewardsByPlatform } from "@/lib/rewardService";
 import RewardItem from "./RewardItem";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 
-export default function CurrentActiveRewardsSection({
+export default async function CurrentActiveRewardsSection({
   locale,
   game,
 }: {
   locale: Locale;
   game: "clash-royale" | "clash-of-clans" | "brawl-stars" | "genshin-impact" | "honkai-star-rail" | "roblox" | "rise-of-kingdoms" | "grow-a-garden";
 }) {
-  const [showAll, setShowAll] = useState(false);
-  
-  const allRewards = (
-    game === "clash-royale"
-      ? getLocalizedClashRoyaleRewards(locale)
-      : game === "clash-of-clans"
-      ? getLocalizedClashOfClansRewards(locale)
-      : game === "genshin-impact"
-      ? getLocalizedGenshinImpactRewards(locale)
-      : game === "honkai-star-rail"
-      ? getLocalizedHonkaiStarRailRewards(locale)
-      : game === "roblox"
-      ? getLocalizedRobloxRewards(locale)
-      : game === "rise-of-kingdoms"
-      ? getLocalizedRiseOfKingdomsRewards(locale)
-      : game === "grow-a-garden"
-      ? getLocalizedGrowAGardenRewards(locale)
-      : getLocalizedBrawlStarsRewards(locale)
-  ).filter((reward) => reward.status === "active");
+  const allRewards = await getRewardsByPlatform(game, locale);
   
   const t = getDictionary(locale);
   
-  const INITIAL_LIMIT = 10;
-  const rewards = showAll ? allRewards : allRewards.slice(0, INITIAL_LIMIT);
+  const rewards = allRewards.slice(0, INITIAL_LIMIT);
 
   return (
     <section className="mx-auto max-w-5xl px-4 pb-24">
@@ -46,7 +24,7 @@ export default function CurrentActiveRewardsSection({
           {rewards.map((reward) => (
             <RewardItem
               key={reward.id}
-              src={reward.previewImage}
+              src={reward.previewImage || ""}
               platform={reward.platform}
               title={reward.name}
               slug={reward.slug}
@@ -56,14 +34,14 @@ export default function CurrentActiveRewardsSection({
           ))}
         </ul>
         
-        {!showAll && allRewards.length > INITIAL_LIMIT && (
+        {allRewards.length > INITIAL_LIMIT && (
           <Button 
-            onClick={() => setShowAll(true)}
             variant="outline"
             className="font-concert-one"
+            asChild
             data-trigger-popunder="true"
           >
-            {t.common.seeMore}
+            <a href={`/${locale}/games/${game}`}>{t.common.seeMore}</a>
           </Button>
         )}
       </div>

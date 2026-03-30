@@ -1,7 +1,7 @@
 "use client";
 
 import { Platform, Reward } from "@prisma/client";
-import { deleteReward } from "@/app/[locale]/admin/actions";
+import { deleteReward } from "@/app/admin/actions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -59,8 +59,8 @@ export function RewardList({
                       </DialogDescription>
                     </DialogHeader>
                     {/* The Reward Form */}
-                    <div className="mt-4">
-                      <RewardForm platforms={platforms} reward={reward} />
+                    <div className="mt-4 text-left">
+                      <RewardForm platforms={platforms} reward={reward} initialContents={reward.contents} />
                     </div>
                   </DialogContent>
                 </Dialog>

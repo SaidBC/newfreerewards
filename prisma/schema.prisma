@@ -45,6 +45,7 @@ model Reward {
   claimUrl     String?
   expiresAt    DateTime?
   status       RewardStatus @default(active)
+  translations Json?        // stores localized title and description e.g. { es: { title: "...", description: "..." }, ar: { ... } }
 
   platform   Platform @relation(fields: [platformId], references: [id], onDelete: Cascade)
   platformId Int
@@ -67,6 +68,7 @@ model RewardContent {
   label    String? // for link label
   imageSrc String? // for image
   imageAlt String?
+  translations Json? // stores localized value, label, and alt e.g. { es: { value: "...", label: "..." }, ar: { ... } }
 
   reward   Reward @relation(fields: [rewardId], references: [id], onDelete: Cascade)
   rewardId Int

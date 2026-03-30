@@ -1,4 +1,5 @@
 import CopyCode from "@/components/CopyCode";
+import { getRewardBySlug } from "@/lib/rewardService";
 import { Button } from "@/components/ui/button";
 import {
   defaultLocale,
@@ -13,6 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const dynamic = "force-static";
+export const revalidate = 3600;
 
 export async function generateMetadata({
   params,
@@ -22,6 +24,7 @@ export async function generateMetadata({
   const { locale: requestedLocale } = await params;
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
   const t = getDictionary(locale);
+  const reward = await getRewardBySlug("roblox", "redemption-codes", locale);
 
   const baseUrl = process.env.NEXT_PUBLIC_URL;
   const path = `/games/roblox/rewards/redemption-codes`;
@@ -64,6 +67,7 @@ export default async function RobloxRedemptionPage({
   const { locale: requestedLocale } = await params;
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
   const t = getDictionary(locale);
+  const reward = await getRewardBySlug("roblox", "redemption-codes", locale);
 
   return (
     <main className="min-h-screen bg-background pt-8 pb-16">
@@ -110,21 +114,13 @@ export default async function RobloxRedemptionPage({
               <h2 className="text-2xl font-bold">Active Roblox Codes (March 2026)</h2>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">FREENGNBOI</span>
-                <CopyCode text="FREENGNBOI" />
-                <p className="text-xs text-muted-foreground">Nguyen Boi Bundle</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">FREENGNGON</span>
-                <CopyCode text="FREENGNGON" />
-                <p className="text-xs text-muted-foreground">Nguyen Gon Bundle</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">SPIDERCOLA</span>
-                <CopyCode text="SPIDERCOLA" />
-                <p className="text-xs text-muted-foreground">Spider Cola shoulder accessory</p>
-              </div>
+              {reward?.content?.filter((b: any) => b.type === "code").map((block: any, idx: number) => (
+                <div key={idx} className="space-y-2">
+                  <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{block.value}</span>
+                  <CopyCode text={block.value || ""} />
+                  {block.label && <p className="text-xs text-muted-foreground">{block.label}</p>}
+                </div>
+              ))}
             </div>
           </section>
 

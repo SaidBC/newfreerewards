@@ -1,0 +1,83 @@
+
+> newfreerewards@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://10.0.2.15:3000
+- Environments: .env
+
+✓ Starting...
+✓ Ready in 5.7s
+○ Compiling /[locale]/admin ...
+AdminPage Render: { auth: undefined, ADMIN_PASSWORD: 'ADMIN' }
+ GET /en/admin 200 in 45s (compile: 29.9s, generate-params: 5.0s, render: 14.7s)
+AdminPage Render: { auth: undefined, ADMIN_PASSWORD: 'ADMIN' }
+ GET /en/admin 200 in 3.1s (compile: 111ms, generate-params: 74ms, render: 3.0s)
+🚀 ~ login ~ password received: ADMIN expected: ADMIN
+🚀 ~ login ~ cookieStore.set called!
+AdminPage Render: { auth: undefined, ADMIN_PASSWORD: 'ADMIN' }
+ GET /en/admin 200 in 2.3s (compile: 88ms, generate-params: 86µs, render: 2.2s)
+ POST /en/admin 303 in 3.4s (compile: 107ms, generate-params: 53µs, render: 3.3s)
+✓ Compiled in 5s
+○ Compiling /[locale]/admin ...
+AdminPage Render: { auth: undefined, ADMIN_PASSWORD: 'ADMIN' }
+ GET /en/admin 200 in 13.2s (compile: 7.1s, generate-params: 112ms, render: 6.2s)
+○ Compiling /api/admin/login ...
+AdminPage Render: { auth: undefined, ADMIN_PASSWORD: 'ADMIN' }
+ GET /en/admin 200 in 1189ms (compile: 271ms, generate-params: 174ms, render: 918ms)
+ POST /api/admin/login 401 in 85ms (compile: 30ms, render: 55ms)
+ POST /api/admin/login 200 in 206ms (compile: 39ms, render: 167ms)
+AdminPage Render: { auth: undefined, ADMIN_PASSWORD: 'ADMIN' }
+ GET /en/admin 200 in 1230ms (compile: 125ms, generate-params: 110ms, render: 1105ms)
+AdminPage Render: { auth: undefined, ADMIN_PASSWORD: 'ADMIN' }
+ GET /en/admin 200 in 1666ms (compile: 146ms, generate-params: 105ms, render: 1521ms)
+API Login attempt. Received: ADMIN Expected: ADMIN
+ POST /api/admin/login 200 in 1127ms (compile: 1018ms, render: 109ms)
+AdminPage Render: { auth: undefined, ADMIN_PASSWORD: 'ADMIN' }
+ GET /en/admin 200 in 1751ms (compile: 6ms, generate-params: 47µs, render: 1745ms)
+AdminPage Render: { auth: undefined, ADMIN_PASSWORD: 'ADMIN' }
+ GET /en/admin 200 in 1554ms (compile: 124ms, generate-params: 72ms, render: 1430ms)
+API Login attempt. Received: ADMIN Expected: ADMIN
+ POST /api/admin/login 200 in 146ms (compile: 29ms, render: 117ms)
+AdminPage Render: { auth: undefined, ADMIN_PASSWORD: 'ADMIN' }
+ GET /en/admin 200 in 4.3s (compile: 18ms, generate-params: 48µs, render: 4.3s)
+AdminPage Render: { auth: undefined, ADMIN_PASSWORD: 'ADMIN' }
+ GET /en/admin 200 in 2.8s (compile: 278ms, generate-params: 227ms, render: 2.6s)
+API Login attempt. Received: ADMIN Expected: ADMIN
+ POST /api/admin/login 200 in 12.2s (compile: 12.0s, render: 201ms)
+AdminPage Render: { auth: undefined, ADMIN_PASSWORD: 'ADMIN' }
+ GET /en/admin 200 in 5.0s (compile: 386ms, generate-params: 283ms, render: 4.6s)
+✓ Compiled in 6.9s
+AdminPage Render: { auth: undefined, ADMIN_PASSWORD: 'ADMIN', allCookies: [] }
+ GET /en/admin 200 in 7.1s (compile: 4.1s, generate-params: 105ms, render: 3.0s)
+AdminPage Render: { auth: undefined, ADMIN_PASSWORD: 'ADMIN', allCookies: [] }
+ GET /en/admin 200 in 9.4s (compile: 487ms, generate-params: 470ms, render: 9.0s)
+✓ Finished filesystem cache database compaction in 73s
+✓ Finished writing to filesystem cache in 23.9s
+API Login attempt. Received: ADMIN Expected: ADMIN
+ POST /api/admin/login 200 in 56ms (compile: 17ms, render: 38ms)
+API Login attempt. Received: ADMIN Expected: ADMIN
+ POST /api/admin/login 200 in 105ms (compile: 53ms, render: 52ms)
+✓ Compiled in 2.2s
+AdminPage Render: { auth: undefined, ADMIN_PASSWORD: 'ADMIN', allCookies: [] }
+ GET /en/admin 200 in 3.4s (compile: 609ms, generate-params: 66ms, render: 2.8s)
+API Login attempt. Received: ADMIN Expected: ADMIN
+ POST /api/admin/login 200 in 58ms (compile: 12ms, render: 46ms)
+AdminPage Render: { auth: undefined, ADMIN_PASSWORD: 'ADMIN', allCookies: [] }
+ GET /en/admin 200 in 958ms (compile: 177ms, generate-params: 134ms, render: 781ms)
+✓ Compiled in 17.1s
+AdminPage Render: {
+  auth: undefined,
+  ADMIN_PASSWORD: 'ADMIN',
+  allCookies: [],
+  rawCookieHeader: null
+}
+ GET /en/admin 200 in 1171ms (compile: 498ms, generate-params: 123ms, render: 673ms)
+AdminPage Render: {
+  auth: undefined,
+  ADMIN_PASSWORD: 'ADMIN',
+  allCookies: [],
+  rawCookieHeader: null
+}
+ GET /en/admin 200 in 1761ms (compile: 159ms, generate-params: 141ms, render: 1602ms)

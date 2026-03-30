@@ -1,4 +1,5 @@
 import CopyCode from "@/components/CopyCode";
+import { getRewardBySlug } from "@/lib/rewardService";
 import { Button } from "@/components/ui/button";
 import {
   defaultLocale,
@@ -13,6 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const dynamic = "force-static";
+export const revalidate = 3600;
 
 export async function generateMetadata({
   params,
@@ -64,6 +66,7 @@ export default async function GrowAGardenRedemptionPage({
   const { locale: requestedLocale } = await params;
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
   const t = getDictionary(locale);
+  const reward = await getRewardBySlug("grow-a-garden", "redemption-codes", locale);
 
   return (
     <main className="min-h-screen bg-background pt-8 pb-16">
@@ -110,21 +113,13 @@ export default async function GrowAGardenRedemptionPage({
               <h2 className="text-2xl font-bold">Active Grow a Garden Codes (March 2026)</h2>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">RDCAward</span>
-                <CopyCode text="RDCAward" />
-                <p className="text-xs text-muted-foreground">1x RDC Award cosmetic</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">BEANORLEAVE10</span>
-                <CopyCode text="BEANORLEAVE10" />
-                <p className="text-xs text-muted-foreground">1x Green Bean Chamber cosmetic</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">TORIGATE</span>
-                <CopyCode text="TORIGATE" />
-                <p className="text-xs text-muted-foreground">Special Reward</p>
-              </div>
+              {reward?.content?.filter((b: any) => b.type === "code").map((block: any, idx: number) => (
+                <div key={idx} className="space-y-2">
+                  <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{block.value}</span>
+                  <CopyCode text={block.value || ""} />
+                  {block.label && <p className="text-xs text-muted-foreground">{block.label}</p>}
+                </div>
+              ))}
             </div>
           </section>
 

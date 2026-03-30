@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import CopyCode from "@/components/CopyCode";
+import { getRewardBySlug } from "@/lib/rewardService";
+import { prisma } from "@/lib/prisma";
 import {
   defaultLocale,
   getDictionary,
@@ -7,7 +9,6 @@ import {
   localizePath,
   type Locale,
 } from "@/lib/i18n";
-import { getLocalizedClashOfClansRewards } from "@/lib/siteConfig";
 import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -15,7 +16,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export const dynamic = "force-static";
-export const dynamicParams = false;
+export const revalidate = 3600;
+export const dynamicParams = true;
 
 interface PageProps {
   params: Promise<{
@@ -24,17 +26,20 @@ interface PageProps {
   }>;
 }
 
-function getRewardFromConfig(slug: string, locale: Locale) {
-  const rewards = getLocalizedClashOfClansRewards(locale);
-  return rewards.find((r) => r.slug === slug);
+async function getRewardFromDB(platform: string, slug: string, locale: Locale) {
+  return await getRewardBySlug(platform, slug, locale);
 }
 
 export async function generateStaticParams() {
   const locales: Locale[] = ["en", "es", "ar"];
   const params: { locale: string; slug: string }[] = [];
 
+  const rewards = await prisma.reward.findMany({
+    where: { platform: { slug: "clash-of-clans" } },
+    select: { slug: true },
+  });
+
   for (const locale of locales) {
-    const rewards = getLocalizedClashOfClansRewards(locale);
     for (const reward of rewards) {
       params.push({
         locale,
@@ -51,7 +56,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
 
   const t = getDictionary(locale);
-  const reward = getRewardFromConfig(slug, locale);
+  const reward = await getRewardFromDB("clash-of-clans", slug, locale);
 
   if (!reward) {
     return {
@@ -97,7 +102,7 @@ export default async function RewardPage({ params }: PageProps) {
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
 
   const t = getDictionary(locale);
-  const reward = getRewardFromConfig(slug, locale);
+  const reward = await getRewardFromDB("clash-of-clans", slug, locale);
 
   if (!reward) {
     notFound();
@@ -115,7 +120,7 @@ export default async function RewardPage({ params }: PageProps) {
         <div className="flex gap-4 items-center">
           <Image
             className="rounded-md object-cover size-12"
-            src={reward.platform.src || "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-of-clans/Clash_of_Clans.webp"}
+            src={reward.platform.image || "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-of-clans/Clash_of_Clans.webp"}
             width={48}
             height={48}
             alt={reward.platform.name}

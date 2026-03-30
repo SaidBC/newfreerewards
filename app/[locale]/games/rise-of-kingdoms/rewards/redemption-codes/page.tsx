@@ -1,4 +1,5 @@
 import CopyCode from "@/components/CopyCode";
+import { getRewardBySlug } from "@/lib/rewardService";
 import { Button } from "@/components/ui/button";
 import {
   defaultLocale,
@@ -13,6 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const dynamic = "force-static";
+export const revalidate = 3600;
 
 export async function generateMetadata({
   params,
@@ -22,6 +24,7 @@ export async function generateMetadata({
   const { locale: requestedLocale } = await params;
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
   const t = getDictionary(locale);
+  const reward = await getRewardBySlug("rise-of-kingdoms", "redemption-codes", locale);
 
   const baseUrl = process.env.NEXT_PUBLIC_URL;
   const path = `/games/rise-of-kingdoms/rewards/redemption-codes`;
@@ -64,6 +67,7 @@ export default async function RiseOfKingdomsRedemptionPage({
   const { locale: requestedLocale } = await params;
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
   const t = getDictionary(locale);
+  const reward = await getRewardBySlug("rise-of-kingdoms", "redemption-codes", locale);
 
   return (
     <main className="min-h-screen bg-background pt-8 pb-16">
@@ -110,31 +114,13 @@ export default async function RiseOfKingdomsRedemptionPage({
               <h2 className="text-2xl font-bold">Active Rise of Kingdoms Codes (March 2026)</h2>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">ROKRMDAN26</span>
-                <CopyCode text="ROKRMDAN26" />
-                <p className="text-xs text-muted-foreground">Free rewards (Limited time)</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">vvrw9aq6y6</span>
-                <CopyCode text="vvrw9aq6y6" />
-                <p className="text-xs text-muted-foreground">Free rewards</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">ROKTHX2025</span>
-                <CopyCode text="ROKTHX2025" />
-                <p className="text-xs text-muted-foreground">Community Reward</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">RISEIN2025</span>
-                <CopyCode text="RISEIN2025" />
-                <p className="text-xs text-muted-foreground">New Year Reward</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">Rokhaunt25</span>
-                <CopyCode text="Rokhaunt25" />
-                <p className="text-xs text-muted-foreground">Event Reward</p>
-              </div>
+              {reward?.content?.filter((b: any) => b.type === "code").map((block: any, idx: number) => (
+                <div key={idx} className="space-y-2">
+                  <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{block.value}</span>
+                  <CopyCode text={block.value || ""} />
+                  {block.label && <p className="text-xs text-muted-foreground">{block.label}</p>}
+                </div>
+              ))}
             </div>
           </section>
 

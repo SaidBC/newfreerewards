@@ -1,4 +1,5 @@
 import CopyCode from "@/components/CopyCode";
+import { getRewardBySlug } from "@/lib/rewardService";
 import { Button } from "@/components/ui/button";
 import {
   defaultLocale,
@@ -13,6 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const dynamic = "force-static";
+export const revalidate = 3600;
 
 export async function generateMetadata({
   params,
@@ -22,6 +24,7 @@ export async function generateMetadata({
   const { locale: requestedLocale } = await params;
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
   const t = getDictionary(locale);
+  const reward = await getRewardBySlug("honkai-star-rail", "redemption-codes", locale);
 
   const baseUrl = process.env.NEXT_PUBLIC_URL;
   const path = `/games/honkai-star-rail/rewards/redemption-codes`;
@@ -64,6 +67,7 @@ export default async function HonkaiStarRailRedemptionPage({
   const { locale: requestedLocale } = await params;
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
   const t = getDictionary(locale);
+  const reward = await getRewardBySlug("honkai-star-rail", "redemption-codes", locale);
 
   return (
     <main className="min-h-screen bg-background pt-8 pb-16">
@@ -111,71 +115,13 @@ export default async function HonkaiStarRailRedemptionPage({
               <h2 className="text-2xl font-bold">Active Honkai: Star Rail Codes (March 2026)</h2>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">4T28RJM4MS3B</span>
-                <CopyCode text="4T28RJM4MS3B" />
-                <p className="text-xs text-muted-foreground">50 Stellar Jade + 10,000 Credits</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">SUB2SPARXIE</span>
-                <CopyCode text="SUB2SPARXIE" />
-                <p className="text-xs text-muted-foreground">2 Sparxie Collectible Plushies + Traveler’s Guide</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">ALETTERFORYOU</span>
-                <CopyCode text="ALETTERFORYOU" />
-                <p className="text-xs text-muted-foreground">6 Adventure Logs + 2 Dreamlight Mixed Sweets</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">XAK9QJ454SG7</span>
-                <CopyCode text="XAK9QJ454SG7" />
-                <p className="text-xs text-muted-foreground">50 Stellar Jade + 10,000 Credits</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">AT45Q</span>
-                <CopyCode text="AT45Q" />
-                <p className="text-xs text-muted-foreground">100 Stellar Jade + 50,000 Credits</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">BGF3A</span>
-                <CopyCode text="BGF3A" />
-                <p className="text-xs text-muted-foreground">100 Stellar Jade + 5 Traveler’s Guide</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">MH5KC</span>
-                <CopyCode text="MH5KC" />
-                <p className="text-xs text-muted-foreground">100 Stellar Jade + 4 Refined Aether</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">CB2RUY7Y2P9B</span>
-                <CopyCode text="CB2RUY7Y2P9B" />
-                <p className="text-xs text-muted-foreground">50 Stellar Jade + 10,000 Credits</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">OMEGA</span>
-                <CopyCode text="OMEGA" />
-                <p className="text-xs text-muted-foreground">60 Stellar Jade + 1 Fuel</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">CREATIONNYMPH</span>
-                <CopyCode text="CREATIONNYMPH" />
-                <p className="text-xs text-muted-foreground">60 Stellar Jade + 1 Fuel + 1 Heroic Variable</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">FAREWELL</span>
-                <CopyCode text="FAREWELL" />
-                <p className="text-xs text-muted-foreground">60 Stellar Jade + 1 Fuel</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">IFYOUAREREADINGTHIS</span>
-                <CopyCode text="IFYOUAREREADINGTHIS" />
-                <p className="text-xs text-muted-foreground">60 Stellar Jade + 1 Fuel</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">STARRAILGIFT</span>
-                <CopyCode text="STARRAILGIFT" />
-                <p className="text-xs text-muted-foreground">50 Stellar Jade, 2 Traveler’s Guide, 5 Bottled Soda, 10,000 Credits</p>
-              </div>
+              {reward?.content?.filter((b: any) => b.type === "code").map((block: any, idx: number) => (
+                <div key={idx} className="space-y-2">
+                  <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{block.value}</span>
+                  <CopyCode text={block.value || ""} />
+                  {block.label && <p className="text-xs text-muted-foreground">{block.label}</p>}
+                </div>
+              ))}
             </div>
           </section>
 
