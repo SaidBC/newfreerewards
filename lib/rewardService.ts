@@ -8,7 +8,9 @@ export type TranslatedReward = Reward & {
   name: string; // for compatibility
 };
 
-export async function getRewardsByPlatform(platformSlug: string, locale: Locale): Promise<TranslatedReward[]> {
+export type TranslatedRewards = TranslatedReward[];
+
+export async function getRewardsByPlatform(platformSlug: string, locale: Locale): Promise<TranslatedRewards> {
   const platform = await prisma.platform.findUnique({
     where: { slug: platformSlug },
     include: {
