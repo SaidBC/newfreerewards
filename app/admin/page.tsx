@@ -10,11 +10,7 @@ import { Button } from "@/components/ui/button";
 
 export const dynamic = "force-dynamic";
 
-export default async function AdminPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function AdminPage() {
   const cookieStore = await cookies();
   const auth = cookieStore.get("admin_auth")?.value;
   const ADMIN_PASSWORD = serverEnv.ADMIN_PASSWORD;
@@ -60,4 +56,3 @@ export default async function AdminPage({
     </div>
   );
 }
-
