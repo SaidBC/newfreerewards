@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Concert_One} from "next/font/google";
 import "./globals.css";
 import SmartlinkPopunder from "@/components/SmartlinkPopunder";
+import clientEnv from "@/utils/clientEnv";
+import { GoogleAnalytics } from '@next/third-parties/google'
+
 
 const concertOne = Concert_One({
   variable: "--font-concert-one",
@@ -39,6 +42,7 @@ export default function RootLayout({
         <SmartlinkPopunder />
         {children}
       </body>
+      {clientEnv.NEXT_PUBLIC_NODE_ENV === "production" && <GoogleAnalytics gaId={clientEnv.NEXT_PUBLIC_GA_MEASUREMENT_ID} />}
     </html>
   );
 }
