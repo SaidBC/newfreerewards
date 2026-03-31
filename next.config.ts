@@ -1,18 +1,23 @@
 import type { NextConfig } from "next";
 
+const storageUrl = process.env.NEXT_PUBLIC_STORAGE_URL;
+const storageHostname = storageUrl ? new URL(storageUrl).hostname : null;
+
 const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "lcusyxguyutbfjyqawzi.supabase.co",
-      },
-      {
-        protocol: "http",
-        hostname: "lcusyxguyutbfjyqawzi.supabase.co",
-      },
-    ],
+    remotePatterns: storageHostname
+      ? [
+          {
+            protocol: "https",
+            hostname: storageHostname,
+          },
+          {
+            protocol: "http",
+            hostname: storageHostname,
+          },
+        ]
+      : [],
   },
   async rewrites() {
     return [

@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "seed:images": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' seed-images.ts",
     "seed": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/seed.ts",
     "postinstall": "prisma generate",
     "vercel-build": "prisma migrate deploy && npm run seed && next build"
@@ -29,6 +30,7 @@
     "@radix-ui/react-tabs": "^1.1.13",
     "@vercel/analytics": "^1.6.1",
     "class-variance-authority": "^0.7.1",
+    "cloudinary": "^2.9.0",
     "clsx": "^2.1.1",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",

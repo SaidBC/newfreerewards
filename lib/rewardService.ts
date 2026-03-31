@@ -1,6 +1,7 @@
 import { prisma } from "./prisma";
 import { Locale, defaultLocale } from "./i18n";
 import { Reward, RewardContent, Platform } from "@prisma/client";
+import { normalizeStorageUrl } from "./storage";
 
 export type TranslatedReward = Reward & {
   platform: Platform;
@@ -47,10 +48,15 @@ function translateReward(reward: any, locale: Locale, platform: Platform): Trans
 
   return {
     ...reward,
-    platform,
+    platform: {
+      ...platform,
+      image: normalizeStorageUrl(platform.image) ?? platform.image,
+    },
     name: localeData.title || reward.title,
     title: localeData.title || reward.title,
     description: localeData.description || reward.description,
+    image: normalizeStorageUrl(reward.image) ?? reward.image,
+    previewImage: normalizeStorageUrl(reward.previewImage) ?? reward.previewImage,
     content: reward.contents.map((content: any) => {
       const contentTranslations = (content.translations as any) || {};
       const contentLocaleData = contentTranslations[locale] || {};
@@ -60,8 +66,10 @@ function translateReward(reward: any, locale: Locale, platform: Platform): Trans
         value: contentLocaleData.value || content.value,
         href: content.href,
         label: contentLocaleData.label || content.label,
-        src: content.imageSrc,
+        src: normalizeStorageUrl(content.imageSrc) ?? content.imageSrc,
+        imageSrc: normalizeStorageUrl(content.imageSrc) ?? content.imageSrc,
         alt: contentLocaleData.alt || content.imageAlt,
+        imageAlt: contentLocaleData.alt || content.imageAlt,
       };
     }),
   };

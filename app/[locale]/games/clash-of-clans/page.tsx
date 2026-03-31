@@ -1,3 +1,4 @@
+import { storageUrl } from "@/lib/storage";
 import CurrentActiveRewardsSection from "@/ui/games/CurrentActiveRewardsSection";
 import ExpiredRewardsSection from "@/ui/games/ExpiredRewardsSection";
 import {
@@ -78,7 +79,7 @@ export default async function ClashOfClansPage({
         <div className="flex items-center gap-4">
           <Image
             className="size-12 rounded-md object-cover"
-            src="https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-of-clans/Clash_of_Clans.webp"
+            src={storageUrl("images/clash-of-clans/Clash_of_Clans.webp")}
             width={125}
             height={125}
             alt="Clash of Clans"

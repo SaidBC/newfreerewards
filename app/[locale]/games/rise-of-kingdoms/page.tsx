@@ -1,3 +1,4 @@
+import { storageUrl } from "@/lib/storage";
 import CurrentActiveRewardsSection from "@/ui/games/CurrentActiveRewardsSection";
 import ExpiredRewardsSection from "@/ui/games/ExpiredRewardsSection";
 import {
@@ -43,14 +44,14 @@ export async function generateMetadata({
       title: t.seo.riseOfKingdomsTitle,
       description: t.seo.riseOfKingdomsDescription,
       url: `${baseUrl}/${locale}${path}`,
-      images: ["https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/rise-of-kingdoms/logo.png"],
+      images: [storageUrl("images/rise-of-kingdoms/logo.png")],
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
       title: t.seo.riseOfKingdomsTitle,
       description: t.seo.riseOfKingdomsDescription,
-      images: ["https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/rise-of-kingdoms/logo.png"],
+      images: [storageUrl("images/rise-of-kingdoms/logo.png")],
     },
   };
 }
@@ -70,7 +71,7 @@ export default async function RiseOfKingdomsGamePage({
         <div className="flex items-center gap-4">
           <Image
             className="size-12 rounded-md object-cover"
-            src="https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/rise-of-kingdoms/logo.png"
+            src={storageUrl("images/rise-of-kingdoms/logo.png")}
             width={125}
             height={125}
             alt="Rise of Kingdoms"

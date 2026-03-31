@@ -1,4 +1,5 @@
 "use client";
+import { storageUrl } from "@/lib/storage";
 
 import { useEffect, useRef, useState } from "react";
 import EditorJS from "@editorjs/editorjs";
@@ -54,7 +55,7 @@ export default function Editor({ data, onChange, holder = "editorjs" }: EditorPr
                 return Promise.resolve({
                   success: 1,
                   file: {
-                    url: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/placeholder.png",
+                    url: storageUrl("images/placeholder.png"),
                   }
                 });
               },

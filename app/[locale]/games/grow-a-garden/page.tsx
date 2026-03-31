@@ -1,3 +1,4 @@
+import { storageUrl } from "@/lib/storage";
 import CurrentActiveRewardsSection from "@/ui/games/CurrentActiveRewardsSection";
 import ExpiredRewardsSection from "@/ui/games/ExpiredRewardsSection";
 import {
@@ -43,14 +44,14 @@ export async function generateMetadata({
       title: t.seo.growAGardenTitle,
       description: t.seo.growAGardenDescription,
       url: `${baseUrl}/${locale}${path}`,
-      images: ["https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/grow-a-garden/logo.webp"],
+      images: [storageUrl("images/grow-a-garden/logo.webp")],
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
       title: t.seo.growAGardenTitle,
       description: t.seo.growAGardenDescription,
-      images: ["https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/grow-a-garden/logo.webp"],
+      images: [storageUrl("images/grow-a-garden/logo.webp")],
     },
   };
 }
@@ -70,7 +71,7 @@ export default async function GrowAGardenGamePage({
         <div className="flex items-center gap-4">
           <Image
             className="size-12 rounded-md object-cover"
-            src="https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/grow-a-garden/logo.webp"
+            src={storageUrl("images/grow-a-garden/logo.webp")}
             width={125}
             height={125}
             alt="Grow a Garden"

@@ -2,6 +2,7 @@ import z from "zod";
 
 const clientEnv = z.object({
   NEXT_PUBLIC_URL: z.url(),
+  NEXT_PUBLIC_STORAGE_URL: z.url(),
   NEXT_PUBLIC_NODE_ENV: z.enum(["production", "development"]),
   NEXT_PUBLIC_ADSTERRA_BANNER_728X90_API_KEY: z.string().min(1),
   NEXT_PUBLIC_ADSTERRA_BANNER_468X60_API_KEY: z.string().min(1),
@@ -10,6 +11,7 @@ const clientEnv = z.object({
 
 export default clientEnv.parse({
   NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL,
+  NEXT_PUBLIC_STORAGE_URL: process.env.NEXT_PUBLIC_STORAGE_URL,
   NEXT_PUBLIC_NODE_ENV: process.env.NEXT_PUBLIC_NODE_ENV,
   NEXT_PUBLIC_ADSTERRA_BANNER_728X90_API_KEY:
     process.env.NEXT_PUBLIC_ADSTERRA_BANNER_728X90_API_KEY,

@@ -1,3 +1,4 @@
+import { storageUrl } from "@/lib/storage";
 import CopyCode from "@/components/CopyCode";
 import { getRewardBySlug } from "@/lib/rewardService";
 import { Button } from "@/components/ui/button";
@@ -47,14 +48,14 @@ export async function generateMetadata({
       title: t.seo.robloxTitle,
       description: t.seo.robloxDescription,
       url: `${baseUrl}/${locale}${path}`,
-      images: ["https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/roblox/logo.png"],
+      images: [storageUrl("images/roblox/logo.png")],
       type: "article",
     },
     twitter: {
       card: "summary_large_image",
       title: t.seo.robloxTitle,
       description: t.seo.robloxDescription,
-      images: ["https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/roblox/logo.png"],
+      images: [storageUrl("images/roblox/logo.png")],
     },
   };
 }
@@ -88,7 +89,7 @@ export default async function RobloxRedemptionPage({
         <div className="mb-12 flex flex-col items-center gap-6 text-center md:flex-row md:text-left">
           <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-2xl border-4 border-primary/20 shadow-xl">
             <Image
-              src="https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/roblox/logo.png"
+              src={storageUrl("images/roblox/logo.png")}
               fill
               className="object-cover"
               alt="Roblox"

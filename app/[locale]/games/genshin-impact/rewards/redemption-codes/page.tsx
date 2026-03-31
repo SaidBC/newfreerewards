@@ -1,3 +1,4 @@
+import { storageUrl } from "@/lib/storage";
 import CopyCode from "@/components/CopyCode";
 import { getRewardBySlug } from "@/lib/rewardService";
 import { prisma } from "@/lib/prisma";
@@ -47,14 +48,14 @@ export async function generateMetadata({
       title: t.seo.genshinImpactTitle,
       description: t.seo.genshinImpactDescription,
       url: `${baseUrl}/${locale}${path}`,
-      images: ["https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/genshin-impact/logo.png"],
+      images: [storageUrl("images/genshin-impact/logo.png")],
       type: "article",
     },
     twitter: {
       card: "summary_large_image",
       title: t.seo.genshinImpactTitle,
       description: t.seo.genshinImpactDescription,
-      images: ["https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/genshin-impact/logo.png"],
+      images: [storageUrl("images/genshin-impact/logo.png")],
     },
   };
 }
@@ -90,7 +91,7 @@ export default async function GenshinImpactPage({
         <div className="mb-12 flex flex-col items-center gap-6 text-center md:flex-row md:text-left">
           <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-2xl border-4 border-primary/20 shadow-xl">
             <Image
-              src="https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/genshin-impact/logo.png"
+              src={storageUrl("images/genshin-impact/logo.png")}
               fill
               className="object-cover"
               alt="Genshin Impact"

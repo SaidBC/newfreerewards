@@ -1,3 +1,4 @@
+import { storageUrl } from "@/lib/storage";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -46,7 +47,7 @@ export default function HeroSection({ locale }: { locale: Locale }) {
           <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-amber-500/30 blur-3xl opacity-20 group-hover:opacity-40 transition-opacity -z-10 animate-pulse" />
           <div className="relative rounded-3xl border bg-card/50 backdrop-blur-sm p-4 shadow-2xl overflow-hidden">
             <Image
-              src="https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-royale/hero.png"
+              src={storageUrl("images/clash-royale/hero.png")}
               className="w-full h-auto max-w-lg rounded-2xl transform transition-transform duration-500 group-hover:scale-105"
               width={700}
               height={400}

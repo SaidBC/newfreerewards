@@ -1,3 +1,4 @@
+import { storageUrl } from "@/lib/storage";
 import { getRewardBySlug } from "@/lib/rewardService";
 import { prisma } from "@/lib/prisma";
 import Image from "next/image";
@@ -121,7 +122,7 @@ export default async function RewardPage({ params }: PageProps) {
         <div className="flex gap-4 items-center">
           <Image
             className="rounded-md object-cover size-12"
-            src={reward.platform.image || "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/logo.jpeg"}
+            src={reward.platform.image || storageUrl("images/brawl-stars/logo.jpeg")}
             width={48}
             height={48}
             alt={reward.platform.name}
@@ -174,7 +175,7 @@ function renderBlock(block: any, index: number, locale: Locale) {
       return (
         <div key={index} className={`relative mt-2 overflow-hidden rounded-lg border ${isQrCode ? "max-w-[200px]" : ""}`}>
           <Image
-            src={block.src || "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/logo.jpeg"}
+            src={block.src || storageUrl("images/brawl-stars/logo.jpeg")}
             alt={block.alt || "reward step"}
             width={isQrCode ? 200 : 800}
             height={isQrCode ? 200 : 450}

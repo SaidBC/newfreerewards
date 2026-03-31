@@ -1,3 +1,4 @@
+import { storageUrl } from "@/lib/storage";
 import CurrentActiveRewardsSection from "@/ui/games/CurrentActiveRewardsSection";
 import ExpiredRewardsSection from "@/ui/games/ExpiredRewardsSection";
 import {
@@ -44,14 +45,14 @@ export async function generateMetadata({
       title: t.seo.genshinImpactTitle,
       description: t.seo.genshinImpactDescription,
       url: `${baseUrl}/${locale}${path}`,
-      images: ["https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/genshin-impact/logo.png"],
+      images: [storageUrl("images/genshin-impact/logo.png")],
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
       title: t.seo.genshinImpactTitle,
       description: t.seo.genshinImpactDescription,
-      images: ["https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/genshin-impact/logo.png"],
+      images: [storageUrl("images/genshin-impact/logo.png")],
     },
   };
 }
@@ -73,7 +74,7 @@ export default async function GenshinImpactGamePage({
         <div className="flex items-center gap-4">
           <Image
             className="size-12 rounded-md object-cover"
-            src="https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/genshin-impact/logo.png"
+            src={storageUrl("images/genshin-impact/logo.png")}
             width={125}
             height={125}
             alt="Genshin Impact"

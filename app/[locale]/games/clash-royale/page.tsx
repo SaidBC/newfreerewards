@@ -1,3 +1,4 @@
+import { storageUrl } from "@/lib/storage";
 import CurrentActiveRewardsSection from "@/ui/games/CurrentActiveRewardsSection";
 import Image from "next/image";
 
@@ -68,7 +69,7 @@ export default async function Page({
         <div className="flex gap-4 items-center">
           <Image
             className="rounded-md object-cover size-12"
-            src={"https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-royale/clash-royale.jpg"}
+            src={storageUrl("images/clash-royale/clash-royale.jpg")}
             width={125}
             height={125}
             alt={"Clash Royale"}

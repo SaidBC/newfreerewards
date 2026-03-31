@@ -1,5 +1,6 @@
 import "dotenv/config";
-import { 
+import { storageUrl } from "../lib/storage";
+import {
   getLocalizedClashRoyaleRewards, 
   getLocalizedClashOfClansRewards,
   getLocalizedBrawlStarsRewards,
@@ -29,7 +30,7 @@ async function main() {
     data: {
       name: "Clash Royale",
       slug: "clash-royale",
-      image: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-royale/clash-royale.jpg",
+      image: storageUrl("images/clash-royale/clash-royale.jpg"),
       type: "GAME",
     },
   });
@@ -38,7 +39,7 @@ async function main() {
     data: {
       name: "Clash of Clans",
       slug: "clash-of-clans",
-      image: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/clash-of-clans/Clash_of_Clans.webp",
+      image: storageUrl("images/clash-of-clans/Clash_of_Clans.webp"),
       type: "GAME",
     },
   });
@@ -47,7 +48,7 @@ async function main() {
     data: {
       name: "Brawl Stars",
       slug: "brawl-stars",
-      image: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/brawl-stars/logo.jpeg",
+      image: storageUrl("images/brawl-stars/logo.jpeg"),
       type: "GAME",
     },
   });
@@ -56,7 +57,7 @@ async function main() {
     data: {
       name: "Genshin Impact",
       slug: "genshin-impact",
-      image: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/genshin-impact/logo.png",
+      image: storageUrl("images/genshin-impact/logo.png"),
       type: "GAME",
     },
   });
@@ -65,7 +66,7 @@ async function main() {
     data: {
       name: "Honkai: Star Rail",
       slug: "honkai-star-rail",
-      image: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/honkai-star-rail/logo.png",
+      image: storageUrl("images/honkai-star-rail/logo.png"),
       type: "GAME",
     },
   });
@@ -74,7 +75,7 @@ async function main() {
     data: {
       name: "Roblox",
       slug: "roblox",
-      image: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/roblox/logo.png",
+      image: storageUrl("images/roblox/logo.png"),
       type: "GAME",
     },
   });
@@ -83,7 +84,7 @@ async function main() {
     data: {
       name: "Rise of Kingdoms",
       slug: "rise-of-kingdoms",
-      image: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/rise-of-kingdoms/logo.png",
+      image: storageUrl("images/rise-of-kingdoms/logo.png"),
       type: "GAME",
     },
   });
@@ -92,7 +93,7 @@ async function main() {
     data: {
       name: "Grow a Garden",
       slug: "grow-a-garden",
-      image: "https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/grow-a-garden/logo.webp",
+      image: storageUrl("images/grow-a-garden/logo.webp"),
       type: "GAME",
     },
   });

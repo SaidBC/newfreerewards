@@ -1,3 +1,4 @@
+import { storageUrl } from "@/lib/storage";
 import CopyCode from "@/components/CopyCode";
 import { getRewardBySlug } from "@/lib/rewardService";
 import { Button } from "@/components/ui/button";
@@ -46,14 +47,14 @@ export async function generateMetadata({
       title: t.seo.growAGardenTitle,
       description: t.seo.growAGardenDescription,
       url: `${baseUrl}/${locale}${path}`,
-      images: ["https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/grow-a-garden/logo.webp"],
+      images: [storageUrl("images/grow-a-garden/logo.webp")],
       type: "article",
     },
     twitter: {
       card: "summary_large_image",
       title: t.seo.growAGardenTitle,
       description: t.seo.growAGardenDescription,
-      images: ["https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/grow-a-garden/logo.webp"],
+      images: [storageUrl("images/grow-a-garden/logo.webp")],
     },
   };
 }
@@ -87,7 +88,7 @@ export default async function GrowAGardenRedemptionPage({
         <div className="mb-12 flex flex-col items-center gap-6 text-center md:flex-row md:text-left">
           <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-2xl border-4 border-primary/20 shadow-xl">
             <Image
-              src="https://lcusyxguyutbfjyqawzi.supabase.co/storage/v1/object/public/newfreerewards/images/grow-a-garden/logo.webp"
+              src={storageUrl("images/grow-a-garden/logo.webp")}
               fill
               className="object-cover"
               alt="Grow a Garden"
