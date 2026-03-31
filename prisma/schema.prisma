@@ -23,6 +23,17 @@ enum RewardContentType {
   code
 }
 
+enum ReactionType {
+  love
+  dislike
+}
+
+enum ReportType {
+  expired
+  not_working
+  other
+}
+
 model Platform {
   id      Int          @id @default(autoincrement())
   name    String       @unique
@@ -51,6 +62,8 @@ model Reward {
   platformId Int
 
   contents RewardContent[]
+  reactions RewardReaction[]
+  reports   RewardReport[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -78,4 +91,36 @@ model RewardContent {
   createdAt DateTime @default(now())
 
   @@index([rewardId])
+}
+
+model RewardReaction {
+  id           Int          @id @default(autoincrement())
+  reactionType ReactionType
+  visitorId    String
+
+  reward   Reward @relation(fields: [rewardId], references: [id], onDelete: Cascade)
+  rewardId Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([rewardId, visitorId])
+  @@index([rewardId, reactionType])
+}
+
+model RewardReport {
+  id         Int        @id @default(autoincrement())
+  reportType ReportType
+  visitorId  String
+  reportDay  DateTime
+  note       String?
+
+  reward   Reward @relation(fields: [rewardId], references: [id], onDelete: Cascade)
+  rewardId Int
+
+  createdAt DateTime @default(now())
+
+  @@unique([rewardId, visitorId, reportDay])
+  @@index([rewardId, reportType])
+  @@index([rewardId, createdAt])
 }

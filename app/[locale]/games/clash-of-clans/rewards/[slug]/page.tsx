@@ -1,4 +1,5 @@
 import { storageUrl } from "@/lib/storage";
+import RewardEngagementBar from "@/components/rewards/RewardEngagementBar";
 import { Button } from "@/components/ui/button";
 import CopyCode from "@/components/CopyCode";
 import { getRewardBySlug } from "@/lib/rewardService";
@@ -142,6 +143,7 @@ export default async function RewardPage({ params }: PageProps) {
       </section>
 
       <section className="mx-auto max-w-5xl px-4 pb-24 flex flex-col gap-8">
+        <RewardEngagementBar rewardId={reward.id} locale={locale} />
         <div className="space-y-8 rounded-2xl border bg-card p-6 sm:p-8">
           <div className="flex items-center gap-2 border-b pb-4">
             <div className="h-2 w-2 rounded-full bg-primary" />

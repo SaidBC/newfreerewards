@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import RewardItem from "./RewardItem";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 import { MinusIcon, PlusIcon } from "lucide-react";
 
 const INITIAL_LIMIT = 12;
@@ -103,7 +104,10 @@ export default function CurrentActiveRewardsSection({
       <div className="rounded-2xl border border-dashed p-4 sm:p-10 flex flex-col items-center gap-8">
         {isLoading ? (
           <div className="flex min-h-40 w-full items-center justify-center text-sm text-muted-foreground">
-            {t.common.loading}
+            <div className="flex items-center gap-2">
+              <Spinner />
+              <span>{t.common.loading}</span>
+            </div>
           </div>
         ) : hasError ? (
           <div className="flex min-h-40 w-full items-center justify-center text-sm text-destructive">

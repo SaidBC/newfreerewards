@@ -1,0 +1,114 @@
+import { ReportType } from "@prisma/client";
+import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
+import z from "zod";
+import {
+  getRewardEngagement,
+  RewardEngagementError,
+  submitRewardReport,
+} from "@/lib/rewardEngagementService";
+import {
+  applyVisitorIdCookie,
+  getOrCreateVisitorId,
+  VISITOR_ID_COOKIE_NAME,
+} from "@/lib/visitorId";
+
+const reportSchema = z.object({
+  reportType: z.nativeEnum(ReportType),
+  note: z.string().trim().max(1000).optional(),
+}).superRefine((value, ctx) => {
+  if (value.reportType === ReportType.other && !value.note) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "A note is required for other reports",
+      path: ["note"],
+    });
+  }
+});
+
+function parseRewardId(value: string) {
+  const rewardId = Number(value);
+  if (!Number.isInteger(rewardId) || rewardId <= 0) {
+    throw new RewardEngagementError("Invalid reward id", 400, "INVALID_REWARD_ID");
+  }
+
+  return rewardId;
+}
+
+export async function POST(
+  req: Request,
+  context: { params: Promise<{ rewardId: string }> },
+) {
+  const cookieStore = await cookies();
+  const { visitorId, shouldSetCookie } = getOrCreateVisitorId(
+    cookieStore.get(VISITOR_ID_COOKIE_NAME)?.value,
+  );
+
+  try {
+    const { rewardId: rewardIdParam } = await context.params;
+    const rewardId = parseRewardId(rewardIdParam);
+    const body = reportSchema.parse(await req.json());
+
+    const summary = await submitRewardReport(
+      rewardId,
+      visitorId,
+      body.reportType,
+      body.note,
+    );
+    const response = NextResponse.json(summary);
+
+    if (shouldSetCookie) {
+      applyVisitorIdCookie(response, visitorId);
+    }
+
+    return response;
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      const response = NextResponse.json(
+        { message: "Invalid report payload", code: "INVALID_REPORT_PAYLOAD" },
+        { status: 400 },
+      );
+
+      if (shouldSetCookie) {
+        applyVisitorIdCookie(response, visitorId);
+      }
+
+      return response;
+    }
+
+    if (error instanceof RewardEngagementError) {
+      const { rewardId: rewardIdParam } = await context.params;
+      const rewardId = Number(rewardIdParam);
+      const summary =
+        Number.isInteger(rewardId) && rewardId > 0
+          ? await getRewardEngagement(rewardId, visitorId).catch(() => null)
+          : null;
+
+      const response = NextResponse.json(
+        {
+          message: error.message,
+          code: error.code,
+          summary,
+        },
+        { status: error.status },
+      );
+
+      if (shouldSetCookie) {
+        applyVisitorIdCookie(response, visitorId);
+      }
+
+      return response;
+    }
+
+    const response = NextResponse.json(
+      { message: "Failed to submit report", code: "INTERNAL_ERROR" },
+      { status: 500 },
+    );
+
+    if (shouldSetCookie) {
+      applyVisitorIdCookie(response, visitorId);
+    }
+
+    return response;
+  }
+}

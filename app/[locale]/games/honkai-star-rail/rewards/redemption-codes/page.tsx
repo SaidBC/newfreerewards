@@ -1,4 +1,5 @@
 import { storageUrl } from "@/lib/storage";
+import RewardEngagementBar from "@/components/rewards/RewardEngagementBar";
 import CopyCode from "@/components/CopyCode";
 import { getRewardBySlug } from "@/lib/rewardService";
 import { Button } from "@/components/ui/button";
@@ -106,6 +107,8 @@ export default async function HonkaiStarRailRedemptionPage({
             </p>
           </div>
         </div>
+
+        {reward && <RewardEngagementBar rewardId={reward.id} locale={locale} />}
 
         {/* Content Section */}
         <article className="space-y-12 leading-relaxed">

@@ -1,261 +1,150 @@
-# Product Requirements Document (PRD)
 
-## Product Name
+# PRD: Reward Engagement & Discussion Features for NewFreeRewards
 
-**FreeThings (freethings.com)**
+## Objective
+Enhance user engagement and content reliability by adding:
+1. Love/Dislike reactions for each reward.
+2. Report functionality (Expired / Not Working) for each reward.
+3. Discussion section (comments) per game.
 
-## One‑Liner
-
-A trusted hub that lists **legitimate free rewards, items, and no‑investment earning opportunities** from games and the internet — updated and verified.
-
----
-
-## 1. Problem Statement
-
-People constantly search for:
-
-* Legit **free in‑game rewards** (chests, emotes, bonuses)
-* **No‑investment ways to earn online**
-
-But the internet is full of:
-
-* Scammy websites
-* Fake generators
-* Outdated or misleading information
-
-Users waste time, risk bans, or lose trust.
+These features should integrate seamlessly into the existing Next.js project and database.
 
 ---
 
-## 2. Product Goal
+## 1. Love / Dislike Logic
 
-Create a **high‑trust, SEO‑focused directory website** that:
+### Description
+- Users can "Love" a reward or "Dislike" it.
+- Each reward shows total counts of Love and Dislike.
+- Users can toggle their reaction; only one reaction per reward per user.
+- Data should persist in the database and update in real-time if possible.
 
-* Lists **only legitimate free items and rewards**
-* Explains *how* to get them clearly
-* Updates content regularly
-* Monetizes via ads and later affiliate partnerships
+### Database Schema (example)
+- Table: `reward_reactions`
+  - `id` (PK)
+  - `reward_id` (FK → rewards)
+  - `user_id` (FK → users)
+  - `reaction_type` (enum: "love", "dislike")
+  - `created_at`, `updated_at`
 
----
+### API Endpoints
+- `POST /api/rewards/:id/reaction`
+  - Body: `{ reaction_type: "love" | "dislike" }`
+  - Logic: Toggle reaction; if same type exists, remove it.
+- `GET /api/rewards/:id/reactions`
+  - Returns: `{ love: number, dislike: number, user_reaction: string|null }`
 
-## 3. Target Audience
-
-### Primary
-
-* Gamers (mobile & PC)
-* Casual users searching for “free rewards”
-* Young users (16–30)
-
-### Secondary
-
-* People looking for side income
-* Beginners in online earning
-* Users in emerging markets
-
----
-
-## 4. Core Content Hubs
-
-### 4.1 Games Hub
-
-Path: `/games`
-
-Purpose:
-
-* Central place for **official, legit in‑game freebies**
-
-Examples:
-
-* Clash Royale
-* Brawl Stars
-* Fortnite
-* PUBG Mobile
-
-Sub‑routes:
-
-```
-/games/clash-royale
-/games/brawl-stars
-```
+### Frontend
+- Show ❤️ / 👎 buttons next to each reward.
+- Highlight the user’s current reaction.
+- Update counts instantly when clicked.
 
 ---
 
-### 4.2 Money Hub
+## 2. Report Logic (Expired / Not Working)
 
-Path: `/money`
+### Description
+- Users can report rewards as "Expired" or "Not Working".
+- Reports are limited: 1 per reward per user per day.
+- Admin can review reported rewards.
+- Optionally, hide or mark rewards as "Needs Review" if reports exceed threshold.
 
-Purpose:
+### Database Schema (example)
+- Table: `reward_reports`
+  - `id` (PK)
+  - `reward_id` (FK → rewards)
+  - `user_id` (FK → users)
+  - `report_type` (enum: "expired", "not_working")
+  - `created_at`
 
-* List **legitimate ways to earn online with no upfront cost**
+### API Endpoints
+- `POST /api/rewards/:id/report`
+  - Body: `{ report_type: "expired" | "not_working" }`
+  - Logic: Check if user already reported today; save report; return success.
+- `GET /api/rewards/:id/reports`
+  - Returns total report counts per type for admin review.
 
-Sub‑categories:
-
-```
-/money/apps
-/money/websites
-/money/trading
-```
-
-Important framing:
-❌ No “free money” claims
-✅ “Earn online with time & effort — no investment”
-
----
-
-## 5. Page Requirements
-
-### 5.1 Game Page (Example: Clash Royale)
-
-URL:
-`/games/clash-royale`
-
-Sections:
-
-1. Current free rewards (updated)
-2. Upcoming events with rewards
-3. How to get free items legitimately
-4. Tips & common mistakes
-5. FAQ (SEO)
-
-Rules:
-
-* Only official Supercell sources
-* No hacks, generators, or exploits
-* Clear disclaimers
+### Frontend
+- ⚠️ Report button next to each reward.
+- Opens small confirmation/modal (optional text field for notes).
+- Show "Needs Review" badge if reward has multiple reports.
 
 ---
 
-### 5.2 Money Page (Example: Websites)
+## 3. Discussion / Comments Section
 
-URL:
-`/money/websites`
+### Description
+- Each reward/game has its own discussion thread.
+- Users can post comments, reply to others, like comments.
+- Optional: use third-party (Disqus / Commento) or custom implementation.
+- Pagination or lazy-loading for performance.
 
-Each listing must include:
+### Database Schema (if custom)
+- Table: `reward_comments`
+  - `id` (PK)
+  - `reward_id` (FK → rewards)
+  - `user_id` (FK → users)
+  - `parent_id` (nullable FK → reward_comments for replies)
+  - `content` (text)
+  - `likes` (integer, default 0)
+  - `created_at`, `updated_at`
 
-* Website name
-* What you do to earn
-* Time required
-* Country availability
-* Payout method
-* Minimum payout
-* Pros / cons
-* Trust rating (1–5)
+### API Endpoints
+- `POST /api/rewards/:id/comment`
+  - Body: `{ parent_id?, content }`
+- `GET /api/rewards/:id/comments`
+  - Returns comments, nested replies, and likes per comment.
 
----
-
-## 6. Trust & Safety Requirements
-
-### Mandatory
-
-* Disclaimer on every page
-* “No affiliation” notice where required
-* No misleading promises
-* Clear update timestamps
-
-### SEO Trust Signals
-
-* Author/about page
-* Contact page
-* Update dates
-* Transparent criteria
+### Frontend
+- Comment list under each reward.
+- Reply button on each comment.
+- Like button on each comment (optional).
 
 ---
 
-## 7. Monetization
+## 4. UI/UX Suggestions
 
-### Phase 1 (MVP)
-
-* Google AdSense
-* Native display ads
-
-### Phase 2
-
-* Affiliate links (trading platforms, apps)
-* Email newsletter
-* Telegram channel
+- Layout per reward:
+- Reactions and report buttons should be inline, small but visible.
+- Comments section should be collapsible to avoid clutter.
 
 ---
 
-## 8. MVP Scope (7 Days)
+## 5. Rules & Constraints
 
-### Included
-
-* Homepage
-* Games hub
-* Clash Royale page
-* Money hub
-* 1 money subpage
-* Basic SEO
-
-### Excluded (Later)
-
-* User accounts
-* Comments
-* Notifications
-* Paid memberships
+- Only logged-in users can react, report, or comment.
+- Prevent spam / abuse:
+- Reactions: 1 per reward per user.
+- Reports: 1 per reward per user per day.
+- Comments: limit posting frequency per minute.
+- Admin dashboard should show:
+- Rewards flagged as "Needs Review".
+- Comment moderation queue.
 
 ---
 
-## 9. SEO Strategy
+## 6. Future Enhancements (optional)
 
-* Keyword‑based URLs
-* FAQ schema
-* Freshness updates
-* Year‑based titles (2026)
-* Internal linking between hubs
-
-Example title:
-
-> Free Clash Royale Rewards (Updated 2026)
+- Notify users if reward they reported is fixed.
+- Leaderboard of most-loved rewards.
+- User badges for reporting or commenting activity.
+- Real-time updates using WebSockets for reactions and comments.
 
 ---
 
-## 10. Tech Stack (Suggested)
+## 7. Dependencies
 
-* Frontend: Next.js
-* Styling: Tailwind
-* CMS: Markdown / Notion / Headless CMS
-* Hosting: Vercel
-* Analytics: Google Analytics + Search Console
+- Existing Next.js project and user authentication.
+- Database: PostgreSQL / MySQL (use existing).
+- Optional: Third-party discussion system (Disqus, Commento) if not custom.
 
 ---
 
-## 11. Success Metrics
+## 8. Acceptance Criteria
 
-* Indexed pages
-* Organic impressions
-* Time on page
-* Pages per session
-* Ad RPM
-
----
-
-## 12. Risks & Mitigation
-
-| Risk             | Mitigation                       |
-| ---------------- | -------------------------------- |
-| Google distrust  | Clean language, legit sources    |
-| Ad rejection     | Avoid scam wording               |
-| Legal issues     | Use disclaimers & official links |
-| Low SEO traction | Focus on single niche first      |
-
----
-
-## 13. Future Expansion
-
-* More games
-* Country‑specific pages
-* Free trials & SaaS offers
-* Browser extension
-
----
-
-## 14. Summary
-
-FreeThings is a **trust‑first content platform** that focuses on:
-
-* Legit freebies
-* Clear explanations
-* Scalable SEO structure
-
-If executed cleanly, it can grow into a **high‑traffic ad‑monetized authority site**.
+1. Users can react to rewards with Love/Dislike, only one reaction at a time.
+2. Users can report rewards as Expired/Not Working; system tracks reports.
+3. Each reward has a discussion section where users can post and reply to comments.
+4. Admin can see flagged rewards and moderate comments.
+5. Reactions, reports, and comments are persisted and reflected immediately in the UI.
+6. The feature does not break existing reward listing pages or database functionality.
