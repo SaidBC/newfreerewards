@@ -583,6 +583,31 @@ const siteConfig = {
           },
         ] as ContentType[],
       },
+      {
+        id: "cr-hog-cake-icon-emote",
+        slug: "hog-cake-icon-emote",
+        platform: {
+          name: "Clash Royale",
+          src: storageUrl("images/clash-royale/clash-royale.jpg"),
+        },
+        previewImage:
+          storageUrl("images/clash-royale/hog-cake-icon-emote.jpg"),
+        name: "Hog Cake Icon Emote",
+        description: "Claim the Hog Cake Icon emote.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "clashroyale://action=voucher&code=f7263962-55c7-42f1-88da-b3839addb310",
+            label: "Claim emote",
+          },
+          {
+            type: "image",
+            src: storageUrl("images/clash-royale/hog-cake-icon-emote-qr.png"),
+            alt: "Hog Cake Icon emote QR",
+          },
+        ] as ContentType[],
+      },
     ] as RewardType[],
   },
   clashofclans: {
