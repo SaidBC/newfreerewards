@@ -9,6 +9,8 @@ import {
   locales,
   type Locale,
 } from "@/lib/i18n";
+import MonetageVignette from "@/components/MonetageVignette";
+import clientEnv from "@/utils/clientEnv";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
@@ -51,6 +53,7 @@ export default async function LocaleLayout({
       <Header locale={locale} />
       {children}
       <Footer locale={locale} />
+      {clientEnv.NEXT_PUBLIC_NODE_ENV === "production" && <MonetageVignette />}
     </div>
   );
 }
