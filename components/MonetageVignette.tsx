@@ -7,7 +7,7 @@ export default function MonetageVignette() {
       (function(s)
       {
         ((s.dataset.zone = "10594069"),
-        (s.src = "https://gizokraijaw.net/vignette.min.js"))
+        (s.src = "https://n6wxm.com/vignette.min.js"))
       }
       )([document.documentElement,
       document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`}
