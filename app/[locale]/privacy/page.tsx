@@ -34,7 +34,7 @@ export default async function PrivacyPage({
           <h2 className="text-2xl font-semibold mb-4 text-primary">1. Information We Collect</h2>
           <p>We do not require user accounts to browse our rewards. However, we may collect minimal data such as:</p>
           <ul className="list-disc pl-6 mb-4">
-            <li>Usage data (via Vercel Analytics).</li>
+            <li>Usage data (via Google Analytics).</li>
             <li>Browser type and device information.</li>
             <li>General geographic location based on IP address.</li>
           </ul>
@@ -52,7 +52,7 @@ export default async function PrivacyPage({
 
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4 text-primary">3. Third-Party Services</h2>
-          <p>We may use third-party services like Vercel Analytics to understand how visitors interact with our site. These services may use cookies and similar technologies.</p>
+          <p>We may use third-party services like Google Analytics to understand how visitors interact with our site. These services may use cookies and similar technologies.</p>
         </section>
 
         <section className="mb-8">

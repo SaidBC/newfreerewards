@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Header from "@/ui/Header";
 import Footer from "@/ui/Footer";
-import { Analytics } from "@vercel/analytics/next";
 import clientEnv from "@/utils/clientEnv";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import MonetageVignette from "@/components/MonetageVignette";
 import {
   defaultLocale,
@@ -53,7 +53,7 @@ export default async function LocaleLayout({
       <Header locale={locale} />
       {children}
       <Footer locale={locale} />
-      {clientEnv.NEXT_PUBLIC_NODE_ENV === "production" && <Analytics />}
+      {clientEnv.NEXT_PUBLIC_NODE_ENV === "production" && <GoogleAnalytics />}
       {clientEnv.NEXT_PUBLIC_NODE_ENV === "production" && <MonetageVignette />}
     </div>
   );
