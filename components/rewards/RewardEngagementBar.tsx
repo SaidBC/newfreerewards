@@ -1,10 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Heart, MessageSquareWarning, RefreshCw, ThumbsDown, TriangleAlert } from "lucide-react";
+import {
+  Heart,
+  MessageSquareWarning,
+  RefreshCw,
+  ThumbsDown,
+  TriangleAlert,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { getDictionary, type Locale } from "@/lib/i18n";
+import { analytics } from "@/lib/analytics";
 import ReportRewardDialog from "./ReportRewardDialog";
 import type { RewardEngagementSummary } from "@/lib/rewardEngagementService";
 
@@ -63,7 +70,9 @@ export default function RewardEngagementBar({
   const [actionError, setActionError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [isReportOpen, setIsReportOpen] = useState(false);
-  const [pendingReaction, setPendingReaction] = useState<"love" | "dislike" | null>(null);
+  const [pendingReaction, setPendingReaction] = useState<
+    "love" | "dislike" | null
+  >(null);
   const [isSubmittingReport, setIsSubmittingReport] = useState(false);
 
   async function fetchEngagement() {
@@ -101,6 +110,9 @@ export default function RewardEngagementBar({
     setSummary(applyReactionOptimistically(previousSummary, reactionType));
 
     try {
+      // Analytics event for reaction
+      analytics.trackRewardReaction(rewardId, reactionType);
+
       const response = await fetch(`/api/rewards/${rewardId}/reaction`, {
         method: "POST",
         headers: {
@@ -132,6 +144,9 @@ export default function RewardEngagementBar({
     setSuccessMessage(null);
 
     try {
+      // Analytics event for report attempts
+      analytics.trackRewardReport(rewardId, payload.reportType);
+
       const response = await fetch(`/api/rewards/${rewardId}/report`, {
         method: "POST",
         headers: {
@@ -180,8 +195,16 @@ export default function RewardEngagementBar({
   if (!summary) {
     return (
       <div className="rounded-2xl border bg-card/40 p-4">
-        <p className="text-sm text-destructive">{loadError || t.common.failedToLoadEngagement}</p>
-        <Button type="button" variant="outline" size="sm" className="mt-3" onClick={() => void fetchEngagement()}>
+        <p className="text-sm text-destructive">
+          {loadError || t.common.failedToLoadEngagement}
+        </p>
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          className="mt-3"
+          onClick={() => void fetchEngagement()}
+        >
           <RefreshCw />
           {t.common.retry}
         </Button>
@@ -196,7 +219,11 @@ export default function RewardEngagementBar({
           <div className="flex flex-wrap gap-2">
             <Button
               type="button"
-              variant={summary.reactions.viewerReaction === "love" ? "default" : "outline"}
+              variant={
+                summary.reactions.viewerReaction === "love"
+                  ? "default"
+                  : "outline"
+              }
               size="sm"
               disabled={Boolean(pendingReaction) || isSubmittingReport}
               onClick={() => void handleReaction("love")}
@@ -208,7 +235,11 @@ export default function RewardEngagementBar({
 
             <Button
               type="button"
-              variant={summary.reactions.viewerReaction === "dislike" ? "default" : "outline"}
+              variant={
+                summary.reactions.viewerReaction === "dislike"
+                  ? "default"
+                  : "outline"
+              }
               size="sm"
               disabled={Boolean(pendingReaction) || isSubmittingReport}
               onClick={() => void handleReaction("dislike")}
@@ -242,7 +273,9 @@ export default function RewardEngagementBar({
           )}
         </div>
 
-        <p className="mt-3 text-xs text-muted-foreground">{t.common.feedbackBoundToBrowser}</p>
+        <p className="mt-3 text-xs text-muted-foreground">
+          {t.common.feedbackBoundToBrowser}
+        </p>
 
         {actionError && (
           <p className="mt-3 text-sm text-destructive">{actionError}</p>
@@ -257,7 +290,11 @@ export default function RewardEngagementBar({
         locale={locale}
         open={isReportOpen}
         isPending={isSubmittingReport}
-        errorMessage={actionError === t.common.reportAlreadySubmittedToday ? actionError : null}
+        errorMessage={
+          actionError === t.common.reportAlreadySubmittedToday
+            ? actionError
+            : null
+        }
         onOpenChange={setIsReportOpen}
         onReport={(payload) => void handleReport(payload)}
       />

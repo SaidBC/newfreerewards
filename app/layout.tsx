@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
-import { Concert_One} from "next/font/google";
+import { Concert_One } from "next/font/google";
 import "./globals.css";
 import SmartlinkPopunder from "@/components/SmartlinkPopunder";
-import clientEnv from "@/utils/clientEnv";
-import { GoogleAnalytics } from '@next/third-parties/google'
-
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { WebVitals } from "@/components/WebVitals";
 
 const concertOne = Concert_One({
   variable: "--font-concert-one",
   weight: "400",
 });
-
 
 export const metadata: Metadata = {
   title: "NewFreeRewards – Free Rewards, Bonuses & Promotions",
@@ -36,13 +34,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${concertOne.variable} antialiased`}
-      >
+      <body className={`${concertOne.variable} antialiased`}>
         <SmartlinkPopunder />
         {children}
+        {/* Google Analytics - @next/third-parties optimized - loads after hydration */}
+        <GoogleAnalytics />
+        {/* Core Web Vitals Tracking */}
+        <WebVitals />
       </body>
-      {clientEnv.NEXT_PUBLIC_NODE_ENV === "production" && <GoogleAnalytics gaId={clientEnv.NEXT_PUBLIC_GA_MEASUREMENT_ID} />}
     </html>
   );
 }
