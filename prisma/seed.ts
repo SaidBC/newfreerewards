@@ -17,123 +17,123 @@ async function main() {
     throw new Error("❌ DATABASE_URL is missing in .env");
   }
 
-  console.log("Deleting proccess started ... ");
-  await prisma.platform.deleteMany({});
-  await prisma.rewardContent.deleteMany({});
-  await prisma.reward.deleteMany({});
+  console.log("Starting non-destructive seed...");
 
-  console.log("DB Deleted successfully");
+  async function ensurePlatform(data: {
+    name: string;
+    slug: string;
+    image: string;
+    type: "GAME";
+  }) {
+    const platform = await prisma.platform.upsert({
+      where: { slug: data.slug },
+      update: {},
+      create: data,
+    });
+    console.log(`Ensured platform: ${platform.slug}`);
+    return platform;
+  }
 
-  // 1️⃣ Create platforms
-  console.log("Creating platforms...");
-  const clashRoyale = await prisma.platform.create({
-    data: {
-      name: "Clash Royale",
-      slug: "clash-royale",
-      image: storageUrl("images/clash-royale/clash-royale.jpg"),
-      type: "GAME",
-    },
+  const clashRoyale = await ensurePlatform({
+    name: "Clash Royale",
+    slug: "clash-royale",
+    image: storageUrl("images/clash-royale/clash-royale.jpg"),
+    type: "GAME",
   });
 
-  const clashOfClans = await prisma.platform.create({
-    data: {
-      name: "Clash of Clans",
-      slug: "clash-of-clans",
-      image: storageUrl("images/clash-of-clans/Clash_of_Clans.webp"),
-      type: "GAME",
-    },
+  const clashOfClans = await ensurePlatform({
+    name: "Clash of Clans",
+    slug: "clash-of-clans",
+    image: storageUrl("images/clash-of-clans/Clash_of_Clans.webp"),
+    type: "GAME",
   });
 
-  const brawlStars = await prisma.platform.create({
-    data: {
-      name: "Brawl Stars",
-      slug: "brawl-stars",
-      image: storageUrl("images/brawl-stars/logo.jpeg"),
-      type: "GAME",
-    },
+  const brawlStars = await ensurePlatform({
+    name: "Brawl Stars",
+    slug: "brawl-stars",
+    image: storageUrl("images/brawl-stars/logo.jpeg"),
+    type: "GAME",
   });
 
-  const genshinImpact = await prisma.platform.create({
-    data: {
-      name: "Genshin Impact",
-      slug: "genshin-impact",
-      image: storageUrl("images/genshin-impact/logo.png"),
-      type: "GAME",
-    },
+  const genshinImpact = await ensurePlatform({
+    name: "Genshin Impact",
+    slug: "genshin-impact",
+    image: storageUrl("images/genshin-impact/logo.png"),
+    type: "GAME",
   });
 
-  const honkaiStarRail = await prisma.platform.create({
-    data: {
-      name: "Honkai: Star Rail",
-      slug: "honkai-star-rail",
-      image: storageUrl("images/honkai-star-rail/logo.png"),
-      type: "GAME",
-    },
-  });
-  
-  const roblox = await prisma.platform.create({
-    data: {
-      name: "Roblox",
-      slug: "roblox",
-      image: storageUrl("images/roblox/logo.png"),
-      type: "GAME",
-    },
+  const honkaiStarRail = await ensurePlatform({
+    name: "Honkai: Star Rail",
+    slug: "honkai-star-rail",
+    image: storageUrl("images/honkai-star-rail/logo.png"),
+    type: "GAME",
   });
 
-  const riseOfKingdoms = await prisma.platform.create({
-    data: {
-      name: "Rise of Kingdoms",
-      slug: "rise-of-kingdoms",
-      image: storageUrl("images/rise-of-kingdoms/logo.png"),
-      type: "GAME",
-    },
+  const roblox = await ensurePlatform({
+    name: "Roblox",
+    slug: "roblox",
+    image: storageUrl("images/roblox/logo.png"),
+    type: "GAME",
   });
 
-  const growAGarden = await prisma.platform.create({
-    data: {
-      name: "Grow a Garden",
-      slug: "grow-a-garden",
-      image: storageUrl("images/grow-a-garden/logo.webp"),
-      type: "GAME",
-    },
+  const riseOfKingdoms = await ensurePlatform({
+    name: "Rise of Kingdoms",
+    slug: "rise-of-kingdoms",
+    image: storageUrl("images/rise-of-kingdoms/logo.png"),
+    type: "GAME",
+  });
+
+  const growAGarden = await ensurePlatform({
+    name: "Grow a Garden",
+    slug: "grow-a-garden",
+    image: storageUrl("images/grow-a-garden/logo.webp"),
+    type: "GAME",
   });
 
   // 2️⃣ Helper function to seed rewards
   async function seedRewards(rewards: any[], platformId: number) {
     for (const reward of rewards) {
-      const createdReward = await prisma.reward.upsert({
+      const existingReward = await prisma.reward.findUnique({
         where: { slug: reward.slug },
-        update: {},
-        create: {
+        select: { id: true },
+      });
+
+      if (existingReward) {
+        console.log(`Skipping existing reward: ${reward.slug}`);
+        continue;
+      }
+
+      const createdReward = await prisma.reward.create({
+        data: {
           slug: reward.slug,
           title: reward.name,
           description: reward.description,
           previewImage: reward.previewImage,
           status: reward.status,
           platformId: platformId,
-          claimUrl: reward.content.find((c: any) => c.type === "link")?.href ?? null,
-          image: reward.content.find((c: any) => c.type === "image")?.src ?? null,
+          claimUrl:
+            reward.content.find((c: any) => c.type === "link")?.href ?? null,
+          image:
+            reward.content.find((c: any) => c.type === "image")?.src ?? null,
         },
       });
 
-      // delete old content to avoid duplicates
-      await prisma.rewardContent.deleteMany({
-        where: { rewardId: createdReward.id },
-      });
+      if (reward.content.length > 0) {
+        await prisma.rewardContent.createMany({
+          data: reward.content.map((c: any, index: number) => ({
+            rewardId: createdReward.id,
+            order: index,
+            type: c.type,
+            value: c.value ?? null,
+            href: c.href ?? null,
+            label: c.label ?? null,
+            imageSrc: c.src ?? null,
+            imageAlt: c.alt ?? null,
+          })),
+        });
+      }
 
-      // create content blocks
-      await prisma.rewardContent.createMany({
-        data: reward.content.map((c: any, index: number) => ({
-          rewardId: createdReward.id,
-          order: index,
-          type: c.type,
-          value: c.value ?? null,
-          href: c.href ?? null,
-          label: c.label ?? null,
-          imageSrc: c.src ?? null,
-          imageAlt: c.alt ?? null,
-        })),
-      });
+      console.log(`Inserted reward: ${reward.slug}`);
     }
   }
 
@@ -150,7 +150,7 @@ async function main() {
   await seedRewards(getLocalizedRiseOfKingdomsRewards("en"), riseOfKingdoms.id);
   await seedRewards(getLocalizedGrowAGardenRewards("en"), growAGarden.id);
 
-  console.log("✅ Clash Royale, Clash of Clans, Brawl Stars, and Genshin Impact platforms and rewards seeded successfully");
+  console.log("✅ Non-destructive seed completed successfully");
 }
 
 main()

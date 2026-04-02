@@ -742,6 +742,63 @@ const siteConfig = {
   brawlstars: {
     rewards: [
       {
+        id: "bs-20",
+        slug: "emoji_fairy_flower",
+        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
+        previewImage:
+          "https://res.cloudinary.com/dctrgw4fo/image/upload/br/0579a172-1be3-4cea-a44f-347efc43c249_emoji_fairy_flower__1_",
+        name: "Player Pin",
+        description: "Claim this exclusive player pin in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value: "You must be logged in to the Supercell Store before claiming this reward.",
+          },
+          {
+            type: "link",
+            href: "https://store.supercell.com/brawlstars?voucher=9a239540-2815-407f-832f-0ef89e2b6f93",
+            label: "Claim Player Pin",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dctrgw4fo/image/upload/br/screenshot-1775144465289",
+            alt: "Player pin reward claim page",
+          },
+          {
+            type: "text",
+            value: "Click Claim and then check your account in Brawl Stars.",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "bs-19",
+        slug: "omega-box",
+        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
+        previewImage:
+          "https://res.cloudinary.com/dctrgw4fo/image/upload/br/Screenshot_2-4-2026_164917",
+        name: "OMEGA BOX",
+        description: "Claim the OMEGA BOX reward from the Supercell Store.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value:
+              "You must be logged in to the Supercell Store before claiming. You can claim it after the community reaches the freebie collection goal.",
+          },
+          {
+            type: "link",
+            href: "https://store.supercell.com/brawlstars",
+            label: "Go to Supercell Store",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dctrgw4fo/image/upload/br/screenshot-1775144532857",
+            alt: "OMEGA BOX reward page",
+          },
+        ] as ContentType[],
+      },
+      {
         id: "bs-18",
         slug: "reward-24321637",
         platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },

@@ -72,11 +72,9 @@ export default function CurrentActiveRewardsSection({
           throw new Error("Failed to load rewards");
         }
 
-        const sortedRewards = [...payload.data].sort((left, right) => {
-          return new Date(right.createdAt).getTime() - new Date(left.createdAt).getTime();
-        });
 
-        setAllRewards(sortedRewards.reverse());
+
+        setAllRewards(payload.data);
       } catch (error) {
         if (error instanceof Error && error.name === "AbortError") {
           return;
