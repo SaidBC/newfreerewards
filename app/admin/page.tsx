@@ -7,6 +7,9 @@ import { AdminLoginForm } from "@/components/admin/AdminLoginForm";
 import { RewardForm } from "@/components/admin/RewardForm";
 import { RewardList } from "@/components/admin/RewardList";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Plus, Bell } from "lucide-react";
+import { RecentActivity } from "@/components/admin/RecentActivity";
 
 export const dynamic = "force-dynamic";
 
@@ -25,33 +28,82 @@ export default async function AdminPage() {
     orderBy: { name: "asc" },
   });
 
-  const rewards = await prisma.reward.findMany({
-    include: { platform: true,contents:true },
+  const rawRewards = await prisma.reward.findMany({
+    include: { 
+      platform: true, 
+      contents: true,
+      reactions: true,
+      reports: {
+        orderBy: { createdAt: "desc" }
+      }
+    },
     orderBy: { createdAt: "desc" },
   });
 
+  const recentReactions = await prisma.rewardReaction.findMany({
+    take: 10,
+    orderBy: { createdAt: "desc" },
+    include: { reward: { include: { platform: true } } },
+  });
+
+  const recentReports = await prisma.rewardReport.findMany({
+    take: 10,
+    orderBy: { createdAt: "desc" },
+    include: { reward: { include: { platform: true } } },
+  });
+
+  // Group rewards by platform
+  const groupedRewards = platforms.map(platform => ({
+    ...platform,
+    rewards: rawRewards.filter(r => r.platformId === platform.id)
+  })).filter(group => group.rewards.length > 0 || true); 
+
   return (
     <div className="space-y-8 max-w-6xl mx-auto py-8 px-4">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center sm:items-start">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Rewards Management</h2>
-          <p className="text-muted-foreground mt-1">Manage and update active and expired rewards.</p>
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Admin Dashboard</h2>
+          <p className="text-muted-foreground mt-1">Manage rewards across all gaming platforms.</p>
         </div>
-        <form action={logout}>
-          <Button variant="destructive" type="submit">Logout</Button>
-        </form>
+        <div className="flex items-center gap-3">
+          <Button asChild>
+            <Link href="/admin/rewards/new">
+              <Plus className="w-4 h-4 mr-2" />
+              Create Reward
+            </Link>
+          </Button>
+          <form action={logout}>
+            <Button variant="outline" type="submit">Logout</Button>
+          </form>
+        </div>
       </div>
 
-      <div className="grid gap-8 grid-cols-1">
-        {/* Add New Reward Form */}
-        <section>
-          <RewardForm platforms={platforms} />
-        </section>
-
-        {/* Rewards List */}
-        <section>
-          <RewardList rewards={rewards} platforms={platforms} />
-        </section>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-2 space-y-12">
+          {groupedRewards.map((group) => (
+            <section key={group.id} className="space-y-4">
+              <div className="flex items-center gap-3 border-b pb-2">
+                {group.image && (
+                  <img src={group.image} alt={group.name} className="w-8 h-8 rounded object-cover" />
+                )}
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">{group.name}</h3>
+                <span className="text-xs bg-muted px-2 py-1 rounded-full text-muted-foreground font-mono">
+                  {group.rewards.length}
+                </span>
+              </div>
+              <RewardList rewards={group.rewards} platforms={platforms} />
+            </section>
+          ))}
+        </div>
+        
+        <div className="lg:col-span-1">
+          <div className="sticky top-8 space-y-6">
+            <RecentActivity 
+              reactions={recentReactions}
+              reports={recentReports}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

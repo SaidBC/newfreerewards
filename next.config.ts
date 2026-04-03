@@ -27,7 +27,7 @@ const nextConfig: NextConfig = {
       },
       {
         source:
-          "/:path((?!en|es|ar|api|_next|favicon\\.ico|sitemap\\.xml|robots\\.txt|.*\\..*).*)",
+          "/:path((?!en|es|ar|admin|api|_next|favicon\\.ico|sitemap\\.xml|robots\\.txt|.*\\..*).*)",
         destination: "/en/:path",
       },
     ];

@@ -23,7 +23,17 @@ type ContentBlock = {
   translations: any;
 };
 
-export function RewardForm({ platforms, reward, initialContents = [] }: { platforms: Platform[]; reward?: Reward; initialContents?: RewardContent[] }) {
+export function RewardForm({ 
+  platforms, 
+  reward, 
+  initialContents = [],
+  onChange
+}: { 
+  platforms: Platform[]; 
+  reward?: Reward; 
+  initialContents?: RewardContent[];
+  onChange?: (data: any) => void;
+}) {
   const isEditing = !!reward;
   
   const [translations, setTranslations] = useState<any>(reward?.translations || { es: { title: "", description: "" }, ar: { title: "", description: "" } });
@@ -38,6 +48,26 @@ export function RewardForm({ platforms, reward, initialContents = [] }: { platfo
       translations: c.translations || { es: {}, ar: {} }
     })) || []
   );
+
+  const [basicInfo, setBasicInfo] = useState({
+    title: reward?.title || "",
+    description: reward?.description || "",
+    slug: reward?.slug || "",
+    platformId: reward?.platformId || 0,
+    previewImage: reward?.previewImage || "",
+    claimUrl: reward?.claimUrl || "",
+    status: reward?.status || "active"
+  });
+
+  useEffect(() => {
+    if (onChange) {
+      onChange({
+        ...basicInfo,
+        translations,
+        contentBlocks
+      });
+    }
+  }, [basicInfo, translations, contentBlocks, onChange]);
 
   const addBlock = (type: ContentBlock["type"]) => {
     setContentBlocks([...contentBlocks, { type, translations: { es: {}, ar: {} } }]);
@@ -88,11 +118,21 @@ export function RewardForm({ platforms, reward, initialContents = [] }: { platfo
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="title">Reward Title (EN)</Label>
-                      <Input name="title" defaultValue={reward?.title} required />
+                      <Input 
+                        name="title" 
+                        value={basicInfo.title} 
+                        onChange={(e) => setBasicInfo({ ...basicInfo, title: e.target.value })}
+                        required 
+                      />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="slug">Slug</Label>
-                      <Input name="slug" defaultValue={reward?.slug} required />
+                      <Input 
+                        name="slug" 
+                        value={basicInfo.slug} 
+                        onChange={(e) => setBasicInfo({ ...basicInfo, slug: e.target.value })}
+                        required 
+                      />
                     </div>
                   </div>
                   <div className="space-y-2">
@@ -104,7 +144,7 @@ export function RewardForm({ platforms, reward, initialContents = [] }: { platfo
                         // For now we use the description field as plain text or simple HTML
                       }} 
                     />
-                    <input type="hidden" name="description" defaultValue={reward?.description} />
+                    <input type="hidden" name="description" value={basicInfo.description} />
                   </div>
                 </TabsContent>
 
@@ -246,42 +286,85 @@ export function RewardForm({ platforms, reward, initialContents = [] }: { platfo
 
         {/* Right Column: Settings */}
         <div className="space-y-8">
-          <Card className="shadow-sm border-gray-200 dark:border-zinc-800">
-            <CardHeader>
-              <CardTitle>Settings</CardTitle>
+           <Card className="shadow-lg border-primary/20 bg-primary/5">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-bold uppercase tracking-wider text-primary">Reward Status</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
+              <div className="flex items-center gap-2 bg-background p-1 rounded-lg border">
+                <Button 
+                  type="button"
+                  variant={basicInfo.status === 'active' ? 'default' : 'ghost'} 
+                  className={`flex-1 h-9 font-bold transition-all ${basicInfo.status === 'active' ? 'shadow-md' : 'text-zinc-500'}`}
+                  onClick={() => setBasicInfo({ ...basicInfo, status: 'active' })}
+                >
+                  ACTIVE
+                </Button>
+                <Button 
+                  type="button"
+                  variant={basicInfo.status === 'expired' ? 'destructive' : 'ghost'} 
+                  className={`flex-1 h-9 font-bold transition-all ${basicInfo.status === 'expired' ? 'shadow-md' : 'text-zinc-500'}`}
+                  onClick={() => setBasicInfo({ ...basicInfo, status: 'expired' })}
+                >
+                  EXPIRED
+                </Button>
+              </div>
+              <input type="hidden" name="status" value={basicInfo.status} />
+              
               <div className="space-y-2">
-                <Label>Platform</Label>
-                <select name="platformId" defaultValue={reward?.platformId || ""} className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
-                  <option value="" disabled>Select Platform</option>
+                <Label className="text-xs font-bold text-zinc-500 uppercase tracking-tight">Manual Expiration Date</Label>
+                <Input 
+                  type="datetime-local" 
+                  name="expiresAt" 
+                  className="h-9 text-xs"
+                  defaultValue={reward?.expiresAt ? new Date(reward.expiresAt).toISOString().slice(0, 16) : ""} 
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="shadow-sm border-gray-200 dark:border-zinc-800">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-lg">Publishing Settings</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="space-y-2">
+                <Label className="text-sm font-semibold">Platform Target</Label>
+                <select 
+                  name="platformId" 
+                  value={basicInfo.platformId} 
+                  onChange={(e) => setBasicInfo({ ...basicInfo, platformId: parseInt(e.target.value) })}
+                  className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 font-medium"
+                >
+                  <option value={0} disabled>Select Platform</option>
                   {platforms.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
                 </select>
               </div>
               <div className="space-y-2">
-                <Label>Preview Image URL</Label>
-                <Input name="previewImage" defaultValue={reward?.previewImage || ""} />
+                <Label className="text-sm font-semibold">Preview Image URL</Label>
+                <Input 
+                  name="previewImage" 
+                  placeholder="https://..."
+                  value={basicInfo.previewImage} 
+                  onChange={(e) => setBasicInfo({ ...basicInfo, previewImage: e.target.value })}
+                />
               </div>
               <div className="space-y-2">
-                <Label>Direct Reward Link (Optional)</Label>
-                <Input name="claimUrl" defaultValue={reward?.claimUrl || ""} />
+                <Label className="text-sm font-semibold text-primary/70">Direct Redemption Link</Label>
+                <Input 
+                  name="claimUrl" 
+                  placeholder="https://link.clashroyale.com/..."
+                  value={basicInfo.claimUrl} 
+                  onChange={(e) => setBasicInfo({ ...basicInfo, claimUrl: e.target.value })}
+                />
+                <p className="text-[10px] text-muted-foreground italic">If provided, users will see a direct "Claim" button.</p>
               </div>
-              <div className="space-y-2">
-                <Label>Expiration Date</Label>
-                <Input type="datetime-local" name="expiresAt" defaultValue={reward?.expiresAt ? new Date(reward.expiresAt).toISOString().slice(0, 16) : ""} />
+              
+              <div className="pt-4 border-t">
+                <Button type="submit" className="w-full h-11 font-bold text-base shadow-lg shadow-primary/20">
+                  {isEditing ? "SAVE CHANGES" : "PUBLISH REWARD"}
+                </Button>
               </div>
-              {isEditing && (
-                <div className="space-y-2">
-                  <Label>Status</Label>
-                  <select name="status" defaultValue={reward.status} className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background">
-                    <option value="active">Active</option>
-                    <option value="expired">Expired</option>
-                  </select>
-                </div>
-              )}
-              <Button type="submit" className="w-full mt-4">
-                {isEditing ? "Update Reward" : "Create Reward"}
-              </Button>
             </CardContent>
           </Card>
         </div>

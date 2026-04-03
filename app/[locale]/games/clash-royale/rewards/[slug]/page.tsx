@@ -93,52 +93,7 @@ export async function generateStaticParams() {
   return params;
 }
 
-function renderBlock(block: RewardContentBlock, index: number) {
-  switch (block.type) {
-    case "text":
-      return (
-        <p key={index} className="text-muted-foreground">
-          {block.value}
-        </p>
-      );
-
-    case "image":
-      const isQrCode =
-        (block.imageAlt || "").toLowerCase().includes("qr") ||
-        (block.imageSrc || "").toLowerCase().includes("qr");
-      return (
-        <div
-          key={index}
-          className={`relative mt-2 overflow-hidden rounded-lg border ${
-            isQrCode ? "max-w-[200px]" : ""
-          }`}
-        >
-          <Image
-            src={block.imageSrc || storageUrl("images/clash-royale/chest-image.png")}
-            alt={block.imageAlt || "reward image"}
-            width={isQrCode ? 200 : 400}
-            height={isQrCode ? 200 : 400}
-            className="h-auto w-full object-contain"
-          />
-        </div>
-      );
-
-    case "code":
-      return <CopyCode key={index} text={block.value || ""} />;
-
-    case "link":
-      return (
-        <Button key={index} asChild className="mt-2 w-full sm:w-fit font-concert-one">
-          <a href={block.href || "#"} target="_blank" rel="noopener noreferrer">
-            {block.label || "Claim Reward"}
-          </a>
-        </Button>
-      );
-
-    default:
-      return null;
-  }
-}
+import RewardDetailView from "@/components/rewards/RewardDetailView";
 
 export default async function Page({ params }: PageProps) {
   const { locale: requestedLocale, slug } = await params;
@@ -148,49 +103,5 @@ export default async function Page({ params }: PageProps) {
   const reward = await getRewardFromDB("clash-royale", slug, locale);
   if (!reward) return notFound();
 
-  return (
-    <main className="min-h-screen bg-background">
-      <section className="mx-auto max-w-5xl px-4 py-16">
-        <Button variant={"link"} asChild>
-          <Link prefetch={false} href={localizePath(locale, "/games/clash-royale")} data-trigger-popunder="true">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            <span>{t.games.back}</span>
-          </Link>
-        </Button>
-        <div className="flex gap-4 items-center">
-          <Image
-            className="rounded-md object-cover size-12"
-            src={reward.platform.image  || storageUrl("images/clash-royale/clash-royale.jpg")}
-            width={48}
-            height={48}
-            alt={reward.platform.name}
-          />
-          <div>
-            <h1 className="text-4xl md:text-5xl font-concert-one uppercase">
-              Free {reward.platform.name} Rewards
-            </h1>
-            <h2 className="text-xl md:text-2xl font-bold text-muted-foreground">
-              {reward.title}
-            </h2>
-          </div>
-        </div>
-
-        <p className="mt-4 max-w-3xl text-muted-foreground text-lg italic">
-          {reward.description}
-        </p>
-      </section>
-
-      <section className="mx-auto max-w-5xl px-4 pb-24 flex flex-col gap-8">
-        <RewardEngagementBar rewardId={reward.id} locale={locale} />
-        <div className="space-y-8 rounded-2xl border bg-card p-6 sm:p-8">
-          <div className="flex items-center gap-2 border-b pb-4">
-            <div className="h-2 w-2 rounded-full bg-primary" />
-            <h2 className="font-concert-one text-xl uppercase italic">{t.games.stepByStepGuide}</h2>
-          </div>
-
-          <div className="space-y-6">{reward.content.map(renderBlock)}</div>
-        </div>
-      </section>
-    </main>
-  );
+  return <RewardDetailView reward={reward} locale={locale} t={t} />;
 }
