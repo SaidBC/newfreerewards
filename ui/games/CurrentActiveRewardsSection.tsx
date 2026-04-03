@@ -62,6 +62,7 @@ export default function CurrentActiveRewardsSection({
         const searchParams = new URLSearchParams({
           platform: game,
           locale,
+          status: "active",
         });
         const response = await fetch(`/api/rewards?${searchParams.toString()}`, {
           signal: controller.signal,

@@ -1,5 +1,8 @@
 import { getRewardsByPlatform, type TranslatedRewards } from "@/lib/rewardService";
 import { NextRequest, NextResponse } from "next/server";
+import { RewardStatus } from "@prisma/client";
+
+export const dynamic = "force-dynamic";
 
 type RewardsApiResponse =
   | { success: true; data: TranslatedRewards }
@@ -8,6 +11,7 @@ type RewardsApiResponse =
 export async function GET(req:NextRequest) {
     const platform = req.nextUrl.searchParams.get("platform");
     const locale = req.nextUrl.searchParams.get("locale");
+    const status = req.nextUrl.searchParams.get("status") as RewardStatus | null;
 
     if(!platform || !locale){
         return NextResponse.json<RewardsApiResponse>(
@@ -21,6 +25,9 @@ export async function GET(req:NextRequest) {
           { status: 400 }
         );
     }
-    const getRewards = await getRewardsByPlatform(platform, locale);
+
+    const validStatus: RewardStatus = (status === "active" || status === "expired") ? status : "active";
+
+    const getRewards = await getRewardsByPlatform(platform, locale, validStatus);
     return NextResponse.json<RewardsApiResponse>({ success: true, data: getRewards });
 }

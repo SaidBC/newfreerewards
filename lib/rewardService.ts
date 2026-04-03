@@ -1,6 +1,6 @@
 import { prisma } from "./prisma";
 import { Locale, defaultLocale } from "./i18n";
-import { Reward, RewardContent, Platform } from "@prisma/client";
+import { Reward, RewardContent, Platform, RewardStatus } from "@prisma/client";
 import { normalizeStorageUrl } from "./storage";
 
 export type TranslatedReward = Reward & {
@@ -11,12 +11,16 @@ export type TranslatedReward = Reward & {
 
 export type TranslatedRewards = TranslatedReward[];
 
-export async function getRewardsByPlatform(platformSlug: string, locale: Locale): Promise<TranslatedRewards> {
+export async function getRewardsByPlatform(
+  platformSlug: string, 
+  locale: Locale, 
+  status: RewardStatus = "active"
+): Promise<TranslatedRewards> {
   const platform = await prisma.platform.findUnique({
     where: { slug: platformSlug },
     include: {
       rewards: {
-        where: { status: "active" },
+        where: { status },
         include: { contents: { orderBy: { order: "asc" } } },
         orderBy: { createdAt: "desc" },
       },
