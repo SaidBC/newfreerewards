@@ -5,9 +5,9 @@ import RewardItem from "./RewardItem";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { MinusIcon, PlusIcon } from "lucide-react";
+import { ArrowDown, MinusIcon, PlusIcon } from "lucide-react";
 
-const INITIAL_LIMIT = 12;
+const INITIAL_LIMIT = 10;
 
 type GameSlug =
   | "clash-royale"
@@ -75,7 +75,8 @@ export default function CurrentActiveRewardsSection({
 
 
 
-        setAllRewards(payload.data);
+        const shuffled = [...payload.data].sort(() => Math.random() - 0.5);
+        setAllRewards(shuffled);
       } catch (error) {
         if (error instanceof Error && error.name === "AbortError") {
           return;
@@ -133,17 +134,27 @@ export default function CurrentActiveRewardsSection({
         )}
 
         {allRewards.length > INITIAL_LIMIT && (
-          <Button
-            type="button"
-            variant="outline"
-            className="font-concert-one"
-            data-trigger-popunder="true"
-            aria-expanded={showMore}
-            onClick={() => setShowMore((value) => !value)}
-          >
-            {showMore ? <MinusIcon /> : <PlusIcon />}
-            {showMore ? t.common.seeLess : t.common.seeMore}
-          </Button>
+          <div className="flex flex-col items-center gap-2">
+            {!showMore && (
+              <div className="flex flex-col items-center animate-bounce mb-4">
+                <span className="text-sm font-concert-one text-primary mb-1">
+                  {t.common.seeMoreRewards}
+                </span>
+                <ArrowDown className="text-primary size-10" />
+              </div>
+            )}
+            <Button
+              type="button"
+              variant="outline"
+              className="font-concert-one"
+              data-trigger-popunder="true"
+              aria-expanded={showMore}
+              onClick={() => setShowMore((value) => !value)}
+            >
+              {showMore ? <MinusIcon /> : <PlusIcon />}
+              {showMore ? t.common.seeLess : t.common.seeMore}
+            </Button>
+          </div>
         )}
       </div>
     </section>
