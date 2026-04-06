@@ -101,6 +101,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 import RewardDetailView from "@/components/rewards/RewardDetailView";
+import AdsComponent from "@/components/AdsComponent";
 
 export default async function RewardPage({ params }: PageProps) {
   const { slug, locale: requestedLocale } = await params;
@@ -113,5 +114,12 @@ export default async function RewardPage({ params }: PageProps) {
     notFound();
   }
 
-  return <RewardDetailView reward={reward} locale={locale} t={t} />;
+  return (
+    <div className="bg-background">
+      <div className="mx-auto max-w-5xl px-4 pt-12 md:pt-16 pb-0">
+        <AdsComponent />
+      </div>
+      <RewardDetailView reward={reward} locale={locale} t={t} />
+    </div>
+  );
 }

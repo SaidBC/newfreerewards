@@ -12,6 +12,7 @@ import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import AdsComponent from "@/components/AdsComponent";
 
 export const dynamic = "force-static";
 
@@ -91,6 +92,10 @@ export default async function BrawlStarsPage({
         <p className="max-w-2xl text-lg text-muted-foreground">
           {t.games.brawlStarsDescription}
         </p>
+      </div>
+
+      <div className="mx-auto max-w-5xl px-4">
+        <AdsComponent />
       </div>
 
       <CurrentActiveRewardsSection locale={locale} game="brawl-stars" />
