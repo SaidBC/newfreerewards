@@ -11,11 +11,15 @@ export const GA_MEASUREMENT_ID =
   clientEnv.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-XXXXXXXXXX";
 
 /**
- * Check if GA should be enabled (not in development)
+ * Check if GA should be enabled
+ * (Enabled in production, or in development if NEXT_PUBLIC_DEBUG_ANALYTICS is set)
  */
 export const isAnalyticsEnabled = (): boolean => {
+  const isProd = clientEnv.NEXT_PUBLIC_NODE_ENV === "production";
+  const isDebug = clientEnv.NEXT_PUBLIC_DEBUG_ANALYTICS === "true";
+
   return (
-    clientEnv.NEXT_PUBLIC_NODE_ENV !== "development" &&
+    (isProd || isDebug) &&
     Boolean(GA_MEASUREMENT_ID) &&
     GA_MEASUREMENT_ID !== "G-XXXXXXXXXX"
   );
@@ -49,9 +53,11 @@ export interface GAEvent {
  * Reports Web Vitals metrics to Google Analytics
  */
 export function reportWebVitals(metric: WebVitalsMetric): void {
+  const isDev = clientEnv.NEXT_PUBLIC_NODE_ENV === "development";
+
   if (!isAnalyticsEnabled()) {
-    if (clientEnv.NEXT_PUBLIC_NODE_ENV === "development") {
-      console.info("Web Vitals (dev):", metric);
+    if (isDev && metric.label === "web-vital") {
+      console.info("📊 Web Vital (logged, not sent):", metric.name, metric.value);
     }
     return;
   }
@@ -67,34 +73,57 @@ export function reportWebVitals(metric: WebVitalsMetric): void {
     metric.name === "CLS" ? metric.value * 1000 : metric.value,
   );
 
-  // Send to GA4 using @next/third-parties
-  sendGAEvent({
-    event_name: "web_vitals",
+  // Send to GA4 using standardized gtag format: gtag('event', name, params)
+  sendGAEvent("event", "web_vitals", {
     event_category: "Web Vitals",
     event_label: metric.name,
     value: value,
     metric_id: metric.id,
     metric_rating: metric.rating,
     metric_delta: metric.delta,
-    custom_parameters: metric.attribution || {},
+    ...(metric.attribution || {}),
   });
+
+  if (isDev) {
+    console.info("📊 Web Vital sent:", metric.name, value);
+  }
 }
 
 /**
  * Sends custom events to Google Analytics
  */
 export function trackEvent(event: GAEvent): void {
+  const isDev = clientEnv.NEXT_PUBLIC_NODE_ENV === "development";
+
   if (!isAnalyticsEnabled()) {
+    if (isDev) {
+      console.info("📈 GA Event (logged, not sent):", event.action, {
+        category: event.category,
+        label: event.label,
+        value: event.value,
+        ...event.custom_parameters,
+      });
+    }
     return;
   }
 
-  sendGAEvent({
-    event_name: event.action,
+  // Flatten parameters for better GA4 compatibility
+  // GA4 prefers top-level parameters rather than nested objects
+  sendGAEvent("event", event.action, {
     event_category: event.category || "engagement",
     event_label: event.label,
     value: event.value,
-    custom_parameters: event.custom_parameters,
+    ...event.custom_parameters,
   });
+
+  if (isDev) {
+    console.info("📈 GA Event sent:", event.action, {
+      category: event.category,
+      label: event.label,
+      value: event.value,
+      ...event.custom_parameters,
+    });
+  }
 }
 
 /**
@@ -105,8 +134,7 @@ export function trackPageView(url: string, title?: string): void {
     return;
   }
 
-  sendGAEvent({
-    event_name: "page_view",
+  sendGAEvent("event", "page_view", {
     page_location: url,
     page_title: title || document.title,
   });
