@@ -30,9 +30,9 @@ function toPublicId(relativePath: string) {
     .replace(/^[-/]+|[-/]+$/g, "");
 }
 
-function toDeterministicDeliveryUrl(publicId: string) {
+function toDeterministicDeliveryUrl(publicId: string, extension: string) {
   const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
-  return `https://res.cloudinary.com/${cloudName}/image/upload/${publicId}`;
+  return `https://res.cloudinary.com/${cloudName}/image/upload/${publicId}${extension}`;
 }
 
 async function uploadSingleFile(relativePath: string) {
@@ -42,6 +42,7 @@ async function uploadSingleFile(relativePath: string) {
     throw new Error(`File not found: ${relativePath}`);
   }
 
+  const extension = path.extname(relativePath);
   const publicId = toPublicId(relativePath);
 
   await cloudinary.uploader.upload(absolutePath, {
@@ -52,17 +53,47 @@ async function uploadSingleFile(relativePath: string) {
     use_filename: false,
   });
 
-  return toDeterministicDeliveryUrl(publicId);
+  return toDeterministicDeliveryUrl(publicId, extension);
+}
+
+function getAllFiles(dirPath: string, arrayOfFiles: string[] = []) {
+  const files = fs.readdirSync(dirPath);
+
+  files.forEach(function (file) {
+    const fullPath = path.join(dirPath, file);
+    if (fs.statSync(fullPath).isDirectory()) {
+      arrayOfFiles = getAllFiles(fullPath, arrayOfFiles);
+    } else {
+      const ext = path.extname(fullPath).toLowerCase();
+      if ([".png", ".jpg", ".jpeg", ".webp", ".avif", ".svg"].includes(ext)) {
+        arrayOfFiles.push(fullPath);
+      }
+    }
+  });
+
+  return arrayOfFiles;
 }
 
 async function main() {
   assertCloudinaryEnv();
 
-  const args = process.argv.slice(2);
+  let args = process.argv.slice(2);
+  
   if (args.length === 0) {
-    throw new Error(
-      "Usage: npm run upload:cloudinary-images -- <file1> <file2> ..."
-    );
+    const imagesDir = path.resolve(process.cwd(), "images");
+    if (fs.existsSync(imagesDir)) {
+      console.log(`No arguments provided. Scanning ${imagesDir} for images...`);
+      const allFiles = getAllFiles(imagesDir);
+      args = allFiles.map(file => path.relative(process.cwd(), file));
+      if (args.length === 0) {
+        console.log("No images found in 'images' directory.");
+        return;
+      }
+    } else {
+      throw new Error(
+        "Usage: npm run upload:cloudinary-images -- <file1> <file2> ... or ensure 'images' directory exists."
+      );
+    }
   }
 
   const uniqueSortedRelativePaths = Array.from(
@@ -82,7 +113,12 @@ async function main() {
     Object.entries(mapping).sort(([a], [b]) => a.localeCompare(b))
   );
 
-  const outputPath = path.resolve(process.cwd(), "br/cloudinary-upload-map.json");
+  const outputPath = path.resolve(process.cwd(), "images/cloudinary-upload-map.json");
+  const outputDir = path.dirname(outputPath);
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+  }
+  
   fs.writeFileSync(outputPath, `${JSON.stringify(sortedMapping, null, 2)}\n`, "utf8");
 
   console.log(`\nSaved mapping to ${outputPath}`);

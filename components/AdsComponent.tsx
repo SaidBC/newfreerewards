@@ -14,7 +14,7 @@ interface AdsComponentProps {
 
 export default function AdsComponent({
   link = "https://lootbar.gg/top-up/brawl-stars-top-up?aff_short=newfreerewards",
-  imageSrc = "https://res.cloudinary.com/dctrgw4fo/image/upload/v1775441145/affiliate/lootbarOffers.png",
+  imageSrc = "https://res.cloudinary.com/dctrgw4fo/image/upload/images/affiliate/lootbarBrawlStarsOffers.png",
   alt = "Top up Brawl Stars on Lootbar.gg Offers",
   className,
 }: AdsComponentProps) {
@@ -50,7 +50,7 @@ export default function AdsComponent({
             </span>
           </div>
           <Image
-            src="https://res.cloudinary.com/dctrgw4fo/image/upload/v1775441140/affiliate/lootbarLogo.png"
+            src="https://res.cloudinary.com/dctrgw4fo/image/upload/images/affiliate/lootbarLogo.png"
             alt="Lootbar.gg Logo"
             width={100}
             height={30}

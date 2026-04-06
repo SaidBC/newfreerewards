@@ -98,25 +98,44 @@ async function main() {
         select: { id: true },
       });
 
+      let createdReward;
       if (existingReward) {
-        console.log(`Skipping existing reward: ${reward.slug}`);
-        continue;
+        console.log(`Updating existing reward: ${reward.slug}`);
+        createdReward = await prisma.reward.update({
+          where: { id: existingReward.id },
+          data: {
+            title: reward.name,
+            description: reward.description,
+            previewImage: reward.previewImage,
+            status: reward.status,
+            claimUrl:
+              reward.content.find((c: any) => c.type === "link")?.href ?? null,
+            image:
+              reward.content.find((c: any) => c.type === "image")?.src ?? null,
+          },
+        });
+        
+        // Clear existing content to re-insert (simple way to keep it in sync)
+        await prisma.rewardContent.deleteMany({
+          where: { rewardId: createdReward.id },
+        });
+      } else {
+        createdReward = await prisma.reward.create({
+          data: {
+            slug: reward.slug,
+            title: reward.name,
+            description: reward.description,
+            previewImage: reward.previewImage,
+            status: reward.status,
+            platformId: platformId,
+            claimUrl:
+              reward.content.find((c: any) => c.type === "link")?.href ?? null,
+            image:
+              reward.content.find((c: any) => c.type === "image")?.src ?? null,
+          },
+        });
+        console.log(`Inserted reward: ${reward.slug}`);
       }
-
-      const createdReward = await prisma.reward.create({
-        data: {
-          slug: reward.slug,
-          title: reward.name,
-          description: reward.description,
-          previewImage: reward.previewImage,
-          status: reward.status,
-          platformId: platformId,
-          claimUrl:
-            reward.content.find((c: any) => c.type === "link")?.href ?? null,
-          image:
-            reward.content.find((c: any) => c.type === "image")?.src ?? null,
-        },
-      });
 
       if (reward.content.length > 0) {
         await prisma.rewardContent.createMany({
@@ -132,8 +151,6 @@ async function main() {
           })),
         });
       }
-
-      console.log(`Inserted reward: ${reward.slug}`);
     }
   }
 

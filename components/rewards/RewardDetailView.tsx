@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import CopyCode from "@/components/CopyCode";
 import { localizePath, type Locale } from "@/lib/i18n";
+import AdsComponent from "@/components/AdsComponent";
 
 interface RewardDetailViewProps {
   reward: any;
@@ -104,6 +105,18 @@ export default function RewardDetailView({ reward, locale, t, isPreview = false 
 
       <section className="mx-auto max-w-5xl px-4 pb-24 flex flex-col gap-8">
         {!isPreview && <RewardEngagementBar rewardId={reward.id} locale={locale} />}
+        
+        {reward.platform.slug === "clash-royale" && (
+          <AdsComponent
+            link="https://lootbar.gg/top-up/clash-royale?aff_short=newfreerewards"
+            imageSrc="https://res.cloudinary.com/dctrgw4fo/image/upload/images/affiliate/lootbarClashRoyaleOffers.png"
+            alt="Top up Clash Royale on Lootbar.gg Offers"
+          />
+        )}
+        {reward.platform.slug === "brawl-stars" && (
+          <AdsComponent />
+        )}
+
         <div className="space-y-8 rounded-2xl border bg-card p-6 sm:p-8">
           <div className="flex items-center gap-2 border-b pb-4">
             <div className="h-2 w-2 rounded-full bg-primary" />

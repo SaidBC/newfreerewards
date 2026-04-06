@@ -13,6 +13,8 @@ import {
   type Locale,
 } from "@/lib/i18n";
 
+import AdsComponent from "@/components/AdsComponent";
+
 export const dynamic = "force-static";
 
 export async function generateMetadata({
@@ -83,6 +85,15 @@ export default async function Page({
           {t.games.clashRoyaleDescription}
         </p>
       </section>
+
+      <div className="mx-auto max-w-5xl px-4">
+        <AdsComponent
+          link="https://lootbar.gg/top-up/clash-royale?aff_short=newfreerewards"
+          imageSrc="https://res.cloudinary.com/dctrgw4fo/image/upload/images/affiliate/lootbarClashRoyaleOffers.png"
+          alt="Top up Clash Royale on Lootbar.gg Offers"
+        />
+      </div>
+
       <CurrentActiveRewardsSection locale={locale} game="clash-royale" />
       <ExpiredRewardsSection locale={locale} game="clash-royale" />
       <div className="mx-auto max-w-5xl px-4 pb-24">
@@ -104,7 +115,7 @@ export default async function Page({
           </ul>
         </section>
         <p className="mt-4 text-sm font-bold text-muted-foreground">
-          {t.games.lastUpdatedLabel}: 2026 Mar 26
+          {t.games.lastUpdatedLabel}: 2026 Apr 06
         </p>
       </div>
     </main>

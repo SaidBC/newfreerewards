@@ -35,7 +35,44 @@ const siteConfig = {
   ],
   clashroyale: {
     rewards: [
-       {
+      {
+        id: "21",
+        slug: "minion-horde-evo-emote",
+        platform: {
+          name: "Clash Royale",
+          src: storageUrl("images/clash-royale/clash-royale.jpg"),
+        },
+        previewImage:
+          "https://res.cloudinary.com/dctrgw4fo/image/upload/images/clash-royale/minion-horde-evo-emote-preview.webp",
+        name: "Minion Horde Evo Emote",
+        description: "Claim the Minion Horde Evo Emote.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value: "Open the Supercell store website and log in.",
+          },
+          {
+            type: "link",
+            href: "https://store.supercell.com/clashroyale",
+            label: "Go to the Supercell Store",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dctrgw4fo/image/upload/images/clash-royale/minion-horde-evo-emote-guide.png",
+            alt: "Minion Horde Evo Emote offer",
+          },
+          {
+            type: "text",
+            value: "Enter the code: MINIONHORDE!",
+          },
+          {
+            type: "code",
+            value: "MINIONHORDE!",
+          },
+        ] as ContentType[],
+      },
+      {
         id: "20",
         slug: "hog-cake-icon-emote",
         platform: {
@@ -1589,6 +1626,10 @@ const clashRoyaleTranslations: Partial<
   Record<Locale, Record<string, { name?: string; description?: string }>>
 > = {
   es: {
+    "minion-horde-evo-emote": {
+      name: "Emote de Horda de esbirros evolucionada",
+      description: "Reclama el emote de Horda de esbirros evolucionada.",
+    },
     "10-years-banner": {
       name: "Banner de 10 Años",
       description: "Reclama la recompensa del Banner de 10 Años.",
@@ -1668,6 +1709,10 @@ const clashRoyaleTranslations: Partial<
     },
   },
   ar: {
+    "minion-horde-evo-emote": {
+      name: "إيموجي حشد المينيون المطور",
+      description: "احصل على إيموجي حشد المينيون المطور.",
+    },
     "10-years-banner": {
       name: "بانر 10 سنوات",
       description: "احصل على مكافأة بانر 10 سنوات.",
@@ -1838,6 +1883,7 @@ const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
         "Desplázate hacia abajo y pulsa en la caja de bonificaciones que aparece; luego pulsa la recompensa Lucky Chest.",
       "Open the link or scan the QR code .":
         "Abre el enlace o escanea el código QR.",
+      "Enter the code: MINIONHORDE!": "Introduce el código: MINIONHORDE!",
       "Enter the code: REINABARRIGA": "Introduce el código: REINABARRIGA",
       "Redeem the code here": "Canjear el código aquí",
       "Enter the code: WHENHOGSFLY!": "Introduce el código: WHENHOGSFLY!",
@@ -1891,6 +1937,7 @@ const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
       "Scroll down and click on bonuses box which will appears when you scroll down , then click the Lucky Chest reward.":
         "مرّر للأسفل ثم اضغط على صندوق المكافآت الذي يظهر، ثم اختر مكافأة Lucky Chest.",
       "Open the link or scan the QR code .": "افتح الرابط أو امسح رمز QR.",
+      "Enter the code: MINIONHORDE!": "أدخل الكود: MINIONHORDE!",
       "Enter the code: REINABARRIGA": "أدخل الكود: REINABARRIGA",
       "Redeem the code here": "استرد الكود من هنا",
       "Enter the code: WHENHOGSFLY!": "أدخل الكود: WHENHOGSFLY!",

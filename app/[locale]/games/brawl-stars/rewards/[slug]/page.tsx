@@ -116,9 +116,6 @@ export default async function RewardPage({ params }: PageProps) {
 
   return (
     <div className="bg-background">
-      <div className="mx-auto max-w-5xl px-4 pt-12 md:pt-16 pb-0">
-        <AdsComponent />
-      </div>
       <RewardDetailView reward={reward} locale={locale} t={t} />
     </div>
   );
