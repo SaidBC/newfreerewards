@@ -52,6 +52,11 @@ const siteConfig = {
             value: "Claim free 3 rewards (Lucky chest 3 star , 200 common wild shards , 50k gold)",
           },
           {
+            type: "link",
+            href: "https://link.clashroyale.com/en/?action=voucher&code=0993f400-a602-41c7-a9b6-5c701777f7d7",
+            label: "Claim Reward",
+          },
+          {
             type: "image",
             src: "https://res.cloudinary.com/dctrgw4fo/image/upload/clash-royale/free-resources-qr-code.png",
             alt: "Free resources QR code",
