@@ -92,6 +92,24 @@ async function main() {
 
   // 2️⃣ Helper function to seed rewards
   async function seedRewards(rewards: any[], platformId: number) {
+    // 1️⃣ Get current slugs from config
+    const currentSlugs = rewards.map((r) => r.slug);
+
+    // 2️⃣ Delete rewards that are no longer in config for this platform
+    const platformRewards = await prisma.reward.findMany({
+      where: { platformId },
+      select: { id: true, slug: true },
+    });
+
+    const toDelete = platformRewards.filter((r) => !currentSlugs.includes(r.slug));
+
+    if (toDelete.length > 0) {
+      console.log(`Deleting ${toDelete.length} old rewards: ${toDelete.map((r) => r.slug).join(", ")}`);
+      await prisma.reward.deleteMany({
+        where: { id: { in: toDelete.map((r) => r.id) } },
+      });
+    }
+
     for (const reward of rewards) {
       const existingReward = await prisma.reward.findUnique({
         where: { slug: reward.slug },

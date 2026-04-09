@@ -36,6 +36,29 @@ const siteConfig = {
   clashroyale: {
     rewards: [
       {
+        id: "22",
+        slug: "free-resources",
+        platform: {
+          name: "Clash Royale",
+          src: storageUrl("images/clash-royale/clash-royale.jpg"),
+        },
+        previewImage: "https://res.cloudinary.com/dctrgw4fo/image/upload/clash-royale/free-resources-qr-code.png",
+        name: "Free resources",
+        description: "Claim free 3 rewards (Lucky chest 3 star , 200 common wild shards , 50k gold)",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value: "Claim free 3 rewards (Lucky chest 3 star , 200 common wild shards , 50k gold)",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dctrgw4fo/image/upload/clash-royale/free-resources-qr-code.png",
+            alt: "Free resources QR code",
+          },
+        ] as ContentType[],
+      },
+      {
         id: "21",
         slug: "minion-horde-evo-emote",
         platform: {
@@ -132,7 +155,7 @@ const siteConfig = {
         previewImage: storageUrl("images/clash-royale/eyJwYXRoIjoic3VwZXJjZWxsXC9maWxlXC9CdGNveEs0WkM0ckRXeVozR3RQWi5wbmcifQ_supercell_zVyxpJ2NrDSCVDGXSC12sl7Hgv0erpL4-BypwkP6dVo.avif"),
         name: "Anniversary Lucky Chest",
         description: "Claim the Anniversary Lucky Chest reward.",
-        status: "active" as "active" | "expired",
+        status: "expired" as "active" | "expired",
         content: [
           {
             type: "link",
@@ -157,7 +180,7 @@ const siteConfig = {
         previewImage: storageUrl("images/clash-royale/Snippet_random.png"),
         name: "Daily Rewards",
         description: "Claim your daily rewards from the Supercell Store.",
-        status: "active" as "active" | "expired",
+        status: "expired" as "active" | "expired",
         content: [
           {
             type: "text",
@@ -997,7 +1020,7 @@ const siteConfig = {
         previewImage: storageUrl("images/brawl-stars/preview-spray.png"),
         name: "Spray Reward",
         description: "Claim this exclusive spray in Brawl Stars.",
-        status: "active" as "active" | "expired",
+        status: "expired" as "active" | "expired",
         content: [
           {
             type: "link",
