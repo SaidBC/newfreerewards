@@ -12,6 +12,8 @@ import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { getPlatformLastUpdated } from "@/lib/rewardService";
+import { formatDate } from "@/lib/utils";
 
 export const dynamic = "force-static";
 
@@ -63,6 +65,8 @@ export default async function ClashOfClansPage({
   const { locale: requestedLocale } = await params;
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
   const t = getDictionary(locale);
+  const lastUpdated = await getPlatformLastUpdated("clash-of-clans");
+  const formattedDate = lastUpdated ? formatDate(lastUpdated) : "";
 
   return (
     <main className="min-h-screen bg-background pt-24">
@@ -118,6 +122,11 @@ export default async function ClashOfClansPage({
             </div>
           </div>
         </section>
+        {formattedDate && (
+          <p className="mt-4 text-sm font-bold text-muted-foreground">
+            {t.games.lastUpdatedLabel}: {formattedDate}
+          </p>
+        )}
       </div>
     </main>
   );

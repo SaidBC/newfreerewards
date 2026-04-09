@@ -6,6 +6,86 @@ datasource db {
   provider = "postgresql"
 }
 
+model Platform {
+  id        Int          @id @default(autoincrement())
+  name      String       @unique
+  slug      String       @unique
+  type      PlatformType @default(GAME)
+  createdAt DateTime     @default(now())
+  image     String?
+  updatedAt DateTime     @updatedAt
+  rewards   Reward[]
+}
+
+model Reward {
+  id           Int              @id @default(autoincrement())
+  title        String
+  description  String
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+  platformId   Int
+  previewImage String?
+  slug         String
+  status       RewardStatus     @default(active)
+  claimUrl     String?
+  expiresAt    DateTime?
+  image        String?
+  translations Json?
+  platform     Platform         @relation(fields: [platformId], references: [id], onDelete: Cascade)
+  contents     RewardContent[]
+  reactions    RewardReaction[]
+  reports      RewardReport[]
+
+  @@unique([platformId, slug])
+  @@index([platformId])
+  @@index([status])
+}
+
+model RewardContent {
+  id           Int               @id @default(autoincrement())
+  type         RewardContentType
+  value        String?
+  href         String?
+  label        String?
+  imageSrc     String?
+  imageAlt     String?
+  rewardId     Int
+  order        Int
+  createdAt    DateTime          @default(now())
+  translations Json?
+  reward       Reward            @relation(fields: [rewardId], references: [id], onDelete: Cascade)
+
+  @@index([rewardId])
+}
+
+model RewardReaction {
+  id           Int          @id @default(autoincrement())
+  reactionType ReactionType
+  visitorId    String
+  rewardId     Int
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  reward       Reward       @relation(fields: [rewardId], references: [id], onDelete: Cascade)
+
+  @@unique([rewardId, visitorId])
+  @@index([rewardId, reactionType])
+}
+
+model RewardReport {
+  id         Int        @id @default(autoincrement())
+  reportType ReportType
+  visitorId  String
+  reportDay  DateTime
+  rewardId   Int
+  createdAt  DateTime   @default(now())
+  note       String?
+  reward     Reward     @relation(fields: [rewardId], references: [id], onDelete: Cascade)
+
+  @@unique([rewardId, visitorId, reportDay])
+  @@index([rewardId, reportType])
+  @@index([rewardId, createdAt])
+}
+
 enum PlatformType {
   GAME
   SERVICE
@@ -32,95 +112,4 @@ enum ReportType {
   expired
   not_working
   other
-}
-
-model Platform {
-  id      Int          @id @default(autoincrement())
-  name    String       @unique
-  slug    String       @unique
-  image   String?
-  type    PlatformType @default(GAME)
-  rewards Reward[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Reward {
-  id           Int          @id @default(autoincrement())
-  slug         String       @unique
-  title        String
-  description  String
-  previewImage String?      // Image shown in listings
-  image        String?      // Reward detail image (from admin)
-  claimUrl     String?
-  expiresAt    DateTime?
-  status       RewardStatus @default(active)
-  translations Json?        // stores localized title and description e.g. { es: { title: "...", description: "..." }, ar: { ... } }
-
-  platform   Platform @relation(fields: [platformId], references: [id], onDelete: Cascade)
-  platformId Int
-
-  contents RewardContent[]
-  reactions RewardReaction[]
-  reports   RewardReport[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([platformId])
-  @@index([status])
-}
-
-model RewardContent {
-  id   Int               @id @default(autoincrement())
-  type RewardContentType
-
-  value    String? // for text
-  href     String? // for link
-  label    String? // for link label
-  imageSrc String? // for image
-  imageAlt String?
-  translations Json? // stores localized value, label, and alt e.g. { es: { value: "...", label: "..." }, ar: { ... } }
-
-  reward   Reward @relation(fields: [rewardId], references: [id], onDelete: Cascade)
-  rewardId Int
-
-  order Int // controls rendering order
-
-  createdAt DateTime @default(now())
-
-  @@index([rewardId])
-}
-
-model RewardReaction {
-  id           Int          @id @default(autoincrement())
-  reactionType ReactionType
-  visitorId    String
-
-  reward   Reward @relation(fields: [rewardId], references: [id], onDelete: Cascade)
-  rewardId Int
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@unique([rewardId, visitorId])
-  @@index([rewardId, reactionType])
-}
-
-model RewardReport {
-  id         Int        @id @default(autoincrement())
-  reportType ReportType
-  visitorId  String
-  reportDay  DateTime
-  note       String?
-
-  reward   Reward @relation(fields: [rewardId], references: [id], onDelete: Cascade)
-  rewardId Int
-
-  createdAt DateTime @default(now())
-
-  @@unique([rewardId, visitorId, reportDay])
-  @@index([rewardId, reportType])
-  @@index([rewardId, createdAt])
 }

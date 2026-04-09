@@ -14,6 +14,8 @@ import {
 } from "@/lib/i18n";
 
 import AdsComponent from "@/components/AdsComponent";
+import { getPlatformLastUpdated } from "@/lib/rewardService";
+import { formatDate } from "@/lib/utils";
 
 export const dynamic = "force-static";
 
@@ -64,6 +66,8 @@ export default async function Page({
   const { locale: requestedLocale } = await params;
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
   const t = getDictionary(locale);
+  const lastUpdated = await getPlatformLastUpdated("clash-royale");
+  const formattedDate = lastUpdated ? formatDate(lastUpdated) : "";
 
   return (
     <main className="min-h-screen bg-background">
@@ -114,9 +118,11 @@ export default async function Page({
             <li>clash royale codes for gems</li>
           </ul>
         </section>
-        <p className="mt-4 text-sm font-bold text-muted-foreground">
-          {t.games.lastUpdatedLabel}: 2026 Apr 06
-        </p>
+        {formattedDate && (
+          <p className="mt-4 text-sm font-bold text-muted-foreground">
+            {t.games.lastUpdatedLabel}: {formattedDate}
+          </p>
+        )}
       </div>
     </main>
   );

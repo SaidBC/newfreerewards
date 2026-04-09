@@ -33,15 +33,18 @@ export async function getRewardsByPlatform(
 }
 
 export async function getRewardBySlug(platformSlug: string, slug: string, locale: Locale): Promise<TranslatedReward | null> {
-  const reward = await prisma.reward.findUnique({
-    where: { slug },
+  const reward = await prisma.reward.findFirst({
+    where: { 
+      slug,
+      platform: { slug: platformSlug }
+    },
     include: {
       platform: true,
       contents: { orderBy: { order: "asc" } },
     },
   });
 
-  if (!reward || reward.platform.slug !== platformSlug) return null;
+  if (!reward) return null;
 
   return translateReward(reward, locale, reward.platform);
 }
@@ -77,4 +80,26 @@ function translateReward(reward: any, locale: Locale, platform: Platform): Trans
       };
     }),
   };
+}
+export async function getPlatformLastUpdated(platformSlug: string): Promise<Date | null> {
+  const platform = await prisma.platform.findUnique({
+    where: { slug: platformSlug },
+    select: {
+      updatedAt: true,
+      rewards: {
+        select: { updatedAt: true },
+        orderBy: { updatedAt: "desc" },
+        take: 1,
+      },
+    },
+  });
+
+  if (!platform) return null;
+
+  const platformUpdated = platform.updatedAt;
+  const latestRewardUpdated = platform.rewards[0]?.updatedAt;
+
+  if (!latestRewardUpdated) return platformUpdated;
+  
+  return platformUpdated > latestRewardUpdated ? platformUpdated : latestRewardUpdated;
 }

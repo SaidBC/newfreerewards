@@ -11,6 +11,8 @@ import {
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { getPlatformLastUpdated } from "@/lib/rewardService";
+import { formatDate } from "@/lib/utils";
 
 export const dynamic = "force-static";
 
@@ -64,6 +66,8 @@ export default async function GrowAGardenGamePage({
   const { locale: requestedLocale } = await params;
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
   const t = getDictionary(locale);
+  const lastUpdated = await getPlatformLastUpdated("grow-a-garden");
+  const formattedDate = lastUpdated ? formatDate(lastUpdated) : "";
 
   return (
     <main className="min-h-screen bg-background pt-24">
@@ -110,12 +114,17 @@ export default async function GrowAGardenGamePage({
               <ul className="list-disc ml-5 text-muted-foreground text-sm space-y-1">
                 <li>Grow a Garden free cosmetic codes 2026</li>
                 <li>How to use codes in Grow a Garden</li>
-                <li>March 2026 active working codes</li>
+                <li>April 2026 active working codes</li>
                 <li>New rewards for Grow a Garden players</li>
               </ul>
             </div>
           </div>
         </section>
+        {formattedDate && (
+          <p className="mt-4 text-sm font-bold text-muted-foreground">
+            {t.games.lastUpdatedLabel}: {formattedDate}
+          </p>
+        )}
       </div>
     </main>
   );

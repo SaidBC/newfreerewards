@@ -112,7 +112,12 @@ async function main() {
 
     for (const reward of rewards) {
       const existingReward = await prisma.reward.findUnique({
-        where: { slug: reward.slug },
+        where: {
+          platformId_slug: {
+            platformId: platformId,
+            slug: reward.slug
+          }
+        },
         select: { id: true },
       });
 

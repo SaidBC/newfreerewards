@@ -12,6 +12,8 @@ import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { getPlatformLastUpdated } from "@/lib/rewardService";
+import { formatDate } from "@/lib/utils";
 
 export const dynamic = "force-static";
 
@@ -65,6 +67,8 @@ export default async function GenshinImpactGamePage({
   const { locale: requestedLocale } = await params;
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
   const t = getDictionary(locale);
+  const lastUpdated = await getPlatformLastUpdated("genshin-impact");
+  const formattedDate = lastUpdated ? formatDate(lastUpdated) : "";
 
   return (
     <main className="min-h-screen bg-background pt-24">
@@ -113,12 +117,17 @@ export default async function GenshinImpactGamePage({
               <ul className="list-disc ml-5 text-muted-foreground text-sm space-y-1">
                 <li>Genshin Impact free primogems codes 2026</li>
                 <li>Version 6.4 livestream redemption codes</li>
-                <li>March 2026 active working codes</li>
+                <li>April 2026 active working codes</li>
                 <li>How to reach Adventure Rank 10 fast</li>
               </ul>
             </div>
           </div>
         </section>
+        {formattedDate && (
+          <p className="mt-4 text-sm font-bold text-muted-foreground">
+            {t.games.lastUpdatedLabel}: {formattedDate}
+          </p>
+        )}
       </div>
     </main>
   );

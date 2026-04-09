@@ -115,7 +115,7 @@ export default async function RiseOfKingdomsRedemptionPage({
           <section className="rounded-3xl border bg-card/50 p-6 md:p-8 shadow-sm">
             <div className="mb-6 flex items-center gap-3">
               <Gift className="h-6 w-6 text-primary" />
-              <h2 className="text-2xl font-bold">Active Rise of Kingdoms Codes (March 2026)</h2>
+              <h2 className="text-2xl font-bold">Active Rise of Kingdoms Codes (April 2026)</h2>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               {reward?.content?.filter((b: any) => b.type === "code").map((block: any, idx: number) => (

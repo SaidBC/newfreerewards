@@ -13,6 +13,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import AdsComponent from "@/components/AdsComponent";
+import { getPlatformLastUpdated } from "@/lib/rewardService";
+import { formatDate } from "@/lib/utils";
 
 export const dynamic = "force-static";
 
@@ -64,6 +66,8 @@ export default async function BrawlStarsPage({
   const { locale: requestedLocale } = await params;
   const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
   const t = getDictionary(locale);
+  const lastUpdated = await getPlatformLastUpdated("brawl-stars");
+  const formattedDate = lastUpdated ? formatDate(lastUpdated) : "";
 
   return (
     <main className="min-h-screen bg-background pt-24">
@@ -123,9 +127,11 @@ export default async function BrawlStarsPage({
             </div>
           </div>
         </section>
-        <p className="mt-4 text-sm font-bold text-muted-foreground">
-          {t.games.lastUpdatedLabel}: 2026 Mar 28
-        </p>
+        {formattedDate && (
+          <p className="mt-4 text-sm font-bold text-muted-foreground">
+            {t.games.lastUpdatedLabel}: {formattedDate}
+          </p>
+        )}
       </div>
     </main>
   );
