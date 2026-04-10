@@ -28,8 +28,11 @@ export default async function EditRewardPage({ params }: EditRewardPageProps) {
     return <AdminLoginForm />;
   }
 
-  const reward = await prisma.reward.findUnique({
-    where: { slug },
+  const reward = await prisma.reward.findFirst({
+    where: { 
+      slug,
+      platform: { slug: platformSlug }
+    },
     include: { platform: true, contents: { orderBy: { order: "asc" } } },
   });
 
