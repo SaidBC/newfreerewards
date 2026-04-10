@@ -11,7 +11,7 @@
     "upload:cloudinary-images": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' scripts/upload-cloudinary-images.ts",
     "seed": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/seed.ts",
     "postinstall": "prisma generate",
-    "vercel-build": "npm run seed && next build"
+    "vercel-build": "prisma migrate deploy && npm run seed && next build"
   },
   "dependencies": {
     "@editorjs/editorjs": "^2.31.1",
