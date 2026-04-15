@@ -90,6 +90,11 @@ export default async function AdminPage() {
                 <span className="text-xs bg-muted px-2 py-1 rounded-full text-muted-foreground font-mono">
                   {group.rewards.length}
                 </span>
+                <Button asChild variant="outline" size="sm" className="ml-auto h-7 text-xs">
+                  <Link href={`/admin/${group.slug}/redemption-codes/edit`}>
+                    Manage Redemption Codes
+                  </Link>
+                </Button>
               </div>
               <RewardList rewards={group.rewards} platforms={platforms} />
             </section>

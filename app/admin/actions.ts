@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { Prisma } from "@prisma/client";
@@ -173,5 +173,81 @@ export async function deleteReward(id: number) {
   if (reward.platform) {
     revalidatePath(`/games/${reward.platform.slug}`);
   }
+  revalidatePath("/", "layout");
+}
+
+export async function saveRedemptionCodes(platformId: number, formData: FormData) {
+  if (!(await checkAuth())) throw new Error("Unauthorized");
+
+  const codesMap = JSON.parse(formData.get("codes") as string || "[]");
+
+  const existingReward = await prisma.reward.findUnique({
+    where: { platformId_slug: { platformId, slug: "redemption-codes" } },
+    include: { platform: true }
+  });
+
+  if (existingReward) {
+    await prisma.$transaction(async (tx) => {
+      // Find highest order of non-code contents to preserve
+      const maxOrderContent = await tx.rewardContent.findFirst({
+        where: { rewardId: existingReward.id, type: { not: "code" } },
+        orderBy: { order: "desc" }
+      });
+      let nextOrder = maxOrderContent ? maxOrderContent.order + 1 : 0;
+
+      // Delete old codes
+      await tx.rewardContent.deleteMany({
+        where: { rewardId: existingReward.id, type: "code" }
+      });
+
+      // Add new codes
+      const newContents = codesMap.map((code: any) => ({
+        type: "code" as any,
+        value: code.value,
+        label: code.label,
+        rewardId: existingReward.id,
+        order: nextOrder++
+      }));
+
+      if (newContents.length > 0) {
+        await tx.rewardContent.createMany({ data: newContents });
+      }
+    });
+    
+    if (existingReward.platform) {
+      revalidatePath(`/games/${existingReward.platform.slug}`);
+      revalidatePath(`/[locale]/games/${existingReward.platform.slug}`, "page");
+      revalidatePath(`/[locale]/games/${existingReward.platform.slug}/rewards/redemption-codes`, "page");
+      revalidatePath("/", "layout");
+    }
+  } else {
+    // Create new the reward
+    const newReward = await prisma.reward.create({
+      data: {
+        platformId,
+        slug: "redemption-codes",
+        title: "Active Redemption Codes",
+        description: "Latest available codes for this game.",
+        status: "active",
+        contents: {
+          create: codesMap.map((code: any, idx: number) => ({
+            type: "code" as any,
+            value: code.value,
+            label: code.label,
+            order: idx,
+          }))
+        }
+      },
+      include: { platform: true }
+    });
+    
+    if (newReward.platform) {
+      revalidatePath(`/games/${newReward.platform.slug}`);
+      revalidatePath(`/[locale]/games/${newReward.platform.slug}`, "page");
+      revalidatePath(`/[locale]/games/${newReward.platform.slug}/rewards/redemption-codes`, "page");
+      revalidatePath("/", "layout");
+    }
+  }
+
   revalidatePath("/", "layout");
 }
