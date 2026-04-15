@@ -1,8 +1,9 @@
 import { ReactionType } from "@prisma/client";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 import z from "zod";
-import { getRewardEngagement, RewardEngagementError, toggleRewardReaction } from "@/lib/rewardEngagementService";
+import { RewardEngagementError, toggleRewardReaction } from "@/lib/rewardEngagementService";
 import {
   applyVisitorIdCookie,
   getOrCreateVisitorId,
@@ -36,6 +37,8 @@ export async function POST(
     );
 
     const summary = await toggleRewardReaction(rewardId, visitorId, body.reactionType);
+    // @ts-expect-error - Next.js 16 experimental profile argument
+    revalidateTag("reward-engagement");
     const response = NextResponse.json(summary);
 
     if (shouldSetCookie) {

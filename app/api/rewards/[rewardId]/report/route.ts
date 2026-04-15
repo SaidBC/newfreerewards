@@ -1,6 +1,7 @@
 import { ReportType } from "@prisma/client";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 import z from "zod";
 import {
   getRewardEngagement,
@@ -55,6 +56,8 @@ export async function POST(
       body.reportType,
       body.note,
     );
+    // @ts-expect-error - Next.js 16 experimental profile argument
+    revalidateTag("reward-engagement");
     const response = NextResponse.json(summary);
 
     if (shouldSetCookie) {

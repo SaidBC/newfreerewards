@@ -18,6 +18,7 @@ import type { RewardEngagementSummary } from "@/lib/rewardEngagementService";
 type RewardEngagementBarProps = {
   rewardId: number;
   locale: Locale;
+  initialSummary?: RewardEngagementSummary | null;
 };
 
 type ReportErrorPayload = {
@@ -62,10 +63,11 @@ function applyReactionOptimistically(
 export default function RewardEngagementBar({
   rewardId,
   locale,
+  initialSummary,
 }: RewardEngagementBarProps) {
   const t = getDictionary(locale);
-  const [summary, setSummary] = useState<RewardEngagementSummary | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [summary, setSummary] = useState<RewardEngagementSummary | null>(initialSummary || null);
+  const [isLoading, setIsLoading] = useState(!initialSummary);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [actionError, setActionError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -95,8 +97,10 @@ export default function RewardEngagementBar({
   }
 
   useEffect(() => {
-    void fetchEngagement();
-  }, [rewardId]);
+    if (!initialSummary) {
+      void fetchEngagement();
+    }
+  }, [rewardId, initialSummary]);
 
   async function handleReaction(reactionType: "love" | "dislike") {
     if (!summary || pendingReaction || isSubmittingReport) {

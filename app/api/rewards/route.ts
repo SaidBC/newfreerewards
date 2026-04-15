@@ -2,7 +2,7 @@ import { getRewardsByPlatform, type TranslatedRewards } from "@/lib/rewardServic
 import { NextRequest, NextResponse } from "next/server";
 import { RewardStatus } from "@prisma/client";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 type RewardsApiResponse =
   | { success: true; data: TranslatedRewards }

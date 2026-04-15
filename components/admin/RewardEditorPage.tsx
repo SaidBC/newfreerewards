@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { RewardForm } from "./RewardForm";
-import RewardDetailView from "@/components/rewards/RewardDetailView";
+import RewardDetailViewClient from "@/components/rewards/RewardDetailViewClient";
 import { Platform, Reward, RewardContent } from "@prisma/client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
@@ -106,7 +106,7 @@ export default function RewardEditorPage({
              }`}
            >
              {previewData ? (
-               <RewardDetailView 
+               <RewardDetailViewClient 
                 reward={previewData} 
                 locale={previewLocale} 
                 t={dictionary[previewLocale]} 
