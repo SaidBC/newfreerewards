@@ -3,15 +3,8 @@ import { getRewardsByPlatform } from "@/lib/rewardService";
 import type { Locale } from "@/lib/i18n";
 import { unstable_cache } from "next/cache";
 
-type GameSlug =
-  | "clash-royale"
-  | "clash-of-clans"
-  | "brawl-stars"
-  | "genshin-impact"
-  | "honkai-star-rail"
-  | "roblox"
-  | "rise-of-kingdoms"
-  | "grow-a-garden";
+import { type GameSlug } from "@/types/games";
+
 
 const getCachedRewards = unstable_cache(
   async (game: string, locale: string, status: "active" | "expired") => {

@@ -8,7 +8,8 @@ import {
   getLocalizedHonkaiStarRailRewards,
   getLocalizedRobloxRewards,
   getLocalizedRiseOfKingdomsRewards,
-  getLocalizedGrowAGardenRewards
+  getLocalizedGrowAGardenRewards,
+  getLocalizedBlueLockRivalsRewards
 } from "../lib/siteConfig";
 import prisma from "../lib/prisma";
 
@@ -87,6 +88,13 @@ async function main() {
     name: "Grow a Garden",
     slug: "grow-a-garden",
     image: storageUrl("images/grow-a-garden/logo.webp"),
+    type: "GAME",
+  });
+
+  const blueLockRivals = await ensurePlatform({
+    name: "Blue Lock Rivals",
+    slug: "blue-lock-rivals",
+    image: storageUrl("images/blue-lock-rivals/logo.png"),
     type: "GAME",
   });
 
@@ -189,6 +197,7 @@ async function main() {
   await seedRewards(getLocalizedRobloxRewards("en"), roblox.id);
   await seedRewards(getLocalizedRiseOfKingdomsRewards("en"), riseOfKingdoms.id);
   await seedRewards(getLocalizedGrowAGardenRewards("en"), growAGarden.id);
+  await seedRewards(getLocalizedBlueLockRivalsRewards("en"), blueLockRivals.id);
 
   console.log("✅ Non-destructive seed completed successfully");
 }

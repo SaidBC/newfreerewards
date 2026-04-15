@@ -1654,6 +1654,43 @@ const siteConfig = {
       },
     ] as RewardType[],
   },
+  bluelockrivals: {
+    rewards: [
+      {
+        id: "blue-lock-rivals-codes",
+        slug: "redemption-codes",
+        platform: {
+          name: "Blue Lock Rivals",
+          src: storageUrl("images/blue-lock-rivals/logo.png"),
+        },
+        previewImage: storageUrl("images/blue-lock-rivals/logo.png"),
+        name: "Redemption Codes",
+        description: "Check out the latest redemption codes for Blue Lock Rivals.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value: "Find all the latest active redemption codes for Blue Lock Rivals and learn how to claim them.",
+          },
+          {
+            type: "link",
+            href: "/games/blue-lock-rivals/rewards/redemption-codes",
+            label: "View All Codes",
+          },
+          {
+            type: "code",
+            value: "NELNAGIW",
+            label: "10 Lucky Spins",
+          },
+          {
+            type: "code",
+            value: "NAGITHEBEST",
+            label: "5 Lucky Flow",
+          },
+        ] as ContentType[],
+      },
+    ] as RewardType[],
+  },
 };
 
 const clashOfClansTranslations: Partial<
@@ -2168,6 +2205,18 @@ export function getLocalizedRiseOfKingdomsRewards(locale: Locale): RewardType[] 
 
 export function getLocalizedGrowAGardenRewards(locale: Locale): RewardType[] {
   return siteConfig.growagarden.rewards.map((reward) => ({
+    ...reward,
+    content: reward.content.map((content) => ({
+      ...content,
+      value: translateContentText(locale, content.value),
+      label: translateContentText(locale, content.label),
+      alt: translateContentText(locale, content.alt),
+    })),
+  }));
+}
+
+export function getLocalizedBlueLockRivalsRewards(locale: Locale): RewardType[] {
+  return siteConfig.bluelockrivals.rewards.map((reward) => ({
     ...reward,
     content: reward.content.map((content) => ({
       ...content,

@@ -3,13 +3,15 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { getDictionary, localizePath, type Locale } from "@/lib/i18n";
+import { type GameSlug } from "@/types/games";
+
 
 interface RewardItemProps {
   src?: string;
   title: string;
   platform: { name: string };
   slug: string;
-  game: "clash-royale" | "clash-of-clans" | "brawl-stars" | "genshin-impact" | "honkai-star-rail" | "roblox" | "rise-of-kingdoms" | "grow-a-garden";
+  game: GameSlug;
   locale: Locale;
 }
 

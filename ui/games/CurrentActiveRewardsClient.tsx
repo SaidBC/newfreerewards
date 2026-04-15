@@ -9,15 +9,8 @@ import type { TranslatedRewards } from "@/lib/rewardService";
 
 const INITIAL_LIMIT = 10;
 
-type GameSlug =
-  | "clash-royale"
-  | "clash-of-clans"
-  | "brawl-stars"
-  | "genshin-impact"
-  | "honkai-star-rail"
-  | "roblox"
-  | "rise-of-kingdoms"
-  | "grow-a-garden";
+import { type GameSlug } from "@/types/games";
+
 
 export default function CurrentActiveRewardsClient({
   locale,
