@@ -86,6 +86,7 @@ export function RecentActivity({ reactions, reports }: RecentActivityProps) {
                     <Link 
                       href={`/admin/rewards/${activity.reward.platform.slug}/${activity.reward.slug}/edit`}
                       className="text-primary font-bold hover:underline"
+                      prefetch={false}
                     >
                       {activity.reward.title}
                     </Link>
@@ -101,6 +102,7 @@ export function RecentActivity({ reactions, reports }: RecentActivityProps) {
                 <Link 
                   href={`/admin/rewards/${activity.reward.platform.slug}/${activity.reward.slug}/edit`}
                   className="p-1.5 rounded-lg opacity-0 group-hover:opacity-100 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all"
+                  prefetch={false}
                 >
                   <ChevronRight className="w-4 h-4 text-zinc-400" />
                 </Link>

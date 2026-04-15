@@ -18,7 +18,7 @@ export default async function AdminLayout({
       <header className="bg-white dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-800 p-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <h1 className="text-xl font-bold text-gray-900 dark:text-white">Admin Dashboard</h1>
-          <Link href="/" className="text-sm text-blue-600 hover:underline">View Site</Link>
+          <Link href="/" className="text-sm text-blue-600 hover:underline" prefetch={false}>View Site</Link>
         </div>
       </header>
       <main className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">

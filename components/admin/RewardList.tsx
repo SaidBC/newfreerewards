@@ -180,7 +180,7 @@ export function RewardList({
                 
                 <div className="flex items-center gap-2 pt-3 border-t mt-auto">
                   <Button variant="outline" size="sm" className="flex-1 font-bold text-xs" asChild>
-                    <Link href={`/admin/rewards/${reward.platform.slug}/${reward.slug}/edit`}>
+                    <Link href={`/admin/rewards/${reward.platform.slug}/${reward.slug}/edit`} prefetch={false}>
                       EDIT REWARD
                     </Link>
                   </Button>

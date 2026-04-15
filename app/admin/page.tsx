@@ -67,7 +67,7 @@ export default async function AdminPage() {
         </div>
         <div className="flex items-center gap-3">
           <Button asChild>
-            <Link href="/admin/rewards/new">
+            <Link href="/admin/rewards/new" prefetch={false}>
               <Plus className="w-4 h-4 mr-2" />
               Create Reward
             </Link>
@@ -91,7 +91,7 @@ export default async function AdminPage() {
                   {group.rewards.length}
                 </span>
                 <Button asChild variant="outline" size="sm" className="ml-auto h-7 text-xs">
-                  <Link href={`/admin/${group.slug}/redemption-codes/edit`}>
+                  <Link href={`/admin/${group.slug}/redemption-codes/edit`} prefetch={false}>
                     Manage Redemption Codes
                   </Link>
                 </Button>

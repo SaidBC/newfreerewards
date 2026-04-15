@@ -26,7 +26,7 @@ export default async function NewRewardPage() {
     <div className="space-y-8 max-w-6xl mx-auto py-8 px-4">
       <div className="flex items-center gap-4">
         <Button variant="ghost" size="icon" asChild>
-          <Link href="/admin">
+          <Link href="/admin" prefetch={false}>
             <ArrowLeft className="w-5 h-5" />
           </Link>
         </Button>
