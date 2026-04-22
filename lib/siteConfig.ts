@@ -807,6 +807,69 @@ const siteConfig = {
   brawlstars: {
     rewards: [
       {
+        id: "bs-23",
+        slug: "hank-spray",
+        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
+        previewImage: storageUrl("images/brawl-stars/hank-spray.jpg"),
+        name: "Hank Spray",
+        description: "Claim the Hank Spray in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/en/voucher/963326be-8393-492e-91ea-b19325ffb088",
+            label: "Claim Spray",
+          },
+          {
+            type: "image",
+            src: storageUrl("images/brawl-stars/hank-spray-qr.png"),
+            alt: "Hank Spray QR Code",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "bs-22",
+        slug: "1x-chaos-drop",
+        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
+        previewImage: storageUrl("images/brawl-stars/1x-chaos-drop.png"),
+        name: "1x Chaos Drop",
+        description: "Claim 1x Chaos Drop in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/voucher/b86d7fe2-7072-4388-adb4-8057cd56537c",
+            label: "Claim Chaos Drop",
+          },
+          {
+            type: "image",
+            src: storageUrl("images/brawl-stars/1x-chaos-drop-qr.png"),
+            alt: "1x Chaos Drop QR Code",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "bs-21",
+        slug: "bulb-pin",
+        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
+        previewImage: storageUrl("images/brawl-stars/bulb-pin.png"),
+        name: "Bulb Pin",
+        description: "Claim the Bulb Pin in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/en/voucher/fad039a8-4850-4a09-b1dd-f673afec5aa7",
+            label: "Claim Pin",
+          },
+          {
+            type: "image",
+            src: storageUrl("images/brawl-stars/bulb-pin-qr.png"),
+            alt: "Bulb Pin QR Code",
+          },
+        ] as ContentType[],
+      },
+      {
         id: "bs-20",
         slug: "emoji_fairy_flower",
         platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
