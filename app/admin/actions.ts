@@ -6,13 +6,12 @@ import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { Prisma } from "@prisma/client";
 import serverEnv from "@/utils/serverEnv";
+import { isAdminAuthenticated } from "@/lib/adminAuth";
 
 const ADMIN_PASSWORD = serverEnv.ADMIN_PASSWORD;
 
 async function checkAuth() {
-  const cookieStore = await cookies();
-  const auth = cookieStore.get("admin_auth")?.value;
-  return auth === ADMIN_PASSWORD;
+  return isAdminAuthenticated();
 }
 
 export async function login(prevState: any, formData: FormData) {

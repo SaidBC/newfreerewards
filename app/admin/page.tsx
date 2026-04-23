@@ -2,13 +2,13 @@ import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { logout } from "./actions";
 import serverEnv from "@/utils/serverEnv";
+import Image from "next/image";
 
 import { AdminLoginForm } from "@/components/admin/AdminLoginForm";
-import { RewardForm } from "@/components/admin/RewardForm";
 import { RewardList } from "@/components/admin/RewardList";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Plus, Bell } from "lucide-react";
+import { Plus, Upload } from "lucide-react";
 import { RecentActivity } from "@/components/admin/RecentActivity";
 
 export const dynamic = "force-dynamic";
@@ -66,6 +66,12 @@ export default async function AdminPage() {
           <p className="text-muted-foreground mt-1">Manage rewards across all gaming platforms.</p>
         </div>
         <div className="flex items-center gap-3">
+          <Button asChild variant="outline">
+            <Link href="/admin/upload" prefetch={false}>
+              <Upload className="w-4 h-4 mr-2" />
+              Upload Image
+            </Link>
+          </Button>
           <Button asChild>
             <Link href="/admin/rewards/new" prefetch={false}>
               <Plus className="w-4 h-4 mr-2" />
@@ -84,7 +90,14 @@ export default async function AdminPage() {
             <section key={group.id} className="space-y-4">
               <div className="flex items-center gap-3 border-b pb-2">
                 {group.image && (
-                  <img src={group.image} alt={group.name} className="w-8 h-8 rounded object-cover" />
+                  <Image
+                    src={group.image}
+                    alt={group.name}
+                    width={32}
+                    height={32}
+                    unoptimized
+                    className="h-8 w-8 rounded object-cover"
+                  />
                 )}
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">{group.name}</h3>
                 <span className="text-xs bg-muted px-2 py-1 rounded-full text-muted-foreground font-mono">
