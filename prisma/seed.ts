@@ -126,7 +126,7 @@ async function main() {
             slug: reward.slug
           }
         },
-        select: { id: true },
+        select: { id: true, status: true },
       });
 
       let createdReward;
@@ -138,7 +138,7 @@ async function main() {
             title: reward.name,
             description: reward.description,
             previewImage: reward.previewImage,
-            status: reward.status,
+            status: existingReward.status === 'expired' ? 'expired' : reward.status,
             claimUrl:
               reward.content.find((c: any) => c.type === "link")?.href ?? null,
             image:

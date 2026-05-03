@@ -807,6 +807,31 @@ const siteConfig = {
   brawlstars: {
     rewards: [
       {
+        id: "bs-diamond-box",
+        slug: "diamond-box-qr-code",
+        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
+        previewImage: "https://res.cloudinary.com/dctrgw4fo/image/upload/v1777782840/images/brawl-stars/684083002_18087688991580604_8157799446537923513_n-mopa0355-x7kbkq.jpg",
+        name: "Diamond Box",
+        description: "Claim the Diamond Box reward.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value: "Scan the QR code or click the link below to claim.",
+          },
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/voucher/d2cd00ab-80d8-4d00-9fee-db4e6569051d/",
+            label: "Claim Diamond Box",
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dctrgw4fo/image/upload/v1777783172/images/brawl-stars/download-mopa76t9-8r4x74.png",
+            alt: "Diamond Box QR Code",
+          },
+        ] as ContentType[],
+      },
+      {
         id: "bs-23",
         slug: "hank-spray",
         platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
@@ -2004,6 +2029,10 @@ const brawlStarsTranslations: Partial<
       name: "Recompensa de 500 Monedas",
       description: "Reclama 500 monedas en Brawl Stars.",
     },
+    "diamond-box-qr-code": {
+      name: "Caja de Diamantes",
+      description: "Reclama la recompensa Caja de Diamantes.",
+    },
   },
   ar: {
     "daily-brawl-stars-rewards": {
@@ -2033,6 +2062,10 @@ const brawlStarsTranslations: Partial<
     "reward-24321637": {
       name: "مكافأة 500 عملة",
       description: "احصل على 500 عملة في Brawl Stars.",
+    },
+    "diamond-box-qr-code": {
+      name: "صندوق الألماس",
+      description: "احصل على مكافأة صندوق الألماس.",
     },
   },
 };
@@ -2094,6 +2127,9 @@ const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
       "Claim Coins": "Reclamar monedas",
       "500 Coins QR Code": "Código QR de 500 Monedas",
       "500 Coins Claimed": "500 Monedas Reclamadas",
+      "Scan the QR code or click the link below to claim.": "Escanea el código QR o haz clic en el enlace a continuación para reclamar.",
+      "Claim Diamond Box": "Reclamar Caja de Diamantes",
+      "Diamond Box QR Code": "Código QR de Caja de Diamantes",
     },
     ar: {
       "Claim banner": "احصل على البانر",
@@ -2148,6 +2184,9 @@ const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
       "Claim Coins": "احصل على العملات",
       "500 Coins QR Code": "رمز QR لـ 500 عملة",
       "500 Coins Claimed": "تم استلام 500 عملة",
+      "Scan the QR code or click the link below to claim.": "امسح رمز QR أو اضغط على الرابط أدناه للحصول عليه.",
+      "Claim Diamond Box": "احصل على صندوق الألماس",
+      "Diamond Box QR Code": "رمز QR لصندوق الألماس",
     },
   };
 
