@@ -42,14 +42,17 @@ const siteConfig = {
           name: "Clash Royale",
           src: storageUrl("images/clash-royale/clash-royale.jpg"),
         },
-        previewImage: "https://res.cloudinary.com/dctrgw4fo/image/upload/clash-royale/free-resources-qr-code.png",
+        previewImage:
+          "https://res.cloudinary.com/dctrgw4fo/image/upload/clash-royale/free-resources-qr-code.png",
         name: "Free resources",
-        description: "Claim free 3 rewards (Lucky chest 3 star , 200 common wild shards , 50k gold)",
+        description:
+          "Claim free 3 rewards (Lucky chest 3 star , 200 common wild shards , 50k gold)",
         status: "active" as "active" | "expired",
         content: [
           {
             type: "text",
-            value: "Claim free 3 rewards (Lucky chest 3 star , 200 common wild shards , 50k gold)",
+            value:
+              "Claim free 3 rewards (Lucky chest 3 star , 200 common wild shards , 50k gold)",
           },
           {
             type: "link",
@@ -107,8 +110,7 @@ const siteConfig = {
           name: "Clash Royale",
           src: storageUrl("images/clash-royale/clash-royale.jpg"),
         },
-        previewImage:
-          storageUrl("images/clash-royale/hog-cake-icon-emote.jpg"),
+        previewImage: storageUrl("images/clash-royale/hog-cake-icon-emote.jpg"),
         name: "Hog Cake Icon Emote",
         description: "Claim the Hog Cake Icon emote.",
         status: "active" as "active" | "expired",
@@ -132,8 +134,9 @@ const siteConfig = {
           name: "Clash Royale",
           src: storageUrl("images/clash-royale/clash-royale.jpg"),
         },
-        previewImage:
-          storageUrl("images/clash-royale/10-anivarsary-banner-qr.png"),
+        previewImage: storageUrl(
+          "images/clash-royale/10-anivarsary-banner-qr.png",
+        ),
         name: "10 Years Anniversary Banner",
         description: "Claim the 10 Years Anniversary Banner reward.",
         status: "active" as "active" | "expired",
@@ -157,7 +160,9 @@ const siteConfig = {
           name: "Clash Royale",
           src: storageUrl("images/clash-royale/clash-royale.jpg"),
         },
-        previewImage: storageUrl("images/clash-royale/eyJwYXRoIjoic3VwZXJjZWxsXC9maWxlXC9CdGNveEs0WkM0ckRXeVozR3RQWi5wbmcifQ_supercell_zVyxpJ2NrDSCVDGXSC12sl7Hgv0erpL4-BypwkP6dVo.avif"),
+        previewImage: storageUrl(
+          "images/clash-royale/eyJwYXRoIjoic3VwZXJjZWxsXC9maWxlXC9CdGNveEs0WkM0ckRXeVozR3RQWi5wbmcifQ_supercell_zVyxpJ2NrDSCVDGXSC12sl7Hgv0erpL4-BypwkP6dVo.avif",
+        ),
         name: "Anniversary Lucky Chest",
         description: "Claim the Anniversary Lucky Chest reward.",
         status: "expired" as "active" | "expired",
@@ -169,7 +174,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/clash-royale/anniversary-lucky-chest-qr.png"),
+            src: storageUrl(
+              "images/clash-royale/anniversary-lucky-chest-qr.png",
+            ),
             alt: "Anniversary Lucky Chest QR",
           },
         ] as ContentType[],
@@ -216,8 +223,9 @@ const siteConfig = {
           name: "Clash Royale",
           src: storageUrl("images/clash-royale/clash-royale.jpg"),
         },
-        previewImage:
-          storageUrl("images/clash-royale/preview-2-star-magic-lucky-chest.png"),
+        previewImage: storageUrl(
+          "images/clash-royale/preview-2-star-magic-lucky-chest.png",
+        ),
         name: "2-Star Lucky Chest",
         description: "Follow the steps below to claim this chest.",
         status: "active" as "active" | "expired",
@@ -251,8 +259,9 @@ const siteConfig = {
           name: "Clash Royale",
           src: storageUrl("images/clash-royale/clash-royale.jpg"),
         },
-        previewImage:
-          storageUrl("images/clash-royale/preview-skeleton-shield-bang-emote.jpeg"),
+        previewImage: storageUrl(
+          "images/clash-royale/preview-skeleton-shield-bang-emote.jpeg",
+        ),
         name: "Skeleton Shield Bang Emote",
         description: "Claim the Skeleton Shield Bang emote.",
         status: "active" as "active" | "expired",
@@ -264,7 +273,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/clash-royale/skeleton-shield-bang-emote-qr.png"),
+            src: storageUrl(
+              "images/clash-royale/skeleton-shield-bang-emote-qr.png",
+            ),
             alt: "Skeleton Shield Bang emote QR",
           },
         ] as ContentType[],
@@ -276,7 +287,9 @@ const siteConfig = {
           name: "Clash Royale",
           src: storageUrl("images/clash-royale/clash-royale.jpg"),
         },
-        previewImage: storageUrl("images/clash-royale/preview-smile-goblin-emote.png"),
+        previewImage: storageUrl(
+          "images/clash-royale/preview-smile-goblin-emote.png",
+        ),
         name: "Smile Goblin Emote",
         description: "Redeem a promo code to unlock this emote.",
         status: "active" as "active" | "expired",
@@ -322,7 +335,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/clash-royale/3-seasonal-ironheart-lucky-chests.png"),
+            src: storageUrl(
+              "images/clash-royale/3-seasonal-ironheart-lucky-chests.png",
+            ),
             alt: "3 Seasonal Ironheart Lucky Chests QR",
           },
         ] as ContentType[],
@@ -345,7 +360,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/clash-royale/jojo-musketeer banner-set.png"),
+            src: storageUrl(
+              "images/clash-royale/jojo-musketeer banner-set.png",
+            ),
             alt: "Jojo Musketeer banner set QR",
           },
         ] as ContentType[],
@@ -357,8 +374,9 @@ const siteConfig = {
           name: "Clash Royale",
           src: storageUrl("images/clash-royale/clash-royale.jpg"),
         },
-        previewImage:
-          storageUrl("images/clash-royale/b57ea5d2-2ae4-4886-bd13-47856cdd87b1.png"),
+        previewImage: storageUrl(
+          "images/clash-royale/b57ea5d2-2ae4-4886-bd13-47856cdd87b1.png",
+        ),
         name: "Hero Goblin Troll Emote",
         description: "Follow the steps below to claim this emote.",
         status: "active" as "active" | "expired",
@@ -396,7 +414,9 @@ const siteConfig = {
           name: "Clash Royale",
           src: storageUrl("images/clash-royale/clash-royale.jpg"),
         },
-        previewImage: storageUrl("images/clash-royale/preview-hero-ice-golem-emote.png"),
+        previewImage: storageUrl(
+          "images/clash-royale/preview-hero-ice-golem-emote.png",
+        ),
         name: "Hero Ice Golem Emote",
         description: "Follow the steps below to claim this emote.",
         status: "expired" as "active" | "expired",
@@ -434,7 +454,9 @@ const siteConfig = {
           name: "Clash Royale",
           src: storageUrl("images/clash-royale/clash-royale.jpg"),
         },
-        previewImage: storageUrl("images/clash-royale/preview-hero-wizard-emote.png"),
+        previewImage: storageUrl(
+          "images/clash-royale/preview-hero-wizard-emote.png",
+        ),
         name: "Hero Wizard Emote",
         description: "Follow the steps below to claim this emote.",
         status: "expired" as "active" | "expired",
@@ -467,7 +489,9 @@ const siteConfig = {
           name: "Clash Royale",
           src: storageUrl("images/clash-royale/clash-royale.jpg"),
         },
-        previewImage: storageUrl("images/clash-royale/preview-hero-musk-emote.png"),
+        previewImage: storageUrl(
+          "images/clash-royale/preview-hero-musk-emote.png",
+        ),
         name: "Hero Musketeer Emote",
         description: "Redeem a promo code to unlock this emote.",
         status: "active" as "active" | "expired",
@@ -500,7 +524,9 @@ const siteConfig = {
           name: "Clash Royale",
           src: storageUrl("images/clash-royale/clash-royale.jpg"),
         },
-        previewImage: storageUrl("images/clash-royale/preview-fly-hog-emote.png"),
+        previewImage: storageUrl(
+          "images/clash-royale/preview-fly-hog-emote.png",
+        ),
         name: "Flying Royal Hogs Emote",
         description: "Unlock the Flying Royal Hogs emote using a code.",
         status: "active" as "active" | "expired",
@@ -621,7 +647,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/clash-royale/hot-hog-balloon-banner-banner.png"),
+            src: storageUrl(
+              "images/clash-royale/hot-hog-balloon-banner-banner.png",
+            ),
             alt: "Hot Hog Balloon banner frame QR",
           },
         ] as ContentType[],
@@ -656,7 +684,9 @@ const siteConfig = {
           name: "Clash Royale",
           src: storageUrl("images/clash-royale/clash-royale.jpg"),
         },
-        previewImage: storageUrl("images/clash-royale/preview-royal-ghost-boo-emote.jpeg"),
+        previewImage: storageUrl(
+          "images/clash-royale/preview-royal-ghost-boo-emote.jpeg",
+        ),
         name: "Royal Ghost Boo Emote",
         description: "Claim the Royal Ghost Boo emote.",
         status: "active" as "active" | "expired",
@@ -713,7 +743,9 @@ const siteConfig = {
           name: "Clash of Clans",
           src: storageUrl("images/clash-of-clans/Clash_of_Clans.webp"),
         },
-        previewImage: storageUrl("images/clash-of-clans/preview-baby-dragon-statue.avif"),
+        previewImage: storageUrl(
+          "images/clash-of-clans/preview-baby-dragon-statue.avif",
+        ),
         name: "Baby Dragon Statue",
         description: "Get the exclusive Baby Dragon Statue for your village.",
         status: "active" as "active" | "expired",
@@ -739,7 +771,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/clash-of-clans/baby-dragon-statue-claimed.png"),
+            src: storageUrl(
+              "images/clash-of-clans/baby-dragon-statue-claimed.png",
+            ),
             alt: "Baby Dragon Statue Claimed",
           },
         ] as ContentType[],
@@ -779,7 +813,9 @@ const siteConfig = {
           name: "Clash of Clans",
           src: storageUrl("images/clash-of-clans/Clash_of_Clans.webp"),
         },
-        previewImage: storageUrl("images/clash-of-clans/potion_of_resources.avif"),
+        previewImage: storageUrl(
+          "images/clash-of-clans/potion_of_resources.avif",
+        ),
         name: "Monthly Reward - Resource Potion",
         description:
           "Claim your monthly resource potion from the Supercell Store.",
@@ -797,7 +833,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/clash-of-clans/monthly-resource-potion.png"),
+            src: storageUrl(
+              "images/clash-of-clans/monthly-resource-potion.png",
+            ),
             alt: "Monthly Resource Potion",
           },
         ] as ContentType[],
@@ -809,8 +847,12 @@ const siteConfig = {
       {
         id: "bs-diamond-box",
         slug: "diamond-box-qr-code",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
-        previewImage: "https://res.cloudinary.com/dctrgw4fo/image/upload/v1777782840/images/brawl-stars/684083002_18087688991580604_8157799446537923513_n-mopa0355-x7kbkq.jpg",
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage:
+          "https://res.cloudinary.com/dctrgw4fo/image/upload/v1777782840/images/brawl-stars/684083002_18087688991580604_8157799446537923513_n-mopa0355-x7kbkq.jpg",
         name: "Diamond Box",
         description: "Claim the Diamond Box reward.",
         status: "active" as "active" | "expired",
@@ -832,9 +874,38 @@ const siteConfig = {
         ] as ContentType[],
       },
       {
+        id: "bs-24",
+        slug: "anime-smash-spray",
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl(
+          "images/brawl-stars/anime-smash-spray-qr.jpeg",
+        ),
+        name: "Anime Smash Spray",
+        description: "Claim the Anime Smash Spray in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://store.supercell.com/brawlstars?voucher=e348a321-2bcf-4312-974f-240584eff2a5",
+            label: "Claim Anime Smash Spray",
+          },
+          {
+            type: "image",
+            src: storageUrl("images/brawl-stars/anime-smash-spray-qr.png"),
+            alt: "Anime Smash Spray QR Code",
+          },
+        ] as ContentType[],
+      },
+      {
         id: "bs-23",
         slug: "hank-spray",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
         previewImage: storageUrl("images/brawl-stars/hank-spray.jpg"),
         name: "Hank Spray",
         description: "Claim the Hank Spray in Brawl Stars.",
@@ -855,7 +926,10 @@ const siteConfig = {
       {
         id: "bs-22",
         slug: "1x-chaos-drop",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
         previewImage: storageUrl("images/brawl-stars/1x-chaos-drop.png"),
         name: "1x Chaos Drop",
         description: "Claim 1x Chaos Drop in Brawl Stars.",
@@ -876,7 +950,10 @@ const siteConfig = {
       {
         id: "bs-21",
         slug: "bulb-pin",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
         previewImage: storageUrl("images/brawl-stars/bulb-pin.png"),
         name: "Bulb Pin",
         description: "Claim the Bulb Pin in Brawl Stars.",
@@ -897,7 +974,10 @@ const siteConfig = {
       {
         id: "bs-20",
         slug: "emoji_fairy_flower",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
         previewImage:
           "https://res.cloudinary.com/dctrgw4fo/image/upload/br/0579a172-1be3-4cea-a44f-347efc43c249_emoji_fairy_flower__1_",
         name: "Player Pin",
@@ -906,7 +986,8 @@ const siteConfig = {
         content: [
           {
             type: "text",
-            value: "You must be logged in to the Supercell Store before claiming this reward.",
+            value:
+              "You must be logged in to the Supercell Store before claiming this reward.",
           },
           {
             type: "link",
@@ -927,7 +1008,10 @@ const siteConfig = {
       {
         id: "bs-19",
         slug: "omega-box",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
         previewImage:
           "https://res.cloudinary.com/dctrgw4fo/image/upload/br/Screenshot_2-4-2026_164917",
         name: "OMEGA BOX",
@@ -954,9 +1038,13 @@ const siteConfig = {
       {
         id: "bs-18",
         slug: "reward-24321637",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
-        previewImage:
-          storageUrl("images/brawl-stars/Screenshot_2026.03.29_22.25.35.899-preview.png"),
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl(
+          "images/brawl-stars/Screenshot_2026.03.29_22.25.35.899-preview.png",
+        ),
         name: "500 Coins",
         description: "Claim 500 Coins in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -968,7 +1056,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/Screenshot_2026.03.29_22.25.35.899-qr.png"),
+            src: storageUrl(
+              "images/brawl-stars/Screenshot_2026.03.29_22.25.35.899-qr.png",
+            ),
             alt: "500 Coins QR Code",
           },
           {
@@ -977,7 +1067,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/Screenshot_2026.03.29_22.25.35.899.png"),
+            src: storageUrl(
+              "images/brawl-stars/Screenshot_2026.03.29_22.25.35.899.png",
+            ),
             alt: "500 Coins Claimed",
           },
         ] as ContentType[],
@@ -985,9 +1077,13 @@ const siteConfig = {
       {
         id: "bs-17",
         slug: "reward-d99ca645",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
-        previewImage:
-          storageUrl("images/brawl-stars/Screenshot_2026.03.28_03.27.37.132-preview.png"),
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl(
+          "images/brawl-stars/Screenshot_2026.03.28_03.27.37.132-preview.png",
+        ),
         name: "Special Event Box",
         description: "Claim this special event box in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -999,7 +1095,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/Screenshot_2026.03.28_03.27.37.132-qr.png"),
+            src: storageUrl(
+              "images/brawl-stars/Screenshot_2026.03.28_03.27.37.132-qr.png",
+            ),
             alt: "Special Event Box QR Code",
           },
           {
@@ -1008,12 +1106,16 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/Screenshot_2026.03.28_03.27.37.132.png"),
+            src: storageUrl(
+              "images/brawl-stars/Screenshot_2026.03.28_03.27.37.132.png",
+            ),
             alt: "Special Event Box Claimed",
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/Screenshot_2026.03.28_03.28.04.258.png"),
+            src: storageUrl(
+              "images/brawl-stars/Screenshot_2026.03.28_03.28.04.258.png",
+            ),
             alt: "Special Event Box Contents",
           },
         ] as ContentType[],
@@ -1021,9 +1123,13 @@ const siteConfig = {
       {
         id: "bs-16",
         slug: "reward-da19cd17",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
-        previewImage:
-          storageUrl("images/brawl-stars/Screenshot_2026.03.26_23.01.29.490-preview.png"),
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl(
+          "images/brawl-stars/Screenshot_2026.03.26_23.01.29.490-preview.png",
+        ),
         name: "Player Icon Reward",
         description: "Claim this exclusive player icon in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -1035,7 +1141,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/Screenshot_2026.03.26_23.01.29.490-qr.png"),
+            src: storageUrl(
+              "images/brawl-stars/Screenshot_2026.03.26_23.01.29.490-qr.png",
+            ),
             alt: "Player Icon QR Code",
           },
           {
@@ -1044,7 +1152,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/Screenshot_2026.03.26_23.01.29.490.png"),
+            src: storageUrl(
+              "images/brawl-stars/Screenshot_2026.03.26_23.01.29.490.png",
+            ),
             alt: "Player Icon Claimed",
           },
         ] as ContentType[],
@@ -1052,7 +1162,10 @@ const siteConfig = {
       {
         id: "bs-daily",
         slug: "daily-brawl-stars-rewards",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
         previewImage: storageUrl("images/brawl-stars/daily-reward-preview.png"),
         name: "Daily Rewards",
         description: "Claim your daily rewards from the Supercell Store.",
@@ -1082,9 +1195,13 @@ const siteConfig = {
       {
         id: "bs-supercell-store",
         slug: "supercell-store-gems-reward",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
-        previewImage:
-          storageUrl("images/brawl-stars/af985a4f-194c-4a2d-b2d1-79ae58a7bd0b.png"),
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl(
+          "images/brawl-stars/af985a4f-194c-4a2d-b2d1-79ae58a7bd0b.png",
+        ),
         name: "Supercell Store Gems",
         description: "Special gems reward available in the Supercell Store.",
         status: "active" as "active" | "expired",
@@ -1109,7 +1226,10 @@ const siteConfig = {
       {
         id: "bs-1",
         slug: "spray-reward",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
         previewImage: storageUrl("images/brawl-stars/preview-spray.png"),
         name: "Spray Reward",
         description: "Claim this exclusive spray in Brawl Stars.",
@@ -1130,8 +1250,13 @@ const siteConfig = {
       {
         id: "bs-2",
         slug: "skull-head-exploid-pin",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
-        previewImage: storageUrl("images/brawl-stars/preview-skull-head-exploid-pin.png"),
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl(
+          "images/brawl-stars/preview-skull-head-exploid-pin.png",
+        ),
         name: "Skull Head Exploid Pin",
         description: "Claim this exclusive pin in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -1143,7 +1268,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/skull-head-exploid-pin-qr-code.png"),
+            src: storageUrl(
+              "images/brawl-stars/skull-head-exploid-pin-qr-code.png",
+            ),
             alt: "Skull Head Exploid Pin QR Code",
           },
         ] as ContentType[],
@@ -1151,9 +1278,13 @@ const siteConfig = {
       {
         id: "bs-3",
         slug: "reward-cbd9bc12",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
-        previewImage:
-          storageUrl("images/brawl-stars/Screenshot_2026.03.08_23.22.52.003_preview.png"),
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl(
+          "images/brawl-stars/Screenshot_2026.03.08_23.22.52.003_preview.png",
+        ),
         name: "Player Icon Reward",
         description: "Claim this exclusive player icon in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -1174,7 +1305,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/Screenshot_2026.03.08_23.22.52.003.png"),
+            src: storageUrl(
+              "images/brawl-stars/Screenshot_2026.03.08_23.22.52.003.png",
+            ),
             alt: "Player Icon Claimed",
           },
         ] as ContentType[],
@@ -1182,9 +1315,13 @@ const siteConfig = {
       {
         id: "bs-4",
         slug: "reward-8142f715",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
-        previewImage:
-          storageUrl("images/brawl-stars/Screenshot_2026.03.08_23.24.20.973_preview.png"),
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl(
+          "images/brawl-stars/Screenshot_2026.03.08_23.24.20.973_preview.png",
+        ),
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -1205,7 +1342,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/Screenshot_2026.03.08_23.24.20.973.png"),
+            src: storageUrl(
+              "images/brawl-stars/Screenshot_2026.03.08_23.24.20.973.png",
+            ),
             alt: "Reward Claimed",
           },
         ] as ContentType[],
@@ -1213,9 +1352,13 @@ const siteConfig = {
       {
         id: "bs-5",
         slug: "reward-04f69983",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
-        previewImage:
-          storageUrl("images/brawl-stars/Screenshot_2026.03.08_23.34.33.409_preview.png"),
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl(
+          "images/brawl-stars/Screenshot_2026.03.08_23.34.33.409_preview.png",
+        ),
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -1236,7 +1379,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/Screenshot_2026.03.08_23.34.33.409.png"),
+            src: storageUrl(
+              "images/brawl-stars/Screenshot_2026.03.08_23.34.33.409.png",
+            ),
             alt: "Reward Claimed",
           },
         ] as ContentType[],
@@ -1244,9 +1389,13 @@ const siteConfig = {
       {
         id: "bs-6",
         slug: "reward-6bb96c6a",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
-        previewImage:
-          storageUrl("images/brawl-stars/Screenshot_2026.03.08_23.39.52.284.png"),
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl(
+          "images/brawl-stars/Screenshot_2026.03.08_23.39.52.284.png",
+        ),
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -1267,7 +1416,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/Screenshot_2026.03.08_23.39.52.284.png"),
+            src: storageUrl(
+              "images/brawl-stars/Screenshot_2026.03.08_23.39.52.284.png",
+            ),
             alt: "Reward Claimed",
           },
         ] as ContentType[],
@@ -1275,9 +1426,13 @@ const siteConfig = {
       {
         id: "bs-7",
         slug: "reward-935251d2",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
-        previewImage:
-          storageUrl("images/brawl-stars/Screenshot_2026.03.08_23.41.41.374_preview.png"),
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl(
+          "images/brawl-stars/Screenshot_2026.03.08_23.41.41.374_preview.png",
+        ),
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -1298,7 +1453,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/Screenshot_2026.03.08_23.41.41.374.png"),
+            src: storageUrl(
+              "images/brawl-stars/Screenshot_2026.03.08_23.41.41.374.png",
+            ),
             alt: "Reward Claimed",
           },
         ] as ContentType[],
@@ -1306,9 +1463,13 @@ const siteConfig = {
       {
         id: "bs-8",
         slug: "reward-ab9cf7c2",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
-        previewImage:
-          storageUrl("images/brawl-stars/Screenshot_2026.03.08_23.43.39.051_preview.png"),
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl(
+          "images/brawl-stars/Screenshot_2026.03.08_23.43.39.051_preview.png",
+        ),
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -1329,7 +1490,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/Screenshot_2026.03.08_23.43.39.051.png"),
+            src: storageUrl(
+              "images/brawl-stars/Screenshot_2026.03.08_23.43.39.051.png",
+            ),
             alt: "Reward Claimed",
           },
         ] as ContentType[],
@@ -1337,9 +1500,13 @@ const siteConfig = {
       {
         id: "bs-9",
         slug: "reward-3484c6d2",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
-        previewImage:
-          storageUrl("images/brawl-stars/Screenshot_2026.03.09_00.45.14.032_preview.png"),
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl(
+          "images/brawl-stars/Screenshot_2026.03.09_00.45.14.032_preview.png",
+        ),
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -1360,7 +1527,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/Screenshot_2026.03.09_00.45.14.032.png"),
+            src: storageUrl(
+              "images/brawl-stars/Screenshot_2026.03.09_00.45.14.032.png",
+            ),
             alt: "Reward Claimed",
           },
         ] as ContentType[],
@@ -1368,9 +1537,13 @@ const siteConfig = {
       {
         id: "bs-10",
         slug: "reward-4c9ea6d6",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
-        previewImage:
-          storageUrl("images/brawl-stars/Screenshot_2026.03.09_00.46.40.312_preview.png"),
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl(
+          "images/brawl-stars/Screenshot_2026.03.09_00.46.40.312_preview.png",
+        ),
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -1391,7 +1564,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/Screenshot_2026.03.09_00.46.40.312.png"),
+            src: storageUrl(
+              "images/brawl-stars/Screenshot_2026.03.09_00.46.40.312.png",
+            ),
             alt: "Reward Claimed",
           },
         ] as ContentType[],
@@ -1399,9 +1574,13 @@ const siteConfig = {
       {
         id: "bs-11",
         slug: "reward-91eead0b",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
-        previewImage:
-          storageUrl("images/brawl-stars/Screenshot_2026.03.09_00.47.59.155_preview.png"),
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl(
+          "images/brawl-stars/Screenshot_2026.03.09_00.47.59.155_preview.png",
+        ),
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -1422,7 +1601,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/Screenshot_2026.03.09_00.47.59.155.png"),
+            src: storageUrl(
+              "images/brawl-stars/Screenshot_2026.03.09_00.47.59.155.png",
+            ),
             alt: "Reward Claimed",
           },
         ] as ContentType[],
@@ -1430,9 +1611,13 @@ const siteConfig = {
       {
         id: "bs-12",
         slug: "reward-2593e957",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
-        previewImage:
-          storageUrl("images/brawl-stars/Screenshot_2026.03.09_00.56.34.971_preview.png"),
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl(
+          "images/brawl-stars/Screenshot_2026.03.09_00.56.34.971_preview.png",
+        ),
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -1453,7 +1638,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/Screenshot_2026.03.09_00.56.34.971.png"),
+            src: storageUrl(
+              "images/brawl-stars/Screenshot_2026.03.09_00.56.34.971.png",
+            ),
             alt: "Reward Claimed",
           },
         ] as ContentType[],
@@ -1461,9 +1648,13 @@ const siteConfig = {
       {
         id: "bs-13",
         slug: "reward-315b3e4f",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
-        previewImage:
-          storageUrl("images/brawl-stars/Screenshot_2026.03.09_01.01.14.646_preview.png"),
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl(
+          "images/brawl-stars/Screenshot_2026.03.09_01.01.14.646_preview.png",
+        ),
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -1484,7 +1675,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/Screenshot_2026.03.09_01.01.14.646.png"),
+            src: storageUrl(
+              "images/brawl-stars/Screenshot_2026.03.09_01.01.14.646.png",
+            ),
             alt: "Reward Claimed",
           },
         ] as ContentType[],
@@ -1492,9 +1685,13 @@ const siteConfig = {
       {
         id: "bs-14",
         slug: "reward-b647c71d",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
-        previewImage:
-          storageUrl("images/brawl-stars/Screenshot_2026.03.09_01.03.07.173_preview.png"),
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl(
+          "images/brawl-stars/Screenshot_2026.03.09_01.03.07.173_preview.png",
+        ),
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -1515,7 +1712,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/Screenshot_2026.03.09_01.03.07.173.png"),
+            src: storageUrl(
+              "images/brawl-stars/Screenshot_2026.03.09_01.03.07.173.png",
+            ),
             alt: "Reward Claimed",
           },
         ] as ContentType[],
@@ -1523,9 +1722,13 @@ const siteConfig = {
       {
         id: "bs-15",
         slug: "reward-cc017c48",
-        platform: { name: "Brawl Stars", src: storageUrl("images/brawl-stars/logo.jpeg") },
-        previewImage:
-          storageUrl("images/brawl-stars/Screenshot_2026.03.09_01.04.19.591_preview.png"),
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl(
+          "images/brawl-stars/Screenshot_2026.03.09_01.04.19.591_preview.png",
+        ),
         name: "Brawl Stars Reward",
         description: "Claim this reward in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -1546,7 +1749,9 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl("images/brawl-stars/Screenshot_2026.03.09_01.04.19.591.png"),
+            src: storageUrl(
+              "images/brawl-stars/Screenshot_2026.03.09_01.04.19.591.png",
+            ),
             alt: "Reward Claimed",
           },
         ] as ContentType[],
@@ -1647,7 +1852,8 @@ const siteConfig = {
         content: [
           {
             type: "text",
-            value: "Find all the latest active redemption codes for Roblox and learn how to claim them.",
+            value:
+              "Find all the latest active redemption codes for Roblox and learn how to claim them.",
           },
           {
             type: "link",
@@ -1679,12 +1885,14 @@ const siteConfig = {
         },
         previewImage: storageUrl("images/rise-of-kingdoms/logo.png"),
         name: "Redemption Codes",
-        description: "Check out the latest redemption codes for Rise of Kingdoms.",
+        description:
+          "Check out the latest redemption codes for Rise of Kingdoms.",
         status: "active" as "active" | "expired",
         content: [
           {
             type: "text",
-            value: "Find all the latest active redemption codes for Rise of Kingdoms and learn how to claim them.",
+            value:
+              "Find all the latest active redemption codes for Rise of Kingdoms and learn how to claim them.",
           },
           {
             type: "link",
@@ -1721,7 +1929,8 @@ const siteConfig = {
         content: [
           {
             type: "text",
-            value: "Find all the latest active redemption codes for Grow a Garden and learn how to claim them.",
+            value:
+              "Find all the latest active redemption codes for Grow a Garden and learn how to claim them.",
           },
           {
             type: "link",
@@ -1753,12 +1962,14 @@ const siteConfig = {
         },
         previewImage: storageUrl("images/blue-lock-rivals/logo.png"),
         name: "Redemption Codes",
-        description: "Check out the latest redemption codes for Blue Lock Rivals.",
+        description:
+          "Check out the latest redemption codes for Blue Lock Rivals.",
         status: "active" as "active" | "expired",
         content: [
           {
             type: "text",
-            value: "Find all the latest active redemption codes for Blue Lock Rivals and learn how to claim them.",
+            value:
+              "Find all the latest active redemption codes for Blue Lock Rivals and learn how to claim them.",
           },
           {
             type: "link",
@@ -2127,7 +2338,8 @@ const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
       "Claim Coins": "Reclamar monedas",
       "500 Coins QR Code": "Código QR de 500 Monedas",
       "500 Coins Claimed": "500 Monedas Reclamadas",
-      "Scan the QR code or click the link below to claim.": "Escanea el código QR o haz clic en el enlace a continuación para reclamar.",
+      "Scan the QR code or click the link below to claim.":
+        "Escanea el código QR o haz clic en el enlace a continuación para reclamar.",
       "Claim Diamond Box": "Reclamar Caja de Diamantes",
       "Diamond Box QR Code": "Código QR de Caja de Diamantes",
     },
@@ -2184,7 +2396,8 @@ const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
       "Claim Coins": "احصل على العملات",
       "500 Coins QR Code": "رمز QR لـ 500 عملة",
       "500 Coins Claimed": "تم استلام 500 عملة",
-      "Scan the QR code or click the link below to claim.": "امسح رمز QR أو اضغط على الرابط أدناه للحصول عليه.",
+      "Scan the QR code or click the link below to claim.":
+        "امسح رمز QR أو اضغط على الرابط أدناه للحصول عليه.",
       "Claim Diamond Box": "احصل على صندوق الألماس",
       "Diamond Box QR Code": "رمز QR لصندوق الألماس",
     },
@@ -2293,7 +2506,9 @@ export function getLocalizedRobloxRewards(locale: Locale): RewardType[] {
   }));
 }
 
-export function getLocalizedRiseOfKingdomsRewards(locale: Locale): RewardType[] {
+export function getLocalizedRiseOfKingdomsRewards(
+  locale: Locale,
+): RewardType[] {
   return siteConfig.riseofkingdoms.rewards.map((reward) => ({
     ...reward,
     content: reward.content.map((content) => ({
@@ -2317,7 +2532,9 @@ export function getLocalizedGrowAGardenRewards(locale: Locale): RewardType[] {
   }));
 }
 
-export function getLocalizedBlueLockRivalsRewards(locale: Locale): RewardType[] {
+export function getLocalizedBlueLockRivalsRewards(
+  locale: Locale,
+): RewardType[] {
   return siteConfig.bluelockrivals.rewards.map((reward) => ({
     ...reward,
     content: reward.content.map((content) => ({
