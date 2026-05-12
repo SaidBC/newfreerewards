@@ -922,7 +922,7 @@ const siteConfig = {
           src: storageUrl("images/brawl-stars/logo.jpeg"),
         },
         previewImage: storageUrl(
-          "images/brawl-stars/anime-smash-spray-qr.jpeg",
+          "images/brawl-stars/anime-smash-spray.jpeg",
         ),
         name: "Anime Smash Spray",
         description: "Claim the Anime Smash Spray in Brawl Stars.",
