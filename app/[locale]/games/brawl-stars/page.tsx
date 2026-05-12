@@ -84,7 +84,7 @@ export default async function BrawlStarsPage({
         <div className="flex items-center gap-4">
           <Image
             className="size-12 rounded-md object-cover"
-            src={storageUrl("images/brawl-stars/logo.jpeg")}
+            src={storageUrl("images/brawl-stars/logo.jpg")}
             width={125}
             height={125}
             alt="Brawl Stars"

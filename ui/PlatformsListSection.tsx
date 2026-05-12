@@ -25,7 +25,7 @@ const PlatformCard = ({
       <div className="relative aspect-video w-full overflow-hidden rounded-xl border">
         <Image
           className="object-cover transition-transform duration-500 group-hover:scale-110"
-          src={platform.image || storageUrl("images/clash-royale/clash-royale.jpg")}
+          src={platform.image ? storageUrl(platform.image): storageUrl("images/clash-royale/clash-royale.jpg")}
           fill
           alt={platform.name}
         />
