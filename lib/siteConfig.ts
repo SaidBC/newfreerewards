@@ -518,6 +518,47 @@ const siteConfig = {
         ] as ContentType[],
       },
       {
+        id: "23",
+        slug: "hero-bowler-emote",
+        platform: {
+          name: "Clash Royale",
+          src: storageUrl("images/clash-royale/clash-royale.jpg"),
+        },
+        previewImage: storageUrl("images/clash-royale/hero-bowler-emote.png"),
+        name: "Hero Bowler Emote",
+        description: "Claim the Hero Bowler emote from the Supercell Store.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value:
+              "Go to the Supercell Store website and log in if you are not already logged in.",
+          },
+          {
+            type: "link",
+            href: "https://store.supercell.com/clashroyale",
+            label: "Go to the Supercell Store",
+          },
+          {
+            type: "text",
+            value:
+              "Scroll down until you see the Hero Bowler emote reward, then click Claim.",
+          },
+          {
+            type: "image",
+            src: storageUrl(
+              "images/clash-royale/hero-bowler-emote-reward.png",
+            ),
+            alt: "Hero Bowler emote reward",
+          },
+          {
+            type: "text",
+            value:
+              "After claiming it, open Clash Royale and check your account.",
+          },
+        ] as ContentType[],
+      },
+      {
         id: "5",
         slug: "flying-royal-hogs-emote",
         platform: {
@@ -2089,6 +2130,10 @@ const clashRoyaleTranslations: Partial<
       name: "Emote de Héroe Mosquetera",
       description: "Sigue los pasos para reclamar este emote.",
     },
+    "hero-bowler-emote": {
+      name: "Emote de Héroe Lanzarrocas",
+      description: "Reclama el emote de Héroe Lanzarrocas en la tienda Supercell.",
+    },
     "flying-royal-hogs-emote": {
       name: "Emote de Cerdos Reales Voladores",
       description: "Desbloqueا هذا الإيموجي باستخدام كود.",
@@ -2171,6 +2216,10 @@ const clashRoyaleTranslations: Partial<
     "hero-musketeer-emote": {
       name: "إيموجي البطل ماسكيتير",
       description: "اتبع الخطوات التالية للحصول على هذا الإيموجي.",
+    },
+    "hero-bowler-emote": {
+      name: "إيموجي البطل باولر",
+      description: "احصل على إيموجي البطل باولر من متجر Supercell.",
     },
     "flying-royal-hogs-emote": {
       name: "إيموجي الخنازير الملكية الطائرة",
@@ -2311,10 +2360,17 @@ const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
       "Enter the code: WHENHOGSFLY!": "Introduce el código: WHENHOGSFLY!",
       "Enter the code: FIREANDICE!!": "Introduce el código: FIREANDICE!!",
       "Enter the code: TRUSTYTURRET": "Introduce el código: TRUSTYTURRET",
+      "Go to the Supercell Store website and log in if you are not already logged in.":
+        "Ve al sitio web de la tienda Supercell e inicia sesión si aún no lo has hecho.",
       "Claim 1,000 Gold": "Reclamar 1,000 de oro",
       "Claim banner frame": "Reclamar marco de banner",
       "Claim banner decoration": "Reclamar decoración de banner",
       "Claim emote": "Reclamar emote",
+      "Scroll down until you see the Hero Bowler emote reward, then click Claim.":
+        "Desplázate hacia abajo hasta ver la recompensa del emote Hero Bowler y luego pulsa Reclamar.",
+      "Hero Bowler emote reward": "Recompensa del emote Hero Bowler",
+      "After claiming it, open Clash Royale and check your account.":
+        "Después de reclamarlo, abre Clash Royale y revisa tu cuenta.",
       "Skeleton Shield Bang emote QR": "QR del emote Skeleton Shield Bang",
       "Log in to the Supercell Store every day to earn free rewards.":
         "Inicia sesión en la tienda de Supercell todos los días para ganar recompensas gratuitas.",
@@ -2369,10 +2425,17 @@ const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
       "Enter the code: WHENHOGSFLY!": "أدخل الكود: WHENHOGSFLY!",
       "Enter the code: FIREANDICE!!": "أدخل الكود: FIREANDICE!!",
       "Enter the code: TRUSTYTURRET": "أدخل الكود: TRUSTYTURRET",
+      "Go to the Supercell Store website and log in if you are not already logged in.":
+        "اذهب إلى موقع متجر Supercell وسجّل الدخول إذا لم تكن قد سجلت الدخول بالفعل.",
       "Claim 1,000 Gold": "احصل على 1,000 ذهب",
       "Claim banner frame": "احصل على إطار البانر",
       "Claim banner decoration": "احصل على زخرفة البانر",
       "Claim emote": "احصل على الإيموجي",
+      "Scroll down until you see the Hero Bowler emote reward, then click Claim.":
+        "مرّر للأسفل حتى ترى مكافأة إيموجي Hero Bowler ثم اضغط على Claim.",
+      "Hero Bowler emote reward": "مكافأة إيموجي Hero Bowler",
+      "After claiming it, open Clash Royale and check your account.":
+        "بعد المطالبة بها، افتح Clash Royale وتحقق من حسابك.",
       "Skeleton Shield Bang emote QR": "رمز QR لإيموجي Skeleton Shield Bang",
       "Log in to the Supercell Store every day to earn free rewards.":
         "سجّل الدخول إلى متجر Supercell يوميًا للحصول على مكافآت مجانية.",
