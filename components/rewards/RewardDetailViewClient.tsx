@@ -85,7 +85,7 @@ export default function RewardDetailViewClient({ reward, locale, t, isPreview = 
         <div className="flex gap-4 items-center">
           <Image
             className="rounded-md object-cover size-12"
-            src={reward.platform.image || storageUrl(`images/${reward.platform.slug}/logo.jpeg`)}
+            src={reward.platform.image  ? storageUrl(reward.platform.image) : storageUrl(`images/${reward.platform.slug}/logo.jpeg`)}
             width={48}
             height={48}
             alt={reward.platform.name}
