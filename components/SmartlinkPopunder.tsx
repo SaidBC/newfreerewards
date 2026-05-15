@@ -5,7 +5,7 @@ import { analytics } from "@/lib/analytics";
 
 export default function SmartlinkPopunder() {
   useEffect(() => {
-    const SMART_LINK = "https://omg10.com/4/10657502";
+    const SMART_LINK = "https://omg10.com/4/11008151";
 
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
