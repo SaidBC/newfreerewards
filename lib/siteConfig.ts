@@ -1797,6 +1797,30 @@ const siteConfig = {
           },
         ] as ContentType[],
       },
+      {
+        id: "bs-25",
+        slug: "berlin-pin",
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl("images/brawl-stars/berlin-pin.jpg"),
+        name: "Berlin Pin",
+        description: "Claim the Berlin Pin in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/en/voucher/98cd2217-391a-48a7-b892-caab7c5a058b/",
+            label: "Claim Berlin Pin",
+          },
+          {
+            type: "image",
+            src: storageUrl("images/brawl-stars/berlin-pin-qr.png"),
+            alt: "Berlin Pin QR Code",
+          },
+        ] as ContentType[],
+      },
     ] as RewardType[],
   },
   genshinimpact: {
@@ -2293,6 +2317,10 @@ const brawlStarsTranslations: Partial<
       name: "Caja de Diamantes",
       description: "Reclama la recompensa Caja de Diamantes.",
     },
+    "berlin-pin": {
+      name: "Pin de Berlín",
+      description: "Reclama el Pin de Berlín en Brawl Stars.",
+    },
   },
   ar: {
     "daily-brawl-stars-rewards": {
@@ -2326,6 +2354,10 @@ const brawlStarsTranslations: Partial<
     "diamond-box-qr-code": {
       name: "صندوق الألماس",
       description: "احصل على مكافأة صندوق الألماس.",
+    },
+    "berlin-pin": {
+      name: "دبوس برلين",
+      description: "احصل على دبوس برلين في Brawl Stars.",
     },
   },
 };
