@@ -67,6 +67,66 @@ const siteConfig = {
         ] as ContentType[],
       },
       {
+        id: "24",
+        slug: "king-of-the-arena-rewards",
+        platform: {
+          name: "Clash Royale",
+          src: storageUrl("images/clash-royale/clash-royale.jpg"),
+        },
+        previewImage: storageUrl("images/clash-royale/king-of-the-arena.jpg"),
+        name: "King of the Arena Rewards",
+        description:
+          "These rewards come from Clash Royale creators King of the Arena tournament livestream and should be claimed fast before expired.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value:
+              "These rewards come from Clash Royale creators King of the Arena tournament livestream. Claim them fast before they expire.",
+          },
+          {
+            type: "link",
+            href: "https://link.clashroyale.com/en/?action=voucher&code=dedd6d4f-3bc2-402e-a955-54d28519312a",
+            label: "Claim 2x Lucky drop chests",
+          },
+          {
+            type: "image",
+            src: storageUrl("images/clash-royale/reward-2-chest.png"),
+            alt: "2x Lucky drop chests QR code",
+          },
+          {
+            type: "link",
+            href: "https://link.clashroyale.com/en/?action=voucher&code=38a8f183-6db1-4e41-a09b-611356d1d92c",
+            label: "Claim Prince Banner 1",
+          },
+          {
+            type: "image",
+            src: storageUrl("images/clash-royale/reward-prince-banner-1.png"),
+            alt: "Prince Banner 1 QR code",
+          },
+          {
+            type: "link",
+            href: "https://link.clashroyale.com/en/?action=voucher&code=3574b1d3-68e7-4382-a5b3-76da1a40d712",
+            label: "Claim Prince Banner 2",
+          },
+          {
+            type: "image",
+            src: storageUrl("images/clash-royale/reward-prince-banner-2.png"),
+            alt: "Prince Banner 2 QR code",
+          },
+          {
+            type: "link",
+            href: "https://link.clashroyale.com/en/?action=voucher&code=4c86a715-ced5-44c9-8fec-618df05532a8",
+            label: "Claim 2x Lucky drop chests",
+          },
+          {
+            type: "image",
+            src: storageUrl("images/clash-royale/reward-2-chest-2.png"),
+            alt: "2x Lucky drop chests QR code #2",
+          },
+        ] as ContentType[],
+      },
+      {
         id: "21",
         slug: "minion-horde-evo-emote",
         platform: {
@@ -546,9 +606,7 @@ const siteConfig = {
           },
           {
             type: "image",
-            src: storageUrl(
-              "images/clash-royale/hero-bowler-emote-reward.png",
-            ),
+            src: storageUrl("images/clash-royale/hero-bowler-emote-reward.png"),
             alt: "Hero Bowler emote reward",
           },
           {
@@ -921,9 +979,7 @@ const siteConfig = {
           name: "Brawl Stars",
           src: storageUrl("images/brawl-stars/logo.jpeg"),
         },
-        previewImage: storageUrl(
-          "images/brawl-stars/anime-smash-spray.jpeg",
-        ),
+        previewImage: storageUrl("images/brawl-stars/anime-smash-spray.jpeg"),
         name: "Anime Smash Spray",
         description: "Claim the Anime Smash Spray in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -2117,6 +2173,11 @@ const clashRoyaleTranslations: Partial<
       name: "Cofre de Suerte de Aniversario",
       description: "Reclama la recompensa del Cofre de Suerte de Aniversario.",
     },
+    "king-of-the-arena-rewards": {
+      name: "Recompensas King of the Arena",
+      description:
+        "Estas recompensas vienen del livestream del torneo King of the Arena y deben reclamarse rápido antes de expirar.",
+    },
 
     "skeleton-shield-bang-emote": {
       name: "Emote Skeleton Shield Bang",
@@ -2156,7 +2217,8 @@ const clashRoyaleTranslations: Partial<
     },
     "hero-bowler-emote": {
       name: "Emote de Héroe Lanzarrocas",
-      description: "Reclama el emote de Héroe Lanzarrocas en la tienda Supercell.",
+      description:
+        "Reclama el emote de Héroe Lanzarrocas en la tienda Supercell.",
     },
     "flying-royal-hogs-emote": {
       name: "Emote de Cerdos Reales Voladores",
@@ -2272,6 +2334,11 @@ const clashRoyaleTranslations: Partial<
     "royal-ghost-boo-emote": {
       name: "إيموجي Royal Ghost Boo",
       description: "احصل على إيموجي Royal Ghost Boo.",
+    },
+    "king-of-the-arena-rewards": {
+      name: "مكافآت King of the Arena",
+      description:
+        "تأتي هذه المكافآت من بث مباشر لدوري King of the Arena ويجب المطالبة بها بسرعة قبل أن تنتهي صلاحيتها.",
     },
     "clash-royale-daily-rewards": {
       name: "مكافآت يومية",
