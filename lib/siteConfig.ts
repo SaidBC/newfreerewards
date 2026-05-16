@@ -73,7 +73,9 @@ const siteConfig = {
           name: "Clash Royale",
           src: storageUrl("images/clash-royale/clash-royale.jpg"),
         },
-        previewImage: storageUrl("images/clash-royale/king-of-the-arena.jpg"),
+        previewImage: storageUrl(
+          "images/clash-royale/king-of-the-arena-rewards.jpg",
+        ),
         name: "King of the Arena Rewards",
         description:
           "These rewards come from Clash Royale creators King of the Arena tournament livestream and should be claimed fast before expired.",
@@ -1877,6 +1879,30 @@ const siteConfig = {
           },
         ] as ContentType[],
       },
+      {
+        id: "bs-26",
+        slug: "pretzel-pin-reward",
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpeg"),
+        },
+        previewImage: storageUrl("images/brawl-stars/pretzel-pin.jpg"),
+        name: "Pretzel Pin",
+        description: "Claim the Pretzel Pin in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/en/voucher/1a90f300-ae20-4c00-9a23-a5483c9744dc",
+            label: "Claim Pretzel Pin",
+          },
+          {
+            type: "image",
+            src: storageUrl("images/brawl-stars/pretzel-pin-qr.png"),
+            alt: "Pretzel Pin QR Code",
+          },
+        ] as ContentType[],
+      },
     ] as RewardType[],
   },
   genshinimpact: {
@@ -2388,6 +2414,10 @@ const brawlStarsTranslations: Partial<
       name: "Pin de Berlín",
       description: "Reclama el Pin de Berlín en Brawl Stars.",
     },
+    "pretzel-pin-reward": {
+      name: "Pin de Pretzel",
+      description: "Reclama el Pin de Pretzel en Brawl Stars.",
+    },
   },
   ar: {
     "daily-brawl-stars-rewards": {
@@ -2426,6 +2456,10 @@ const brawlStarsTranslations: Partial<
       name: "دبوس برلين",
       description: "احصل على دبوس برلين في Brawl Stars.",
     },
+    "pretzel-pin-reward": {
+      name: "دبوس برتزل",
+      description: "احصل على دبوس برتزل في Brawl Stars.",
+    },
   },
 };
 
@@ -2459,45 +2493,47 @@ const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
       "Enter the code: WHENHOGSFLY!": "Introduce el código: WHENHOGSFLY!",
       "Enter the code: FIREANDICE!!": "Introduce el código: FIREANDICE!!",
       "Enter the code: TRUSTYTURRET": "Introduce el código: TRUSTYTURRET",
-      "Go to the Supercell Store website and log in if you are not already logged in.":
-        "Ve al sitio web de la tienda Supercell e inicia sesión si aún no lo has hecho.",
-      "Claim 1,000 Gold": "Reclamar 1,000 de oro",
-      "Claim banner frame": "Reclamar marco de banner",
-      "Claim banner decoration": "Reclamar decoración de banner",
-      "Claim emote": "Reclamar emote",
-      "Scroll down until you see the Hero Bowler emote reward, then click Claim.":
-        "Desplázate hacia abajo hasta ver la recompensa del emote Hero Bowler y luego pulsa Reclamar.",
-      "Hero Bowler emote reward": "Recompensa del emote Hero Bowler",
-      "After claiming it, open Clash Royale and check your account.":
-        "Después de reclamarlo, abre Clash Royale y revisa tu cuenta.",
-      "Skeleton Shield Bang emote QR": "QR del emote Skeleton Shield Bang",
-      "Log in to the Supercell Store every day to earn free rewards.":
-        "Inicia sesión en la tienda de Supercell todos los días para ganar recompensas gratuitas.",
-      "This is what it looks like after being claimed:":
-        "Así es como se ve después de ser reclamado:",
-      "Scan the QR code or click the link below to claim your 50k gold.":
-        "Escanea el código QR o haz clic en el enlace de abajo para reclamar tus 50k de oro.",
-      "Claim 50k Gold": "Reclamar 50k de Oro",
-      "50k Gold QR Code": "Código QR de 50k de Oro",
-      "Follow the steps in the official store to claim your Baby Dragon Statue.":
-        "Sigue los pasos en la tienda oficial para reclamar tu estatua de Bebé Dragón.",
-      "Baby Dragon Statue": "Estatua de Bebé Dragón",
-      "Baby Dragon Statue Claimed": "Estatua de Bebé Dragón Reclamada",
-      "Check out the bundle maker in the Supercell Store.":
-        "Echa un vistazo al creador de paquetes en la tienda de Supercell.",
-      "Bundle Maker Reward": "Recompensa Bundle Maker",
-      "Log in to the Supercell Store to claim your monthly reward.":
-        "Inicia sesión en la tienda de Supercell para reclamar tu recompensa mensual.",
-      "Go to Supercell Store": "Ir a la tienda de Supercell",
-      "Monthly Resource Potion": "Poción de Recursos Mensual",
-      "Claim Coins": "Reclamar monedas",
-      "500 Coins QR Code": "Código QR de 500 Monedas",
-      "500 Coins Claimed": "500 Monedas Reclamadas",
-      "Scan the QR code or click the link below to claim.":
-        "Escanea el código QR o haz clic en el enlace a continuación para reclamar.",
-      "Claim Diamond Box": "Reclamar Caja de Diamantes",
-      "Diamond Box QR Code": "Código QR de Caja de Diamantes",
-    },
+"Go to the Supercell Store website and log in if you are not already logged in.":
+         "Ve al sitio web de la tienda Supercell e inicia sesión si aún no lo has hecho.",
+       "Claim 1,000 Gold": "Reclamar 1,000 de oro",
+       "Claim banner frame": "Reclamar marco de banner",
+       "Claim banner decoration": "Reclamar decoración de banner",
+       "Claim emote": "Reclamar emote",
+       "Scroll down until you see the Hero Bowler emote reward, then click Claim.":
+         "Desplázate hacia abajo hasta ver la recompensa del emote Hero Bowler y luego pulsa Reclamar.",
+       "Hero Bowler emote reward": "Recompensa del emote Hero Bowler",
+       "After claiming it, open Clash Royale and check your account.":
+         "Después de reclamarlo, abre Clash Royale y revisa tu cuenta.",
+       "Skeleton Shield Bang emote QR": "QR del emote Skeleton Shield Bang",
+       "Log in to the Supercell Store every day to earn free rewards.":
+         "Inicia sesión en la tienda de Supercell todos los días para ganar recompensas gratuitas.",
+       "This is what it looks like after being claimed:":
+         "Así es como se ve después de ser reclamado:",
+       "Scan the QR code or click the link below to claim your 50k gold.":
+         "Escanea el código QR o haz clic en el enlace de abajo para reclamar tus 50k de oro.",
+       "Claim 50k Gold": "Reclamar 50k de Oro",
+       "50k Gold QR Code": "Código QR de 50k de Oro",
+       "Follow the steps in the official store to claim your Baby Dragon Statue.":
+         "Sigue los pasos en la tienda oficial para reclamar tu estatua de Bebé Dragón.",
+       "Baby Dragon Statue": "Estatua de Bebé Dragón",
+       "Baby Dragon Statue Claimed": "Estatua de Bebé Dragón Reclamada",
+       "Check out the bundle maker in the Supercell Store.":
+         "Echa un vistazo al creador de paquetes en la tienda de Supercell.",
+       "Bundle Maker Reward": "Recompensa Bundle Maker",
+       "Log in to the Supercell Store to claim your monthly reward.":
+         "Inicia sesión en la tienda de Supercell para reclamar tu recompensa mensual.",
+       "Go to Supercell Store": "Ir a la tienda de Supercell",
+       "Monthly Resource Potion": "Poción de Recursos Mensual",
+       "Claim Coins": "Reclamar monedas",
+       "500 Coins QR Code": "Código QR de 500 Monedas",
+       "500 Coins Claimed": "500 Monedas Reclamadas",
+"Scan the QR code or click the link below to claim.":
+         "Escanea el código QR o haz clic en el enlace a continuación para reclamar.",
+       "Claim Diamond Box": "Reclamar Caja de Diamantes",
+       "Diamond Box QR Code": "Código QR de Caja de Diamantes",
+       "Claim Pretzel Pin": "Reclamar Pin de Pretzel",
+       "Pretzel Pin QR Code": "Código QR de Pin de Pretzel",
+     },
     ar: {
       "Claim banner": "احصل على البانر",
       "10 Years Banner QR": "رمز QR لبانر 10 سنوات",
@@ -2551,18 +2587,20 @@ const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
       "Check out the bundle maker in the Supercell Store.":
         "تحقق من صانع الحزم في متجر Supercell.",
       "Bundle Maker Reward": "مكافأة صانع الحزم",
-      "Log in to the Supercell Store to claim your monthly reward.":
-        "سجّل الدخول إلى متجر Supercell للحصول على مكافأتك الشهرية.",
-      "Go to Supercell Store": "اذهب إلى متجر Supercell",
-      "Monthly Resource Potion": "جرعة الموارد الشهرية",
-      "Claim Coins": "احصل على العملات",
-      "500 Coins QR Code": "رمز QR لـ 500 عملة",
-      "500 Coins Claimed": "تم استلام 500 عملة",
-      "Scan the QR code or click the link below to claim.":
-        "امسح رمز QR أو اضغط على الرابط أدناه للحصول عليه.",
-      "Claim Diamond Box": "احصل على صندوق الألماس",
-      "Diamond Box QR Code": "رمز QR لصندوق الألماس",
-    },
+"Log in to the Supercell Store to claim your monthly reward.":
+         "سجّل الدخول إلى متجر Supercell للحصول على مكافأتك الشهرية.",
+       "Go to Supercell Store": "اذهب إلى متجر Supercell",
+       "Monthly Resource Potion": "جرعة الموارد الشهرية",
+       "Claim Coins": "احصل على العملات",
+       "500 Coins QR Code": "رمز QR لـ 500 عملة",
+       "500 Coins Claimed": "تم استلام 500 عملة",
+       "Scan the QR code or click the link below to claim.":
+         "امسح رمز QR أو اضغط على الرابط أدناه للحصول عليه.",
+       "Claim Diamond Box": "احصل على صندوق الألماس",
+       "Diamond Box QR Code": "رمز QR لصندوق الألماس",
+       "Claim Pretzel Pin": "احصل على دبوس برتزل",
+       "Pretzel Pin QR Code": "رمز QR لدبوس برتزل",
+     },
   };
 
 function translateContentText(locale: Locale, text?: string) {
