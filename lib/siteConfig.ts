@@ -36,6 +36,30 @@ const siteConfig = {
   clashroyale: {
     rewards: [
       {
+        id: "25",
+        slug: "evo-princess-emote",
+        platform: {
+          name: "Clash Royale",
+          src: storageUrl("images/clash-royale/clash-royale.jpg"),
+        },
+        previewImage: storageUrl("images/clash-royale/princess-emote.jpg"),
+        name: "Evo Princess Emote",
+        description: "Claim the Evo Princess Emote.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.clashroyale.com/en/?action=voucher&code=946d6edb-b658-496e-99ef-157e410846e7",
+            label: "Claim emote",
+          },
+          {
+            type: "image",
+            src: storageUrl("images/clash-royale/princess-emote-qr.png"),
+            alt: "Evo Princess Emote QR",
+          },
+        ] as ContentType[],
+      },
+      {
         id: "22",
         slug: "free-resources",
         platform: {
