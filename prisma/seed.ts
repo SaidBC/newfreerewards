@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { storageUrl } from "../lib/storage";
 import {
-  getLocalizedClashRoyaleRewards, 
+  getLocalizedClashRoyaleRewards,
   getLocalizedClashOfClansRewards,
   getLocalizedBrawlStarsRewards,
   getLocalizedGenshinImpactRewards,
@@ -9,13 +9,13 @@ import {
   getLocalizedRobloxRewards,
   getLocalizedRiseOfKingdomsRewards,
   getLocalizedGrowAGardenRewards,
-  getLocalizedBlueLockRivalsRewards
+  getLocalizedBlueLockRivalsRewards,
 } from "../lib/siteConfig";
 import prisma from "../lib/prisma";
 
 async function main() {
-  if (!process.env.DATABASE_URL) {
-    throw new Error("❌ DATABASE_URL is missing in .env");
+  if (!process.env.MONGODB_URL) {
+    throw new Error("❌ MONGODB_URL is missing in .env");
   }
 
   console.log("Starting non-destructive seed...");
@@ -38,68 +38,68 @@ async function main() {
   const clashRoyale = await ensurePlatform({
     name: "Clash Royale",
     slug: "clash-royale",
-    image: storageUrl("images/clash-royale/clash-royale.jpg"),
+    image: "/images/clash-royale/clash-royale.jpg",
     type: "GAME",
   });
 
   const clashOfClans = await ensurePlatform({
     name: "Clash of Clans",
     slug: "clash-of-clans",
-    image: storageUrl("images/clash-of-clans/Clash_of_Clans.webp"),
+    image: "/images/clash-of-clans/Clash_of_Clans.webp",
     type: "GAME",
   });
 
   const brawlStars = await ensurePlatform({
     name: "Brawl Stars",
     slug: "brawl-stars",
-    image: storageUrl("images/brawl-stars/logo.jpeg"),
+    image: "/images/brawl-stars/logo.jpeg",
     type: "GAME",
   });
 
   const genshinImpact = await ensurePlatform({
     name: "Genshin Impact",
     slug: "genshin-impact",
-    image: storageUrl("images/genshin-impact/logo.png"),
+    image: "/images/genshin-impact/logo.png",
     type: "GAME",
   });
 
   const honkaiStarRail = await ensurePlatform({
     name: "Honkai: Star Rail",
     slug: "honkai-star-rail",
-    image: storageUrl("images/honkai-star-rail/logo.png"),
+    image: "/images/honkai-star-rail/logo.png",
     type: "GAME",
   });
 
   const roblox = await ensurePlatform({
     name: "Roblox",
     slug: "roblox",
-    image: storageUrl("images/roblox/logo.png"),
+    image: "/images/roblox/logo.png",
     type: "GAME",
   });
 
   const riseOfKingdoms = await ensurePlatform({
     name: "Rise of Kingdoms",
     slug: "rise-of-kingdoms",
-    image: storageUrl("images/rise-of-kingdoms/logo.png"),
+    image: "/images/rise-of-kingdoms/logo.png",
     type: "GAME",
   });
 
   const growAGarden = await ensurePlatform({
     name: "Grow a Garden",
     slug: "grow-a-garden",
-    image: storageUrl("images/grow-a-garden/logo.webp"),
+    image: "/images/grow-a-garden/logo.webp",
     type: "GAME",
   });
 
   const blueLockRivals = await ensurePlatform({
     name: "Blue Lock Rivals",
     slug: "blue-lock-rivals",
-    image: storageUrl("images/blue-lock-rivals/logo.png"),
+    image: "/images/blue-lock-rivals/logo.png",
     type: "GAME",
   });
 
   // 2️⃣ Helper function to seed rewards
-  async function seedRewards(rewards: any[], platformId: number) {
+  async function seedRewards(rewards: any[], platformId: string) {
     // 1️⃣ Get current slugs from config
     const currentSlugs = rewards.map((r) => r.slug);
 
@@ -109,10 +109,14 @@ async function main() {
       select: { id: true, slug: true },
     });
 
-    const toDelete = platformRewards.filter((r) => !currentSlugs.includes(r.slug));
+    const toDelete = platformRewards.filter(
+      (r) => !currentSlugs.includes(r.slug),
+    );
 
     if (toDelete.length > 0) {
-      console.log(`Deleting ${toDelete.length} old rewards: ${toDelete.map((r) => r.slug).join(", ")}`);
+      console.log(
+        `Deleting ${toDelete.length} old rewards: ${toDelete.map((r) => r.slug).join(", ")}`,
+      );
       await prisma.reward.deleteMany({
         where: { id: { in: toDelete.map((r) => r.id) } },
       });
@@ -123,8 +127,8 @@ async function main() {
         where: {
           platformId_slug: {
             platformId: platformId,
-            slug: reward.slug
-          }
+            slug: reward.slug,
+          },
         },
         select: { id: true, status: true },
       });
@@ -138,14 +142,15 @@ async function main() {
             title: reward.name,
             description: reward.description,
             previewImage: reward.previewImage,
-            status: existingReward.status === 'expired' ? 'expired' : reward.status,
+            status:
+              existingReward.status === "expired" ? "expired" : reward.status,
             claimUrl:
               reward.content.find((c: any) => c.type === "link")?.href ?? null,
             image:
               reward.content.find((c: any) => c.type === "image")?.src ?? null,
           },
         });
-        
+
         // Clear existing content to re-insert (simple way to keep it in sync)
         await prisma.rewardContent.deleteMany({
           where: { rewardId: createdReward.id },

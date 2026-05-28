@@ -217,7 +217,7 @@ export const analytics = {
   },
 
   // Track reward reactions (love/dislike)
-  trackRewardReaction: (rewardId: number, reactionType: "love" | "dislike") => {
+  trackRewardReaction: (rewardId: string, reactionType: "love" | "dislike") => {
     trackEvent({
       action: "reward_reaction",
       category: "engagement",
@@ -231,7 +231,7 @@ export const analytics = {
 
   // Track reward reports
   trackRewardReport: (
-    rewardId: number,
+    rewardId: string,
     reportType: "expired" | "not_working" | "other",
   ) => {
     trackEvent({

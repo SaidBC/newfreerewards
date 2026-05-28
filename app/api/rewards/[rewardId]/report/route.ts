@@ -28,8 +28,8 @@ const reportSchema = z.object({
 });
 
 function parseRewardId(value: string) {
-  const rewardId = Number(value);
-  if (!Number.isInteger(rewardId) || rewardId <= 0) {
+  const rewardId = value.trim();
+  if (!rewardId) {
     throw new RewardEngagementError("Invalid reward id", 400, "INVALID_REWARD_ID");
   }
 
@@ -81,11 +81,10 @@ export async function POST(
 
     if (error instanceof RewardEngagementError) {
       const { rewardId: rewardIdParam } = await context.params;
-      const rewardId = Number(rewardIdParam);
-      const summary =
-        Number.isInteger(rewardId) && rewardId > 0
-          ? await getRewardEngagement(rewardId, visitorId).catch(() => null)
-          : null;
+      const rewardId = rewardIdParam.trim();
+      const summary = rewardId
+        ? await getRewardEngagement(rewardId, visitorId).catch(() => null)
+        : null;
 
       const response = NextResponse.json(
         {

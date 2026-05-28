@@ -52,7 +52,7 @@ export async function createReward(formData: FormData) {
   const title = formData.get("title") as string;
   const description = formData.get("description") as string;
   const slug = formData.get("slug") as string;
-  const platformId = parseInt(formData.get("platformId") as string);
+  const platformId = (formData.get("platformId") as string)?.trim();
   const claimUrl = (formData.get("claimUrl") as string) || null;
   const image = (formData.get("image") as string) || null;
   const expiresAt = formData.get("expiresAt") ? new Date(formData.get("expiresAt") as string) : null;
@@ -99,13 +99,13 @@ export async function createReward(formData: FormData) {
   redirect("/admin");
 }
 
-export async function updateReward(id: number, formData: FormData) {
+export async function updateReward(id: string, formData: FormData) {
   if (!(await checkAuth())) throw new Error("Unauthorized");
 
   const title = formData.get("title") as string;
   const description = formData.get("description") as string;
   const slug = formData.get("slug") as string;
-  const platformId = parseInt(formData.get("platformId") as string);
+  const platformId = (formData.get("platformId") as string)?.trim();
   const claimUrl = (formData.get("claimUrl") as string) || null;
   const image = (formData.get("image") as string) || null;
   const expiresAt = formData.get("expiresAt") ? new Date(formData.get("expiresAt") as string) : null;
@@ -161,7 +161,7 @@ export async function updateReward(id: number, formData: FormData) {
   redirect("/admin");
 }
 
-export async function deleteReward(id: number) {
+export async function deleteReward(id: string) {
   if (!(await checkAuth())) throw new Error("Unauthorized");
 
   const reward = await prisma.reward.delete({
@@ -175,7 +175,7 @@ export async function deleteReward(id: number) {
   revalidatePath("/", "layout");
 }
 
-export async function saveRedemptionCodes(platformId: number, formData: FormData) {
+export async function saveRedemptionCodes(platformId: string, formData: FormData) {
   if (!(await checkAuth())) throw new Error("Unauthorized");
 
   const codesMap = JSON.parse(formData.get("codes") as string || "[]");

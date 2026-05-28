@@ -42,7 +42,7 @@ export default function RecentRewardsCarousel({
           <CarouselItem key={reward.id} className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
             <Link
               prefetch={false}
-              href={localizePath(locale, `/${reward.platform.type.toLowerCase()}s/${reward.platform.slug}/rewards/${reward.slug}`)}
+              href={localizePath(locale, `/games/${reward.platform.slug}/rewards/${reward.slug}`)}
               className="block group"
             >
               <Card className="border rounded-2xl overflow-hidden bg-card/50 backdrop-blur-sm transition-all duration-300 group-hover:border-primary/50 group-hover:shadow-xl group-hover:-translate-y-1">

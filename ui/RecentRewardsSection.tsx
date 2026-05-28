@@ -9,7 +9,7 @@ export async function RecentRewardsSection({ locale }: { locale: Locale }) {
     where: { status: "active" },
     take: 8,
     include: { platform: true },
-    orderBy: { createdAt: 'desc' },
+    orderBy: { createdAt: "desc" },
   });
 
   return (
@@ -17,13 +17,15 @@ export async function RecentRewardsSection({ locale }: { locale: Locale }) {
       <div className="container-wrapper">
         <div className="flex flex-col items-center mb-12 text-center">
           <h2 className="text-3xl md:text-5xl font-concert-one mb-4 uppercase tracking-tight">
-            {t.home.recentRewards.split(' ').map((word, i) => (
-               <span key={i} className={i % 2 === 1 ? 'text-primary' : ''}>{word} </span>
+            {t.home.recentRewards.split(" ").map((word, i) => (
+              <span key={i} className={i % 2 === 1 ? "text-primary" : ""}>
+                {word}{" "}
+              </span>
             ))}
           </h2>
           <div className="h-1.5 w-24 bg-primary rounded-full" />
         </div>
-        
+
         <RecentRewardsCarousel rewards={rewards} locale={locale} />
       </div>
     </section>

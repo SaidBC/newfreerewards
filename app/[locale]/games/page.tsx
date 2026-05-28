@@ -20,7 +20,9 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale: requestedLocale } = await params;
-  const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
+  const locale: Locale = isLocale(requestedLocale)
+    ? requestedLocale
+    : defaultLocale;
   const t = getDictionary(locale);
 
   return {
@@ -32,7 +34,7 @@ export async function generateMetadata({
         locales.map((supportedLocale) => [
           supportedLocale,
           localizePath(supportedLocale, "/games"),
-        ])
+        ]),
       ),
     },
     openGraph: {
@@ -50,7 +52,9 @@ export default async function GamesPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale: requestedLocale } = await params;
-  const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
+  const locale: Locale = isLocale(requestedLocale)
+    ? requestedLocale
+    : defaultLocale;
   const t = getDictionary(locale);
 
   const games = await prisma.platform.findMany({
@@ -65,7 +69,11 @@ export default async function GamesPage({
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {games.map((game) => (
-          <Link prefetch={false} href={localizePath(locale, `/games/${game.slug}`)} key={game.id}>
+          <Link
+            prefetch={false}
+            href={localizePath(locale, `/games/${game.slug}`)}
+            key={game.id}
+          >
             <Card className="hover:border-primary transition-colors">
               <CardHeader>
                 <CardTitle className="font-concert-one text-xl text-center">

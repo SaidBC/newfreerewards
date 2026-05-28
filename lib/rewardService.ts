@@ -1,43 +1,49 @@
 import { prisma } from "./prisma";
-import { Locale, defaultLocale } from "./i18n";
+import { Locale } from "./i18n";
 import { Reward, RewardContent, Platform, RewardStatus } from "@prisma/client";
 import { normalizeStorageUrl } from "./storage";
 
 export type TranslatedReward = Reward & {
   platform: Platform;
   content: any[];
-  name: string; // for compatibility
+  name: string;
 };
 
 export type TranslatedRewards = TranslatedReward[];
 
 export async function getRewardsByPlatform(
-  platformSlug: string, 
-  locale: Locale, 
-  status: RewardStatus = "active"
+  platformSlug: string,
+  locale: Locale,
+  status: RewardStatus = "active",
 ): Promise<TranslatedRewards> {
   const platform = await prisma.platform.findUnique({
     where: { slug: platformSlug },
-    include: {
-      rewards: {
-        where: { status },
-        include: { contents: { orderBy: { order: "asc" } } },
-        orderBy: { createdAt: "desc" },
-      },
-    },
   });
 
   if (!platform) return [];
 
-  return platform.rewards.map((reward) => translateReward(reward, locale, platform));
+  const rewards = await prisma.reward.findMany({
+    where: { platformId: platform.id, status },
+    include: { contents: { orderBy: { order: "asc" } } },
+    orderBy: { createdAt: "desc" },
+  });
+
+  return rewards.map((reward) => translateReward(reward, locale, platform));
 }
 
-export async function getRewardBySlug(platformSlug: string, slug: string, locale: Locale): Promise<TranslatedReward | null> {
+export async function getRewardBySlug(
+  platformSlug: string,
+  slug: string,
+  locale: Locale,
+): Promise<TranslatedReward | null> {
+  const platform = await prisma.platform.findUnique({
+    where: { slug: platformSlug },
+  });
+
+  if (!platform) return null;
+
   const reward = await prisma.reward.findFirst({
-    where: { 
-      slug,
-      platform: { slug: platformSlug }
-    },
+    where: { slug, platformId: platform.id },
     include: {
       platform: true,
       contents: { orderBy: { order: "asc" } },
@@ -49,7 +55,11 @@ export async function getRewardBySlug(platformSlug: string, slug: string, locale
   return translateReward(reward, locale, reward.platform);
 }
 
-function translateReward(reward: any, locale: Locale, platform: Platform): TranslatedReward {
+function translateReward(
+  reward: any,
+  locale: Locale,
+  platform: Platform,
+): TranslatedReward {
   const translations = (reward.translations as any) || {};
   const localeData = translations[locale] || {};
 
@@ -63,11 +73,12 @@ function translateReward(reward: any, locale: Locale, platform: Platform): Trans
     title: localeData.title || reward.title,
     description: localeData.description || reward.description,
     image: normalizeStorageUrl(reward.image) ?? reward.image,
-    previewImage: normalizeStorageUrl(reward.previewImage) ?? reward.previewImage,
+    previewImage:
+      normalizeStorageUrl(reward.previewImage) ?? reward.previewImage,
     content: reward.contents.map((content: any) => {
       const contentTranslations = (content.translations as any) || {};
       const contentLocaleData = contentTranslations[locale] || {};
-      
+
       return {
         type: content.type,
         value: contentLocaleData.value || content.value,
@@ -81,25 +92,34 @@ function translateReward(reward: any, locale: Locale, platform: Platform): Trans
     }),
   };
 }
-export async function getPlatformLastUpdated(platformSlug: string): Promise<Date | null> {
+
+export async function getPlatformLastUpdated(
+  platformSlug: string,
+): Promise<Date | null> {
   const platform = await prisma.platform.findUnique({
     where: { slug: platformSlug },
-    select: {
-      updatedAt: true,
-      rewards: {
-        select: { updatedAt: true },
-        orderBy: { updatedAt: "desc" },
-        take: 1,
-      },
-    },
+    select: { updatedAt: true },
   });
 
   if (!platform) return null;
 
+  const latestReward = await prisma.reward.findFirst({
+    where: {
+      platformId: (await prisma.platform.findUnique({
+        where: { slug: platformSlug },
+        select: { id: true },
+      }))!.id,
+    },
+    select: { updatedAt: true },
+    orderBy: { updatedAt: "desc" },
+  });
+
   const platformUpdated = platform.updatedAt;
-  const latestRewardUpdated = platform.rewards[0]?.updatedAt;
+  const latestRewardUpdated = latestReward?.updatedAt;
 
   if (!latestRewardUpdated) return platformUpdated;
-  
-  return platformUpdated > latestRewardUpdated ? platformUpdated : latestRewardUpdated;
+
+  return platformUpdated > latestRewardUpdated
+    ? platformUpdated
+    : latestRewardUpdated;
 }

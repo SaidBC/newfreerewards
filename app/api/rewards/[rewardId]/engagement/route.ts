@@ -8,8 +8,8 @@ import {
 } from "@/lib/visitorId";
 
 function parseRewardId(value: string) {
-  const rewardId = Number(value);
-  if (!Number.isInteger(rewardId) || rewardId <= 0) {
+  const rewardId = value.trim();
+  if (!rewardId) {
     throw new RewardEngagementError("Invalid reward id", 400, "INVALID_REWARD_ID");
   }
 

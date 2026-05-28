@@ -5,7 +5,7 @@ const NEEDS_REVIEW_THRESHOLD = 3;
 const NEEDS_REVIEW_WINDOW_DAYS = 7;
 
 export type RewardEngagementSummary = {
-  rewardId: number;
+  rewardId: string;
   reactions: {
     love: number;
     dislike: number;
@@ -47,7 +47,7 @@ function getNeedsReviewWindowStart(date = new Date()) {
   return windowStart;
 }
 
-async function ensureRewardExists(rewardId: number) {
+async function ensureRewardExists(rewardId: string) {
   const reward = await prisma.reward.findUnique({
     where: { id: rewardId },
     select: { id: true },
@@ -59,7 +59,7 @@ async function ensureRewardExists(rewardId: number) {
 }
 
 export async function getRewardEngagement(
-  rewardId: number,
+  rewardId: string,
   visitorId?: string,
 ): Promise<RewardEngagementSummary> {
   await ensureRewardExists(rewardId);
@@ -159,7 +159,7 @@ export async function getRewardEngagement(
 }
 
 export async function toggleRewardReaction(
-  rewardId: number,
+  rewardId: string,
   visitorId: string,
   reactionType: ReactionType,
 ) {
@@ -209,7 +209,7 @@ export async function toggleRewardReaction(
 }
 
 export async function submitRewardReport(
-  rewardId: number,
+  rewardId: string,
   visitorId: string,
   reportType: ReportType,
   note?: string,

@@ -1,13 +1,15 @@
 generator client {
   provider = "prisma-client-js"
+  engineType = "library"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
+  url      = env("MONGODB_URL")
 }
 
 model Platform {
-  id        Int          @id @default(autoincrement())
+  id        String       @id @default(auto()) @map("_id") @db.ObjectId
   name      String       @unique
   slug      String       @unique
   type      PlatformType @default(GAME)
@@ -18,12 +20,12 @@ model Platform {
 }
 
 model Reward {
-  id           Int              @id @default(autoincrement())
+  id           String           @id @default(auto()) @map("_id") @db.ObjectId
   title        String
   description  String
   createdAt    DateTime         @default(now())
   updatedAt    DateTime         @updatedAt
-  platformId   Int
+  platformId   String
   previewImage String?
   slug         String
   status       RewardStatus     @default(active)
@@ -42,44 +44,44 @@ model Reward {
 }
 
 model RewardContent {
-  id           Int               @id @default(autoincrement())
+  id           String           @id @default(auto()) @map("_id") @db.ObjectId
   type         RewardContentType
   value        String?
   href         String?
   label        String?
   imageSrc     String?
   imageAlt     String?
-  rewardId     Int
+  rewardId     String
   order        Int
-  createdAt    DateTime          @default(now())
+  createdAt    DateTime         @default(now())
   translations Json?
-  reward       Reward            @relation(fields: [rewardId], references: [id], onDelete: Cascade)
+  reward       Reward           @relation(fields: [rewardId], references: [id], onDelete: Cascade)
 
   @@index([rewardId])
 }
 
 model RewardReaction {
-  id           Int          @id @default(autoincrement())
+  id           String           @id @default(auto()) @map("_id") @db.ObjectId
   reactionType ReactionType
   visitorId    String
-  rewardId     Int
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
-  reward       Reward       @relation(fields: [rewardId], references: [id], onDelete: Cascade)
+  rewardId     String
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+  reward       Reward           @relation(fields: [rewardId], references: [id], onDelete: Cascade)
 
   @@unique([rewardId, visitorId])
   @@index([rewardId, reactionType])
 }
 
 model RewardReport {
-  id         Int        @id @default(autoincrement())
+  id         String           @id @default(auto()) @map("_id") @db.ObjectId
   reportType ReportType
   visitorId  String
   reportDay  DateTime
-  rewardId   Int
-  createdAt  DateTime   @default(now())
+  rewardId   String
+  createdAt  DateTime         @default(now())
   note       String?
-  reward     Reward     @relation(fields: [rewardId], references: [id], onDelete: Cascade)
+  reward     Reward           @relation(fields: [rewardId], references: [id], onDelete: Cascade)
 
   @@unique([rewardId, visitorId, reportDay])
   @@index([rewardId, reportType])

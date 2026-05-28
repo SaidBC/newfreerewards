@@ -29,13 +29,29 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ]),
   ];
 
-  // Platforms (games, services, etc.)
-  const platforms = await prisma.platform.findMany({
-    select: {
-      slug: true,
-      updatedAt: true,
-    },
-  });
+  const { platforms, rewards } = await (async () => {
+    const [platformRows, rewardRows] = await Promise.all([
+      prisma.platform.findMany({
+        select: {
+          slug: true,
+          updatedAt: true,
+        },
+      }),
+      prisma.reward.findMany({
+        select: {
+          slug: true,
+          updatedAt: true,
+          platform: {
+            select: {
+              slug: true,
+            },
+          },
+        },
+      }),
+    ]);
+
+    return { platforms: platformRows, rewards: rewardRows };
+  })();
 
   const platformPages: MetadataRoute.Sitemap = platforms.map((platform) => ({
     url: `${base}/games/${platform.slug}`,
@@ -47,35 +63,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       locales.map((locale) => ({
         url: `${base}${localizePath(locale, `/games/${platform.slug}`)}`,
         lastModified: platform.updatedAt ?? now,
-      }))
+      })),
   );
-
-  // Rewards pages
-  const rewards = await prisma.reward.findMany({
-    select: {
-      slug: true,
-      updatedAt: true,
-      platform: {
-        select: {
-          slug: true,
-        },
-      },
-    },
-  });
 
   const rewardPages: MetadataRoute.Sitemap = rewards.map((reward) => ({
     url: `${base}/games/${reward.platform.slug}/rewards/${reward.slug}`,
     lastModified: reward.updatedAt ?? now,
   }));
 
-  const localizedRewardPages: MetadataRoute.Sitemap = rewards.flatMap((reward) =>
-    locales.map((locale) => ({
-      url: `${base}${localizePath(
-        locale,
-        `/games/${reward.platform.slug}/rewards/${reward.slug}`
-      )}`,
-      lastModified: reward.updatedAt ?? now,
-    }))
+  const localizedRewardPages: MetadataRoute.Sitemap = rewards.flatMap(
+    (reward) =>
+      locales.map((locale) => ({
+        url: `${base}${localizePath(
+          locale,
+          `/games/${reward.platform.slug}/rewards/${reward.slug}`,
+        )}`,
+        lastModified: reward.updatedAt ?? now,
+      })),
   );
 
   return [

@@ -16,7 +16,7 @@ import ReportRewardDialog from "./ReportRewardDialog";
 import type { RewardEngagementSummary } from "@/lib/rewardEngagementService";
 
 type RewardEngagementBarProps = {
-  rewardId: number;
+  rewardId: string;
   locale: Locale;
   initialSummary?: RewardEngagementSummary | null;
 };

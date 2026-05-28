@@ -53,7 +53,7 @@ export function RewardForm({
     title: reward?.title || "",
     description: reward?.description || "",
     slug: reward?.slug || "",
-    platformId: reward?.platformId || 0,
+    platformId: reward?.platformId || "",
     previewImage: reward?.previewImage || "",
     claimUrl: reward?.claimUrl || "",
     status: reward?.status || "active"
@@ -333,10 +333,10 @@ export function RewardForm({
                 <select 
                   name="platformId" 
                   value={basicInfo.platformId} 
-                  onChange={(e) => setBasicInfo({ ...basicInfo, platformId: parseInt(e.target.value) })}
+                  onChange={(e) => setBasicInfo({ ...basicInfo, platformId: e.target.value })}
                   className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 font-medium"
                 >
-                  <option value={0} disabled>Select Platform</option>
+                  <option value="" disabled>Select Platform</option>
                   {platforms.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
                 </select>
               </div>
