@@ -37,25 +37,80 @@ const siteConfig = {
     rewards: [
       {
         id: "25",
-        slug: "evo-princess-emote",
+        slug: "evo-princess-bored-emote",
         platform: {
           name: "Clash Royale",
           src: storageUrl("images/clash-royale/clash-royale.jpg"),
         },
-        previewImage: storageUrl("images/clash-royale/princess-emote.jpg"),
-        name: "Evo Princess Emote",
-        description: "Claim the Evo Princess Emote.",
+        previewImage: storageUrl(
+          "images/clash-royale/preview-evo-princess-bored-emote.jpeg",
+        ),
+        name: "Evo Princess Bored Emote",
+        description:
+          "Claim the Evo Princess bored emote from the Supercell Store.",
         status: "active" as "active" | "expired",
         content: [
           {
+            type: "text",
+            value:
+              "Go to the Supercell Store and sign in if you're not. Go to the Clash Royale page and search for the emote product offer and click Claim.",
+          },
+          {
+            type: "text",
+            value:
+              "Note: It might show 'Not Found' if the offer expired or you're not signed in.",
+          },
+          {
             type: "link",
-            href: "https://link.clashroyale.com/en/?action=voucher&code=946d6edb-b658-496e-99ef-157e410846e7",
-            label: "Claim emote",
+            href: "https://store.supercell.com/clashroyale/product/emote/e9674ff9",
+            label: "Claim Emote",
           },
           {
             type: "image",
-            src: storageUrl("images/clash-royale/princess-emote-qr.png"),
-            alt: "Evo Princess Emote QR",
+            src: storageUrl(
+              "images/clash-royale/evo-princess-bored-emote.jpeg",
+            ),
+            alt: "Evo Princess Bored Emote",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "26",
+        slug: "evo-princess-banner",
+        platform: {
+          name: "Clash Royale",
+          src: storageUrl("images/clash-royale/clash-royale.jpg"),
+        },
+        previewImage: storageUrl(
+          "images/clash-royale/preview-evo-princess-banner.jpeg",
+        ),
+        name: "Evo Princess Banner",
+        description: "Redeem a promo code to unlock the Evo Princess banner.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value:
+              "Go to the Supercell Store and sign in if you're not. Go to the Clash Royale page and scroll down to the redemption code section, then redeem the following code: PRINCESSEVO!",
+          },
+          {
+            type: "text",
+            value:
+              "Note: It might show 'Not Found' if the offer expired or you're not signed in.",
+          },
+          {
+            type: "code",
+            value: "PRINCESSEVO!",
+          },
+          {
+            type: "link",
+            href: "https://store.supercell.com/en/clashroyale?storeCode=PRINCESSEVO!",
+            label: "Claim Banner",
+          },
+          {
+            type: "image",
+            src: storageUrl("images/clash-royale/evo-princess-banner.jpeg"),
+            alt: "Evo Princess Banner",
           },
         ] as ContentType[],
       },
