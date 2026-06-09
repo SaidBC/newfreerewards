@@ -52,7 +52,7 @@ async function main() {
   const brawlStars = await ensurePlatform({
     name: "Brawl Stars",
     slug: "brawl-stars",
-    image: "/images/brawl-stars/logo.jpeg",
+    image: "/images/brawl-stars/logo.jpg",
     type: "GAME",
   });
 

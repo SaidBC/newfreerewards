@@ -401,7 +401,7 @@ const siteConfig = {
           src: storageUrl("images/clash-royale/clash-royale.jpg"),
         },
         previewImage: storageUrl(
-          "images/clash-royale/preview-skeleton-shield-bang-emote.jpeg",
+          "images/clash-royale/preview-skeleton-shield-bang-emote.jpg",
         ),
         name: "Skeleton Shield Bang Emote",
         description: "Claim the Skeleton Shield Bang emote.",
@@ -865,7 +865,7 @@ const siteConfig = {
           src: storageUrl("images/clash-royale/clash-royale.jpg"),
         },
         previewImage: storageUrl(
-          "images/clash-royale/preview-royal-ghost-boo-emote.jpeg",
+          "images/clash-royale/preview-royal-ghost-boo-emote.jpg",
         ),
         name: "Royal Ghost Boo Emote",
         description: "Claim the Royal Ghost Boo emote.",
@@ -1029,7 +1029,7 @@ const siteConfig = {
         slug: "diamond-box-qr-code",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage:
           "https://res.cloudinary.com/dctrgw4fo/image/upload/v1777782840/images/brawl-stars/684083002_18087688991580604_8157799446537923513_n-mopa0355-x7kbkq.jpg",
@@ -1058,7 +1058,7 @@ const siteConfig = {
         slug: "starr-nova-box",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl("images/brawl-stars/starr-nova-box.jpg"),
         name: "Starr Nova Box",
@@ -1082,7 +1082,7 @@ const siteConfig = {
         slug: "anime-smash-spray",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl("images/brawl-stars/anime-smash-spray.jpeg"),
         name: "Anime Smash Spray",
@@ -1106,9 +1106,9 @@ const siteConfig = {
         slug: "hank-spray",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
-        previewImage: storageUrl("images/brawl-stars/hank-spray.jpg"),
+        previewImage: storageUrl("images/brawl-stars/hank-spray.png"),
         name: "Hank Spray",
         description: "Claim the Hank Spray in Brawl Stars.",
         status: "active" as "active" | "expired",
@@ -1130,7 +1130,7 @@ const siteConfig = {
         slug: "1x-chaos-drop",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl("images/brawl-stars/1x-chaos-drop.png"),
         name: "1x Chaos Drop",
@@ -1154,7 +1154,7 @@ const siteConfig = {
         slug: "bulb-pin",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl("images/brawl-stars/bulb-pin.png"),
         name: "Bulb Pin",
@@ -1178,7 +1178,7 @@ const siteConfig = {
         slug: "emoji_fairy_flower",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage:
           "https://res.cloudinary.com/dctrgw4fo/image/upload/br/0579a172-1be3-4cea-a44f-347efc43c249_emoji_fairy_flower__1_",
@@ -1212,7 +1212,7 @@ const siteConfig = {
         slug: "omega-box",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage:
           "https://res.cloudinary.com/dctrgw4fo/image/upload/br/Screenshot_2-4-2026_164917",
@@ -1242,7 +1242,7 @@ const siteConfig = {
         slug: "reward-24321637",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl(
           "images/brawl-stars/Screenshot_2026.03.29_22.25.35.899-preview.png",
@@ -1281,7 +1281,7 @@ const siteConfig = {
         slug: "reward-d99ca645",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl(
           "images/brawl-stars/Screenshot_2026.03.28_03.27.37.132-preview.png",
@@ -1327,7 +1327,7 @@ const siteConfig = {
         slug: "reward-da19cd17",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl(
           "images/brawl-stars/Screenshot_2026.03.26_23.01.29.490-preview.png",
@@ -1366,7 +1366,7 @@ const siteConfig = {
         slug: "daily-brawl-stars-rewards",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl("images/brawl-stars/daily-reward-preview.png"),
         name: "Daily Rewards",
@@ -1399,7 +1399,7 @@ const siteConfig = {
         slug: "supercell-store-gems-reward",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl(
           "images/brawl-stars/af985a4f-194c-4a2d-b2d1-79ae58a7bd0b.png",
@@ -1430,7 +1430,7 @@ const siteConfig = {
         slug: "spray-reward",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl("images/brawl-stars/preview-spray.png"),
         name: "Spray Reward",
@@ -1454,7 +1454,7 @@ const siteConfig = {
         slug: "skull-head-exploid-pin",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl(
           "images/brawl-stars/preview-skull-head-exploid-pin.png",
@@ -1482,7 +1482,7 @@ const siteConfig = {
         slug: "reward-cbd9bc12",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl(
           "images/brawl-stars/Screenshot_2026.03.08_23.22.52.003_preview.png",
@@ -1519,7 +1519,7 @@ const siteConfig = {
         slug: "reward-8142f715",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl(
           "images/brawl-stars/Screenshot_2026.03.08_23.24.20.973_preview.png",
@@ -1556,7 +1556,7 @@ const siteConfig = {
         slug: "reward-04f69983",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl(
           "images/brawl-stars/Screenshot_2026.03.08_23.34.33.409_preview.png",
@@ -1593,7 +1593,7 @@ const siteConfig = {
         slug: "reward-6bb96c6a",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl(
           "images/brawl-stars/Screenshot_2026.03.08_23.39.52.284.png",
@@ -1630,7 +1630,7 @@ const siteConfig = {
         slug: "reward-935251d2",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl(
           "images/brawl-stars/Screenshot_2026.03.08_23.41.41.374_preview.png",
@@ -1667,7 +1667,7 @@ const siteConfig = {
         slug: "reward-ab9cf7c2",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl(
           "images/brawl-stars/Screenshot_2026.03.08_23.43.39.051_preview.png",
@@ -1704,7 +1704,7 @@ const siteConfig = {
         slug: "reward-3484c6d2",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl(
           "images/brawl-stars/Screenshot_2026.03.09_00.45.14.032_preview.png",
@@ -1741,7 +1741,7 @@ const siteConfig = {
         slug: "reward-4c9ea6d6",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl(
           "images/brawl-stars/Screenshot_2026.03.09_00.46.40.312_preview.png",
@@ -1778,7 +1778,7 @@ const siteConfig = {
         slug: "reward-91eead0b",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl(
           "images/brawl-stars/Screenshot_2026.03.09_00.47.59.155_preview.png",
@@ -1815,7 +1815,7 @@ const siteConfig = {
         slug: "reward-2593e957",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl(
           "images/brawl-stars/Screenshot_2026.03.09_00.56.34.971_preview.png",
@@ -1852,7 +1852,7 @@ const siteConfig = {
         slug: "reward-315b3e4f",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl(
           "images/brawl-stars/Screenshot_2026.03.09_01.01.14.646_preview.png",
@@ -1889,7 +1889,7 @@ const siteConfig = {
         slug: "reward-b647c71d",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl(
           "images/brawl-stars/Screenshot_2026.03.09_01.03.07.173_preview.png",
@@ -1926,7 +1926,7 @@ const siteConfig = {
         slug: "reward-cc017c48",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl(
           "images/brawl-stars/Screenshot_2026.03.09_01.04.19.591_preview.png",
@@ -1963,7 +1963,7 @@ const siteConfig = {
         slug: "berlin-pin",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl("images/brawl-stars/berlin-pin.jpg"),
         name: "Berlin Pin",
@@ -1987,7 +1987,7 @@ const siteConfig = {
         slug: "pretzel-pin-reward",
         platform: {
           name: "Brawl Stars",
-          src: storageUrl("images/brawl-stars/logo.jpeg"),
+          src: storageUrl("images/brawl-stars/logo.jpg"),
         },
         previewImage: storageUrl("images/brawl-stars/pretzel-pin.jpg"),
         name: "Pretzel Pin",
