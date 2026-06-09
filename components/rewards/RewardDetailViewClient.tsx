@@ -10,6 +10,8 @@ import CopyCode from "@/components/CopyCode";
 import { localizePath, type Locale } from "@/lib/i18n";
 import AdsComponent from "@/components/AdsComponent";
 import type { RewardEngagementSummary } from "@/lib/rewardEngagementService";
+import { useEffect } from "react";
+import { markRewardVisited } from "@/lib/visitedRewards";
 
 export interface RewardDetailViewClientProps {
   reward: any;
@@ -19,7 +21,19 @@ export interface RewardDetailViewClientProps {
   initialEngagement?: RewardEngagementSummary | null;
 }
 
-export default function RewardDetailViewClient({ reward, locale, t, isPreview = false, initialEngagement }: RewardDetailViewClientProps) {
+export default function RewardDetailViewClient({
+  reward,
+  locale,
+  t,
+  isPreview = false,
+  initialEngagement,
+}: RewardDetailViewClientProps) {
+  useEffect(() => {
+    if (!isPreview && reward?.platform?.slug && reward?.slug) {
+      markRewardVisited(reward.platform.slug, reward.slug);
+    }
+  }, [isPreview, reward?.platform?.slug, reward?.slug]);
+
   if (!reward) return null;
 
   const renderBlock = (block: any, index: number) => {
@@ -36,12 +50,18 @@ export default function RewardDetailViewClient({ reward, locale, t, isPreview = 
           (block.src || "").toLowerCase().includes("qr") ||
           (block.imageAlt || "").toLowerCase().includes("qr") ||
           (block.imageSrc || "").toLowerCase().includes("qr");
-        
-        const src = block.src || block.imageSrc || storageUrl(`images/${reward.platform.slug}/logo.jpeg`);
+
+        const src =
+          block.src ||
+          block.imageSrc ||
+          storageUrl(`images/${reward.platform.slug}/logo.jpeg`);
         const alt = block.alt || block.imageAlt || "reward step";
 
         return (
-          <div key={index} className={`relative mt-2 overflow-hidden rounded-lg border ${isQrCode ? "max-w-[200px]" : ""}`}>
+          <div
+            key={index}
+            className={`relative mt-2 overflow-hidden rounded-lg border ${isQrCode ? "max-w-[200px]" : ""}`}
+          >
             <Image
               src={src}
               alt={alt}
@@ -54,8 +74,16 @@ export default function RewardDetailViewClient({ reward, locale, t, isPreview = 
         );
       case "link":
         return (
-          <Button key={index} asChild className="mt-2 w-full sm:w-fit font-concert-one">
-            <a href={block.href || "#"} target="_blank" rel="noopener noreferrer">
+          <Button
+            key={index}
+            asChild
+            className="mt-2 w-full sm:w-fit font-concert-one"
+          >
+            <a
+              href={block.href || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {block.label || "Claim Reward"}
             </a>
           </Button>
@@ -76,7 +104,11 @@ export default function RewardDetailViewClient({ reward, locale, t, isPreview = 
       <section className="mx-auto max-w-5xl px-4 py-8 md:py-16">
         {!isPreview && (
           <Button variant={"link"} asChild className="mb-4">
-            <Link prefetch={false} href={localizePath(locale, `/games/${reward.platform.slug}`)} data-trigger-popunder="true">
+            <Link
+              prefetch={false}
+              href={localizePath(locale, `/games/${reward.platform.slug}`)}
+              data-trigger-popunder="true"
+            >
               <ArrowLeft className="mr-2 h-4 w-4" />
               <span>{t.games.back}</span>
             </Link>
@@ -85,7 +117,11 @@ export default function RewardDetailViewClient({ reward, locale, t, isPreview = 
         <div className="flex gap-4 items-center">
           <Image
             className="rounded-md object-cover size-12"
-            src={reward.platform.image  ? storageUrl(reward.platform.image) : storageUrl(`images/${reward.platform.slug}/logo.jpeg`)}
+            src={
+              reward.platform.image
+                ? storageUrl(reward.platform.image)
+                : storageUrl(`images/${reward.platform.slug}/logo.jpeg`)
+            }
             width={48}
             height={48}
             alt={reward.platform.name}
@@ -106,8 +142,14 @@ export default function RewardDetailViewClient({ reward, locale, t, isPreview = 
       </section>
 
       <section className="mx-auto max-w-5xl px-4 pb-24 flex flex-col gap-8">
-        {!isPreview && <RewardEngagementBar rewardId={reward.id} locale={locale} initialSummary={initialEngagement} />}
-        
+        {!isPreview && (
+          <RewardEngagementBar
+            rewardId={reward.id}
+            locale={locale}
+            initialSummary={initialEngagement}
+          />
+        )}
+
         {reward.platform.slug === "clash-royale" && (
           <AdsComponent
             link="https://lootbar.gg/top-up/clash-royale?aff_short=newfreerewards"
@@ -115,14 +157,14 @@ export default function RewardDetailViewClient({ reward, locale, t, isPreview = 
             alt="Top up Clash Royale on Lootbar.gg Offers"
           />
         )}
-        {reward.platform.slug === "brawl-stars" && (
-          <AdsComponent />
-        )}
+        {reward.platform.slug === "brawl-stars" && <AdsComponent />}
 
         <div className="space-y-8 rounded-2xl border bg-card p-6 sm:p-8">
           <div className="flex items-center gap-2 border-b pb-4">
             <div className="h-2 w-2 rounded-full bg-primary" />
-            <h2 className="font-concert-one text-xl uppercase italic text-left">{t.games.stepByStepGuide}</h2>
+            <h2 className="font-concert-one text-xl uppercase italic text-left">
+              {t.games.stepByStepGuide}
+            </h2>
           </div>
 
           <div className="space-y-6">

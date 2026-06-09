@@ -33,18 +33,29 @@ export const dictionary = {
       brawlStarsTitle: "Brawl Stars Free Rewards & Bonus Items",
       brawlStarsDescription:
         "Discover active free rewards, pins, sprays, and promotions available for Brawl Stars.",
-      genshinImpactTitle: "Genshin Impact Codes (Active Rewards) and How to Redeem Them",
-      genshinImpactDescription: "Looking for the latest Genshin Impact redeem codes? These promotional codes can give players free in-game rewards like Primogems, Mora, Hero’s Wit, and enhancement materials.",
-      honkaiStarRailTitle: "Honkai: Star Rail Codes (March 2026) – Active Codes and How to Redeem Them",
-      honkaiStarRailDescription: "Redeem codes in Honkai: Star Rail allow players to receive free rewards such as Stellar Jade, Credits, Traveler’s Guide, and Light Cone upgrade materials.",
+      genshinImpactTitle:
+        "Genshin Impact Codes (Active Rewards) and How to Redeem Them",
+      genshinImpactDescription:
+        "Looking for the latest Genshin Impact redeem codes? These promotional codes can give players free in-game rewards like Primogems, Mora, Hero’s Wit, and enhancement materials.",
+      honkaiStarRailTitle:
+        "Honkai: Star Rail Codes (March 2026) – Active Codes and How to Redeem Them",
+      honkaiStarRailDescription:
+        "Redeem codes in Honkai: Star Rail allow players to receive free rewards such as Stellar Jade, Credits, Traveler’s Guide, and Light Cone upgrade materials.",
       robloxTitle: "Roblox Codes (Active Rewards) and How to Redeem Them",
-      robloxDescription: "Looking for the latest Roblox promo codes? These codes can give players free in-game items like accessories, bundles, and more.",
-      riseOfKingdomsTitle: "Rise of Kingdoms Codes (Active Rewards) and How to Redeem Them",
-      riseOfKingdomsDescription: "Looking for the latest Rise of Kingdoms redeem codes? These promotional codes can give players free in-game rewards like gems, keys, and speedups.",
-      growAGardenTitle: "Grow a Garden Codes (Active Rewards) and How to Redeem Them",
-      growAGardenDescription: "Looking for the latest Grow a Garden redeem codes? These codes can give players free in-game cosmetic items.",
-      blueLockRivalsTitle: "Blue Lock Rivals Codes (Active Rewards) and How to Redeem Them",
-      blueLockRivalsDescription: "Looking for the latest Blue Lock Rivals redeem codes? These codes can give players free in-game rewards like spins and lucky flow.",
+      robloxDescription:
+        "Looking for the latest Roblox promo codes? These codes can give players free in-game items like accessories, bundles, and more.",
+      riseOfKingdomsTitle:
+        "Rise of Kingdoms Codes (Active Rewards) and How to Redeem Them",
+      riseOfKingdomsDescription:
+        "Looking for the latest Rise of Kingdoms redeem codes? These promotional codes can give players free in-game rewards like gems, keys, and speedups.",
+      growAGardenTitle:
+        "Grow a Garden Codes (Active Rewards) and How to Redeem Them",
+      growAGardenDescription:
+        "Looking for the latest Grow a Garden redeem codes? These codes can give players free in-game cosmetic items.",
+      blueLockRivalsTitle:
+        "Blue Lock Rivals Codes (Active Rewards) and How to Redeem Them",
+      blueLockRivalsDescription:
+        "Looking for the latest Blue Lock Rivals redeem codes? These codes can give players free in-game rewards like spins and lucky flow.",
       rewardMetaPrefix: "Free Reward on",
       rewardMetaDescriptionPrefix: "Step-by-step guide to claim",
     },
@@ -85,8 +96,10 @@ export const dictionary = {
       privacyPolicy: "Privacy Policy",
       termsOfService: "Terms of Service",
       contactEmail: "Contact Email",
-      contactDescription: "For feedback, corrections, or partnership requests, please reach out to us via email or follow us on social media.",
+      contactDescription:
+        "For feedback, corrections, or partnership requests, please reach out to us via email or follow us on social media.",
       followUs: "Follow Us",
+      visited: "Visited",
     },
     games: {
       allGames: "All Games",
@@ -143,18 +156,29 @@ export const dictionary = {
       brawlStarsTitle: "Recompensas y bonos gratis de Brawl Stars",
       brawlStarsDescription:
         "Descubre recompensas, pines, sprays y promociones activas de Brawl Stars.",
-      genshinImpactTitle: "Códigos de Genshin Impact (Recompensas Activas) y Cómo Canjearlos",
-      genshinImpactDescription: "¿Buscas los últimos códigos de canje de Genshin Impact? Estos códigos promocionales pueden otorgar recompensas gratuitas como Primogemas, Mora, Ingenio del Héroe y materiales de mejora.",
-      honkaiStarRailTitle: "Códigos de Honkai: Star Rail (Marzo 2026) – Códigos Activos y Cómo Canjearlos",
-      honkaiStarRailDescription: "Los códigos de canje en Honkai: Star Rail permiten a los jugadores recibir recompensas gratuitas como Jade Estelar, Créditos, Guía del Viajero y materiales de mejora de Cono de Luz.",
+      genshinImpactTitle:
+        "Códigos de Genshin Impact (Recompensas Activas) y Cómo Canjearlos",
+      genshinImpactDescription:
+        "¿Buscas los últimos códigos de canje de Genshin Impact? Estos códigos promocionales pueden otorgar recompensas gratuitas como Primogemas, Mora, Ingenio del Héroe y materiales de mejora.",
+      honkaiStarRailTitle:
+        "Códigos de Honkai: Star Rail (Marzo 2026) – Códigos Activos y Cómo Canjearlos",
+      honkaiStarRailDescription:
+        "Los códigos de canje en Honkai: Star Rail permiten a los jugadores recibir recompensas gratuitas como Jade Estelar, Créditos, Guía del Viajero y materiales de mejora de Cono de Luz.",
       robloxTitle: "Códigos de Roblox (Recompensas Activas) y Cómo Canjearlos",
-      robloxDescription: "¿Buscas los últimos códigos promocionales de Roblox? Estos códigos pueden otorgar objetos gratuitos en el juego como accesorios, paquetes y más.",
-      riseOfKingdomsTitle: "Códigos de Rise of Kingdoms (Recompensas Activas) y Cómo Canjearlos",
-      riseOfKingdomsDescription: "¿Buscas los últimos códigos de canje de Rise of Kingdoms? Estos códigos promocionales pueden otorgar recompensas gratuitas como gemas, llaves y aceleradores.",
-      growAGardenTitle: "Códigos de Grow a Garden (Recompensas Activas) y Cómo Canjearlos",
-      growAGardenDescription: "¿Buscas los últimos códigos de canje de Grow a Garden? Estos códigos pueden otorgar objetos cosméticos gratuitos en el juego.",
-      blueLockRivalsTitle: "Códigos de Blue Lock Rivals (Recompensas Activas) y Cómo Canjearlos",
-      blueLockRivalsDescription: "¿Buscas los últimos códigos de canje de Blue Lock Rivals? Estos códigos pueden otorgar recompensas gratuitas en el juego como giros y flujo de suerte.",
+      robloxDescription:
+        "¿Buscas los últimos códigos promocionales de Roblox? Estos códigos pueden otorgar objetos gratuitos en el juego como accesorios, paquetes y más.",
+      riseOfKingdomsTitle:
+        "Códigos de Rise of Kingdoms (Recompensas Activas) y Cómo Canjearlos",
+      riseOfKingdomsDescription:
+        "¿Buscas los últimos códigos de canje de Rise of Kingdoms? Estos códigos promocionales pueden otorgar recompensas gratuitas como gemas, llaves y aceleradores.",
+      growAGardenTitle:
+        "Códigos de Grow a Garden (Recompensas Activas) y Cómo Canjearlos",
+      growAGardenDescription:
+        "¿Buscas los últimos códigos de canje de Grow a Garden? Estos códigos pueden otorgar objetos cosméticos gratuitos en el juego.",
+      blueLockRivalsTitle:
+        "Códigos de Blue Lock Rivals (Recompensas Activas) y Cómo Canjearlos",
+      blueLockRivalsDescription:
+        "¿Buscas los últimos códigos de canje de Blue Lock Rivals? Estos códigos pueden otorgar recompensas gratuitas en el juego como giros y flujo de suerte.",
       rewardMetaPrefix: "Recompensa Gratuita en",
       rewardMetaDescriptionPrefix: "Guía paso a paso para reclamar",
     },
@@ -191,12 +215,15 @@ export const dictionary = {
       reportSubmitted: "Gracias. Tu reporte fue enviado.",
       reportAlreadySubmittedToday: "Ya reportaste esta recompensa hoy.",
       needsReview: "Necesita revisión",
-      feedbackBoundToBrowser: "Los comentarios están vinculados a este navegador.",
+      feedbackBoundToBrowser:
+        "Los comentarios están vinculados a este navegador.",
       privacyPolicy: "Política de Privacidad",
       termsOfService: "Términos de Servicio",
       contactEmail: "Correo de Contacto",
-      contactDescription: "Para comentarios, correcciones o solicitudes de asociación, contáctenos por correo electrónico o síganos en las redes sociales.",
+      contactDescription:
+        "Para comentarios, correcciones o solicitudes de asociación, contáctenos por correo electrónico o síganos en las redes sociales.",
       followUs: "Síguenos",
+      visited: "Visitado",
     },
     games: {
       allGames: "Todos los juegos",
@@ -214,17 +241,23 @@ export const dictionary = {
         "Descubre todas las recompensas gratuitas de Brawl Stars disponibles actualmente en un solo lugar. Seguimos pines gratis, sprays, objetos, eventos y bonos por tiempo limitado para que no te pierdas ninguna recompensa.",
       genshinImpactTitle: "Genshin Impact (Recompensas Activas)",
       honkaiStarRailTitle: "Honkai: Star Rail (Recompensas Activas)",
-      genshinImpactDescription: "Explora las recompensas activas de Genshin Impact.",
-      honkaiStarRailDescription: "Explora las recompensas activas de Honkai: Star Rail.",
+      genshinImpactDescription:
+        "Explora las recompensas activas de Genshin Impact.",
+      honkaiStarRailDescription:
+        "Explora las recompensas activas de Honkai: Star Rail.",
       robloxTitle: "Roblox (Recompensas Activas)",
       riseOfKingdomsTitle: "Rise of Kingdoms (Recompensas Activas)",
       growAGardenTitle: "Grow a Garden (Recompensas Activas)",
       robloxDescription: "Explora las recompensas activas de Roblox.",
-      riseOfKingdomsDescription: "Explora las recompensas activas de Rise of Kingdoms.",
-      growAGardenDescription: "Explora las recompensas activas de Grow a Garden.",
+      riseOfKingdomsDescription:
+        "Explora las recompensas activas de Rise of Kingdoms.",
+      growAGardenDescription:
+        "Explora las recompensas activas de Grow a Garden.",
       blueLockRivalsTitle: "Blue Lock Rivals (Recompensas Activas)",
-      blueLockRivalsDescription: "Explora las recompensas activas de Blue Lock Rivals.",
-      noActiveRewards: "No hay recompensas activas disponibles en este momento.",
+      blueLockRivalsDescription:
+        "Explora las recompensas activas de Blue Lock Rivals.",
+      noActiveRewards:
+        "No hay recompensas activas disponibles en este momento.",
       lastUpdatedLabel: "Última actualización",
       stepByStepGuide: "Guía paso a paso",
     },
@@ -242,25 +275,39 @@ export const dictionary = {
       siteDescription:
         "اكتشف المكافآت المجانية والبونص وأكواد العروض والهدايا من الألعاب والمنصات عبر الإنترنت. بدون تهكير. تحديث يومي.",
       gamesTitle: "ألعاب تقدم مكافآت وبونص مجاني",
-      gamesDescription: "تصفح الألعاب التي تقدم مكافآت مجانية وبونص وأكواد عروض.",
+      gamesDescription:
+        "تصفح الألعاب التي تقدم مكافآت مجانية وبونص وأكواد عروض.",
       clashRoyaleTitle: "مكافآت وبونص مجاني لـ Clash Royale",
-      clashRoyaleDescription: "اكتشف المكافآت والبونص والعروض النشطة في Clash Royale.",
+      clashRoyaleDescription:
+        "اكتشف المكافآت والبونص والعروض النشطة في Clash Royale.",
       clashOfClansTitle: "مكافآت وبونص مجاني لـ Clash of Clans",
-      clashOfClansDescription: "اكتشف المكافآت والبونص والعروض النشطة في Clash of Clans.",
+      clashOfClansDescription:
+        "اكتشف المكافآت والبونص والعروض النشطة في Clash of Clans.",
       brawlStarsTitle: "مكافآت وبونص مجاني لـ Brawl Stars",
-      brawlStarsDescription: "اكتشف المكافآت والستيكرات والبخاخات والعروض النشطة في Brawl Stars.",
-      genshinImpactTitle: "أكواد قنشن امباكت (المكافآت النشطة) وكيفية استردادها",
-      genshinImpactDescription: "هل تبحث عن أحدث أكواد استبدال جينشين إمباكت؟ يمكن لهذه الأكواد الترويجية أن تمنح اللاعبين مكافآت مجانية داخل اللعبة مثل بريموجيمز، ومورا، وذكاء البطل، ومواد التعزيز.",
-      honkaiStarRailTitle: "أكواد هونكاي: ستار ريل (مارس 2026) – الأكواد النشطة وكيفية استردادها",
-      honkaiStarRailDescription: "تتيح أكواد الاستبدال في هونكاي: ستار ريل للاعبين الحصول على مكافآت مجانية مثل اليشم النجمي، والائتمانات، ودليل المسافر، وموا ترقية مخروط الضوء.",
+      brawlStarsDescription:
+        "اكتشف المكافآت والستيكرات والبخاخات والعروض النشطة في Brawl Stars.",
+      genshinImpactTitle:
+        "أكواد قنشن امباكت (المكافآت النشطة) وكيفية استردادها",
+      genshinImpactDescription:
+        "هل تبحث عن أحدث أكواد استبدال جينشين إمباكت؟ يمكن لهذه الأكواد الترويجية أن تمنح اللاعبين مكافآت مجانية داخل اللعبة مثل بريموجيمز، ومورا، وذكاء البطل، ومواد التعزيز.",
+      honkaiStarRailTitle:
+        "أكواد هونكاي: ستار ريل (مارس 2026) – الأكواد النشطة وكيفية استردادها",
+      honkaiStarRailDescription:
+        "تتيح أكواد الاستبدال في هونكاي: ستار ريل للاعبين الحصول على مكافآت مجانية مثل اليشم النجمي، والائتمانات، ودليل المسافر، وموا ترقية مخروط الضوء.",
       robloxTitle: "أكواد روبلوكس (المكافآت النشطة) وكيفية استردادها",
-      robloxDescription: "هل تبحث عن أحدث أكواد عروض روبلوكس؟ يمكن لهذه الأكواد أن تمنح اللاعبين عناصر مجانية داخل اللعبة مثل الإكسسوارات والحزم والمزيد.",
-      riseOfKingdomsTitle: "أكواد رايز أوف كينجدومز (المكافآت النشطة) وكيفية استردادها",
-      riseOfKingdomsDescription: "هل تبحث عن أحدث أكواد استبدال رايز أوف كينجدومز؟ يمكن لهذه الأكواد الترويجية أن تمنح اللاعبين مكافآت مجانية داخل اللعبة مثل الجواهر والمفاتيح والمسرعات.",
+      robloxDescription:
+        "هل تبحث عن أحدث أكواد عروض روبلوكس؟ يمكن لهذه الأكواد أن تمنح اللاعبين عناصر مجانية داخل اللعبة مثل الإكسسوارات والحزم والمزيد.",
+      riseOfKingdomsTitle:
+        "أكواد رايز أوف كينجدومز (المكافآت النشطة) وكيفية استردادها",
+      riseOfKingdomsDescription:
+        "هل تبحث عن أحدث أكواد استبدال رايز أوف كينجدومز؟ يمكن لهذه الأكواد الترويجية أن تمنح اللاعبين مكافآت مجانية داخل اللعبة مثل الجواهر والمفاتيح والمسرعات.",
       growAGardenTitle: "أكواد جرو أ جاردن (المكافآت النشطة) وكيفية استردادها",
-      growAGardenDescription: "هل تبحث عن أحدث أكواد استبدال جرو أ جاردن؟ يمكن لهذه الأكواد أن تمنح اللاعبين عناصر تجميلية مجانية داخل اللعبة.",
-      blueLockRivalsTitle: "أكواد بلو لوك رايفلز (المكافآت النشطة) وكيفية استردادها",
-      blueLockRivalsDescription: "هل تبحث عن أحدث أكواد استبدال بلو لوك رايفلز؟ يمكن لهذه الأكواد أن تمنح اللاعبين هدايا مجانية داخل اللعبة مثل اللفات وتدفق الحظ.",
+      growAGardenDescription:
+        "هل تبحث عن أحدث أكواد استبدال جرو أ جاردن؟ يمكن لهذه الأكواد أن تمنح اللاعبين عناصر تجميلية مجانية داخل اللعبة.",
+      blueLockRivalsTitle:
+        "أكواد بلو لوك رايفلز (المكافآت النشطة) وكيفية استردادها",
+      blueLockRivalsDescription:
+        "هل تبحث عن أحدث أكواد استبدال بلو لوك رايفلز؟ يمكن لهذه الأكواد أن تمنح اللاعبين هدايا مجانية داخل اللعبة مثل اللفات وتدفق الحظ.",
       rewardMetaPrefix: "مكافأة مجانية على",
       rewardMetaDescriptionPrefix: "دليل خطوة بخطوة للحصول على",
     },
@@ -301,8 +348,10 @@ export const dictionary = {
       privacyPolicy: "سياسة الخصوصية",
       termsOfService: "شروط الخدمة",
       contactEmail: "البريد الإلكتروني للتواصل",
-      contactDescription: "للملاحظات أو التصحيحات أو طلبات الشراكة، يرجى التواصل معنا عبر البريد الإلكتروني أو متابعتنا على وسائل التواصل الاجتماعي.",
+      contactDescription:
+        "للملاحظات أو التصحيحات أو طلبات الشراكة، يرجى التواصل معنا عبر البريد الإلكتروني أو متابعتنا على وسائل التواصل الاجتماعي.",
       followUs: "تواصل معنا",
+      visited: "تمت الزيارة",
     },
     games: {
       allGames: "كل الألعاب",
