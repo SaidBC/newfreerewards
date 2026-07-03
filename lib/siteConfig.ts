@@ -883,6 +883,70 @@ const siteConfig = {
           },
         ] as ContentType[],
       },
+      {
+        id: "27",
+        slug: "football-tower-skin",
+        platform: {
+          name: "Clash Royale",
+          src: storageUrl("images/clash-royale/clash-royale.jpg"),
+        },
+        previewImage: storageUrl("images/clash-royale/football-tower-skin.png"),
+        name: "Football Tower Skin",
+        description: "Claim the Football Tower Skin from the Supercell Store.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value:
+              "Sign up on the Supercell website if you haven't already, navigate to the Clash Royale page, scroll down and click the Claim button.",
+          },
+          {
+            type: "link",
+            href: "https://store.supercell.com/clashroyale",
+            label: "Go to Supercell Store",
+          },
+          {
+            type: "image",
+            src: storageUrl(
+              "images/clash-royale/football-tower-skin-offer.png",
+            ),
+            alt: "Football Tower Skin offer",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "28",
+        slug: "hog-rider-flex-emote",
+        platform: {
+          name: "Clash Royale",
+          src: storageUrl("images/clash-royale/clash-royale.jpg"),
+        },
+        previewImage: storageUrl(
+          "images/clash-royale/hog-rider-flex-emote.png",
+        ),
+        name: "Hog Rider Flex Emote",
+        description: "Claim the Hog Rider Flex Emote from the Supercell Store.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value:
+              "Sign up on the Supercell website if you haven't already, navigate to the Clash Royale page. You might be asked to install the Supercell Store browser app. After that, click the Claim button.",
+          },
+          {
+            type: "link",
+            href: "https://store.supercell.com/clashroyale",
+            label: "Go to Supercell Store",
+          },
+          {
+            type: "image",
+            src: storageUrl(
+              "images/clash-royale/hog-rider-flex-emote-offer.png",
+            ),
+            alt: "Hog Rider Flex Emote offer",
+          },
+        ] as ContentType[],
+      },
     ] as RewardType[],
   },
   clashofclans: {
@@ -2006,6 +2070,54 @@ const siteConfig = {
           },
         ] as ContentType[],
       },
+      {
+        id: "bs-28",
+        slug: "2x-nano-drops",
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpg"),
+        },
+        previewImage: storageUrl("images/brawl-stars/nano-drop.png"),
+        name: "2x Nano Drops",
+        description: "Claim 2x Nano Drops from the Supercell Store.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "text",
+            value:
+              "Sign up on the Supercell website if you haven't already, navigate to the Brawl Stars page, scroll down and click the Claim button.",
+          },
+          {
+            type: "link",
+            href: "https://store.supercell.com/brawlstars",
+            label: "Go to Supercell Store",
+          },
+          {
+            type: "image",
+            src: storageUrl("images/brawl-stars/2x-nano-drops-offer.png"),
+            alt: "2x Nano Drops offer",
+          },
+        ] as ContentType[],
+      },
+      {
+        id: "bs-29",
+        slug: "thief-pin",
+        platform: {
+          name: "Brawl Stars",
+          src: storageUrl("images/brawl-stars/logo.jpg"),
+        },
+        previewImage: storageUrl("images/brawl-stars/thief-pin.png"),
+        name: "Thief Pin",
+        description: "Claim the Thief Pin in Brawl Stars.",
+        status: "active" as "active" | "expired",
+        content: [
+          {
+            type: "link",
+            href: "https://link.brawlstars.com/voucher/7bae5a2d-2afa-4e58-8f9b-dab2d987834c",
+            label: "Claim Thief Pin",
+          },
+        ] as ContentType[],
+      },
     ] as RewardType[],
   },
   genshinimpact: {
@@ -2703,6 +2815,13 @@ const contentTextTranslations: Partial<Record<Locale, Record<string, string>>> =
       "Diamond Box QR Code": "رمز QR لصندوق الألماس",
       "Claim Pretzel Pin": "احصل على دبوس برتزل",
       "Pretzel Pin QR Code": "رمز QR لدبوس برتزل",
+      "Sign up on the Supercell website if you haven't already, navigate to the Clash Royale page, scroll down and click the Claim button.":
+        "سجّل في موقع Supercell إذا لم تكن قد فعلت، انتقل إلى صفحة Clash Royale، مرّر للأسفل واضغط على زر المطالبة.",
+      "Sign up on the Supercell website if you haven't already, navigate to the Clash Royale page. You might be asked to install the Supercell Store browser app. After that, click the Claim button.":
+        "سجّل في موقع Supercell إذا لم تكن قد فعلت، انتقل إلى صفحة Clash Royale. قد يُطلب منك تثبيت تطبيق متجر Supercell للمتصفح. بعد ذلك، اضغط على زر المطالبة.",
+      "Sign up on the Supercell website if you haven't already, navigate to the Brawl Stars page, scroll down and click the Claim button.":
+        "سجّل في موقع Supercell إذا لم تكن قد فعلت، انتقل إلى صفحة Brawl Stars، مرّر للأسفل واضغط على زر المطالبة.",
+      "Claim Thief Pin": "احصل على دبوس اللص",
     },
   };
 
