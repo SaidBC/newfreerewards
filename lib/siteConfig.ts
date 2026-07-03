@@ -251,7 +251,7 @@ const siteConfig = {
           name: "Clash Royale",
           src: storageUrl("images/clash-royale/clash-royale.jpg"),
         },
-        previewImage: storageUrl("images/clash-royale/hog-cake-icon-emote.jpg"),
+        previewImage: storageUrl("images/clash-royale/hog-cake-icon-emote.png"),
         name: "Hog Cake Icon Emote",
         description: "Claim the Hog Cake Icon emote.",
         status: "active" as "active" | "expired",
