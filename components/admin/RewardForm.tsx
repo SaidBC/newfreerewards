@@ -84,7 +84,7 @@ export function RewardForm({
   prefill?: RewardPrefill;
   onChange?: (data: any) => void;
 }) {
-  const isEditing = !!reward;
+  const isEditing = !!(reward && reward.id);
 
   // Seed an initial link content block from the prefill claim link
   const prefillContentBlocks: ContentBlock[] = prefill?.claimUrl

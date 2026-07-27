@@ -65,10 +65,10 @@ export default async function NewRewardPage({
 
   // Build a minimal stub reward for the editor/preview
   const stubReward: Reward & { platform: Platform } = {
-    id: "",
-    title: prefillTitle || "New Reward",
+    id: "", // empty = new reward
+    title: prefillTitle || "",
     description: prefillDescription || "",
-    platformId: prefillPlatformId || platforms[0]?.id || "",
+    platformId: prefillPlatformId || "",
     previewImage: "",
     slug: prefillSlug || "",
     status: "active",

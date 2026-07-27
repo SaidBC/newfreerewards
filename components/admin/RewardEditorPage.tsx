@@ -206,7 +206,7 @@ export default function RewardEditorPage({
           <div className="max-w-4xl mx-auto">
             <RewardForm
               platforms={platforms}
-              reward={reward.id ? reward : undefined}
+              reward={reward}
               initialContents={initialContents}
               onChange={handleFormChange}
             />
