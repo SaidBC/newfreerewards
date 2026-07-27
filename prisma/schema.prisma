@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider   = "prisma-client-js"
   engineType = "library"
 }
 
@@ -43,8 +43,28 @@ model Reward {
   @@index([status])
 }
 
+model ScanResult {
+  id             String     @id @default(auto()) @map("_id") @db.ObjectId
+  status         ScanStatus @default(PENDING)
+  sourceUrls     String[]
+  platformSlug   String?
+  summary        Json?
+  missingRewards Json?
+  expiredRewards Json?
+  matches        Json?
+  rawOutput      Json?
+  error          String?
+  apiKeyName     String?
+  startedAt      DateTime   @default(now())
+  completedAt    DateTime?
+  createdAt      DateTime   @default(now())
+
+  @@index([status])
+  @@index([createdAt])
+}
+
 model RewardContent {
-  id           String           @id @default(auto()) @map("_id") @db.ObjectId
+  id           String            @id @default(auto()) @map("_id") @db.ObjectId
   type         RewardContentType
   value        String?
   href         String?
@@ -53,35 +73,35 @@ model RewardContent {
   imageAlt     String?
   rewardId     String
   order        Int
-  createdAt    DateTime         @default(now())
+  createdAt    DateTime          @default(now())
   translations Json?
-  reward       Reward           @relation(fields: [rewardId], references: [id], onDelete: Cascade)
+  reward       Reward            @relation(fields: [rewardId], references: [id], onDelete: Cascade)
 
   @@index([rewardId])
 }
 
 model RewardReaction {
-  id           String           @id @default(auto()) @map("_id") @db.ObjectId
+  id           String       @id @default(auto()) @map("_id") @db.ObjectId
   reactionType ReactionType
   visitorId    String
   rewardId     String
-  createdAt    DateTime         @default(now())
-  updatedAt    DateTime         @updatedAt
-  reward       Reward           @relation(fields: [rewardId], references: [id], onDelete: Cascade)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  reward       Reward       @relation(fields: [rewardId], references: [id], onDelete: Cascade)
 
   @@unique([rewardId, visitorId])
   @@index([rewardId, reactionType])
 }
 
 model RewardReport {
-  id         String           @id @default(auto()) @map("_id") @db.ObjectId
+  id         String     @id @default(auto()) @map("_id") @db.ObjectId
   reportType ReportType
   visitorId  String
   reportDay  DateTime
   rewardId   String
-  createdAt  DateTime         @default(now())
+  createdAt  DateTime   @default(now())
   note       String?
-  reward     Reward           @relation(fields: [rewardId], references: [id], onDelete: Cascade)
+  reward     Reward     @relation(fields: [rewardId], references: [id], onDelete: Cascade)
 
   @@unique([rewardId, visitorId, reportDay])
   @@index([rewardId, reportType])
@@ -96,6 +116,12 @@ enum PlatformType {
 enum RewardStatus {
   active
   expired
+}
+
+enum ScanStatus {
+  PENDING
+  COMPLETED
+  FAILED
 }
 
 enum RewardContentType {

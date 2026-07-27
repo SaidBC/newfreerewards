@@ -8,7 +8,7 @@ import { AdminLoginForm } from "@/components/admin/AdminLoginForm";
 import { RewardList } from "@/components/admin/RewardList";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Plus, Upload } from "lucide-react";
+import { Plus, Upload, Scan } from "lucide-react";
 import { RecentActivity } from "@/components/admin/RecentActivity";
 
 export const dynamic = "force-dynamic";
@@ -29,13 +29,13 @@ export default async function AdminPage() {
   });
 
   const rawRewards = await prisma.reward.findMany({
-    include: { 
-      platform: true, 
+    include: {
+      platform: true,
       contents: true,
       reactions: true,
       reports: {
-        orderBy: { createdAt: "desc" }
-      }
+        orderBy: { createdAt: "desc" },
+      },
     },
     orderBy: { createdAt: "desc" },
   });
@@ -53,19 +53,31 @@ export default async function AdminPage() {
   });
 
   // Group rewards by platform
-  const groupedRewards = platforms.map(platform => ({
-    ...platform,
-    rewards: rawRewards.filter(r => r.platformId === platform.id)
-  })).filter(group => group.rewards.length > 0 || true); 
+  const groupedRewards = platforms
+    .map((platform) => ({
+      ...platform,
+      rewards: rawRewards.filter((r) => r.platformId === platform.id),
+    }))
+    .filter((group) => group.rewards.length > 0 || true);
 
   return (
     <div className="space-y-8 max-w-6xl mx-auto py-8 px-4">
       <div className="flex justify-between items-center sm:items-start">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Admin Dashboard</h2>
-          <p className="text-muted-foreground mt-1">Manage rewards across all gaming platforms.</p>
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+            Admin Dashboard
+          </h2>
+          <p className="text-muted-foreground mt-1">
+            Manage rewards across all gaming platforms.
+          </p>
         </div>
         <div className="flex items-center gap-3">
+          <Button asChild variant="outline">
+            <Link href="/admin/scan-results" prefetch={false}>
+              <Scan className="w-4 h-4 mr-2" />
+              Scan Results
+            </Link>
+          </Button>
           <Button asChild variant="outline">
             <Link href="/admin/upload" prefetch={false}>
               <Upload className="w-4 h-4 mr-2" />
@@ -79,7 +91,9 @@ export default async function AdminPage() {
             </Link>
           </Button>
           <form action={logout}>
-            <Button variant="outline" type="submit">Logout</Button>
+            <Button variant="outline" type="submit">
+              Logout
+            </Button>
           </form>
         </div>
       </div>
@@ -99,12 +113,22 @@ export default async function AdminPage() {
                     className="h-8 w-8 rounded object-cover"
                   />
                 )}
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">{group.name}</h3>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                  {group.name}
+                </h3>
                 <span className="text-xs bg-muted px-2 py-1 rounded-full text-muted-foreground font-mono">
                   {group.rewards.length}
                 </span>
-                <Button asChild variant="outline" size="sm" className="ml-auto h-7 text-xs">
-                  <Link href={`/admin/${group.slug}/redemption-codes/edit`} prefetch={false}>
+                <Button
+                  asChild
+                  variant="outline"
+                  size="sm"
+                  className="ml-auto h-7 text-xs"
+                >
+                  <Link
+                    href={`/admin/${group.slug}/redemption-codes/edit`}
+                    prefetch={false}
+                  >
                     Manage Redemption Codes
                   </Link>
                 </Button>
@@ -113,10 +137,10 @@ export default async function AdminPage() {
             </section>
           ))}
         </div>
-        
+
         <div className="lg:col-span-1">
           <div className="sticky top-8 space-y-6">
-            <RecentActivity 
+            <RecentActivity
               reactions={recentReactions}
               reports={recentReports}
             />

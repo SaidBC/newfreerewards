@@ -1,0 +1,168 @@
+{
+  "name": "Rewards Scanner - Post Results to API",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-manual",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "scheduleType": "cron",
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 */6 * * *"
+            }
+          ]
+        }
+      },
+      "id": "cron-trigger",
+      "name": "Every 6 Hours",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [250, 500]
+    },
+    {
+      "parameters": {
+        "url": "https://yourdomain.com/api/rewards/list",
+        "options": {
+          "headers": {
+            "X-API-Key": "={{ $env.SCAN_API_KEY }}"
+          }
+        }
+      },
+      "id": "fetch-my-data",
+      "name": "Fetch MY_DATA from API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://example.com/rewards/",
+        "options": {}
+      },
+      "id": "fetch-source-1",
+      "name": "Fetch Source URL 1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [450, 500]
+    },
+    {
+      "parameters": {
+        "jsCode": "// This is where you'd call an AI/LLM node to process the scraped data\n// The AI would use PROMPT.md instructions to:\n// 1. Parse the source HTML\n// 2. Compare against MY_DATA\n// 3. Output the JSON structure defined in PROMPT.md\n\n// For now, this is a placeholder that structures the data for the API call\n\nconst myData = $input.first().json;\nconst sourceData = $input.all()[1].json;\n\n// In production, replace this with an HTTP Request to an AI API\n// (OpenAI, Claude, etc.) that follows PROMPT.md instructions\n\nreturn {\n  sourceUrls: [\"https://example.com/rewards/\"],\n  platformSlug: \"brawl-stars\",\n  scanSummary: {\n    urlsScanned: 1,\n    totalFoundOnSource: 0,\n    totalInMyData: 0,\n    missingCount: 0,\n    possiblyExpiredCount: 0\n  },\n  missingRewards: [],\n  possiblyExpiredRewards: [],\n  matches: []\n};"
+      },
+      "id": "process-with-ai",
+      "name": "Process with AI (LLM)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://yourdomain.com/api/admin/scan-results",
+        "options": {
+          "headers": {
+            "X-API-Key": "={{ $env.SCAN_API_KEY }}"
+          }
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "sourceUrls",
+              "value": "={{ $json.sourceUrls }}"
+            },
+            {
+              "name": "platformSlug",
+              "value": "={{ $json.platformSlug }}"
+            },
+            {
+              "name": "scanSummary",
+              "value": "={{ $json.scanSummary }}"
+            },
+            {
+              "name": "missingRewards",
+              "value": "={{ $json.missingRewards }}"
+            },
+            {
+              "name": "possiblyExpiredRewards",
+              "value": "={{ $json.possiblyExpiredRewards }}"
+            },
+            {
+              "name": "matches",
+              "value": "={{ $json.matches }}"
+            }
+          ]
+        }
+      },
+      "id": "post-results",
+      "name": "POST Results to API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [850, 300]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Fetch MY_DATA from API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Every 6 Hours": {
+      "main": [
+        [
+          {
+            "node": "Fetch Source URL 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch MY_DATA from API": {
+      "main": [
+        [
+          {
+            "node": "Process with AI (LLM)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Source URL 1": {
+      "main": [
+        [
+          {
+            "node": "Process with AI (LLM)",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Process with AI (LLM)": {
+      "main": [
+        [
+          {
+            "node": "POST Results to API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
