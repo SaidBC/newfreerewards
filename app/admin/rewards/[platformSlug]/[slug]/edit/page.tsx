@@ -8,6 +8,7 @@ import { dictionary } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { ObjectId } from "mongodb";
 
 interface EditRewardPageProps {
   params: Promise<{
@@ -29,20 +30,39 @@ export default async function EditRewardPage({ params }: EditRewardPageProps) {
   }
 
   const reward = await prisma.reward.findFirst({
-    where: { 
+    where: {
       slug,
-      platform: { slug: platformSlug }
+      platform: { slug: platformSlug },
     },
-    include: { platform: true, contents: { orderBy: { order: "asc" } } },
+    include: { platform: true },
   });
-
   if (!reward || reward.platform.slug !== platformSlug) {
     return notFound();
   }
 
-  const platforms = await prisma.platform.findMany({
-    orderBy: { name: "asc" },
-  });
+  const [platforms, contents] = await Promise.all([
+    prisma.platform.findMany({ orderBy: { name: "asc" } }),
+    prisma.rewardContent.findMany({
+      where: { rewardId: String(reward.id) },
+      orderBy: { order: "asc" },
+    }),
+  ]);
+  console.log(contents);
+  // Convert contents to plain JSON-safe objects for client component
+  const initialContents = contents.map((c) => ({
+    id: String(c.id),
+    type: c.type as string,
+    value: c.value ?? "",
+    href: c.href ?? "",
+    label: c.label ?? "",
+    imageSrc: c.imageSrc ?? "",
+    imageAlt: c.imageAlt ?? "",
+    order: c.order,
+    translations: (c.translations as any) ?? {},
+    rewardId: String(c.rewardId),
+    createdAt: c.createdAt ? new Date(c.createdAt).toISOString() : null,
+  }));
+  // console.log(initialContents, reward);
 
   return (
     <div className="space-y-6 max-w-[1600px] mx-auto py-6 px-4 h-screen flex flex-col">
@@ -68,7 +88,7 @@ export default async function EditRewardPage({ params }: EditRewardPageProps) {
         <RewardEditorPage
           platforms={platforms}
           reward={reward}
-          initialContents={reward.contents}
+          initialContents={initialContents}
           dictionary={dictionary}
         />
       </div>

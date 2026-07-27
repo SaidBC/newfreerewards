@@ -16,26 +16,51 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Trash2,
-  Plus,
   GripVertical,
   Image as ImageIcon,
   Link as LinkIcon,
   Type,
   Code,
 } from "lucide-react";
-import dynamic from "next/dynamic";
-
-const Editor = dynamic(() => import("../editor/Editor"), { ssr: false });
-
 type ContentBlock = {
   type: "text" | "image" | "link" | "code";
-  value?: string;
-  href?: string;
-  label?: string;
-  imageSrc?: string;
-  imageAlt?: string;
+  value: string;
+  href: string;
+  label: string;
+  imageSrc: string;
+  imageAlt: string;
+  src: string;
+  alt: string;
   translations: any;
 };
+
+function createEmptyBlock(type: ContentBlock["type"]): ContentBlock {
+  return {
+    type,
+    value: "",
+    href: "",
+    label: "",
+    imageSrc: "",
+    imageAlt: "",
+    src: "",
+    alt: "",
+    translations: { es: {}, ar: {} },
+  };
+}
+
+function mapContentFromDb(c: any): ContentBlock {
+  return {
+    type: (c.type || "text") as ContentBlock["type"],
+    value: c.value || "",
+    href: c.href || "",
+    label: c.label || "",
+    imageSrc: c.imageSrc || "",
+    imageAlt: c.imageAlt || "",
+    src: c.imageSrc || "",
+    alt: c.imageAlt || "",
+    translations: c.translations || { es: {}, ar: {} },
+  };
+}
 
 export interface RewardPrefill {
   title?: string;
@@ -55,7 +80,7 @@ export function RewardForm({
 }: {
   platforms: Platform[];
   reward?: Reward;
-  initialContents?: RewardContent[];
+  initialContents?: any[];
   prefill?: RewardPrefill;
   onChange?: (data: any) => void;
 }) {
@@ -65,14 +90,14 @@ export function RewardForm({
   const prefillContentBlocks: ContentBlock[] = prefill?.claimUrl
     ? [
         {
-          type: "link",
+          ...createEmptyBlock("link"),
           href: prefill.claimUrl,
           label: "Claim Reward",
           translations: { es: { label: "" }, ar: { label: "" } },
         },
       ]
     : [];
-
+  // console.log(prefillContentBlocks);
   const [translations, setTranslations] = useState<any>(
     reward?.translations || {
       es: { title: "", description: "" },
@@ -80,15 +105,11 @@ export function RewardForm({
     },
   );
   const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>(
-    initialContents.map((c) => ({
-      type: c.type as any,
-      value: c.value || "",
-      href: c.href || "",
-      label: c.label || "",
-      imageSrc: c.imageSrc || "",
-      imageAlt: c.imageAlt || "",
-      translations: c.translations || { es: {}, ar: {} },
-    })) || (prefill ? prefillContentBlocks : []),
+    initialContents && initialContents.length > 0
+      ? initialContents.map(mapContentFromDb)
+      : prefill
+        ? prefillContentBlocks
+        : [],
   );
 
   const [basicInfo, setBasicInfo] = useState({
@@ -97,9 +118,17 @@ export function RewardForm({
     slug: reward?.slug || prefill?.slug || "",
     platformId: reward?.platformId || prefill?.platformId || "",
     previewImage: reward?.previewImage || prefill?.previewImage || "",
+    image: reward?.image || "",
     claimUrl: reward?.claimUrl || prefill?.claimUrl || "",
     status: reward?.status || "active",
   });
+
+  // Ensure contentBlocks are populated even if initial serialization failed
+  useEffect(() => {
+    if (contentBlocks.length === 0 && initialContents?.length > 0) {
+      setContentBlocks(initialContents.map(mapContentFromDb));
+    }
+  }, [initialContents]);
 
   useEffect(() => {
     if (onChange) {
@@ -112,10 +141,7 @@ export function RewardForm({
   }, [basicInfo, translations, contentBlocks, onChange]);
 
   const addBlock = (type: ContentBlock["type"]) => {
-    setContentBlocks([
-      ...contentBlocks,
-      { type, translations: { es: {}, ar: {} } },
-    ]);
+    setContentBlocks([...contentBlocks, createEmptyBlock(type)]);
   };
 
   const removeBlock = (index: number) => {
@@ -132,7 +158,15 @@ export function RewardForm({
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     formData.append("translations", JSON.stringify(translations));
-    formData.append("contentBlocks", JSON.stringify(contentBlocks));
+    // Normalize content blocks: ensure src/alt mirror imageSrc/imageAlt
+    const normalizedBlocks = contentBlocks.map((block) => ({
+      ...block,
+      src: block.imageSrc || block.src,
+      alt: block.imageAlt || block.alt,
+      imageSrc: block.imageSrc || block.src,
+      imageAlt: block.imageAlt || block.alt,
+    }));
+    formData.append("contentBlocks", JSON.stringify(normalizedBlocks));
 
     if (isEditing) {
       await updateReward(reward.id, formData);
@@ -190,28 +224,16 @@ export function RewardForm({
                   </div>
                   <div className="space-y-2">
                     <Label>Description (EN)</Label>
-                    <Editor
-                      data={
-                        reward?.description
-                          ? {
-                              blocks: [
-                                {
-                                  type: "paragraph",
-                                  data: { text: reward.description },
-                                },
-                              ],
-                            }
-                          : undefined
-                      }
-                      onChange={(data) => {
-                        // Extract plain text for simplicity or keep JSON if needed
-                        // For now we use the description field as plain text or simple HTML
-                      }}
-                    />
-                    <input
-                      type="hidden"
+                    <textarea
                       name="description"
+                      className="flex min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                       value={basicInfo.description}
+                      onChange={(e) =>
+                        setBasicInfo({
+                          ...basicInfo,
+                          description: e.target.value,
+                        })
+                      }
                     />
                   </div>
                 </TabsContent>
@@ -362,7 +384,7 @@ export function RewardForm({
                           <div className="space-y-1">
                             <Label className="text-xs">Value (ES)</Label>
                             <Input
-                              value={block.translations.es?.value}
+                              value={block.translations.es?.value ?? ""}
                               onChange={(e) =>
                                 updateBlock(index, {
                                   translations: {
@@ -382,7 +404,7 @@ export function RewardForm({
                             </Label>
                             <Input
                               dir="rtl"
-                              value={block.translations.ar?.value}
+                              value={block.translations.ar?.value ?? ""}
                               onChange={(e) =>
                                 updateBlock(index, {
                                   translations: {
@@ -406,18 +428,26 @@ export function RewardForm({
                           <Label>Image URL / Source</Label>
                           <Input
                             value={block.imageSrc}
-                            onChange={(e) =>
-                              updateBlock(index, { imageSrc: e.target.value })
-                            }
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              updateBlock(index, {
+                                imageSrc: val,
+                                src: val,
+                              });
+                            }}
                           />
                         </div>
                         <div className="space-y-2">
                           <Label>Alt Text (EN)</Label>
                           <Input
                             value={block.imageAlt}
-                            onChange={(e) =>
-                              updateBlock(index, { imageAlt: e.target.value })
-                            }
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              updateBlock(index, {
+                                imageAlt: val,
+                                alt: val,
+                              });
+                            }}
                           />
                         </div>
                       </div>
@@ -449,7 +479,7 @@ export function RewardForm({
                           <div className="space-y-1">
                             <Label className="text-xs">Label (ES)</Label>
                             <Input
-                              value={block.translations.es?.label}
+                              value={block.translations.es?.label ?? ""}
                               onChange={(e) =>
                                 updateBlock(index, {
                                   translations: {
@@ -469,7 +499,7 @@ export function RewardForm({
                             </Label>
                             <Input
                               dir="rtl"
-                              value={block.translations.ar?.label}
+                              value={block.translations.ar?.label ?? ""}
                               onChange={(e) =>
                                 updateBlock(index, {
                                   translations: {
@@ -595,6 +625,23 @@ export function RewardForm({
                     setBasicInfo({ ...basicInfo, previewImage: e.target.value })
                   }
                 />
+              </div>
+              <div className="space-y-2">
+                <Label className="text-sm font-semibold">
+                  Platform Image URL
+                </Label>
+                <Input
+                  name="image"
+                  placeholder="https://..."
+                  value={basicInfo.image}
+                  onChange={(e) =>
+                    setBasicInfo({ ...basicInfo, image: e.target.value })
+                  }
+                />
+                <p className="text-[10px] text-muted-foreground italic">
+                  Optional. Overrides the default platform image shown on the
+                  reward page.
+                </p>
               </div>
               <div className="space-y-2">
                 <Label className="text-sm font-semibold text-primary/70">

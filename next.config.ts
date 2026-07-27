@@ -26,6 +26,10 @@ const nextConfig: NextConfig = {
         destination: "/en",
       },
       {
+        source: "/:locale(en|es|ar)/admin/:path*",
+        destination: "/admin/:path*",
+      },
+      {
         source:
           "/:path((?!en|es|ar|admin|api|_next|favicon\\.ico|sitemap\\.xml|robots\\.txt|.*\\..*).*)",
         destination: "/en/:path",

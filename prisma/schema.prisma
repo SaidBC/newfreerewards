@@ -25,7 +25,7 @@ model Reward {
   description  String
   createdAt    DateTime         @default(now())
   updatedAt    DateTime         @updatedAt
-  platformId   String
+  platformId   String           @db.ObjectId
   previewImage String?
   slug         String
   status       RewardStatus     @default(active)
@@ -71,7 +71,7 @@ model RewardContent {
   label        String?
   imageSrc     String?
   imageAlt     String?
-  rewardId     String
+  rewardId     String            @db.ObjectId
   order        Int
   createdAt    DateTime          @default(now())
   translations Json?
@@ -84,7 +84,7 @@ model RewardReaction {
   id           String       @id @default(auto()) @map("_id") @db.ObjectId
   reactionType ReactionType
   visitorId    String
-  rewardId     String
+  rewardId     String       @db.ObjectId
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
   reward       Reward       @relation(fields: [rewardId], references: [id], onDelete: Cascade)
@@ -98,7 +98,7 @@ model RewardReport {
   reportType ReportType
   visitorId  String
   reportDay  DateTime
-  rewardId   String
+  rewardId   String     @db.ObjectId
   createdAt  DateTime   @default(now())
   note       String?
   reward     Reward     @relation(fields: [rewardId], references: [id], onDelete: Cascade)

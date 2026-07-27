@@ -6,6 +6,9 @@ import { RewardForm, RewardPrefill } from "@/components/admin/RewardForm";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Sparkles } from "lucide-react";
+import RewardEditorPage from "@/components/admin/RewardEditorPage";
+import { Reward, Platform } from "@prisma/client";
+import { dictionary } from "@/lib/i18n";
 
 export const dynamic = "force-dynamic";
 
@@ -41,11 +44,13 @@ export default async function NewRewardPage({
   // Resolve the platform by name (case-insensitive) so the dropdown
   // auto-selects the matching game.
   let prefillPlatformId: string | undefined;
+  let selectedPlatform: Platform | undefined;
   if (prefillPlatformName) {
     const match = platforms.find(
       (p) => p.name.toLowerCase() === prefillPlatformName.toLowerCase(),
     );
     prefillPlatformId = match?.id;
+    selectedPlatform = match;
   }
 
   const prefill: RewardPrefill | undefined = isPrefill
@@ -58,8 +63,45 @@ export default async function NewRewardPage({
       }
     : undefined;
 
+  // Build a minimal stub reward for the editor/preview
+  const stubReward: Reward & { platform: Platform } = {
+    id: "new",
+    title: prefillTitle || "New Reward",
+    description: prefillDescription || "",
+    platformId: prefillPlatformId || platforms[0]?.id || "",
+    previewImage: "",
+    slug: prefillSlug || "",
+    status: "active",
+    claimUrl: prefillClaimUrl || "",
+    expiresAt: null,
+    image: "",
+    translations: null,
+    platform: selectedPlatform || platforms[0],
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  } as any;
+
+  // Build initial content blocks from prefill claimUrl
+  const initialContents = prefillClaimUrl
+    ? [
+        {
+          id: "prefill-link",
+          type: "link",
+          value: "",
+          href: prefillClaimUrl,
+          label: "Claim Reward",
+          imageSrc: "",
+          imageAlt: "",
+          order: 0,
+          translations: { es: { label: "" }, ar: { label: "" } },
+          rewardId: "new",
+          createdAt: new Date().toISOString(),
+        },
+      ]
+    : [];
+
   return (
-    <div className="space-y-8 max-w-6xl mx-auto py-8 px-4">
+    <div className="space-y-8 max-w-[1600px] mx-auto py-6 px-4 h-screen flex flex-col">
       <div className="flex items-center gap-4">
         <Button variant="ghost" size="icon" asChild>
           <Link href="/admin" prefetch={false}>
@@ -83,7 +125,14 @@ export default async function NewRewardPage({
         </div>
       )}
 
-      <RewardForm platforms={platforms} prefill={prefill} />
+      <div className="flex-1 overflow-hidden">
+        <RewardEditorPage
+          platforms={platforms}
+          reward={stubReward}
+          initialContents={initialContents}
+          dictionary={dictionary}
+        />
+      </div>
     </div>
   );
 }
