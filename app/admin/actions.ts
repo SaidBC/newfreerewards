@@ -16,8 +16,13 @@ async function checkAuth() {
 
 export async function login(prevState: any, formData: FormData) {
   const password = formData.get("password") as string;
-  console.log("🚀 ~ login ~ password received:", password, "expected:", ADMIN_PASSWORD);
-  
+  console.log(
+    "🚀 ~ login ~ password received:",
+    password,
+    "expected:",
+    ADMIN_PASSWORD,
+  );
+
   if (password === ADMIN_PASSWORD) {
     const cookieStore = await cookies();
     cookieStore.set("admin_auth", password, {
@@ -29,11 +34,9 @@ export async function login(prevState: any, formData: FormData) {
     });
     console.log("🚀 ~ login ~ cookieStore.set called!");
 
-    
-    
     // Invalidate the root layout cache
     revalidatePath("/", "layout");
-    
+
     // Redirecting ensures the Set-Cookie header is properly sent to the browser
     redirect("/en/admin");
   }
@@ -55,14 +58,20 @@ export async function createReward(formData: FormData) {
   const platformId = (formData.get("platformId") as string)?.trim();
   const claimUrl = (formData.get("claimUrl") as string) || null;
   const image = (formData.get("image") as string) || null;
-  const expiresAt = formData.get("expiresAt") ? new Date(formData.get("expiresAt") as string) : null;
+  const expiresAt = formData.get("expiresAt")
+    ? new Date(formData.get("expiresAt") as string)
+    : null;
   const previewImage = (formData.get("previewImage") as string) || null;
-  
+
   // Handle translations
-  const translations = JSON.parse(formData.get("translations") as string || "{}");
-  
+  const translations = JSON.parse(
+    (formData.get("translations") as string) || "{}",
+  );
+
   // Handle content blocks
-  const contentBlocks = JSON.parse(formData.get("contentBlocks") as string || "[]");
+  const contentBlocks = JSON.parse(
+    (formData.get("contentBlocks") as string) || "[]",
+  );
 
   const reward = await prisma.reward.create({
     data: {
@@ -94,7 +103,12 @@ export async function createReward(formData: FormData) {
   if (reward.platform) {
     revalidatePath(`/games/${reward.platform.slug}`);
     revalidatePath(`/[locale]/games/${reward.platform.slug}`, "page");
+    revalidatePath(
+      `/[locale]/games/${reward.platform.slug}/rewards/${slug}`,
+      "page",
+    );
   }
+  revalidatePath("/sitemap.xml", "layout");
   revalidatePath("/", "layout");
   redirect("/admin");
 }
@@ -108,15 +122,21 @@ export async function updateReward(id: string, formData: FormData) {
   const platformId = (formData.get("platformId") as string)?.trim();
   const claimUrl = (formData.get("claimUrl") as string) || null;
   const image = (formData.get("image") as string) || null;
-  const expiresAt = formData.get("expiresAt") ? new Date(formData.get("expiresAt") as string) : null;
+  const expiresAt = formData.get("expiresAt")
+    ? new Date(formData.get("expiresAt") as string)
+    : null;
   const previewImage = (formData.get("previewImage") as string) || null;
   const status = formData.get("status") as any;
 
   // Handle translations
-  const translations = JSON.parse(formData.get("translations") as string || "{}");
-  
+  const translations = JSON.parse(
+    (formData.get("translations") as string) || "{}",
+  );
+
   // Handle content blocks
-  const contentBlocks = JSON.parse(formData.get("contentBlocks") as string || "[]");
+  const contentBlocks = JSON.parse(
+    (formData.get("contentBlocks") as string) || "[]",
+  );
 
   const reward = await prisma.$transaction(async (tx) => {
     // Delete existing content
@@ -156,7 +176,12 @@ export async function updateReward(id: string, formData: FormData) {
   if (reward.platform) {
     revalidatePath(`/games/${reward.platform.slug}`);
     revalidatePath(`/[locale]/games/${reward.platform.slug}`, "page");
+    revalidatePath(
+      `/[locale]/games/${reward.platform.slug}/rewards/${slug}`,
+      "page",
+    );
   }
+  revalidatePath("/sitemap.xml", "layout");
   revalidatePath("/", "layout");
   redirect("/admin");
 }
@@ -171,18 +196,23 @@ export async function deleteReward(id: string) {
 
   if (reward.platform) {
     revalidatePath(`/games/${reward.platform.slug}`);
+    revalidatePath(`/[locale]/games/${reward.platform.slug}`, "page");
   }
+  revalidatePath("/sitemap.xml", "layout");
   revalidatePath("/", "layout");
 }
 
-export async function saveRedemptionCodes(platformId: string, formData: FormData) {
+export async function saveRedemptionCodes(
+  platformId: string,
+  formData: FormData,
+) {
   if (!(await checkAuth())) throw new Error("Unauthorized");
 
-  const codesMap = JSON.parse(formData.get("codes") as string || "[]");
+  const codesMap = JSON.parse((formData.get("codes") as string) || "[]");
 
   const existingReward = await prisma.reward.findUnique({
     where: { platformId_slug: { platformId, slug: "redemption-codes" } },
-    include: { platform: true }
+    include: { platform: true },
   });
 
   if (existingReward) {
@@ -190,13 +220,13 @@ export async function saveRedemptionCodes(platformId: string, formData: FormData
       // Find highest order of non-code contents to preserve
       const maxOrderContent = await tx.rewardContent.findFirst({
         where: { rewardId: existingReward.id, type: { not: "code" } },
-        orderBy: { order: "desc" }
+        orderBy: { order: "desc" },
       });
       let nextOrder = maxOrderContent ? maxOrderContent.order + 1 : 0;
 
       // Delete old codes
       await tx.rewardContent.deleteMany({
-        where: { rewardId: existingReward.id, type: "code" }
+        where: { rewardId: existingReward.id, type: "code" },
       });
 
       // Add new codes
@@ -205,18 +235,21 @@ export async function saveRedemptionCodes(platformId: string, formData: FormData
         value: code.value,
         label: code.label,
         rewardId: existingReward.id,
-        order: nextOrder++
+        order: nextOrder++,
       }));
 
       if (newContents.length > 0) {
         await tx.rewardContent.createMany({ data: newContents });
       }
     });
-    
+
     if (existingReward.platform) {
       revalidatePath(`/games/${existingReward.platform.slug}`);
       revalidatePath(`/[locale]/games/${existingReward.platform.slug}`, "page");
-      revalidatePath(`/[locale]/games/${existingReward.platform.slug}/rewards/redemption-codes`, "page");
+      revalidatePath(
+        `/[locale]/games/${existingReward.platform.slug}/rewards/redemption-codes`,
+        "page",
+      );
       revalidatePath("/", "layout");
     }
   } else {
@@ -234,16 +267,19 @@ export async function saveRedemptionCodes(platformId: string, formData: FormData
             value: code.value,
             label: code.label,
             order: idx,
-          }))
-        }
+          })),
+        },
       },
-      include: { platform: true }
+      include: { platform: true },
     });
-    
+
     if (newReward.platform) {
       revalidatePath(`/games/${newReward.platform.slug}`);
       revalidatePath(`/[locale]/games/${newReward.platform.slug}`, "page");
-      revalidatePath(`/[locale]/games/${newReward.platform.slug}/rewards/redemption-codes`, "page");
+      revalidatePath(
+        `/[locale]/games/${newReward.platform.slug}/rewards/redemption-codes`,
+        "page",
+      );
       revalidatePath("/", "layout");
     }
   }

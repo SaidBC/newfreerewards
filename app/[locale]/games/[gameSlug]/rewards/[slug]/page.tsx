@@ -12,7 +12,6 @@ import {
   type Locale,
 } from "@/lib/i18n";
 
-export const dynamic = "force-static";
 export const revalidate = 3600;
 export const dynamicParams = true;
 

@@ -3,6 +3,8 @@ import prisma from "@/lib/prisma";
 import clientEnv from "@/utils/clientEnv";
 import { locales, localizePath } from "@/lib/i18n";
 
+export const revalidate = 3600;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = clientEnv.NEXT_PUBLIC_URL;
   const now = new Date();
