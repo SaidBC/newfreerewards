@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Concert_One } from "next/font/google";
 import "./globals.css";
-import SmartlinkPopunder from "@/components/SmartlinkPopunder";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { WebVitals } from "@/components/WebVitals";
+import CookieConsent from "@/components/CookieConsent";
 
 const concertOne = Concert_One({
   variable: "--font-concert-one",
@@ -39,6 +39,8 @@ export default function RootLayout({
         <GoogleAnalytics />
         {/* Core Web Vitals Tracking */}
         <WebVitals />
+        {/* Cookie Consent Banner */}
+        <CookieConsent locale="en" />
       </body>
     </html>
   );

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/ui/Header";
 import Footer from "@/ui/Footer";
+import CookieConsent from "@/components/CookieConsent";
 
 import {
   defaultLocale,
@@ -51,6 +52,7 @@ export default async function LocaleLayout({
       <Header locale={locale} />
       {children}
       <Footer locale={locale} />
+      <CookieConsent locale={locale} />
     </div>
   );
 }

@@ -100,6 +100,63 @@ export const dictionary = {
         "For feedback, corrections, or partnership requests, please reach out to us via email or follow us on social media.",
       followUs: "Follow Us",
       visited: "Visited",
+      // Cookie Consent
+      cookieConsentTitle: "We Value Your Privacy",
+      cookieConsentDescription:
+        'We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.',
+      acceptAll: "Accept All",
+      rejectAll: "Reject All",
+      customizePreferences: "Customize Preferences",
+      necessaryCookies: "Necessary Cookies",
+      necessaryCookiesDesc:
+        "Required for the website to function properly. Cannot be disabled.",
+      analyticsCookies: "Analytics Cookies",
+      analyticsCookiesDesc:
+        "Help us understand how visitors interact with our website.",
+      advertisingCookies: "Advertising Cookies",
+      advertisingCookiesDesc:
+        "Used to deliver personalized advertisements based on your interests.",
+      back: "Back",
+      savePreferences: "Save Preferences",
+      cookiePolicyLinkPrefix: "Learn more in our ",
+      cookiePolicy: "Cookie Policy",
+      cookiePolicyLinkSuffix: ".",
+      close: "Close",
+      // About Page
+      aboutUs: "About Us",
+      aboutMission:
+        "NewFreeRewards is dedicated to helping gamers discover legitimate free rewards, bonuses, and promotional codes from their favorite games and platforms. We believe that everyone should have access to free content without resorting to hacks, cheats, or unauthorized methods.",
+      aboutWhatWeDo:
+        "We continuously monitor official game channels, developer announcements, social media, and community forums to bring you the latest free rewards. Our team verifies each reward before publishing to ensure accuracy and legitimacy.",
+      aboutTrackRewards:
+        "Track and aggregate free rewards from official sources",
+      aboutVerifySources:
+        "Verify all rewards through official channels before publishing",
+      aboutStepByStepGuides:
+        "Provide step-by-step redemption guides with screenshots",
+      aboutNoHacks:
+        "Never promote hacks, cheats, generators, or unauthorized tools",
+      aboutEditorialStandards:
+        "We maintain strict editorial standards to ensure our content is accurate, trustworthy, and user-focused.",
+      aboutAccuracy:
+        "All rewards are verified against official sources before publication",
+      aboutTransparency:
+        "We clearly distinguish between official rewards and community finds",
+      aboutIndependence:
+        "We are not affiliated with any game developer or publisher",
+      aboutUserFirst: "User experience and safety are our top priorities",
+      aboutTeam:
+        "NewFreeRewards is run by a small team of gaming enthusiasts who are passionate about helping fellow players get the most out of their favorite games.",
+      aboutFounder: "Founder & Editor",
+      aboutFounderDesc:
+        "Said Razzouk created NewFreeRewards to solve the frustration of finding scattered reward codes across multiple platforms. With years of gaming experience, he ensures every reward is verified and clearly explained.",
+      aboutContributors: "Community Contributors",
+      aboutContributorsDesc:
+        "Our community of players helps us discover new rewards and report expired ones. If you'd like to contribute, reach out via our contact page.",
+      aboutContact:
+        "Have questions, suggestions, or want to partner with us? We'd love to hear from you!",
+      dmcaPolicy: "DMCA Policy",
+      disclaimer: "Disclaimer",
     },
     games: {
       allGames: "All Games",
@@ -224,6 +281,64 @@ export const dictionary = {
         "Para comentarios, correcciones o solicitudes de asociación, contáctenos por correo electrónico o síganos en las redes sociales.",
       followUs: "Síguenos",
       visited: "Visitado",
+      // Cookie Consent
+      cookieConsentTitle: "Valoramos Tu Privacidad",
+      cookieConsentDescription:
+        'Utilizamos cookies para mejorar tu experiencia de navegación, mostrar anuncios o contenido personalizados y analizar nuestro tráfico. Al hacer clic en "Aceptar Todo", aceptas el uso de cookies.',
+      acceptAll: "Aceptar Todo",
+      rejectAll: "Rechazar Todo",
+      customizePreferences: "Personalizar Preferencias",
+      necessaryCookies: "Cookies Necesarias",
+      necessaryCookiesDesc:
+        "Requeridas para que el sitio web funcione correctamente. No se pueden desactivar.",
+      analyticsCookies: "Cookies de Análisis",
+      analyticsCookiesDesc:
+        "Nos ayudan a entender cómo interactúan los visitantes con nuestro sitio web.",
+      advertisingCookies: "Cookies Publicitarias",
+      advertisingCookiesDesc:
+        "Utilizadas para mostrar anuncios personalizados basados en tus intereses.",
+      back: "Volver",
+      savePreferences: "Guardar Preferencias",
+      cookiePolicyLinkPrefix: "Más información en nuestra ",
+      cookiePolicy: "Política de Cookies",
+      cookiePolicyLinkSuffix: ".",
+      close: "Cerrar",
+      // About Page
+      aboutUs: "Sobre Nosotros",
+      aboutMission:
+        "NewFreeRewards se dedica a ayudar a los jugadores a descubrir recompensas gratuitas legítimas, bonos y códigos promocionales de sus juegos y plataformas favoritos. Creemos que todos deberían tener acceso a contenido gratuito sin recurrir a hacks, cheats o métodos no autorizados.",
+      aboutWhatWeDo:
+        "Monitoreamos continuamente canales oficiales de juegos, anuncios de desarrolladores, redes sociales y foros comunitarios para traerte las últimas recompensas gratuitas. Nuestro equipo verifica cada recompensa antes de publicarla para garantizar precisión y legitimidad.",
+      aboutTrackRewards:
+        "Rastrear y agregar recompensas gratuitas de fuentes oficiales",
+      aboutVerifySources:
+        "Verificar todas las recompensas a través de canales oficiales antes de publicar",
+      aboutStepByStepGuides:
+        "Proporcionar guías de canje paso a paso con capturas de pantalla",
+      aboutNoHacks:
+        "Nunca promover hacks, cheats, generadores o herramientas no autorizadas",
+      aboutEditorialStandards:
+        "Mantenemos estrictos estándares editoriales para asegurar que nuestro contenido sea preciso, confiable y centrado en el usuario.",
+      aboutAccuracy:
+        "Todas las recompensas se verifican contra fuentes oficiales antes de la publicación",
+      aboutTransparency:
+        "Distinguimos claramente entre recompensas oficiales y hallazgos de la comunidad",
+      aboutIndependence:
+        "No estamos afiliados a ningún desarrollador o editor de juegos",
+      aboutUserFirst:
+        "La experiencia y seguridad del usuario son nuestras principales prioridades",
+      aboutTeam:
+        "NewFreeRewards es dirigido por un pequeño equipo de entusiastas de los videojuegos apasionados por ayudar a otros jugadores a aprovechar al máximo sus juegos favoritos.",
+      aboutFounder: "Fundador y Editor",
+      aboutFounderDesc:
+        "Said Razzouk creó NewFreeRewards para resolver la frustración de encontrar códigos de recompensa dispersos en múltiples plataformas. Con años de experiencia en gaming, se asegura de que cada recompensa sea verificada y claramente explicada.",
+      aboutContributors: "Colaboradores de la Comunidad",
+      aboutContributorsDesc:
+        "Nuestra comunidad de jugadores nos ayuda a descubrir nuevas recompensas y reportar las expiradas. Si quieres contribuir, contáctanos a través de nuestra página de contacto.",
+      aboutContact:
+        "¿Tienes preguntas, sugerencias o quieres asociarte con nosotros? ¡Nos encantaría saber de ti!",
+      dmcaPolicy: "Política DMCA",
+      disclaimer: "Descargo de Responsabilidad",
     },
     games: {
       allGames: "Todos los juegos",
@@ -352,6 +467,56 @@ export const dictionary = {
         "للملاحظات أو التصحيحات أو طلبات الشراكة، يرجى التواصل معنا عبر البريد الإلكتروني أو متابعتنا على وسائل التواصل الاجتماعي.",
       followUs: "تواصل معنا",
       visited: "تمت الزيارة",
+      // Cookie Consent
+      cookieConsentTitle: "نقدر خصوصيتك",
+      cookieConsentDescription:
+        'نستخدم ملفات تعريف الارتباط لتحسين تجربة التصفح، وعرض إعلانات أو محتوى مخصص، وتحليل حركة المرور. بالنقر على "قبول الكل"، فإنك توافق على استخدامنا لملفات تعريف الارتباط.',
+      acceptAll: "قبول الكل",
+      rejectAll: "رفض الكل",
+      customizePreferences: "تخصيص التفضيلات",
+      necessaryCookies: "ملفات تعريف ارتباط ضرورية",
+      necessaryCookiesDesc: "مطلوبة لعمل الموقع بشكل صحيح. لا يمكن تعطيلها.",
+      analyticsCookies: "ملفات تعريف ارتباط تحليلية",
+      analyticsCookiesDesc: "تساعدنا في فهم كيفية تفاعل الزوار مع موقعنا.",
+      advertisingCookies: "ملفات تعريف ارتباط إعلانية",
+      advertisingCookiesDesc: "تستخدم لعرض إعلانات مخصصة بناءً على اهتماماتك.",
+      back: "رجوع",
+      savePreferences: "حفظ التفضيلات",
+      cookiePolicyLinkPrefix: "اعرف المزيد في ",
+      cookiePolicy: "سياسة ملفات تعريف الارتباط",
+      cookiePolicyLinkSuffix: ".",
+      close: "إغلاق",
+      // About Page
+      aboutUs: "من نحن",
+      aboutMission:
+        "NewFreeRewards مكرس لمساعدة اللاعبين على اكتشاف المكافآت المجانية الشرعية، والحوافز، والأكواد الترويجية من ألعابهم ومنصاتهم المفضلة. نؤمن بأن الجميع يجب أن يحصل على محتوى مجاني دون اللجوء إلى الاختراقات، الغش، أو الطرق غير المصرح بها.",
+      aboutWhatWeDo:
+        "نراقب باستمرار القنوات الرسمية للألعاب، وإعلانات المطورين، ووسائل التواصل الاجتماعي، والمنتديات المجتمعية لنقدم لكم أحدث المكافآت المجانية. فريقنا يتحقق من كل مكافأة قبل النشر لضمان الدقة والشرعية.",
+      aboutTrackRewards: "تتبع وجمع المكافآت المجانية من مصادر رسمية",
+      aboutVerifySources:
+        "التحقق من جميع المكافآت عبر القنوات الرسمية قبل النشر",
+      aboutStepByStepGuides: "تقديم أدلة استرداد خطوة بخطوة مع لقطات شاشة",
+      aboutNoHacks:
+        "لا نروج أبدًا للاختراقات، الغش، المولدات، أو الأدوات غير المصرح بها",
+      aboutEditorialStandards:
+        "نحافظ على معايير تحريرية صارمة لضمان دقة وموثوقية وتركيز محتوانا على المستخدم.",
+      aboutAccuracy: "يتم التحقق من جميع المكافآت مقابل مصادر رسمية قبل النشر",
+      aboutTransparency:
+        "نمتاز بوضوح بين المكافآت الرسمية والاكتشافات المجتمعية",
+      aboutIndependence: "نحن غير تابعين لأي مطور أو ناشر ألعاب",
+      aboutUserFirst: "تجربة المستخدم وسلامته أولويتنا القصوى",
+      aboutTeam:
+        "يدير NewFreeRewards فريق صغير من عشاق الألعاب المتحمسين لمساعدة اللاعبين الآخرين على الاستفادة القصوى من ألعابهم المفضلة.",
+      aboutFounder: "المؤسس والمحرر",
+      aboutFounderDesc:
+        "أنشأ سعيد رزوق NewFreeRewards لحل إحباط العثور على أكواد المكافآت المبعثرة عبر منصات متعددة. بفضل سنوات من الخبرة في الألعاب، يضمن أن كل مكافأة يتم التحقق منها وشرحها بوضوح.",
+      aboutContributors: "مساهمو المجتمع",
+      aboutContributorsDesc:
+        "مجتمع اللاعبين لدينا يساعدنا في اكتشاف مكافآت جديدة والإبلاغ عن المكافآت المنتهية. إذا كنت ترغب في المساهمة، تواصل معنا عبر صفحة الاتصال.",
+      aboutContact:
+        "هل لديك أسئلة، اقتراحات، أو ترغب في الشراكة معنا؟ يسعدنا سماعك!",
+      dmcaPolicy: "سياسة DMCA",
+      disclaimer: "إخلاء مسؤولية",
     },
     games: {
       allGames: "كل الألعاب",

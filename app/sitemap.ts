@@ -16,6 +16,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/games/clash-royale`, lastModified: now },
     { url: `${base}/games/clash-of-clans`, lastModified: now },
     { url: `${base}/contact`, lastModified: now },
+    { url: `${base}/about`, lastModified: now },
+    { url: `${base}/dmca`, lastModified: now },
+    { url: `${base}/disclaimer`, lastModified: now },
+    { url: `${base}/privacy`, lastModified: now },
+    { url: `${base}/terms`, lastModified: now },
     ...locales.flatMap((locale) => [
       { url: `${base}${localizePath(locale, "/")}`, lastModified: now },
       { url: `${base}${localizePath(locale, "/games")}`, lastModified: now },
@@ -28,6 +33,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: now,
       },
       { url: `${base}${localizePath(locale, "/contact")}`, lastModified: now },
+      { url: `${base}${localizePath(locale, "/about")}`, lastModified: now },
+      { url: `${base}${localizePath(locale, "/dmca")}`, lastModified: now },
+      {
+        url: `${base}${localizePath(locale, "/disclaimer")}`,
+        lastModified: now,
+      },
+      { url: `${base}${localizePath(locale, "/privacy")}`, lastModified: now },
+      { url: `${base}${localizePath(locale, "/terms")}`, lastModified: now },
     ]),
   ];
 
