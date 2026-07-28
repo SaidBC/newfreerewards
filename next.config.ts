@@ -31,7 +31,7 @@ const nextConfig: NextConfig = {
       },
       {
         source:
-          "/:path((?!en|es|ar|admin|api|_next|favicon\\.ico|sitemap\\.xml|robots\\.txt|.*\\..*).*)",
+          "/:path((?!en|es|ar|admin|api|_next|favicon\\.ico|sitemap\\.xml|robots\\.txt|ads\\.txt|googleb4dbf7b15189f25e\\.html|site\\.webmanifest|android-chrome-.*\\.png|apple-touch-icon\\.png|favicon-.*\\.png|sw\\.js|.*\\..*).*)",
         destination: "/en/:path",
       },
     ];
