@@ -16,7 +16,9 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale: requestedLocale } = await params;
-  const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
+  const locale: Locale = isLocale(requestedLocale)
+    ? requestedLocale
+    : defaultLocale;
   const t = getDictionary(locale);
 
   return {
@@ -42,7 +44,9 @@ export default async function Page({
   params: Promise<{ locale: string }>;
 }) {
   const { locale: requestedLocale } = await params;
-  const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
+  const locale: Locale = isLocale(requestedLocale)
+    ? requestedLocale
+    : defaultLocale;
   const t = getDictionary(locale);
 
   return (
@@ -50,7 +54,7 @@ export default async function Page({
       <h1 className="text-3xl font-bold mb-8 font-concert-one text-amber-400">
         {t.nav.contact}
       </h1>
-      
+
       <div className="bg-card border rounded-lg p-8 shadow-sm">
         <p className="text-lg mb-8 text-muted-foreground">
           {t.common.contactDescription}
@@ -61,30 +65,28 @@ export default async function Page({
             <h2 className="text-xl font-semibold flex items-center gap-2">
               <span className="text-primary">@</span> {t.common.contactEmail}
             </h2>
-            <a 
-              href="mailto:razzouksaid139@gmail.com" 
+            <a
+              href={`mailto:${t.common.contactEmailValue}`}
               className="text-xl text-primary hover:underline transition-all w-fit"
             >
-              razzouksaid139@gmail.com
+              {t.common.contactEmailValue}
             </a>
           </div>
 
           <div className="flex flex-col gap-4 pt-4 border-t">
-            <h2 className="text-xl font-semibold">
-              {t.common.followUs}
-            </h2>
+            <h2 className="text-xl font-semibold">{t.common.followUs}</h2>
             <div className="flex gap-6">
-              <a 
-                href="https://x.com/newfreeerewards" 
-                target="_blank" 
+              <a
+                href="https://x.com/newfreeerewards"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors flex items-center gap-2 font-medium"
               >
                 Twitter / X
               </a>
-              <a 
-                href="https://www.tiktok.com/@newfreerewards" 
-                target="_blank" 
+              <a
+                href="https://www.tiktok.com/@newfreerewards"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors flex items-center gap-2 font-medium"
               >

@@ -96,6 +96,7 @@ export const dictionary = {
       privacyPolicy: "Privacy Policy",
       termsOfService: "Terms of Service",
       contactEmail: "Contact Email",
+      contactEmailValue: "contact@newfreerewards.com",
       contactDescription:
         "For feedback, corrections, or partnership requests, please reach out to us via email or follow us on social media.",
       followUs: "Follow Us",
@@ -149,7 +150,7 @@ export const dictionary = {
         "NewFreeRewards is run by a small team of gaming enthusiasts who are passionate about helping fellow players get the most out of their favorite games.",
       aboutFounder: "Founder & Editor",
       aboutFounderDesc:
-        "Said Razzouk created NewFreeRewards to solve the frustration of finding scattered reward codes across multiple platforms. With years of gaming experience, he ensures every reward is verified and clearly explained.",
+        "The NewFreeRewards team was created to solve the frustration of finding scattered reward codes across multiple platforms. With years of collective gaming experience, we ensure every reward is verified and clearly explained.",
       aboutContributors: "Community Contributors",
       aboutContributorsDesc:
         "Our community of players helps us discover new rewards and report expired ones. If you'd like to contribute, reach out via our contact page.",
@@ -277,6 +278,7 @@ export const dictionary = {
       privacyPolicy: "Política de Privacidad",
       termsOfService: "Términos de Servicio",
       contactEmail: "Correo de Contacto",
+      contactEmailValue: "contact@newfreerewards.com",
       contactDescription:
         "Para comentarios, correcciones o solicitudes de asociación, contáctenos por correo electrónico o síganos en las redes sociales.",
       followUs: "Síguenos",
@@ -331,7 +333,7 @@ export const dictionary = {
         "NewFreeRewards es dirigido por un pequeño equipo de entusiastas de los videojuegos apasionados por ayudar a otros jugadores a aprovechar al máximo sus juegos favoritos.",
       aboutFounder: "Fundador y Editor",
       aboutFounderDesc:
-        "Said Razzouk creó NewFreeRewards para resolver la frustración de encontrar códigos de recompensa dispersos en múltiples plataformas. Con años de experiencia en gaming, se asegura de que cada recompensa sea verificada y claramente explicada.",
+        "El equipo de NewFreeRewards fue creado para resolver la frustración de encontrar códigos de recompensa dispersos en múltiples plataformas. Con años de experiencia colectiva en gaming, nos aseguramos de que cada recompensa sea verificada y claramente explicada.",
       aboutContributors: "Colaboradores de la Comunidad",
       aboutContributorsDesc:
         "Nuestra comunidad de jugadores nos ayuda a descubrir nuevas recompensas y reportar las expiradas. Si quieres contribuir, contáctanos a través de nuestra página de contacto.",
@@ -463,6 +465,7 @@ export const dictionary = {
       privacyPolicy: "سياسة الخصوصية",
       termsOfService: "شروط الخدمة",
       contactEmail: "البريد الإلكتروني للتواصل",
+      contactEmailValue: "contact@newfreerewards.com",
       contactDescription:
         "للملاحظات أو التصحيحات أو طلبات الشراكة، يرجى التواصل معنا عبر البريد الإلكتروني أو متابعتنا على وسائل التواصل الاجتماعي.",
       followUs: "تواصل معنا",
@@ -509,7 +512,7 @@ export const dictionary = {
         "يدير NewFreeRewards فريق صغير من عشاق الألعاب المتحمسين لمساعدة اللاعبين الآخرين على الاستفادة القصوى من ألعابهم المفضلة.",
       aboutFounder: "المؤسس والمحرر",
       aboutFounderDesc:
-        "أنشأ سعيد رزوق NewFreeRewards لحل إحباط العثور على أكواد المكافآت المبعثرة عبر منصات متعددة. بفضل سنوات من الخبرة في الألعاب، يضمن أن كل مكافأة يتم التحقق منها وشرحها بوضوح.",
+        "تم إنشاء فريق NewFreeRewards لحل إحباط العثور على أكواد المكافآت المبعثرة عبر منصات متعددة. بفضل سنوات من الخبرة الجماعية في الألعاب، نضمن أن كل مكافأة يتم التحقق منها وشرحها بوضوح.",
       aboutContributors: "مساهمو المجتمع",
       aboutContributorsDesc:
         "مجتمع اللاعبين لدينا يساعدنا في اكتشاف مكافآت جديدة والإبلاغ عن المكافآت المنتهية. إذا كنت ترغب في المساهمة، تواصل معنا عبر صفحة الاتصال.",

@@ -135,10 +135,10 @@ export default async function AboutPage({
             <p>
               Email:{" "}
               <a
-                href="mailto:razzouksaid139@gmail.com"
+                href={`mailto:${t.common.contactEmailValue}`}
                 className="text-primary hover:underline"
               >
-                razzouksaid139@gmail.com
+                {t.common.contactEmailValue}
               </a>
             </p>
             <p>
