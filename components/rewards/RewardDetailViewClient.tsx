@@ -3,7 +3,7 @@
 import { storageUrl } from "@/lib/storage";
 import RewardEngagementBar from "@/components/rewards/RewardEngagementBar";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { AlertTriangle, ArrowLeft, CalendarX2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import CopyCode from "@/components/CopyCode";
@@ -118,6 +118,8 @@ export default function RewardDetailViewClient({
   }, [reward?.platform?.id, reward?.id, isPreview]);
 
   if (!reward) return null;
+
+  const isExpired = reward.status === "expired";
 
   const renderBlock = (block: any, index: number) => {
     switch (block.type) {
@@ -274,21 +276,71 @@ export default function RewardDetailViewClient({
         )}
 
         {/* Status Section */}
-        <div className="rounded-2xl border bg-card p-6 sm:p-8">
+        <div
+          className={`rounded-2xl border bg-card p-6 sm:p-8 ${
+            isExpired ? "border-red-300 ring-1 ring-red-200" : ""
+          }`}
+        >
           <div className="flex items-center gap-2 border-b pb-4">
-            <div className="h-2 w-2 rounded-full bg-primary" />
+            <div
+              className={`h-2 w-2 rounded-full ${
+                isExpired ? "bg-red-500" : "bg-primary"
+              }`}
+            />
             <h2 className="font-concert-one text-xl uppercase italic text-left">
               Reward Status
             </h2>
+            {isExpired && (
+              <span className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-red-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-red-700 ring-1 ring-red-200">
+                <AlertTriangle className="h-3.5 w-3.5" />
+                Expired
+              </span>
+            )}
           </div>
+
+          {isExpired && (
+            <div className="mt-4 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-4">
+              <CalendarX2 className="mt-0.5 h-5 w-5 shrink-0 text-red-600" />
+              <div>
+                <p className="font-semibold text-red-800">
+                  This reward is no longer available.
+                </p>
+                <p className="mt-1 text-sm text-red-700/80">
+                  It has expired and can no longer be claimed. Check out{" "}
+                  <Link
+                    prefetch={false}
+                    href={localizePath(
+                      locale,
+                      `/games/${reward.platform.slug}`,
+                    )}
+                    className="font-semibold underline underline-offset-2 hover:text-red-900"
+                  >
+                    current active rewards
+                  </Link>{" "}
+                  for this game instead.
+                </p>
+              </div>
+            </div>
+          )}
+
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <p className="text-sm text-muted-foreground">Status</p>
               <span
-                className={`inline-block mt-1 px-3 py-1 rounded-full text-sm font-semibold ${reward.status === "active" ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800"}`}
+                className={`inline-block mt-1 px-3 py-1 rounded-full text-sm font-semibold ${
+                  isExpired
+                    ? "bg-red-100 text-red-700 ring-1 ring-red-200"
+                    : "bg-green-100 text-green-800"
+                }`}
               >
                 {reward.status}
               </span>
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Published At</p>
+              <p className="mt-1 font-semibold">
+                {new Date(reward.createdAt).toLocaleDateString()}
+              </p>
             </div>
             {reward.expiresAt && (
               <div>
