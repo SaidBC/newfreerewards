@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { RewardForm } from "./RewardForm";
+import { RewardForm, RewardPrefill } from "./RewardForm";
 import RewardDetailViewClient from "@/components/rewards/RewardDetailViewClient";
 import { Platform, Reward, RewardContent } from "@prisma/client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -28,6 +28,7 @@ interface RewardEditorPageProps {
   reward: Reward & { platform: Platform };
   initialContents: ContentBlockData[];
   dictionary: Record<string, any>;
+  prefill?: RewardPrefill;
 }
 
 export default function RewardEditorPage({
@@ -35,6 +36,7 @@ export default function RewardEditorPage({
   reward,
   initialContents,
   dictionary,
+  prefill,
 }: RewardEditorPageProps) {
   const [previewLocale, setPreviewLocale] = useState<"en" | "es" | "ar">("en");
   const [viewportMode, setViewportMode] = useState<"mobile" | "desktop">(
@@ -43,6 +45,25 @@ export default function RewardEditorPage({
   const [previewData, setPreviewData] = useState<any>(() => {
     // Initialize preview immediately with existing reward data
     const platform = reward.platform;
+    // If template applied, use template content blocks for preview
+    const contentSource =
+      prefill?.contentBlocks && prefill.contentBlocks.length > 0
+        ? prefill.contentBlocks
+        : (initialContents || []).map((c: any) => ({
+            type: c.type,
+            value: c.value || "",
+            href: c.href || "",
+            label: c.label || "",
+            src: c.imageSrc || "",
+            imageSrc: c.imageSrc || "",
+            alt: c.imageAlt || "",
+            imageAlt: c.imageAlt || "",
+            listType: c.listType || "ordered",
+            listItems: c.listItems || [],
+            titleLevel: c.titleLevel || "h2",
+            translations: c.translations || { es: {}, ar: {} },
+          }));
+
     return {
       ...reward,
       id: reward.id,
@@ -50,17 +71,7 @@ export default function RewardEditorPage({
       name: reward.title,
       title: reward.title,
       description: reward.description,
-      content: (initialContents || []).map((c: any) => ({
-        type: c.type,
-        value: c.value || "",
-        href: c.href || "",
-        label: c.label || "",
-        src: c.imageSrc || "",
-        imageSrc: c.imageSrc || "",
-        alt: c.imageAlt || "",
-        imageAlt: c.imageAlt || "",
-        translations: c.translations || { es: {}, ar: {} },
-      })),
+      content: contentSource,
     };
   });
 
@@ -87,6 +98,9 @@ export default function RewardEditorPage({
             src: block.imageSrc || block.src,
             imageSrc: block.imageSrc || block.src,
             imageAlt: block.imageAlt || block.alt,
+            listType: block.listType || "ordered",
+            listItems: block.listItems || [],
+            titleLevel: block.titleLevel || "h2",
           };
         }),
       };
@@ -208,6 +222,7 @@ export default function RewardEditorPage({
               platforms={platforms}
               reward={reward}
               initialContents={initialContents}
+              prefill={prefill}
               onChange={handleFormChange}
             />
           </div>

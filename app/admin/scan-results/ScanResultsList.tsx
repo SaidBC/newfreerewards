@@ -22,8 +22,10 @@ import {
   AlertTriangle,
   Trash2,
   Plus,
+  FileText,
 } from "lucide-react";
 import Link from "next/link";
+import { TEMPLATES } from "@/lib/rewardTemplates";
 
 interface ScanResultsListProps {
   results: ScanResult[];
@@ -364,18 +366,50 @@ function RewardItem({
   return (
     <div className={`p-3 mb-2 border rounded-lg bg-muted/30 ${borderColor}`}>
       {createUrl && (
-        <div className="mb-2">
+        <div className="mb-2 space-y-2">
           <Button
             variant="outline"
             size="sm"
             asChild
-            className="text-green-700 border-green-400 hover:bg-green-50 dark:text-green-400 dark:border-green-700 dark:hover:bg-green-950"
+            className="text-green-700 border-green-400 hover:bg-green-50 dark:text-green-400 dark:border-green-700 dark:hover:bg-green-950 w-full"
           >
             <Link href={createUrl}>
               <Plus className="w-3.5 h-3.5 mr-1" />
-              Create as Reward
+              Create as Reward (Blank)
             </Link>
           </Button>
+          <div className="grid grid-cols-2 gap-2">
+            {TEMPLATES.filter((t) => t.id !== "NONE").map((template) => {
+              const tParams = new URLSearchParams();
+              const title = String(reward.title ?? reward.rewardId ?? "");
+              const slug = String(
+                reward.suggestedSlug ?? reward.rewardId ?? "",
+              );
+              const claimUrl = String(reward.claimLink ?? "");
+              const platformName = String(reward.game ?? "");
+              if (title) tParams.set("title", title);
+              if (slug) tParams.set("slug", slug);
+              if (claimUrl) tParams.set("claimUrl", claimUrl);
+              if (platformName) tParams.set("platformName", platformName);
+              tParams.set("fromScan", "1");
+              tParams.set("template", template.id);
+              const tUrl = `/admin/rewards/new?${tParams.toString()}`;
+              return (
+                <Button
+                  key={template.id}
+                  variant="default"
+                  size="sm"
+                  asChild
+                  className="text-xs"
+                >
+                  <Link href={tUrl}>
+                    <FileText className="w-3 h-3 mr-1" />
+                    {template.name}
+                  </Link>
+                </Button>
+              );
+            })}
+          </div>
         </div>
       )}
       <pre className="text-xs overflow-x-auto whitespace-pre-wrap">

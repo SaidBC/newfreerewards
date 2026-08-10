@@ -13,7 +13,6 @@ import {
   type Locale,
 } from "@/lib/i18n";
 
-import AdsComponent from "@/components/AdsComponent";
 import { getPlatformLastUpdated } from "@/lib/rewardService";
 import { formatDate } from "@/lib/utils";
 
@@ -25,7 +24,9 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale: requestedLocale } = await params;
-  const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
+  const locale: Locale = isLocale(requestedLocale)
+    ? requestedLocale
+    : defaultLocale;
   const t = getDictionary(locale);
 
   return {
@@ -46,7 +47,7 @@ export async function generateMetadata({
         locales.map((supportedLocale) => [
           supportedLocale,
           localizePath(supportedLocale, "/games/clash-royale"),
-        ])
+        ]),
       ),
     },
     openGraph: {
@@ -64,7 +65,9 @@ export default async function Page({
   params: Promise<{ locale: string }>;
 }) {
   const { locale: requestedLocale } = await params;
-  const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
+  const locale: Locale = isLocale(requestedLocale)
+    ? requestedLocale
+    : defaultLocale;
   const t = getDictionary(locale);
   const lastUpdated = await getPlatformLastUpdated("clash-royale");
   const formattedDate = lastUpdated ? formatDate(lastUpdated) : "";
@@ -90,19 +93,13 @@ export default async function Page({
         </p>
       </section>
 
-      <div className="mx-auto max-w-5xl px-4">
-        <AdsComponent
-          link="https://lootbar.gg/top-up/clash-royale?aff_short=newfreerewards"
-          imageSrc="https://res.cloudinary.com/dctrgw4fo/image/upload/images/affiliate/lootbarClashRoyaleOffers.png"
-          alt="Top up Clash Royale on Lootbar.gg Offers"
-        />
-      </div>
-
       <CurrentActiveRewardsSection locale={locale} game="clash-royale" />
       <ExpiredRewardsSection locale={locale} game="clash-royale" />
       <div className="mx-auto max-w-5xl px-4 pb-24">
         <section className="mt-10 rounded-xl border bg-card p-5">
-          <h2 className="text-2xl font-semibold">Clash Royale Codes & Search Terms</h2>
+          <h2 className="text-2xl font-semibold">
+            Clash Royale Codes & Search Terms
+          </h2>
           <p className="mt-2 text-muted-foreground">
             Players often search for terms related to Clash Royale rewards and
             creator support options. This page tracks verified active rewards,

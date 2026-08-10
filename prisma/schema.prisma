@@ -29,6 +29,8 @@ model Reward {
   previewImage String?
   slug         String
   status       RewardStatus     @default(active)
+  complexity   RewardComplexity @default(SIMPLE)
+  template     RewardTemplate   @default(NONE)
   claimUrl     String?
   expiresAt    DateTime?
   image        String?
@@ -41,6 +43,8 @@ model Reward {
   @@unique([platformId, slug])
   @@index([platformId])
   @@index([status])
+  @@index([complexity])
+  @@index([template])
 }
 
 model ScanResult {
@@ -118,6 +122,17 @@ enum RewardStatus {
   expired
 }
 
+enum RewardComplexity {
+  SIMPLE
+  COMPLEX
+}
+
+enum RewardTemplate {
+  NONE
+  SUPERCELL_CODE
+  QR_CODE
+}
+
 enum ScanStatus {
   PENDING
   COMPLETED
@@ -129,6 +144,10 @@ enum RewardContentType {
   image
   link
   code
+  title
+  list
+  italic
+  qr
 }
 
 enum ReactionType {

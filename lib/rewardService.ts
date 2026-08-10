@@ -7,6 +7,7 @@ export type TranslatedReward = Reward & {
   platform: Platform;
   content: any[];
   name: string;
+  template: string;
 };
 
 export type TranslatedRewards = TranslatedReward[];
@@ -75,9 +76,11 @@ function translateReward(
     image: normalizeStorageUrl(reward.image) ?? reward.image,
     previewImage:
       normalizeStorageUrl(reward.previewImage) ?? reward.previewImage,
+    template: reward.template,
     content: reward.contents.map((content: any) => {
       const contentTranslations = (content.translations as any) || {};
       const contentLocaleData = contentTranslations[locale] || {};
+      const meta = contentTranslations._meta || {};
 
       return {
         type: content.type,
@@ -88,6 +91,9 @@ function translateReward(
         imageSrc: normalizeStorageUrl(content.imageSrc) ?? content.imageSrc,
         alt: contentLocaleData.alt || content.imageAlt,
         imageAlt: contentLocaleData.alt || content.imageAlt,
+        listType: meta.listType || "ordered",
+        listItems: meta.listItems || [],
+        titleLevel: meta.titleLevel || "h2",
       };
     }),
   };

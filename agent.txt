@@ -1,0 +1,746 @@
+Yes. **This is a good plan**, and I would actually implement it almost exactly this way — with one important change:
+
+> Don't make the templates just "pre-written articles." Make them **structured content block templates** that auto-populate reward-specific information.
+
+That gives you speed when creating rewards while making the final pages much more useful.
+
+---
+
+# 1. Your `/admin/rewards/new` flow
+
+I'd make the first screen:
+
+### Choose reward template
+
+```text
+Create New Reward
+
+Choose a template
+
+┌──────────────────────────────┐
+│ 🎟 Supercell Code Reward     │
+│                              │
+│ For Clash Royale, Brawl      │
+│ Stars, etc. codes            │
+│                              │
+│ [Use Template]               │
+└──────────────────────────────┘
+
+┌──────────────────────────────┐
+│ 📱 QR Code Reward            │
+│                              │
+│ For QR/link-based rewards    │
+│                              │
+│ [Use Template]               │
+└──────────────────────────────┘
+```
+
+Then selecting one creates the form **with blocks already populated**.
+
+That's much better than having you manually construct every reward page.
+
+---
+
+# 2. Supercell redemption code template
+
+I'd make this template generate something approximately like:
+
+```text
+FREE [GAME] REWARD
+
+[REWARD NAME]
+
+[short reward-specific description]
+
+────────────────────────
+
+🎁 REWARD
+
+[Reward Name]
+[Reward Type]
+
+────────────────────────
+
+HOW TO REDEEM [GAME] CODE
+
+To claim this reward, you'll need to sign in
+to your Supercell account and redeem the code
+through the official [GAME] Store.
+
+1. Sign in with your Supercell ID.
+2. Open the [GAME] Store.
+3. Scroll to the bottom of the page.
+4. Find "Redeem a Store Code".
+5. Enter the code below.
+
+────────────────────────
+
+REDEMPTION CODE
+
+┌──────────────────────────────┐
+│ XXXX-XXXX-XXXX               │
+│                       COPY   │
+└──────────────────────────────┘
+
+[Open Supercell Store]
+
+────────────────────────
+
+[IMAGE OF REDEMPTION PAGE]
+
+The code should be entered in the
+"Redeem a Store Code" section.
+
+────────────────────────
+
+AFTER REDEEMING
+
+Once the code has been successfully redeemed,
+return to [GAME] and check your account for
+the reward.
+
+────────────────────────
+
+✓ REWARD STATUS
+
+[Working / Expired]
+
+Last verified: [date]
+
+────────────────────────
+
+[FEEDBACK]
+```
+
+That's a **very good individual reward page**.
+
+---
+
+# 3. But don't hardcode everything into the template
+
+This is the biggest architectural point.
+
+Your template should contain **blocks**, not one giant text blob.
+
+For example:
+
+```ts
+type ContentBlock =
+  | {
+      type: "text";
+      title?: string;
+      content: string;
+    }
+  | {
+      type: "code";
+      title: string;
+      code: string;
+      copyable: boolean;
+    }
+  | {
+      type: "image";
+      title?: string;
+      src: string;
+      alt: string;
+    }
+  | {
+      type: "button";
+      label: string;
+      url: string;
+    }
+  | {
+      type: "qr";
+      url: string;
+    }
+  | {
+      type: "status";
+      ...
+    }
+```
+
+Then the template is basically:
+
+```text
+[Text Block]
+[Reward Details Block]
+[Redemption Instructions Block]
+[Code Block]
+[Button Block]
+[Image Block]
+[After Claim Block]
+[Verification Block]
+[Feedback Block]
+[Related Rewards Block]
+```
+
+This is **much more flexible**.
+
+---
+
+# 4. Your QR template should be different
+
+I'd make the QR template roughly:
+
+```text
+FREE [GAME] REWARD
+
+[REWARD NAME]
+
+[short description]
+
+────────────────────────
+
+HOW TO CLAIM
+
+This reward can be claimed by opening
+the reward link below.
+
+You can scan the QR code with your phone,
+or open the claim link directly.
+
+        [ NFR QR CODE ]
+
+        SCAN TO REDEEM
+
+[ Open Reward ]
+
+────────────────────────
+
+WHAT HAPPENS NEXT?
+
+After opening the link, follow the instructions
+shown on the reward page. You may need to
+launch [GAME] to complete the claim.
+
+────────────────────────
+
+AFTER CLAIMING
+
+Once you've successfully claimed the reward,
+open [GAME] and check your account.
+
+────────────────────────
+
+✓ REWARD STATUS
+
+[Working]
+
+Last verified: [date]
+
+────────────────────────
+
+[Feedback]
+
+More [GAME] Rewards
+```
+
+This is much closer to what your current QR pages are missing.
+
+---
+
+# 5. Your QR generator should absolutely be part of the template
+
+You said:
+
+> custom QR code with my logo in center
+
+Yes.
+
+I'd make:
+
+```text
+Claim URL
+[ https://... ]
+
+        ↓
+
+[Generate QR]
+
+        ↓
+
+┌───────────────────┐
+│                   │
+│       QR          │
+│      [NFR]        │
+│                   │
+└───────────────────┘
+```
+
+And the QR block should automatically regenerate if the claim URL changes.
+
+You shouldn't have to manually upload a QR image.
+
+So your database should preferably store:
+
+```text
+claimUrl
+```
+
+rather than treating the generated QR PNG as the primary data.
+
+The QR is a **presentation of the URL**.
+
+---
+
+# 6. The "mock data" idea is excellent
+
+I would definitely do this.
+
+When you select:
+
+> Supercell Code Reward
+
+populate the form with a fake/example reward.
+
+For example:
+
+```text
+Game:
+Clash Royale
+
+Reward:
+Free Gold Reward
+
+Reward type:
+Gold
+
+Code:
+CR-DEMO-2026
+
+Claim URL:
+https://store.supercell.com/clashroyale
+
+Description:
+Claim this Clash Royale reward by redeeming
+the code through the official Supercell Store.
+```
+
+Then the admin immediately sees:
+
+> **What will the finished page look like?**
+
+This is much better UX than giving you 15 empty inputs.
+
+---
+
+# 7. But there's one thing I would NOT put in production
+
+You mentioned:
+
+> image of Supercell redeem page should be mocked URL
+
+For the **template/demo**, yes.
+
+But when publishing the real reward, don't leave:
+
+```text
+https://example.com/supercell-redeem.png
+```
+
+or some generic fake screenshot.
+
+Instead make it an optional field:
+
+### Redemption page screenshot
+
+```text
+[ Use template image ]
+
+[ Upload custom screenshot ]
+```
+
+The template can initially use:
+
+> `/images/templates/supercell-redeem-example.webp`
+
+Then when you create an actual reward, you can replace it if necessary.
+
+---
+
+# 8. Don't copy IGN's text
+
+This is particularly important because you showed me the IGN content.
+
+You can absolutely use the **same factual information**:
+
+> You need a Supercell ID.
+
+> Go to the relevant game store.
+
+> Scroll down.
+
+> Find the redemption section.
+
+Those are facts/instructions.
+
+But don't take IGN's paragraphs and rewrite them sentence-by-sentence.
+
+Instead, make your own concise version based on the actual process.
+
+For example:
+
+### NFR version
+
+> **How to redeem this code**
+>
+> Sign in to the Supercell Store using the Supercell ID connected to your game account. Select **Clash Royale**, scroll to the bottom of the store page, and enter the code in **Redeem a Store Code**.
+
+Then:
+
+> **1.** Sign in with your Supercell ID.
+> **2.** Select Clash Royale.
+> **3.** Scroll to the bottom.
+> **4.** Enter the code.
+> **5.** Return to Clash Royale and check your account.
+
+That's your own concise instructional content.
+
+---
+
+# 9. One thing I'd add to both templates: "Why this reward is different"
+
+This is where you can introduce genuine reward-specific content.
+
+For example:
+
+### Code reward
+
+```text
+About this reward
+
+This code unlocks the [Reward Name].
+It is a [reward type] for Clash Royale.
+
+This reward is available until [date].
+```
+
+Or if you know the promotion:
+
+> This reward was released as part of the August 2026 seasonal promotion.
+
+That information comes from your reward data.
+
+---
+
+# 10. And don't make "claimed state" just generic text
+
+You said:
+
+> next should have some text and then should have claimed state
+
+I'd make this a reusable **After Claim** block.
+
+For example:
+
+### After claiming
+
+> Once the reward has been successfully redeemed, open Clash Royale and check your **Emotes** collection.
+
+For gold:
+
+> Your Gold balance should update after the reward is successfully claimed.
+
+For a banner:
+
+> Open your Profile → Banners to find the new banner.
+
+For an item that requires restarting:
+
+> If the reward doesn't appear immediately, restart Clash Royale and check again.
+
+This is **excellent unique content** because it depends on the actual reward.
+
+So your template could have:
+
+```text
+After claim:
+[ Select collection/location ]
+
+○ Emotes
+○ Cards
+○ Banners
+○ Profile
+○ Gold
+○ Gems
+○ Other
+
+Additional instructions:
+[ ... ]
+```
+
+Then your page generates:
+
+> **Where to find your reward**
+>
+> Open Clash Royale → Profile → Emotes.
+
+That's useful.
+
+---
+
+# 11. I would make your templates more like "page recipes"
+
+Think of them like this:
+
+### Supercell Code Template
+
+```text
+Hero
+↓
+Reward Details
+↓
+How to Redeem
+↓
+Code
+↓
+Redemption Screenshot
+↓
+Open Store
+↓
+After Claim
+↓
+Availability
+↓
+Verification
+↓
+Feedback
+↓
+Related Rewards
+```
+
+### QR Template
+
+```text
+Hero
+↓
+Reward Details
+↓
+How to Claim
+↓
+QR
+↓
+Open Reward
+↓
+Additional Instructions
+↓
+After Claim
+↓
+Availability
+↓
+Verification
+↓
+Feedback
+↓
+Related Rewards
+```
+
+Then you can later add:
+
+### Link Template
+
+```text
+Hero
+↓
+Reward Details
+↓
+Claim Instructions
+↓
+Open Reward
+↓
+After Claim
+↓
+Verification
+↓
+...
+```
+
+### Giveaway Template
+
+```text
+Hero
+↓
+Reward Details
+↓
+Eligibility
+↓
+How to Enter
+↓
+Claim
+↓
+...
+```
+
+You can expand the system later without rebuilding your reward pages.
+
+---
+
+# 12. I'd also make the template editable after selection
+
+This is important.
+
+Selecting:
+
+> QR Code Reward
+
+should **not lock you into the template**.
+
+You should be able to:
+
+```text
+Content
+
+☰ Hero
+☰ Reward Details
+☰ How to Claim
+☰ QR Code
+☰ Claim Button
+☰ Additional Information
+☰ After Claim
+☰ Verification
+☰ Feedback
+☰ Related Rewards
+```
+
+And:
+
+```text
+[ + Add Block ]
+```
+
+You can delete:
+
+> Additional Information
+
+if there's nothing useful to say.
+
+Or add:
+
+> Screenshot
+
+for a particularly important reward.
+
+---
+
+# 13. This gives you a very nice workflow
+
+Your actual reward creation could become:
+
+### Step 1
+
+```text
+Choose template
+
+[Supercell Code]
+[QR Code]
+```
+
+### Step 2
+
+```text
+Fill basic data
+
+Name
+Platform
+Type
+Image
+Claim URL/code
+Expiration
+```
+
+### Step 3
+
+Template automatically creates:
+
+```text
+✓ How to claim
+✓ Code/QR
+✓ Claim button
+✓ After claim
+✓ Verification
+✓ Feedback
+✓ Related rewards
+```
+
+### Step 4
+
+You customize only what's different.
+
+### Step 5
+
+Preview:
+
+```text
+Desktop
+Mobile
+```
+
+### Step 6
+
+Your admin gives:
+
+> **Content completeness: 92%**
+
+```text
+✓ Reward information
+✓ Claim method
+✓ Instructions
+✓ Redemption destination
+✓ After-claim information
+✓ Status
+✓ Image
+
+⚠ Additional information missing
+```
+
+### Step 7
+
+Publish.
+
+---
+
+# 14. One more thing: don't make every block visible just because the template created it
+
+For example, if your QR reward doesn't have special after-claim information, don't render:
+
+> **After claiming**
+
+> Your reward will be added to your account.
+
+if that's just generic filler.
+
+You can have:
+
+```text
+AfterClaimBlock
+```
+
+but conditionally render it only when it contains meaningful information.
+
+Same with:
+
+* Source
+* Promotion
+* Expiration
+* Screenshots
+* FAQ
+* Requirements
+
+This is how you avoid falling back into the same problem:
+
+> **"Every page has 500 words because the template requires it."**
+
+---
+
+## So yes — I think your plan is very good.
+
+I'd just evolve it from:
+
+> **"Two templates containing text"**
+
+into:
+
+> **"Two structured page templates containing reusable + reward-specific content blocks."**
+
+That is the architecture I'd build for NewFreeRewards.
+
+And I think **Supercell Code + QR Code are exactly the right two templates to start with** because they cover a large portion of your reward pages while being sufficiently different in their claim flow.

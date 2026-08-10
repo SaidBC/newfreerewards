@@ -12,7 +12,6 @@ import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import AdsComponent from "@/components/AdsComponent";
 import { getPlatformLastUpdated } from "@/lib/rewardService";
 import { formatDate } from "@/lib/utils";
 
@@ -24,7 +23,9 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale: requestedLocale } = await params;
-  const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
+  const locale: Locale = isLocale(requestedLocale)
+    ? requestedLocale
+    : defaultLocale;
   const t = getDictionary(locale);
 
   const baseUrl = process.env.NEXT_PUBLIC_URL;
@@ -64,7 +65,9 @@ export default async function BrawlStarsPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale: requestedLocale } = await params;
-  const locale: Locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
+  const locale: Locale = isLocale(requestedLocale)
+    ? requestedLocale
+    : defaultLocale;
   const t = getDictionary(locale);
   const lastUpdated = await getPlatformLastUpdated("brawl-stars");
   const formattedDate = lastUpdated ? formatDate(lastUpdated) : "";
@@ -98,16 +101,14 @@ export default async function BrawlStarsPage({
         </p>
       </div>
 
-      <div className="mx-auto max-w-5xl px-4">
-        <AdsComponent />
-      </div>
-
       <CurrentActiveRewardsSection locale={locale} game="brawl-stars" />
       <ExpiredRewardsSection locale={locale} game="brawl-stars" />
 
       <div className="mx-auto max-w-5xl px-4 pb-24">
         <section className="mt-10 rounded-xl border bg-card p-5">
-          <h2 className="text-2xl font-semibold">Brawl Stars Codes & Search Terms</h2>
+          <h2 className="text-2xl font-semibold">
+            Brawl Stars Codes & Search Terms
+          </h2>
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <h3 className="font-medium">Popular Search Terms:</h3>

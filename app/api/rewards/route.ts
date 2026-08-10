@@ -1,33 +1,46 @@
-import { getRewardsByPlatform, type TranslatedRewards } from "@/lib/rewardService";
-import { NextRequest, NextResponse } from "next/server";
-import { RewardStatus } from "@prisma/client";
+import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
 
-export const revalidate = 3600;
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const platformId = searchParams.get("platformId");
+  const excludeId = searchParams.get("excludeId");
+  const limit = parseInt(searchParams.get("limit") || "5");
 
-type RewardsApiResponse =
-  | { success: true; data: TranslatedRewards }
-  | { success: false; message: string };
+  if (!platformId) {
+    return NextResponse.json(
+      { error: "platformId is required" },
+      { status: 400 },
+    );
+  }
 
-export async function GET(req:NextRequest) {
-    const platform = req.nextUrl.searchParams.get("platform");
-    const locale = req.nextUrl.searchParams.get("locale");
-    const status = req.nextUrl.searchParams.get("status") as RewardStatus | null;
+  try {
+    const rewards = await prisma.reward.findMany({
+      where: {
+        platformId,
+        status: "active",
+        ...(excludeId && { id: { not: excludeId } }),
+      },
+      include: {
+        platform: {
+          select: {
+            name: true,
+            slug: true,
+          },
+        },
+      },
+      take: limit,
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
 
-    if(!platform || !locale){
-        return NextResponse.json<RewardsApiResponse>(
-          { success: false, message: "Platform and locale are required" },
-          { status: 400 }
-        );
-    }
-    if (locale !== "en" && locale !== "es" && locale !== "ar"){
-        return NextResponse.json<RewardsApiResponse>(
-          { success: false, message: "Invalid locale" },
-          { status: 400 }
-        );
-    }
-
-    const validStatus: RewardStatus = (status === "active" || status === "expired") ? status : "active";
-
-    const getRewards = await getRewardsByPlatform(platform, locale, validStatus);
-    return NextResponse.json<RewardsApiResponse>({ success: true, data: getRewards });
+    return NextResponse.json({ rewards });
+  } catch (error) {
+    console.error("Error fetching rewards:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch rewards" },
+      { status: 500 },
+    );
+  }
 }

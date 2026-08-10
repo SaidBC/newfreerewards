@@ -21,9 +21,14 @@ import {
   Link as LinkIcon,
   Type,
   Code,
+  QrCode,
+  List,
+  Heading,
+  Italic,
 } from "lucide-react";
-type ContentBlock = {
-  type: "text" | "image" | "link" | "code";
+import BlockRenderer from "./BlockRenderer";
+export type ContentBlock = {
+  type: "text" | "image" | "link" | "code" | "qr" | "list" | "title" | "italic";
   value: string;
   href: string;
   label: string;
@@ -31,11 +36,14 @@ type ContentBlock = {
   imageAlt: string;
   src: string;
   alt: string;
+  listType?: "ordered" | "unordered";
+  listItems?: string[];
+  titleLevel?: "h2" | "h3" | "h4";
   translations: any;
 };
 
 function createEmptyBlock(type: ContentBlock["type"]): ContentBlock {
-  return {
+  const base = {
     type,
     value: "",
     href: "",
@@ -46,9 +54,21 @@ function createEmptyBlock(type: ContentBlock["type"]): ContentBlock {
     alt: "",
     translations: { es: {}, ar: {} },
   };
+
+  switch (type) {
+    case "list":
+      return { ...base, listType: "ordered", listItems: [""] };
+    case "title":
+      return { ...base, titleLevel: "h2" };
+    default:
+      return base;
+  }
 }
 
 function mapContentFromDb(c: any): ContentBlock {
+  const translations = c.translations || { es: {}, ar: {} };
+  const meta = translations._meta || {};
+
   return {
     type: (c.type || "text") as ContentBlock["type"],
     value: c.value || "",
@@ -58,7 +78,10 @@ function mapContentFromDb(c: any): ContentBlock {
     imageAlt: c.imageAlt || "",
     src: c.imageSrc || "",
     alt: c.imageAlt || "",
-    translations: c.translations || { es: {}, ar: {} },
+    listType: meta.listType || c.listType || "ordered",
+    listItems: meta.listItems || c.listItems || [""],
+    titleLevel: meta.titleLevel || c.titleLevel || "h2",
+    translations,
   };
 }
 
@@ -69,6 +92,8 @@ export interface RewardPrefill {
   platformId?: string;
   description?: string;
   previewImage?: string;
+  template?: "SUPERCELL_CODE" | "QR_CODE" | "NONE";
+  contentBlocks?: ContentBlock[];
 }
 
 export function RewardForm({
@@ -105,11 +130,13 @@ export function RewardForm({
     },
   );
   const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>(
-    initialContents && initialContents.length > 0
-      ? initialContents.map(mapContentFromDb)
-      : prefill
-        ? prefillContentBlocks
-        : [],
+    prefill?.contentBlocks && prefill.contentBlocks.length > 0
+      ? prefill.contentBlocks
+      : initialContents && initialContents.length > 0
+        ? initialContents.map(mapContentFromDb)
+        : prefill
+          ? prefillContentBlocks
+          : [],
   );
 
   const [basicInfo, setBasicInfo] = useState({
@@ -159,12 +186,23 @@ export function RewardForm({
     const formData = new FormData(e.currentTarget);
     formData.append("translations", JSON.stringify(translations));
     // Normalize content blocks: ensure src/alt mirror imageSrc/imageAlt
+    // and store extra fields (listItems, listType, titleLevel) in translations._meta
     const normalizedBlocks = contentBlocks.map((block) => ({
       ...block,
       src: block.imageSrc || block.src,
       alt: block.imageAlt || block.alt,
       imageSrc: block.imageSrc || block.src,
       imageAlt: block.imageAlt || block.alt,
+      translations: {
+        ...(block.translations || {}),
+        _meta: {
+          listType: block.listType,
+          listItems: block.listItems,
+          titleLevel: block.titleLevel,
+          src: block.imageSrc || block.src || block.src,
+          alt: block.imageAlt || block.alt || block.alt,
+        },
+      },
     }));
     formData.append("contentBlocks", JSON.stringify(normalizedBlocks));
 
@@ -309,7 +347,7 @@ export function RewardForm({
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-bold">Step-by-Step Content Blocks</h3>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 <Button
                   type="button"
                   size="sm"
@@ -317,6 +355,30 @@ export function RewardForm({
                   onClick={() => addBlock("text")}
                 >
                   <Type className="w-4 h-4 mr-1" /> Text
+                </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  onClick={() => addBlock("title")}
+                >
+                  <Heading className="w-4 h-4 mr-1" /> Title
+                </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  onClick={() => addBlock("list")}
+                >
+                  <List className="w-4 h-4 mr-1" /> List
+                </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  onClick={() => addBlock("italic")}
+                >
+                  <Italic className="w-4 h-4 mr-1" /> Italic
                 </Button>
                 <Button
                   type="button"
@@ -342,6 +404,14 @@ export function RewardForm({
                 >
                   <Code className="w-4 h-4 mr-1" /> Code
                 </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  onClick={() => addBlock("qr")}
+                >
+                  <QrCode className="w-4 h-4 mr-1" /> QR
+                </Button>
               </div>
             </div>
 
@@ -349,20 +419,18 @@ export function RewardForm({
               {contentBlocks.map((block, index) => (
                 <Card
                   key={index}
-                  className="shadow-sm border-gray-200 dark:border-zinc-800"
+                  className="shadow-sm border-gray-200 dark:border-zinc-800 overflow-hidden"
                 >
-                  <div className="p-2 border-b flex items-center justify-between bg-muted/50">
+                  <div className="p-3 border-b flex items-center justify-between bg-muted/50">
                     <div className="flex items-center gap-2">
-                      <GripVertical className="w-4 h-4 text-muted-foreground" />
-                      <span className="text-xs font-bold uppercase tracking-wider">
-                        {block.type} Block
-                      </span>
+                      <GripVertical className="w-4 h-4 text-muted-foreground cursor-move" />
+                      <BlockRenderer block={block} index={index} />
                     </div>
                     <Button
                       type="button"
                       size="icon"
                       variant="ghost"
-                      className="h-8 w-8 text-destructive"
+                      className="h-8 w-8 text-destructive flex-shrink-0"
                       onClick={() => removeBlock(index)}
                     >
                       <Trash2 className="w-4 h-4" />
@@ -526,6 +594,245 @@ export function RewardForm({
                             updateBlock(index, { value: e.target.value })
                           }
                         />
+                      </div>
+                    )}
+
+                    {block.type === "qr" && (
+                      <div className="space-y-4">
+                        <div className="space-y-2">
+                          <Label>QR Code URL</Label>
+                          <Input
+                            value={block.href}
+                            onChange={(e) =>
+                              updateBlock(index, { href: e.target.value })
+                            }
+                            placeholder="https://example.com/claim"
+                          />
+                          <p className="text-[10px] text-muted-foreground italic">
+                            The URL that the QR code will link to
+                          </p>
+                        </div>
+                        <div className="space-y-2">
+                          <Label>Label (EN)</Label>
+                          <Input
+                            value={block.label}
+                            onChange={(e) =>
+                              updateBlock(index, { label: e.target.value })
+                            }
+                            placeholder="Scan to claim"
+                          />
+                        </div>
+                      </div>
+                    )}
+
+                    {block.type === "title" && (
+                      <div className="space-y-4">
+                        <div className="space-y-2">
+                          <Label>Title Level</Label>
+                          <select
+                            value={block.titleLevel || "h2"}
+                            onChange={(e) =>
+                              updateBlock(index, {
+                                titleLevel: e.target.value as
+                                  | "h2"
+                                  | "h3"
+                                  | "h4",
+                              })
+                            }
+                            className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
+                          >
+                            <option value="h2">Heading 2</option>
+                            <option value="h3">Heading 3</option>
+                            <option value="h4">Heading 4</option>
+                          </select>
+                        </div>
+                        <div className="space-y-2">
+                          <Label>Title Text (EN)</Label>
+                          <Input
+                            value={block.value}
+                            onChange={(e) =>
+                              updateBlock(index, { value: e.target.value })
+                            }
+                            placeholder="Enter title..."
+                          />
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-1">
+                            <Label className="text-xs">Title (ES)</Label>
+                            <Input
+                              value={block.translations.es?.value ?? ""}
+                              onChange={(e) =>
+                                updateBlock(index, {
+                                  translations: {
+                                    ...block.translations,
+                                    es: { value: e.target.value },
+                                  },
+                                })
+                              }
+                            />
+                          </div>
+                          <div className="space-y-1">
+                            <Label className="text-xs text-right block">
+                              Title (AR)
+                            </Label>
+                            <Input
+                              dir="rtl"
+                              value={block.translations.ar?.value ?? ""}
+                              onChange={(e) =>
+                                updateBlock(index, {
+                                  translations: {
+                                    ...block.translations,
+                                    ar: { value: e.target.value },
+                                  },
+                                })
+                              }
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {block.type === "list" && (
+                      <div className="space-y-4">
+                        <div className="space-y-2">
+                          <Label>List Type</Label>
+                          <div className="flex gap-2">
+                            <Button
+                              type="button"
+                              size="sm"
+                              variant={
+                                block.listType === "ordered"
+                                  ? "default"
+                                  : "outline"
+                              }
+                              onClick={() =>
+                                updateBlock(index, { listType: "ordered" })
+                              }
+                            >
+                              1. 2. 3.
+                            </Button>
+                            <Button
+                              type="button"
+                              size="sm"
+                              variant={
+                                block.listType === "unordered"
+                                  ? "default"
+                                  : "outline"
+                              }
+                              onClick={() =>
+                                updateBlock(index, { listType: "unordered" })
+                              }
+                            >
+                              • Bullets
+                            </Button>
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <Label>List Items</Label>
+                            <Button
+                              type="button"
+                              size="sm"
+                              variant="ghost"
+                              onClick={() => {
+                                const items = [...(block.listItems || []), ""];
+                                updateBlock(index, { listItems: items });
+                              }}
+                            >
+                              + Add Item
+                            </Button>
+                          </div>
+                          <div className="space-y-2">
+                            {(block.listItems || []).map(
+                              (item: string, itemIndex: number) => (
+                                <div key={itemIndex} className="flex gap-2">
+                                  <span className="text-sm text-muted-foreground mt-2 w-6">
+                                    {block.listType === "ordered"
+                                      ? `${itemIndex + 1}.`
+                                      : "•"}
+                                  </span>
+                                  <Input
+                                    value={item}
+                                    onChange={(e) => {
+                                      const newItems = [
+                                        ...(block.listItems || []),
+                                      ];
+                                      newItems[itemIndex] = e.target.value;
+                                      updateBlock(index, {
+                                        listItems: newItems,
+                                      });
+                                    }}
+                                    placeholder={`Item ${itemIndex + 1}`}
+                                  />
+                                  <Button
+                                    type="button"
+                                    size="icon"
+                                    variant="ghost"
+                                    className="h-10 w-10 text-destructive"
+                                    onClick={() => {
+                                      const newItems = (
+                                        block.listItems || []
+                                      ).filter((_, i) => i !== itemIndex);
+                                      updateBlock(index, {
+                                        listItems: newItems,
+                                      });
+                                    }}
+                                  >
+                                    <Trash2 className="w-4 h-4" />
+                                  </Button>
+                                </div>
+                              ),
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {block.type === "italic" && (
+                      <div className="space-y-4">
+                        <div className="space-y-2">
+                          <Label>Italic Text (EN)</Label>
+                          <Input
+                            value={block.value}
+                            onChange={(e) =>
+                              updateBlock(index, { value: e.target.value })
+                            }
+                            placeholder="Enter italic text..."
+                          />
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-1">
+                            <Label className="text-xs">Italic (ES)</Label>
+                            <Input
+                              value={block.translations.es?.value ?? ""}
+                              onChange={(e) =>
+                                updateBlock(index, {
+                                  translations: {
+                                    ...block.translations,
+                                    es: { value: e.target.value },
+                                  },
+                                })
+                              }
+                            />
+                          </div>
+                          <div className="space-y-1">
+                            <Label className="text-xs text-right block">
+                              Italic (AR)
+                            </Label>
+                            <Input
+                              dir="rtl"
+                              value={block.translations.ar?.value ?? ""}
+                              onChange={(e) =>
+                                updateBlock(index, {
+                                  translations: {
+                                    ...block.translations,
+                                    ar: { value: e.target.value },
+                                  },
+                                })
+                              }
+                            />
+                          </div>
+                        </div>
                       </div>
                     )}
                   </CardContent>

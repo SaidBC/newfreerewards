@@ -1,0 +1,10 @@
+{
+  "description": "Create customizable social media card templates to showcase new and monthly game rewards, enhancing engagement with clear, attractive visuals.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

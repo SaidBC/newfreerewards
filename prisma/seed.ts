@@ -133,6 +133,29 @@ async function main() {
         select: { id: true, status: true },
       });
 
+      // Determine complexity based on content
+      const linkCount = reward.content.filter(
+        (c: any) => c.type === "link",
+      ).length;
+      const codeCount = reward.content.filter(
+        (c: any) => c.type === "code",
+      ).length;
+      const isComplex =
+        linkCount > 1 || codeCount > 1 || reward.content.length >= 3;
+      const complexity = isComplex ? "COMPLEX" : "SIMPLE";
+
+      // Determine template based on content
+      let template: "NONE" | "SUPERCELL_CODE" | "QR_CODE" = "NONE";
+      if (codeCount > 0 && linkCount <= 1) {
+        template = "SUPERCELL_CODE";
+      } else if (
+        linkCount > 0 &&
+        codeCount === 0 &&
+        reward.content.length <= 3
+      ) {
+        template = "QR_CODE";
+      }
+
       let createdReward;
       if (existingReward) {
         console.log(`Updating existing reward: ${reward.slug}`);
@@ -144,6 +167,8 @@ async function main() {
             previewImage: reward.previewImage,
             status:
               existingReward.status === "expired" ? "expired" : reward.status,
+            complexity,
+            template,
             claimUrl:
               reward.content.find((c: any) => c.type === "link")?.href ?? null,
             image:
@@ -163,6 +188,8 @@ async function main() {
             description: reward.description,
             previewImage: reward.previewImage,
             status: reward.status,
+            complexity,
+            template,
             platformId: platformId,
             claimUrl:
               reward.content.find((c: any) => c.type === "link")?.href ?? null,

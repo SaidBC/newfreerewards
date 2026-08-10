@@ -3,12 +3,14 @@ import { prisma } from "@/lib/prisma";
 import serverEnv from "@/utils/serverEnv";
 import { AdminLoginForm } from "@/components/admin/AdminLoginForm";
 import { RewardForm, RewardPrefill } from "@/components/admin/RewardForm";
+import TemplateSelector from "@/components/admin/TemplateSelector";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Sparkles } from "lucide-react";
 import RewardEditorPage from "@/components/admin/RewardEditorPage";
 import { Reward, Platform } from "@prisma/client";
 import { dictionary } from "@/lib/i18n";
+import { getTemplateBlocks } from "@/lib/rewardTemplates";
 
 export const dynamic = "force-dynamic";
 
@@ -53,6 +55,25 @@ export default async function NewRewardPage({
     selectedPlatform = match;
   }
 
+  // Check for template selection
+  const templateParam = single(params.template);
+  const selectedTemplate =
+    templateParam === "SUPERCELL_CODE" || templateParam === "QR_CODE"
+      ? templateParam
+      : undefined;
+
+  // Get template content blocks if template selected
+  const templateContentBlocks =
+    selectedTemplate && prefillPlatformName
+      ? getTemplateBlocks(
+          selectedTemplate as any,
+          prefillPlatformName,
+          prefillClaimUrl,
+        )
+      : selectedTemplate
+        ? getTemplateBlocks(selectedTemplate as any, undefined, prefillClaimUrl)
+        : [];
+
   const prefill: RewardPrefill | undefined = isPrefill
     ? {
         title: prefillTitle,
@@ -60,8 +81,16 @@ export default async function NewRewardPage({
         claimUrl: prefillClaimUrl,
         platformId: prefillPlatformId,
         description: prefillDescription,
+        template: selectedTemplate as any,
+        contentBlocks: templateContentBlocks,
       }
-    : undefined;
+    : selectedTemplate
+      ? {
+          template: selectedTemplate as any,
+          contentBlocks: templateContentBlocks,
+          claimUrl: prefillClaimUrl,
+        }
+      : undefined;
 
   // Build a minimal stub reward for the editor/preview
   const stubReward: Reward & { platform: Platform } = {
@@ -81,30 +110,60 @@ export default async function NewRewardPage({
     updatedAt: new Date(),
   } as any;
 
-  // Build initial content blocks from prefill claimUrl
-  const initialContents = prefillClaimUrl
-    ? [
-        {
-          id: "prefill-link",
-          type: "link",
-          value: "",
-          href: prefillClaimUrl,
-          label: "Claim Reward",
-          imageSrc: "",
-          imageAlt: "",
-          order: 0,
-          translations: { es: { label: "" }, ar: { label: "" } },
-          rewardId: "new",
-          createdAt: new Date().toISOString(),
-        },
-      ]
-    : [];
+  // Build initial content blocks from prefill claimUrl only if no template selected
+  const initialContents =
+    prefillClaimUrl && !selectedTemplate
+      ? [
+          {
+            id: "prefill-link",
+            type: "link",
+            value: "",
+            href: prefillClaimUrl,
+            label: "Claim Reward",
+            imageSrc: "",
+            imageAlt: "",
+            order: 0,
+            translations: { es: { label: "" }, ar: { label: "" } },
+            rewardId: "new",
+            createdAt: new Date().toISOString(),
+          },
+        ]
+      : [];
+
+  // If no template selected, show template selector
+  const showTemplateSelector = !selectedTemplate;
+
+  if (showTemplateSelector) {
+    return (
+      <div className="space-y-8 max-w-[1600px] mx-auto py-6 px-4 h-screen flex flex-col">
+        <div className="flex items-center gap-4">
+          <Button variant="ghost" size="icon" asChild>
+            <Link href="/admin" prefetch={false}>
+              <ArrowLeft className="w-5 h-5" />
+            </Link>
+          </Button>
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+              Create New Reward
+            </h2>
+            <p className="text-muted-foreground mt-1">
+              Choose a template to get started quickly
+            </p>
+          </div>
+        </div>
+
+        <div className="flex-1 overflow-auto">
+          <TemplateSelector />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-8 max-w-[1600px] mx-auto py-6 px-4 h-screen flex flex-col">
       <div className="flex items-center gap-4">
         <Button variant="ghost" size="icon" asChild>
-          <Link href="/admin" prefetch={false}>
+          <Link href="/admin/rewards/new" prefetch={false}>
             <ArrowLeft className="w-5 h-5" />
           </Link>
         </Button>
@@ -125,11 +184,22 @@ export default async function NewRewardPage({
         </div>
       )}
 
+      {selectedTemplate && (
+        <div className="flex items-center gap-2 rounded-lg border border-blue-500/30 bg-blue-500/5 px-4 py-2 text-sm text-blue-700 dark:text-blue-400">
+          <Sparkles className="h-4 w-4" />
+          Using template:{" "}
+          {selectedTemplate === "SUPERCELL_CODE"
+            ? "Supercell Redemption Code"
+            : "QR Code Reward"}
+        </div>
+      )}
+
       <div className="flex-1 overflow-hidden">
         <RewardEditorPage
           platforms={platforms}
           reward={stubReward}
           initialContents={initialContents}
+          prefill={prefill}
           dictionary={dictionary}
         />
       </div>
