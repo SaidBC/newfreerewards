@@ -307,3 +307,77 @@ export function getTemplateBlocks(
       return [];
   }
 }
+
+export interface SocialMediaPostData {
+  gameName: string;
+  rewardName: string;
+  description?: string | null;
+  redemptionCode?: string | null;
+  claimUrl?: string | null;
+}
+
+export function getSocialMediaSupercellCodePost(
+  data: SocialMediaPostData,
+): string {
+  const { gameName, rewardName, description, redemptionCode } = data;
+  const cleanGame = gameName || "[GAME]";
+  const cleanReward = rewardName || "a new reward";
+  const code = redemptionCode || "XXXX-XXXX-XXXX";
+  const desc = description ? `\n\n${description}` : "";
+
+  return [
+    `🎁 NEW ${cleanGame.toUpperCase()} REWARD 🎁`,
+    ``,
+    `${cleanReward} is now available for FREE!${desc}`,
+    ``,
+    `⚡ How to Redeem:`,
+    `1. Sign in with your Supercell ID`,
+    `2. Open the ${cleanGame} Store`,
+    `3. Scroll to the bottom of the page`,
+    `4. Find "Redeem a Store Code"`,
+    `5. Enter the code below 👇`,
+    ``,
+    `🔑 Code: ${code}`,
+    ``,
+    `💡 Tip: The reward will appear in your inventory within a few minutes after redeeming.`,
+    ``,
+    `📲 Don't miss out — codes like this expire quickly!`,
+    ``,
+    `#${cleanGame.replace(/\s+/g, "")} #FreeRewards #NewFreeRewards #GameCodes`,
+  ].join("\n");
+}
+
+export function getSocialMediaQRCodePost(data: SocialMediaPostData): string {
+  const { gameName, rewardName, description, claimUrl } = data;
+  const cleanGame = gameName || "[GAME]";
+  const cleanReward = rewardName || "a new reward";
+  const url = claimUrl || "";
+  const desc = description ? `\n\n${description}` : "";
+
+  const body = [
+    `📱 NEW ${cleanGame.toUpperCase()} REWARD 📱`,
+    ``,
+    `${cleanReward} is now available for FREE!${desc}`,
+    ``,
+    `⚡ How to Claim:`,
+    `1. Scan the QR code with your phone camera`,
+    `2. Or open the reward link in your browser`,
+    `3. Follow the instructions on the reward page`,
+    `4. Launch ${cleanGame} to complete the claim`,
+    ``,
+    `💡 Tip: The reward should be available immediately or after restarting the game.`,
+    ``,
+    `📲 Don't miss out — rewards like this expire quickly!`,
+  ];
+
+  if (url) {
+    body.push(``, `🔗 ${url}`);
+  }
+
+  body.push(
+    ``,
+    `#${cleanGame.replace(/\s+/g, "")} #FreeRewards #NewFreeRewards #GameRewards`,
+  );
+
+  return body.join("\n");
+}

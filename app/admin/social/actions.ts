@@ -21,21 +21,37 @@ export async function getPlatformActiveRewards(platformId: string) {
       image: true,
       previewImage: true,
       description: true,
+      template: true,
+      claimUrl: true,
+      contents: {
+        orderBy: { order: "asc" },
+        select: { type: true, value: true },
+      },
     },
     orderBy: {
       createdAt: "desc",
     },
   });
 
-  return rewards.map((r) => ({
-    id: r.id,
-    name: r.title,
-    image: r.previewImage || r.image || null,
-    description: r.description,
-  }));
+  return rewards.map((r) => {
+    const codeBlock = r.contents.find((c) => c.type === "code");
+    return {
+      id: r.id,
+      name: r.title,
+      image: r.previewImage || r.image || null,
+      description: r.description,
+      template: r.template,
+      claimUrl: r.claimUrl,
+      redemptionCode: codeBlock?.value || null,
+    };
+  });
 }
 
-export async function postToPinterest(base64Image: string, text: string, platformName: string = "NFR") {
+export async function postToPinterest(
+  base64Image: string,
+  text: string,
+  platformName: string = "NFR",
+) {
   if (!(await checkAuth())) throw new Error("Unauthorized");
 
   const accessToken = process.env.PINTEREST_ACCESS_TOKEN;
@@ -43,13 +59,14 @@ export async function postToPinterest(base64Image: string, text: string, platfor
 
   const base64Data = base64Image.replace(/^data:image\/\w+;base64,/, "");
 
-  const apiBaseUrl = process.env.PINTEREST_API_ENV === "sandbox" 
-    ? "https://api-sandbox.pinterest.com/v5" 
-    : "https://api.pinterest.com/v5";
+  const apiBaseUrl =
+    process.env.PINTEREST_API_ENV === "sandbox"
+      ? "https://api-sandbox.pinterest.com/v5"
+      : "https://api.pinterest.com/v5";
 
   let boardId = "";
   const targetBoardName = `${platformName} Rewards`;
-  
+
   try {
     const boardsResponse = await fetch(`${apiBaseUrl}/boards`, {
       headers: {
@@ -60,14 +77,16 @@ export async function postToPinterest(base64Image: string, text: string, platfor
     if (!boardsResponse.ok) {
       throw new Error(boardsData.message || "Failed to fetch Pinterest boards");
     }
-    
+
     if (boardsData.items && boardsData.items.length > 0) {
-      const existingBoard = boardsData.items.find((b: any) => b.name.toLowerCase() === targetBoardName.toLowerCase());
+      const existingBoard = boardsData.items.find(
+        (b: any) => b.name.toLowerCase() === targetBoardName.toLowerCase(),
+      );
       if (existingBoard) {
         boardId = existingBoard.id;
       }
     }
-    
+
     if (!boardId) {
       // Auto-create a board if one does not exist
       const createBoardResponse = await fetch(`${apiBaseUrl}/boards`, {
@@ -78,12 +97,14 @@ export async function postToPinterest(base64Image: string, text: string, platfor
         },
         body: JSON.stringify({
           name: targetBoardName,
-          description: `Free in-game rewards & promo codes for ${platformName}`
-        })
+          description: `Free in-game rewards & promo codes for ${platformName}`,
+        }),
       });
       const createBoardData = await createBoardResponse.json();
       if (!createBoardResponse.ok) {
-         throw new Error(`Failed to auto-create Pinterest board: ${createBoardData.message}`);
+        throw new Error(
+          `Failed to auto-create Pinterest board: ${createBoardData.message}`,
+        );
       }
       boardId = createBoardData.id;
     }

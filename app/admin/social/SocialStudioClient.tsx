@@ -4,6 +4,10 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { toPng } from "html-to-image";
 import QRCode from "qrcode";
 import { getPlatformActiveRewards, postToPinterest } from "./actions";
+import {
+  getSocialMediaQRCodePost,
+  getSocialMediaSupercellCodePost,
+} from "@/lib/rewardTemplates";
 
 /* ── Tiny inline SVG icons (no emoji, no extra deps) ── */
 function GlobeIcon({
@@ -154,6 +158,9 @@ interface RewardItem {
   name: string;
   image?: string | null;
   description?: string | null;
+  template?: string | null;
+  claimUrl?: string | null;
+  redemptionCode?: string | null;
 }
 
 interface MonthlyData {
@@ -1663,12 +1670,30 @@ export default function SocialStudioClient({
         platform: selectedPlatform.name,
         image: reward.image,
       }));
-      setPostBody(
-        `${reward.name} is now available on ${selectedPlatform.name}! Get yours today free! \n\n${reward.description || ""}`,
-      );
-      setPostTags(
-        `#${selectedPlatform.name.replace(/\s+/g, "")} #${reward.name.replace(/\s+/g, "")} #NewFreeRewards`,
-      );
+      // Post body stays empty by default — admin picks a template below
+      setPostBody("");
+      setPostTags("");
+    }
+  };
+
+  const applyPostTemplate = (templateId: "SUPERCELL_CODE" | "QR_CODE") => {
+    const selectedPlatform = platforms.find((p) => p.id === selectedPlatformId);
+    const reward = fetchedRewards.find((r) => r.id === selectedRewardId);
+
+    if (!reward || !selectedPlatform) return;
+
+    const data = {
+      gameName: selectedPlatform.name,
+      rewardName: reward.name,
+      description: reward.description,
+      redemptionCode: reward.redemptionCode,
+      claimUrl: reward.claimUrl,
+    };
+
+    if (templateId === "SUPERCELL_CODE") {
+      setPostBody(getSocialMediaSupercellCodePost(data));
+    } else {
+      setPostBody(getSocialMediaQRCodePost(data));
     }
   };
 
@@ -2059,6 +2084,71 @@ export default function SocialStudioClient({
                       </option>
                     ))}
                   </select>
+                )}
+
+                {selectedRewardId && (
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 6,
+                    }}
+                  >
+                    <label
+                      style={{
+                        fontSize: 10,
+                        fontWeight: 600,
+                        letterSpacing: "0.08em",
+                        color: "#555",
+                        textTransform: "uppercase",
+                        fontFamily: "'Inter', sans-serif",
+                      }}
+                    >
+                      Apply Post Template
+                    </label>
+                    <div style={{ display: "flex", gap: 8 }}>
+                      <button
+                        onClick={() => applyPostTemplate("SUPERCELL_CODE")}
+                        style={{
+                          flex: 1,
+                          padding: "10px 14px",
+                          borderRadius: 8,
+                          border: "1px solid rgba(74,144,226,0.35)",
+                          cursor: "pointer",
+                          fontFamily: "'Inter', sans-serif",
+                          fontWeight: 600,
+                          fontSize: 12,
+                          letterSpacing: "0.04em",
+                          backgroundColor: "rgba(74,144,226,0.12)",
+                          color: "#ffffff",
+                          transition: "all 0.15s",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        🎟️ Apply Supercell Code
+                      </button>
+                      <button
+                        onClick={() => applyPostTemplate("QR_CODE")}
+                        style={{
+                          flex: 1,
+                          padding: "10px 14px",
+                          borderRadius: 8,
+                          border: "1px solid rgba(46,204,113,0.35)",
+                          cursor: "pointer",
+                          fontFamily: "'Inter', sans-serif",
+                          fontWeight: 600,
+                          fontSize: 12,
+                          letterSpacing: "0.04em",
+                          backgroundColor: "rgba(46,204,113,0.12)",
+                          color: "#ffffff",
+                          transition: "all 0.15s",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        📱 Apply QR Code
+                      </button>
+                    </div>
+                  </div>
                 )}
               </div>
             </div>
