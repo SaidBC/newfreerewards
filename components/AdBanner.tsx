@@ -117,7 +117,7 @@ export default function AdBanner({
       };`;
 
       const adScript = document.createElement("script");
-      adScript.src = `//www.highperformanceformat.com/${apiKey}/invoke.js`;
+      adScript.src = `//www.highrevenueformat.com/${apiKey}/invoke.js`;
       adScript.async = true;
 
       // Use a temporary fragment to append both scripts at once for atomicity
