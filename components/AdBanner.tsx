@@ -23,89 +23,59 @@ export default function AdBanner({
 }: AdBannerProps) {
   const isDev = clientEnv.NEXT_PUBLIC_NODE_ENV === "development";
   const containerClass =
-    "relative bg-card border border-border rounded-lg shadow-sm overflow-hidden w-fit mx-auto min-w-[320px]";
+    "relative bg-card border border-border rounded-lg shadow-sm overflow-hidden min-w-[320px]";
   const containerRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isBlocked, setIsBlocked] = useState(false);
-  const [loaded, setIsLoaded] = useState(false);
-
-  const [offsetWidth, setOffsetWidth] = useState(0);
-
-  // Use a ResizeObserver to track container width changes
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    // Initialize width
-    setOffsetWidth(container.offsetWidth);
-
-    const observer = new ResizeObserver((entries) => {
-      // Set the width state on resize
-      setOffsetWidth(entries[0].contentRect.width);
-    });
-
-    observer.observe(container);
-
-    return () => {
-      observer.unobserve(container);
-    };
-  }, []);
+  const [loaded, setLoaded] = useState(false);
+  const scriptLoadedRef = useRef(false);
 
   useEffect(() => {
     const container = containerRef.current;
-    if (!container || isDev) return;
+    if (!container || isDev || scriptLoadedRef.current) return;
 
-    setIsLoading(true);
-    setIsLoaded(false);
+    const doLoad = () => {
+      if (scriptLoadedRef.current) return;
 
-    if (offsetWidth === 0) {
-      setIsLoading(false);
-      return;
-    }
+      const containerWidth = container.offsetWidth;
+      if (containerWidth === 0) return;
 
-    const sortedConfigs = [...adConfigs].sort((a, b) => b.width - a.width);
+      scriptLoadedRef.current = true;
 
-    // 2. Find the largest configuration that fits the current offsetWidth
-    const selectedConfig = sortedConfigs.find(
-      (config) => offsetWidth + 2 >= config.width
-    );
-    // 3. Fallback to the smallest/default size if none fit (optional, depends on your design)
-    const finalConfig =
-      selectedConfig || sortedConfigs[sortedConfigs.length - 1];
+      const sortedConfigs = [...adConfigs].sort((a, b) => b.width - a.width);
+      const selectedConfig = sortedConfigs.find(
+        (config) => containerWidth + 2 >= config.width,
+      );
+      const finalConfig =
+        selectedConfig || sortedConfigs[sortedConfigs.length - 1];
 
-    if (!finalConfig || !finalConfig.apiKey) {
-      setIsBlocked(true);
-      setIsLoading(false);
-      return;
-    }
+      if (!finalConfig || !finalConfig.apiKey) {
+        setIsBlocked(true);
+        setIsLoading(false);
+        return;
+      }
 
-    const { apiKey, width, height } = finalConfig;
+      const bait = document.createElement("div");
+      bait.className = `adsbygoogle banner-ad ad-unit ad-slot advertisement sponsored ad-check`;
+      bait.style.height = "1px";
+      bait.style.width = "1px";
+      bait.style.position = "absolute";
+      bait.style.left = "-9999px";
+      document.body.appendChild(bait);
 
-    // --- 1. Detect AdBlock ---
-    const bait = document.createElement("div");
-    bait.className = `adsbygoogle banner-ad ad-unit ad-slot advertisement sponsored ad-check`;
-    bait.style.height = "1px";
-    bait.style.width = "1px";
-    bait.style.position = "absolute";
-    bait.style.left = "-9999px";
+      const adBlockDetected =
+        window.getComputedStyle(bait).display === "none" ||
+        bait.offsetParent === null;
+      document.body.removeChild(bait);
 
-    document.body.appendChild(bait);
+      if (adBlockDetected) {
+        setIsBlocked(true);
+        setIsLoading(false);
+        return;
+      }
 
-    const adBlockDetected =
-      window.getComputedStyle(bait).display === "none" ||
-      bait.offsetParent === null;
-    document.body.removeChild(bait);
-    if (adBlockDetected) {
-      setIsBlocked(true);
-      setIsLoading(false);
-      return;
-    }
+      const { apiKey, width, height } = finalConfig;
 
-    // --- 2. Load Adsterra Script ---
-
-    let check: NodeJS.Timeout;
-    let timeout: NodeJS.Timeout;
-    const delaySript = setTimeout(() => {
       const optionsScript = document.createElement("script");
       optionsScript.innerHTML = `
       window.atOptions = {
@@ -120,46 +90,36 @@ export default function AdBanner({
       adScript.src = `//www.highrevenueformat.com/${apiKey}/invoke.js`;
       adScript.async = true;
 
-      // Use a temporary fragment to append both scripts at once for atomicity
-
       const fragment = document.createDocumentFragment();
-
       fragment.appendChild(optionsScript);
       fragment.appendChild(adScript);
       container.appendChild(fragment);
 
-      // --- 3. Detect loaded iframe ---
-
-      check = setInterval(() => {
-        // Look for an iframe *inside* this specific container
-
+      const check = setInterval(() => {
         const iframe = container.querySelector("iframe");
         if (iframe) {
-          setIsLoaded(true);
+          setLoaded(true);
           setIsLoading(false);
           clearInterval(check);
-          clearTimeout(timeout);
         }
       }, 150);
 
-      // Timeout: Stop checking and assume failure/block after 3 seconds
-
-      timeout = setTimeout(() => {
+      const timeout = setTimeout(() => {
         clearInterval(check);
-        if (!loaded) {
-          setIsBlocked(true);
-          setIsLoading(false);
-        }
-      }, 3000);
-    }, delay); // NEW: delay before loading ad script
+        setIsBlocked(true);
+        setIsLoading(false);
+      }, 5000);
 
-    return () => {
-      clearInterval(check);
-      clearTimeout(timeout);
-      clearTimeout(delaySript);
-      container.innerHTML = "";
+      return () => {
+        clearInterval(check);
+        clearTimeout(timeout);
+      };
     };
-  }, [offsetWidth, delay]);
+
+    const cleanup = doLoad();
+    return cleanup;
+  }, [adConfigs, delay, isDev]);
+
   return (
     <div className={className}>
       {isLoading && !isBlocked && !isDev && (
