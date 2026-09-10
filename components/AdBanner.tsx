@@ -23,7 +23,7 @@ export default function AdBanner({
 }: AdBannerProps) {
   const isDev = clientEnv.NEXT_PUBLIC_NODE_ENV === "development";
   const containerClass =
-    "relative bg-card border border-border rounded-lg shadow-sm overflow-hidden w-fit mx-auto";
+    "relative bg-card border border-border rounded-lg shadow-sm overflow-hidden w-fit mx-auto min-w-[320px]";
   const containerRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isBlocked, setIsBlocked] = useState(false);
