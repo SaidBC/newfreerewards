@@ -58,7 +58,7 @@ const RewardItem = ({
   return (
     <li className="relative flex flex-col rounded-lg border bg-card overflow-hidden">
       {visited && (
-        <span className="absolute top-0 right-0 z-10 bg-primary text-primary-foreground text-[10px] font-bold px-1.5 py-0.5 rounded-bl-md rounded-tr-md uppercase tracking-tighter">
+        <span className="absolute top-0 right-0 z-10 bg-primary text-primary-foreground text-[8px] font-bold px-1 py-0.5 rounded-bl-md rounded-tr-md uppercase tracking-tighter">
           {t.common.visited}
         </span>
       )}
@@ -72,32 +72,32 @@ const RewardItem = ({
               : storageUrl("images/clash-royale/chest-image.png"))
           }
           fill
-          sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
+          sizes="(max-width: 640px) 33vw, (max-width: 768px) 25vw, (max-width: 1024px) 20vw, 16vw"
           alt={platform.name}
           unoptimized
         />
       </div>
-      <div className="flex flex-col gap-2 p-3">
+      <div className="flex flex-col gap-1 p-1.5 sm:p-2">
         <div className="min-h-0">
-          <h2 className="font-bold font-concert-one text-xs sm:text-sm truncate">
+          <h2 className="font-bold font-concert-one text-[10px] sm:text-xs truncate">
             {platform.name}
           </h2>
-          <p className="text-muted-foreground text-[10px] sm:text-xs line-clamp-2">
+          <p className="text-muted-foreground text-[9px] sm:text-[10px] line-clamp-2">
             {title}
           </p>
         </div>
-        <div className="flex flex-col gap-1.5">
+        <div className="flex flex-col gap-1">
           {claimUrl && (
             <Button
               size="sm"
-              className="text-[10px] sm:text-xs w-full bg-green-600 hover:bg-green-700"
+              className="text-[9px] sm:text-[10px] w-full h-6 sm:h-7 bg-green-600 hover:bg-green-700 px-1"
               onClick={handleClaimClick}
             >
               Claim Now
             </Button>
           )}
-          <div className="flex gap-1.5">
-            <Button size="sm" className="text-[10px] sm:text-xs flex-1 min-w-0" asChild>
+          <div className="flex gap-1">
+            <Button size="sm" className="text-[9px] sm:text-[10px] flex-1 min-w-0 h-6 sm:h-7 px-1" asChild>
               <Link
                 prefetch={false}
                 href={localizePath(locale, `/games/${game}/rewards/${slug}`)}
@@ -109,7 +109,7 @@ const RewardItem = ({
             <Button
               size="sm"
               variant="outline"
-              className="px-2 shrink-0"
+              className="px-1.5 shrink-0 h-6 sm:h-7"
               onClick={() => {
                 const shareData = {
                   title: `${title} - ${platform.name}`,
@@ -127,7 +127,7 @@ const RewardItem = ({
                 }
               }}
             >
-              <Share2 className="w-3 h-3" />
+              <Share2 className="w-2.5 h-2.5" />
             </Button>
           </div>
         </div>

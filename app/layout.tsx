@@ -4,7 +4,6 @@ import "./globals.css";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { WebVitals } from "@/components/WebVitals";
 import CookieConsent from "@/components/CookieConsent";
-import MonetageInPagePush from "@/components/MonetageInPagePush";
 import MonetageVignette from "@/components/MonetageVignette";
 
 const concertOne = Concert_One({
@@ -37,7 +36,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${concertOne.variable} antialiased`}>
-        <MonetageInPagePush />
         <MonetageVignette />
         {children}
         {/* Google Analytics - @next/third-parties optimized - loads after hydration */}
