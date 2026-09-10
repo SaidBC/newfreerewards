@@ -78,6 +78,7 @@ export default async function BlueLockRivalsRedemptionPage({
           <Link
             prefetch={false}
             href={localizePath(locale, "/games/blue-lock-rivals")}
+            data-trigger-popunder="true"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             <span>{t.games.back}</span>

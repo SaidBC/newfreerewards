@@ -4,6 +4,7 @@ import "./globals.css";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { WebVitals } from "@/components/WebVitals";
 import CookieConsent from "@/components/CookieConsent";
+import SmartlinkPopunder from "@/components/SmartlinkPopunder";
 
 const concertOne = Concert_One({
   variable: "--font-concert-one",
@@ -35,6 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${concertOne.variable} antialiased`}>
+        <SmartlinkPopunder />
         {children}
         {/* Google Analytics - @next/third-parties optimized - loads after hydration */}
         <GoogleAnalytics />

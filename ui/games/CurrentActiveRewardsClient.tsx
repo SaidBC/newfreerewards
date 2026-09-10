@@ -77,6 +77,7 @@ export default function CurrentActiveRewardsClient({
               variant="outline"
               className="font-concert-one"
               aria-expanded={showMore}
+              data-trigger-popunder="true"
               onClick={() => setShowMore((value) => !value)}
             >
               {showMore ? <MinusIcon /> : <PlusIcon />}
