@@ -71,7 +71,6 @@ export default async function ClashOfClansPage({
 
   return (
     <main className="min-h-screen bg-background pt-24">
-      <AdsterraBanner className="mx-auto max-w-5xl px-4 pt-4" />
       <div className="mx-auto max-w-5xl px-4 py-8">
         <Link
           prefetch={false}
@@ -99,6 +98,7 @@ export default async function ClashOfClansPage({
         </p>
       </div>
 
+      <AdsterraBanner className="mx-auto max-w-5xl px-4" />
       <CurrentActiveRewardsSection locale={locale} game="clash-of-clans" />
       <ExpiredRewardsSection locale={locale} game="clash-of-clans" />
 

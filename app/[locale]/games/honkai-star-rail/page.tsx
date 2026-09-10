@@ -73,7 +73,6 @@ export default async function HonkaiStarRailGamePage({
 
   return (
     <main className="min-h-screen bg-background pt-24">
-      <AdsterraBanner className="mx-auto max-w-5xl px-4 pt-4" />
       <div className="mx-auto max-w-5xl px-4 py-8">
 
 
@@ -94,6 +93,7 @@ export default async function HonkaiStarRailGamePage({
         </p>
       </div>
 
+      <AdsterraBanner className="mx-auto max-w-5xl px-4" />
       <CurrentActiveRewardsSection locale={locale} game="honkai-star-rail" />
       <ExpiredRewardsSection locale={locale} game="honkai-star-rail" />
 

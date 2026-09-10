@@ -227,7 +227,6 @@ export default function RewardDetailViewClient({
 
   return (
     <div className="bg-background">
-      <AdsterraBanner className="mx-auto max-w-5xl px-4 pt-4" />
       <section className="mx-auto max-w-5xl px-4 py-8 md:py-16">
         {!isPreview && (
           <Button variant={"link"} asChild className="mb-4">
@@ -266,6 +265,8 @@ export default function RewardDetailViewClient({
           {reward.description}
         </p>
       </section>
+
+      <AdsterraBanner className="mx-auto max-w-5xl px-4" />
 
       <section className="mx-auto max-w-5xl px-4 pb-24 flex flex-col gap-8">
         {!isPreview && (

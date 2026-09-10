@@ -75,7 +75,6 @@ export default async function BrawlStarsPage({
 
   return (
     <main className="min-h-screen bg-background pt-24">
-      <AdsterraBanner className="mx-auto max-w-5xl px-4 pt-4" />
       <div className="mx-auto max-w-5xl px-4 py-8">
         <Link
           prefetch={false}
@@ -103,6 +102,7 @@ export default async function BrawlStarsPage({
         </p>
       </div>
 
+      <AdsterraBanner className="mx-auto max-w-5xl px-4" />
       <CurrentActiveRewardsSection locale={locale} game="brawl-stars" />
       <ExpiredRewardsSection locale={locale} game="brawl-stars" />
 

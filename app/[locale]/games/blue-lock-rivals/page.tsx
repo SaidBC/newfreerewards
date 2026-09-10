@@ -72,7 +72,6 @@ export default async function BlueLockRivalsGamePage({
 
   return (
     <main className="min-h-screen bg-background pt-24">
-      <AdsterraBanner className="mx-auto max-w-5xl px-4 pt-4" />
       <div className="mx-auto max-w-5xl px-4 py-8">
         <div className="flex items-center gap-4">
           <Image
@@ -91,6 +90,7 @@ export default async function BlueLockRivalsGamePage({
         </p>
       </div>
 
+      <AdsterraBanner className="mx-auto max-w-5xl px-4" />
       <CurrentActiveRewardsSection locale={locale} game="blue-lock-rivals" />
       <ExpiredRewardsSection locale={locale} game="blue-lock-rivals" />
 
