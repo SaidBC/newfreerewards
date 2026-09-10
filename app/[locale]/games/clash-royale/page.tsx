@@ -15,6 +15,7 @@ import {
 
 import { getPlatformLastUpdated } from "@/lib/rewardService";
 import { formatDate } from "@/lib/utils";
+import AdsterraBanner from "@/components/AdsterraBanner";
 
 export const dynamic = "force-static";
 
@@ -74,6 +75,7 @@ export default async function Page({
 
   return (
     <main className="min-h-screen bg-background">
+      <AdsterraBanner className="mx-auto max-w-5xl px-4 pt-4" />
       <section className="mx-auto max-w-5xl px-4 py-16">
         <div className="flex gap-4 items-center">
           <Image

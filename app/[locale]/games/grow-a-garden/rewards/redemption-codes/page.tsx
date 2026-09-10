@@ -78,7 +78,6 @@ export default async function GrowAGardenRedemptionPage({
           <Link
             prefetch={false}
             href={localizePath(locale, "/games/grow-a-garden")}
-            data-trigger-popunder="true"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             <span>{t.games.back}</span>

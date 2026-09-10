@@ -1,2 +1,2 @@
-# Google Adsense
-google.com, pub-3676819123197112, DIRECT, f08c47fec0942fa0
+# Monetag
+*, DIRECT, 033360f211450205, 2e65e632c6b337a9, pub-3676819123197112

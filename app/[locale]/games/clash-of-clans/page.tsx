@@ -14,6 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getPlatformLastUpdated } from "@/lib/rewardService";
 import { formatDate } from "@/lib/utils";
+import AdsterraBanner from "@/components/AdsterraBanner";
 
 export const dynamic = "force-static";
 
@@ -70,6 +71,7 @@ export default async function ClashOfClansPage({
 
   return (
     <main className="min-h-screen bg-background pt-24">
+      <AdsterraBanner className="mx-auto max-w-5xl px-4 pt-4" />
       <div className="mx-auto max-w-5xl px-4 py-8">
         <Link
           prefetch={false}

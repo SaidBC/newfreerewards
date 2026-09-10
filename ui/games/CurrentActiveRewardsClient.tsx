@@ -46,7 +46,7 @@ export default function CurrentActiveRewardsClient({
             {t.games.noActiveRewards}
           </div>
         ) : (
-          <ul className="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-8 w-full">
+          <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 w-full">
             {rewards.map((reward) => (
               <RewardItem
                 key={reward.id}
@@ -76,7 +76,6 @@ export default function CurrentActiveRewardsClient({
               type="button"
               variant="outline"
               className="font-concert-one"
-              data-trigger-popunder="true"
               aria-expanded={showMore}
               onClick={() => setShowMore((value) => !value)}
             >

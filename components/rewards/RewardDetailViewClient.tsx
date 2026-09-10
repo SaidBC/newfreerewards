@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import CopyCode from "@/components/CopyCode";
 import { localizePath, type Locale } from "@/lib/i18n";
+import AdsterraBanner from "@/components/AdsterraBanner";
 import type { RewardEngagementSummary } from "@/lib/rewardEngagementService";
 import { useEffect, useState } from "react";
 import { markRewardVisited } from "@/lib/visitedRewards";
@@ -226,13 +227,13 @@ export default function RewardDetailViewClient({
 
   return (
     <div className="bg-background">
+      <AdsterraBanner className="mx-auto max-w-5xl px-4 pt-4" />
       <section className="mx-auto max-w-5xl px-4 py-8 md:py-16">
         {!isPreview && (
           <Button variant={"link"} asChild className="mb-4">
             <Link
               prefetch={false}
               href={localizePath(locale, `/games/${reward.platform.slug}`)}
-              data-trigger-popunder="true"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
               <span>{t.games.back}</span>
